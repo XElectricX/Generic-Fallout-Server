@@ -4,8 +4,8 @@
 
 /obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
 	for(var/turf/T in locs)
-		for(var/obj/vehicle/multitile/M in T)
-			if(M) return FALSE
+		for(var/obj/vehicle/V in T)
+			if(V) return FALSE
 
 	return ..()
 
@@ -93,10 +93,10 @@
 	name = "\improper Canteen"
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/cryo
-	name = "\improper Cryogenics Bay"	
+	name = "\improper Cryogenics Bay"
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden
-	name = "\improper Garden"	
+	name = "\improper Garden"
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor
 	name = "\improper Medical Airlock"
@@ -105,7 +105,8 @@
 	glass = TRUE
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay
-	name = "\improper Medical Bay"	
+	name = "\improper Medical Bay"
+	req_access = list(ACCESS_MARINE_MEDBAY)
 
 /obj/machinery/door/airlock/multi_tile/mainship/research
 	name = "\improper Research Airlock"
@@ -119,7 +120,14 @@
 	icon = 'icons/obj/doors/mainship/2x1comdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access_txt = "19"
+	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/cargopads
+	name = "\improper Cargo Pads"
+	req_access = list(ACCESS_NT_CORPORATE)
 
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor
 	name = "\improper Security Airlock"
