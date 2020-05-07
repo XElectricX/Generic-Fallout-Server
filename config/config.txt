@@ -32,7 +32,7 @@ LOCALHOST_RANK
 
 SEE_OWN_NOTES
 
-AUTOMUTE_ON
+#AUTOMUTE_ON
 
 PROTECT_LEGACY_ADMINS
 
@@ -68,7 +68,7 @@ LOG_GAME
 LOG_VOTE
 LOG_WHISPER
 LOG_EMOTE
-LOG_ATTACK
+#LOG_ATTACK
 LOG_HREFS
 LOG_RUNTIME
 LOG_MANIFEST
@@ -89,7 +89,7 @@ LIMBS_CAN_BREAK
 # TOPIC_FILTERING_WHITELIST 127.0.0.1
 
 ## Only enable this if you have youtube-dl installed!
- INVOKE_YOUTUBEDL youtube-dl
+INVOKE_YOUTUBEDL youtube-dl
 
 #Here are the lobby music configs. 
 #index link startSecond endSecond

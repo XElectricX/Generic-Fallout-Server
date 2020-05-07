@@ -1,2 +1,4 @@
 kezai = Admin
 hjack909090 = Admin
+lolkillerk = Admin
+david stormwell = Admin
