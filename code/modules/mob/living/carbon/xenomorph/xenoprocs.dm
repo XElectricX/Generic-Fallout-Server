@@ -255,7 +255,7 @@
 		if(client && ckey) // pause for ssd/ghosted
 			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
+					if(health == maxHealth && !incapacitated() && !handcuffed)
 						upgrade_xeno(upgrade_next())
 				else
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
@@ -566,12 +566,11 @@
 		if(target.plasma_stored < amount)
 			amount = target.plasma_stored //Just take it all.
 
-		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		var/absorbed_amount = amount
 		target.use_plasma(amount)
 		gain_plasma(absorbed_amount)
 		to_chat(src, "<span class='xenowarning'>We salvage [absorbed_amount] units of plasma from [target]. We have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
-		if(prob(50))
-			playsound(src, "alien_drool", 25)
+		playsound(src, "alien_drool", 25)
 
 
 
@@ -603,8 +602,8 @@
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
 		do_attack_animation(C)
-		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
-		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+		playsound(C, "alien_drool", 15, TRUE)
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
@@ -658,5 +657,3 @@
 	if(.)
 		return
 	return (sunder * -0.01) + 1
-
-

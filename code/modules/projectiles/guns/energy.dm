@@ -148,7 +148,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	cell_type = null
+	cell_type = /obj/item/cell/lasgun/M43
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -416,14 +416,14 @@
 	name = "\improper TX-73 Lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
 	force = 20 //Large and hefty! Includes stock bonus.
-	icon = 'icons/Marine/lasrifle.dmi'
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	cell_type = null
+	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 20
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -493,7 +493,7 @@
 /datum/lasrifle/base/heat
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/heat
-	fire_delay = 8
+	fire_delay = 15
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
