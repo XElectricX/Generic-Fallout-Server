@@ -29,9 +29,6 @@
 	. = ..()
 	fusion_cell = new(src)
 
-/obj/machinery/power/fusion_engine/should_have_node()
-	return TRUE
-
 
 /obj/machinery/power/fusion_engine/preset/Initialize()
 	. = ..()

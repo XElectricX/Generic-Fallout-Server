@@ -3,7 +3,6 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
-	w_class = WEIGHT_CLASS_SMALL
 
 	var/label = null
 	var/labels_left = 50

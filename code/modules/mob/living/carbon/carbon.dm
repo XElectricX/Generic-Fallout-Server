@@ -30,6 +30,13 @@
 		L.initiate_burst(src)
 
 
+/mob/living/carbon/gib()
+	if(legcuffed)
+		dropItemToGround(legcuffed)
+
+	return ..()
+
+
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 

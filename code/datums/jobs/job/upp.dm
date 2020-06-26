@@ -2,22 +2,23 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
-	faction = "United Space Lepidoptera"
+	faction = FACTION_UPP
 
-//USL Gunner
+
+//UPP Standard
 /datum/job/upp/standard
-	title = "USL Gunner"
+	title = "UPP Standard"
 	paygrade = "UPP1"
 	outfit = /datum/outfit/job/upp/standard
 
 
 /datum/outfit/job/upp/standard
-	name = "USL Gunner"
+	name = "UPP Standard"
 	jobtype = /datum/job/upp/standard
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP
@@ -61,21 +62,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//SL Surgeon
+//UPP Medic
 /datum/job/upp/medic
-	title = "USL Surgeon"
+	title = "UPP Medic"
 	paygrade = "UPP2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/upp/medic
 
 
 /datum/outfit/job/upp/medic
-	name = "USL Surgeon"
+	name = "UPP Medic"
 	jobtype = /datum/job/upp/medic
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/combatLifesaver/upp
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP
@@ -116,21 +117,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//USL Powder Monkey
+//UPP Heavy
 /datum/job/upp/heavy
-	title = "USL Powder Monkey"
+	title = "UPP Heavy"
 	paygrade = "UPP3"
 	skills_type = /datum/skills/specialist/upp
 	outfit = /datum/outfit/job/upp/heavy
 
 
 /datum/outfit/job/upp/heavy
-	name = "USL Powder Monkey"
+	name = "UPP Heavy"
 	jobtype = /datum/job/upp/heavy
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy
@@ -167,21 +168,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//USL Captain
+//UPP Leader
 /datum/job/upp/leader
-	title = "USL Captain"
+	title = "UPP Leader"
 	paygrade = "UPP4"
 	skills_type = /datum/skills/SL/upp
 	outfit = /datum/outfit/job/upp/leader
 
 
 /datum/outfit/job/upp/leader
-	name = "USL Captain"
+	name = "UPP Leader"
 	jobtype = /datum/job/upp/leader
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/korovin/standard
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy

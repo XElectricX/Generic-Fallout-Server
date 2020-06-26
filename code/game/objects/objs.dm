@@ -5,10 +5,7 @@
 
 	var/list/materials
 
-	/// %-reduction-based armor.
-	var/datum/armor/soft_armor
-	/// Flat-damage-reduction-based armor.
-	var/datum/armor/hard_armor
+	var/datum/armor/armor
 
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
@@ -34,20 +31,12 @@
 
 /obj/Initialize()
 	. = ..()
-	if(islist(soft_armor))
-		soft_armor = getArmor(arglist(soft_armor))
-	else if (!soft_armor)
-		// Default bio armor 100 to avoid sentinels getting free damage on sent
-		soft_armor = getArmor(bio = 100)
-	else if (!istype(soft_armor, /datum/armor))
-		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /obj Initialize()")
-
-	if(islist(hard_armor))
-		hard_armor = getArmor(arglist(hard_armor))
-	else if (!hard_armor)
-		hard_armor = getArmor()
-	else if (!istype(hard_armor, /datum/armor))
-		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /obj Initialize()")
+	if (islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor(bio = 100)
+	else if (!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
@@ -120,7 +109,7 @@
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 
-/obj/proc/hide(h) // TODO: Fix all children
+/obj/proc/hide(h)
 	return
 
 

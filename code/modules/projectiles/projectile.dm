@@ -56,12 +56,6 @@
 
 	var/distance_travelled = 0
 
-	/// How maany times this projectile has bounced off something
-	var/ricochet_count = 0
-
-	/// The maximum number of times this can bounce
-	var/ricochet_limit = 0
-
 	var/projectile_speed = 1 //Tiles travelled per full tick.
 	var/armor_type = null
 
@@ -89,12 +83,12 @@
 
 /obj/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
 	. = ..()
-	if(permutated[AM]) //If we've already handled this atom, don't do it again.
+	if(AM in permutated) //If we've already handled this atom, don't do it again.
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
 		return
-	permutated[AM] = TRUE //Don't want to hit them again.
+	permutated += AM //Don't want to hit them again.
 
 
 /obj/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -134,10 +128,10 @@
 		proj_max_range = range
 	if(shooter)
 		firer = shooter
-		permutated[firer] = TRUE //Don't hit the shooter
+		permutated += firer //Don't hit the shooter
 	if(source)
 		shot_from = source
-	permutated[src] = TRUE
+	permutated += src //Don't try to hit self.
 	if(!isturf(loc))
 		forceMove(get_turf(shooter)) //If the bulllets not in a turf over it to the shooters turf
 	starting_turf = loc
@@ -506,9 +500,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				return TRUE
 
 	for(var/i in turf_to_scan)
-		if(permutated[i]) //If we've already handled this atom, don't do it again.
+		if(i in permutated) //If we've already handled this atom, don't do it again.
 			continue
-		permutated[i] = TRUE //Don't want to hit them again, no matter what the outcome.
+		permutated += i //Don't want to hit them again, no matter what the outcome.
 
 		var/atom/movable/thing_to_hit = i
 
@@ -616,7 +610,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b></span>")
+	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>")
 	#endif
 
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
@@ -626,6 +620,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
 	else
 		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
+
+	#if DEBUG_HIT_CHANCE
+	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
+	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
 	if(lying_angle && stat != CONSCIOUS)
@@ -649,10 +647,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
-
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
-	#endif
 
 	if(. <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
 		return FALSE
@@ -894,7 +888,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/list/livings_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/living/L in src)
-		if(proj.permutated[L])
+		if(L in proj.permutated)
 			continue
 		livings_list += L
 
@@ -918,8 +912,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	switch(proj.ammo.damage_type)
 		if(BRUTE, BURN)
-			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
-			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
+			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
 		else
 			return FALSE
 

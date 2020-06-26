@@ -41,10 +41,7 @@
 
 	var/changing_turf = FALSE
 
-	/// %-reduction-based armor.
-	var/datum/armor/soft_armor
-	/// Flat-damage-reduction-based armor.
-	var/datum/armor/hard_armor
+	var/datum/armor/armor
 
 
 /turf/Initialize(mapload)
@@ -74,19 +71,12 @@
 	if(opacity)
 		has_opaque_atom = TRUE
 
-	if(islist(soft_armor))
-		soft_armor = getArmor(arglist(soft_armor))
-	else if (!soft_armor)
-		soft_armor = getArmor()
-	else if (!istype(soft_armor, /datum/armor))
-		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /turf Initialize()")
-
-	if(islist(hard_armor))
-		hard_armor = getArmor(arglist(hard_armor))
-	else if (!hard_armor)
-		hard_armor = getArmor()
-	else if (!istype(hard_armor, /datum/armor))
-		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor()
+	else if (!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during /turf Initialize()")
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -214,8 +204,8 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.flags_atom & INITIALIZED)
-			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, intact_tile)
+		if(O.level == 1)
+			O.hide(intact_tile)
 
 
 // Creates a new turf
@@ -379,26 +369,22 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
-/turf/attackby(obj/item/C, mob/user, params)
-	if(..())
+//Enable cable laying on turf click instead of pixel hunting the cable
+/turf/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(.)
 		return TRUE
-	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = C
-		coil.place_turf(src, user)
-		return TRUE
-	else if(can_have_cabling() && istype(C, /obj/item/stack/pipe_cleaner_coil))
-		var/obj/item/stack/pipe_cleaner_coil/coil = C
-		for(var/obj/structure/pipe_cleaner/LC in src)
-			if(!LC.d1 || !LC.d2)
-				LC.attackby(C, user)
+
+	user.changeNext_move(I.attack_speed)
+
+	if(can_lay_cable() && istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		for(var/obj/structure/cable/C in src)
+			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
+				C.attackby(I, user, params)
 				return
 		coil.place_turf(src, user)
 		return TRUE
-
-	//else if(istype(C, /obj/item/rcl))
-	//	handleRCL(C, user)
-
-	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
@@ -474,10 +460,17 @@
 
 //////////////////////////////////////////////////////////
 
+
+
+GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
+	/area/shuttle/drop1/lz1,
+	/area/shuttle/drop2/lz2,
+	/area/sulaco/hangar)))
+
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density
+	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -502,6 +495,10 @@
 	. = ..()
 	if(covered)
 		return FALSE
+
+
+/turf/closed/wall/is_weedable()
+	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)

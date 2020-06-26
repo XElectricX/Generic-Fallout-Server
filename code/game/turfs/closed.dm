@@ -229,14 +229,6 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 
-/turf/closed/shuttle/re_corner/notdense
-	icon_state = "re_cornergrass"
-	density = FALSE
-
-/turf/closed/shuttle/re_corner/jungle
-	icon_state = "re_cornerjungle"
-	density = FALSE
-
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
 
@@ -251,14 +243,8 @@
 /turf/closed/shuttle/wall3
 	icon_state = "wall3"
 
-/turf/closed/shuttle/swall3
-	icon_state = "swall3"
-
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
-
-/turf/closed/shuttle/wall3/diagonal/white
-	icon_state = "diagonalWall3white"
 
 /turf/closed/shuttle/wall3/diagonal/plating
 	icon_state = "diagonalWall3plating"
@@ -307,7 +293,5 @@
 	name = "\improper Rasputin"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
-	plane = GAME_PLANE
-
-/turf/closed/shuttle/dropship3/transparent
 	opacity = FALSE
+/turf/closed/shuttle/dropship3/transparent

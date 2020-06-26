@@ -15,12 +15,9 @@
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
-	var/fail_rate = 0 //% chance of failure each fail_tick check
+	var/fail_rate = 10 //% chance of failure each fail_tick check
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
-
-/obj/machinery/power/geothermal/should_have_node()
-	return TRUE
 
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
 /obj/machinery/power/geothermal/update_icon()
@@ -87,10 +84,6 @@
 			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = GEOTHERMAL_LIGHT_DAMAGE
 			icon_state = "wrench"
-
-		//Resets the fail_rate incase the xenos have been fucking with it.
-		fail_rate = initial(fail_rate)
-
 		is_on = FALSE
 		power_gen_percent = 0
 		update_icon()
@@ -98,18 +91,6 @@
 		stop_processing()
 		return TRUE
 	return FALSE //Nope, all fine
-
-/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X)
-	. = ..()
-	// Can't damage a broken generator
-	if(buildstate)
-		return
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	play_attack_sound(1)
-	X.visible_message("<span class='danger'>\The [X] slashes at \the [src], tearing at it's components!</span>",
-		"<span class='danger'>We start slashing at \the [src], tearing at it's components!</span>")
-	fail_rate += 5 // 5% fail rate every attack
-
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/user)
 	. = ..()

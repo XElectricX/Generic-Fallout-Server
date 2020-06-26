@@ -2,23 +2,23 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/commando
-	faction = "United Space Lepidoptera"
+	faction = FACTION_UPP
 
 
-//USL Elite Powder Monkey
+//UPP Commando Standard
 /datum/job/upp/commando/standard
-	title = "USL Elite Powder Monkey"
+	title = "UPP Commando Standard"
 	paygrade = "UPPC1"
 	outfit = /datum/outfit/job/upp/commando/standard
 
 
 /datum/outfit/job/upp/commando/standard
-	name = "USL Elite Powder Monkey"
+	name = "UPP Commando Standard"
 	jobtype = /datum/job/upp/commando/standard
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
@@ -57,21 +57,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//USL Elite Surgeon
+//UPP Commando Medic
 /datum/job/upp/commando/medic
-	title = "USL Elite Surgeon"
+	title = "UPP Commando Medic"
 	paygrade = "UPPC2"
 	skills_type = /datum/skills/commando/medic
 	outfit = /datum/outfit/job/upp/commando/medic
 
 
 /datum/outfit/job/upp/commando/medic
-	name = "USL Elite Surgeon"
+	name = "UPP Commando Medic"
 	jobtype = /datum/job/upp/commando/medic
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/combatLifesaver/upp
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
@@ -114,21 +114,21 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//USL Elite Captain
+//UPP Commando Leader
 /datum/job/upp/commando/leader
-	title = "USL Elite Captain"
+	title = "UPP Commando Leader"
 	paygrade = "UPPC3"
 	skills_type = /datum/skills/commando/leader
 	outfit = /datum/outfit/job/upp/commando/leader
 
 
 /datum/outfit/job/upp/commando/leader
-	name = "USL Elite Captain"
+	name = "UPP Commando Leader"
 	jobtype = /datum/job/upp/commando/leader
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/korovin/tranq
-	ears = /obj/item/radio/headset/distress/usl
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando

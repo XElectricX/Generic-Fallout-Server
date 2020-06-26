@@ -73,7 +73,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < max(health * 1.5,0))
+	if(staminaloss < maxHealth * 1.5)
 		return
 	if(!IsParalyzed())
 		if(feedback)
@@ -225,8 +225,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	. = ..()
 	GLOB.alive_human_list += src
 	GLOB.dead_human_list -= src
-	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
-	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
@@ -304,6 +302,10 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	if(handcuffed && !initial(handcuffed))
 		dropItemToGround(handcuffed)
 	update_handcuffed(initial(handcuffed))
+
+	if(legcuffed && !initial(legcuffed))
+		dropItemToGround(legcuffed)
+	update_legcuffed(initial(legcuffed))
 
 	return ..()
 

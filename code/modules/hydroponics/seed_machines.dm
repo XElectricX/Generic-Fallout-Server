@@ -35,7 +35,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_MACHINE_NANO
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
 	var/obj/item/disk/botany/loaded_disk //Currently loaded data disk.

@@ -84,14 +84,14 @@
 		return
 
 	if(occupant.stat == DEAD)
-		say("Patient has expired.")
+		visible_message("\The [src] speaks: Patient has expired.")
 		surgery = FALSE
 		go_out(AUTODOC_NOTICE_DEATH)
 		return
 
 	if(!surgery)
 		return
-
+		
 	// keep them alive
 	var/updating_health = FALSE
 	occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
@@ -103,7 +103,7 @@
 			filtered += 10
 		if(!filtered)
 			filtering = 0
-			say("Blood filtering complete.")
+			visible_message("[src] speaks: Blood filtering complete.")
 		else if(prob(10))
 			visible_message("[src] whirrs and gurgles as the dialysis module operates.")
 			to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
@@ -111,14 +111,14 @@
 		if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 			if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
 				connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
-				say("Blood reserves depleted, switching to fresh bag.")
+				visible_message("[src] speaks: Blood reserves depleted, switching to fresh bag.")
 			occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
 			if(prob(10))
 				visible_message("[src] whirrs and gurgles as it tranfuses blood.")
 				to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
 		else
 			blood_transfer = 0
-			say("Blood transfer complete.")
+			visible_message("[src] speaks: Blood transfer complete.")
 	if(heal_brute)
 		if(occupant.getexternalBruteLoss() > 0)
 			occupant.heal_limb_damage(3, 0)
@@ -128,7 +128,7 @@
 				to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
 		else
 			heal_brute = 0
-			say("Trauma repair surgery complete.")
+			visible_message("[src] speaks: Trauma repair surgery complete.")
 	if(heal_burn)
 		if(occupant.getFireLoss() > 0)
 			occupant.heal_limb_damage(0, 3)
@@ -138,7 +138,7 @@
 				to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
 		else
 			heal_burn = 0
-			say("Skin grafts complete.")
+			visible_message("[src] speaks: Skin grafts complete.")
 	if(heal_toxin)
 		if(occupant.getToxLoss() > 0)
 			occupant.adjustToxLoss(-3)
@@ -148,7 +148,7 @@
 				to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
 		else
 			heal_toxin = 0
-			say("Chelation complete.")
+			visible_message("[src] speaks: Chelation complete.")
 	if(updating_health)
 		occupant.updatehealth()
 
@@ -316,7 +316,7 @@
 				switch(S.surgery_procedure)
 					if(ADSURGERY_GERMS) // Just dose them with the maximum amount of antibiotics and hope for the best
 						if(prob(30))
-							say("Beginning organ disinfection.")
+							visible_message("[src] speaks, Beginning organ disinfection.")
 						var/datum/reagent/R = GLOB.chemical_reagents_list[/datum/reagent/medicine/spaceacillin]
 						var/amount = R.overdose_threshold - occupant.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
@@ -334,10 +334,10 @@
 
 					if(ADSURGERY_DAMAGE)
 						if(prob(30))
-							say("Beginning organ restoration.")
+							visible_message("[src] speaks, Beginning organ restoration.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						open_incision(occupant, S.limb_ref)
@@ -356,7 +356,7 @@
 						if(istype(S.organ_ref,/datum/internal_organ))
 							S.organ_ref.rejuvenate(TRUE)
 						else
-							say("Organ is missing.")
+							visible_message("[src] speaks, Organ is missing.")
 
 						// close them
 						if(S.limb_ref.body_part != GROIN) // TODO: fix brute damage before closing
@@ -365,10 +365,10 @@
 
 					if(ADSURGERY_EYES)
 						if(prob(30))
-							say("Beginning corrective eye surgery.")
+							visible_message("[src] speaks, Beginning corrective eye surgery.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						if(istype(S.organ_ref,/datum/internal_organ/eyes))
@@ -407,10 +407,10 @@
 				switch(S.surgery_procedure)
 					if(ADSURGERY_INTERNAL)
 						if(prob(30))
-							say("Beginning internal bleeding procedure.")
+							visible_message("[src] speaks, Beginning internal bleeding procedure.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						open_incision(occupant, S.limb_ref)
@@ -426,10 +426,10 @@
 
 					if(ADSURGERY_BROKEN)
 						if(prob(30))
-							say("Beginning broken bone procedure.")
+							visible_message("[src] speaks, Beginning broken bone procedure.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						open_incision(occupant, S.limb_ref)
@@ -449,10 +449,10 @@
 
 					if(ADSURGERY_MISSING)
 						if(prob(30))
-							say("Beginning limb replacement.")
+							visible_message("[src] speaks, Beginning limb replacement.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 
@@ -461,7 +461,7 @@
 						sleep(ROBOLIMB_PREPARE_MAX_DURATION*surgery_mod)
 
 						if(stored_metal < LIMB_METAL_AMOUNT)
-							say("Metal reserves depleted.")
+							visible_message("[src] croaks, Metal reserves depleted.")
 							playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE)
 							surgery_todo_list -= S
 							continue // next surgery
@@ -469,7 +469,7 @@
 						stored_metal -= LIMB_METAL_AMOUNT
 
 						if(S.limb_ref.parent.limb_status & LIMB_DESTROYED) // there's nothing to attach to
-							say("Limb attachment failed.")
+							visible_message("[src] croaks, Limb attachment failed.")
 							playsound(loc, 'sound/machines/buzz-two.ogg', 15, TRUE)
 							surgery_todo_list -= S
 							continue
@@ -494,10 +494,10 @@
 
 					if(ADSURGERY_NECRO)
 						if(prob(30))
-							say("Beginning necrotic tissue removal.")
+							visible_message("[src] speaks, Beginning necrotic tissue removal.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 
@@ -510,10 +510,10 @@
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_SHRAPNEL)
-						say("Beginning foreign body removal.")
+						visible_message("[src] speaks, Beginning foreign body removal.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 
@@ -548,7 +548,7 @@
 
 					if(ADSURGERY_GERM)
 						if(prob(30))
-							say("Beginning limb disinfection.")
+							visible_message("[src] speaks, Beginning limb disinfection.")
 
 						var/datum/reagent/R = GLOB.chemical_reagents_list[/datum/reagent/medicine/spaceacillin]
 						var/amount = (R.overdose_threshold * 0.5) - occupant.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
@@ -567,10 +567,10 @@
 
 					if(ADSURGERY_FACIAL) // dumb but covers for incomplete facial surgery
 						if(prob(30))
-							say("Beginning Facial Reconstruction Surgery.")
+							visible_message("[src] speaks, Beginning Facial Reconstruction Surgery.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
-							say("Procedure has been deemed unnecessary.")
+							visible_message("[src] speaks, Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						if(istype(S.limb_ref,/datum/limb/head))
@@ -601,12 +601,12 @@
 
 					if(ADSURGERY_OPEN)
 						if(prob(30))
-							say("Closing surgical incision.")
+							visible_message("[src] croaks, Closing surgical incision.")
 						close_encased(occupant, S.limb_ref)
 						close_incision(occupant, S.limb_ref)
 
 		if(prob(30))
-			say("Procedure complete.")
+			visible_message("[src] speaks, Procedure complete.")
 		surgery_todo_list -= S
 		continue
 

@@ -18,7 +18,6 @@ import './styles/themes/ntos.scss';
 import './styles/themes/hackerman.scss';
 import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
-import './styles/themes/xeno.scss';
 
 import { loadCSS } from 'fg-loadcss';
 import { render } from 'inferno';

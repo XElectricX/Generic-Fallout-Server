@@ -16,6 +16,10 @@
 	cryotypes = list(CRYO_MED)
 	category = CRYO_MED
 
+/obj/machinery/computer/cryopod/brig
+	cryotypes = list(CRYO_SEC)
+	category = CRYO_SEC
+
 /obj/machinery/computer/cryopod/eng
 	cryotypes = list(CRYO_ENGI)
 	category = CRYO_ENGI
@@ -202,7 +206,9 @@
 	//Handle job slot/tater cleanup.
 	if(job in SSjob.active_joinable_occupations)
 		job.free_job_positions(1)
-		if(ismedicaljob(job))
+		if(ispolicejob(job))
+			dept_console = CRYO_SEC
+		else if(ismedicaljob(job))
 			dept_console = CRYO_MED
 		else if(isengineeringjob(job))
 			dept_console = CRYO_ENGI

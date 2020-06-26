@@ -170,7 +170,7 @@
 	department = "Combat Information Center"
 
 /obj/machinery/faxmachine/cmp
-	department = "Brig"
+	department = COMMAND_MASTER_AT_ARMS
 
 /obj/machinery/faxmachine/brig
 	department = "Brig"
