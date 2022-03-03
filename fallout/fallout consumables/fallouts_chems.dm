@@ -1,0 +1,147 @@
+/obj/item/reagent_containers/hypospray/fallout
+	name = "junk injector"
+	desc = "Dirty and useless, probably from before the War."
+	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
+	icon_state = ""
+	init_reagent_flags = DRAWABLE
+	skilllock = 0
+	possible_transfer_amounts = list(1,3,5,10,15,20)
+
+/obj/item/reagent_containers/hypospray/fallout/interact(mob/user)
+	var/N = tgui_input_list(user, "Amount per transfer from this:", "[src]", possible_transfer_amounts)
+	if(!N)
+		return
+	amount_per_transfer_from_this = N
+
+/obj/item/reagent_containers/hypospray/fallout/update_icon()
+	if(!(reagents.total_volume) && is_drawable())
+		name = "expended [name]"
+		icon_state += "_empty"
+		DISABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
+	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE))
+		icon_state = initial(icon_state)
+		name = initial(name)
+		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
+
+/obj/item/reagent_containers/hypospray/fallout/stimpak
+	name = "Stimpak"
+	desc = "A handheld delivery system for medicine, used to rapidly heal physical damage to the body."
+	icon_state = "stimpak"
+	volume = 10
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/stimpak = 10)
+/*
+/obj/item/reagent_containers/hypospray/fallout/stimpak/imitation
+	name = "imitation stimpak"
+	desc = "A handheld delivery system for medicine. This one is filled with ground up flower juice, but hey, whatever gets you moving, right?"
+	list_reagents = list(/datum/reagent/medicine/stimpakimitation = 10)
+
+/obj/item/reagent_containers/hypospray/fallout/stimpak/super
+	name = "super stimpak"
+	desc = "The super version comes in a hypodermic, but with an additional vial containing more powerful drugs than the basic model and a leather belt to strap the needle to the injured limb."
+	icon_state = "hypo_superstimpak"
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/super_stimpak = 10)
+*/
+/obj/item/reagent_containers/hypospray/fallout/medx
+	name = "Med-X Injector"
+	desc = "A short-lasting shot of Med-X applied via hypodermic needle."
+	icon_state = "medx"
+	volume = 20
+	amount_per_transfer_from_this = 20
+	list_reagents = list(/datum/reagent/medicine/medx = 20)
+
+/obj/item/reagent_containers/hypospray/fallout/jet
+	name = "Jet Inhaler"
+	desc = "A crude inhaler meant to aerolize and deliver Jet."
+	icon_state = "jet"
+	volume = 20
+	amount_per_transfer_from_this = 20
+	list_reagents = list(/datum/reagent/jet = 20)
+
+/obj/item/reagent_containers/hypospray/fallout/jet/afterattack(atom/A, mob/living/user)
+	if(!A.reagents)
+		return
+	if(!istype(user))
+		return
+	if(!in_range(A, user) || !user.Adjacent(A))
+		return
+	if(!reagents.total_volume)
+		to_chat(user, span_warning("[src] is empty."))
+		return
+	if(ismob(A))
+		var/mob/M = A
+		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
+			return
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
+			user.Paralyze(60)
+			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
+			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
+				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
+			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			return FALSE
+	var/list/injected = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		injected += R.name
+	log_combat(user, A, "injected", src, "Reagents: [english_list(injected)]")
+	if(ismob(A))
+		var/mob/M = A
+		to_chat(user, span_notice("[M] takes a mouthful from the [src]."))
+		to_chat(M, span_warning("A rush of air enters through your mouth!"))
+	playsound(loc, 'sound/effects/spray.ogg', 20, 1)
+	reagents.reaction(A, INJECT)
+	reagents.trans_to(A, amount_per_transfer_from_this)
+	return TRUE
+
+/obj/item/reagent_containers/hypospray/fallout/turbo
+	name = "Turbo Inhaler"
+	desc = "A Jet inhaler strapped to a bottle of chemicals. The combined cocktail creates Turbo."
+	icon_state = "turbo"
+	volume = 10
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/turbo = 10)
+
+/obj/item/reagent_containers/hypospray/fallout/turbo/afterattack(atom/A, mob/living/user)
+	if(!A.reagents)
+		return
+	if(!istype(user))
+		return
+	if(!in_range(A, user) || !user.Adjacent(A))
+		return
+	if(!reagents.total_volume)
+		to_chat(user, span_warning("[src] is empty."))
+		return
+	if(ismob(A))
+		var/mob/M = A
+		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
+			return
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
+			user.Paralyze(60)
+			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
+			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
+				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
+			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			return FALSE
+	var/list/injected = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		injected += R.name
+	log_combat(user, A, "injected", src, "Reagents: [english_list(injected)]")
+	if(ismob(A))
+		var/mob/M = A
+		to_chat(user, span_notice("[M] takes a mouthful from the [src]."))
+		to_chat(M, span_warning("A rush of air enters through your mouth!"))
+	playsound(loc, 'sound/effects/spray.ogg', 20, 1)
+	reagents.reaction(A, INJECT)
+	reagents.trans_to(A, amount_per_transfer_from_this)
+	return TRUE
+
+/*
+/obj/item/reagent_containers/hypospray/fallout/psycho
+	name = "Psycho"
+	desc = "Contains Psycho, a drug that makes the user hit harder and shrug off slight stuns, but causes slight brain damage and carries a risk of addiction."
+	icon = 'icons/fallout/objects/medicine/drugs.dmi'
+	icon_state = "hypo_psycho"
+	volume = 10
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/psycho = 10)
+*/
