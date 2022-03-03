@@ -1,0 +1,34 @@
+/obj/item/weapon/gun/fallout_pistol
+	name = "N99 Pistol"
+	desc = "One of the most popular handguns in the wastes. Relatively powerful for its size and highly customizable."
+	icon = 'fallout/fallout icons/fallout weapons/fallout_pistols.dmi'
+	icon_state = "n99"
+	item_icons = list(
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi',
+		)
+	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/10mm_pistol_fire.ogg'
+	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
+	w_class = WEIGHT_CLASS_SMALL
+	gun_skill_category = GUN_SKILL_PISTOLS
+	flags_gun_features = GUN_CAN_POINTBLANK||GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/ten
+	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/ten)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	load_method = MAGAZINE //codex
+	caliber = CALIBER_10X25MM
+	max_shells = 10
+	fire_delay = 0.3 SECONDS
+	damage_falloff_mult = 0
+	force = 10
+	wield_delay = 0.3 SECONDS
+	aim_slowdown = 0.3
+	accuracy_mult_unwielded = 0.5
+	scatter = 10
+	scatter_unwielded = 20
+	recoil_unwielded = 0.8
+	upper_akimbo_accuracy = 3
+	lower_akimbo_accuracy = 0
