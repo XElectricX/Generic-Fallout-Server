@@ -14,6 +14,7 @@
 //Basic role, wastelander
 /datum/job/fallout
 	title = "Wastelander"
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_ADDTOMANIFEST
 	total_positions = -1
 	job_category = JOB_CAT_WASTELAND
 	selection_color = "#909090"
@@ -31,6 +32,7 @@
 /datum/job/fallout/ncr
 	title = NCR_PRIVATE
 	outfit = /datum/outfit/job/fallout/ncr
+	skills_type = /datum/skills/ncr_private
 	access = NCR_ACCESS
 	comm_title = "PVT"
 	job_category = JOB_CAT_NCR
@@ -40,6 +42,7 @@
 /datum/job/fallout/ncr/medic
 	title = NCR_MEDIC
 	outfit = /datum/outfit/job/fallout/ncr/medic
+	skills_type = /datum/skills/ncr_medic
 	access = NCR_MEDIC_ACCESS
 	comm_title = "FMD"
 	total_positions = 5
@@ -49,6 +52,7 @@
 /datum/job/fallout/ncr/engineer
 	title = NCR_ENGINEER
 	outfit = /datum/outfit/job/fallout/ncr/engineer
+	skills_type = /datum/skills/ncr_engineer
 	access = NCR_ENGINEER_ACCESS
 	comm_title = "ENG"
 	total_positions = 5
@@ -58,6 +62,7 @@
 /datum/job/fallout/ncr/captain
 	title = NCR_CAPTAIN
 	outfit = /datum/outfit/job/fallout/ncr/captain
+	skills_type = /datum/skills/ncr_captain
 	access = NCR_CAPTAIN_ACCESS
 	comm_title = "CPT"
 	total_positions = 5
@@ -67,6 +72,7 @@
 /datum/job/fallout/ncr/leader
 	title = NCR_LEADER
 	outfit = /datum/outfit/job/fallout/ncr/leader
+	skills_type = /datum/skills/ncr_leader
 	access = NCR_LEADER_ACCESS
 	comm_title = "MAJ"
 	total_positions = 1
@@ -76,6 +82,7 @@
 /datum/job/fallout/ncr/support
 	title = NCR_SUPPORT
 	outfit = /datum/outfit/job/fallout/ncr/support
+	skills_type = /datum/skills/ncr_support
 	access = NCR_SUPPORT_ACCESS
 	comm_title = "OPS"
 	total_positions = 5
@@ -86,6 +93,7 @@
 /datum/job/fallout/legion
 	title = LEGION_RECRUIT
 	outfit = /datum/outfit/job/fallout/legion
+	skills_type = /datum/skills/legion_recruit
 	access = LEGION_ACCESS
 	comm_title = "REC"
 	job_category = JOB_CAT_LEGION
@@ -95,6 +103,7 @@
 /datum/job/fallout/legion/prime
 	title = LEGION_PRIME
 	outfit = /datum/outfit/job/fallout/legion/prime
+	skills_type = /datum/skills/legion_prime
 	access = LEGION_PRIME_ACCESS
 	comm_title = "PRM"
 	total_positions = 5
@@ -104,6 +113,7 @@
 /datum/job/fallout/legion/veteran
 	title = LEGION_VETERAN
 	outfit = /datum/outfit/job/fallout/legion/veteran
+	skills_type = /datum/skills/legion_veteran
 	access = LEGION_VETERAN_ACCESS
 	comm_title = "VET"
 	total_positions = 5
@@ -113,6 +123,7 @@
 /datum/job/fallout/legion/decanus
 	title = LEGION_DECANUS
 	outfit = /datum/outfit/job/fallout/legion/decanus
+	skills_type = /datum/skills/legion_decanus
 	access = LEGION_DECANUS_ACCESS
 	comm_title = "DEC"
 	total_positions = 5
@@ -122,6 +133,7 @@
 /datum/job/fallout/legion/leader
 	title = LEGION_LEADER
 	outfit = /datum/outfit/job/fallout/legion/leader
+	skills_type = /datum/skills/legion_leader
 	access = LEGION_LEADER_ACCESS
 	comm_title = "CNT"
 	total_positions = 1
@@ -131,6 +143,7 @@
 /datum/job/fallout/legion/support
 	title = LEGION_SUPPORT
 	outfit = /datum/outfit/job/fallout/legion/support
+	skills_type = /datum/skills/legion_support
 	access = LEGION_SUPPORT_ACCESS
 	comm_title = "MED"
 	total_positions = 5
