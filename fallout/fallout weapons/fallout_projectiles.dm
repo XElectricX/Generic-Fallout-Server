@@ -6,7 +6,7 @@
 	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo
 	var/ammo_name = ammo.name
 
-	name = "handful of [ammo_name + " ([new_caliber])"]"
+	name = "handful of [ammo_name]\s"
 	icon_state = ammo.handful_icon_state
 
 	var/bullet_desc = ammo.desc	//These 2 lines are for giving bullets descriptions

@@ -2,7 +2,7 @@
 /datum/outfit/job/fallout
 	name = WASTELANDER
 	w_uniform = /obj/item/clothing/under/fallout
-	back = /obj/item/storage/backpack
+	back = /obj/item/storage/backpack/fallout
 	shoes = /obj/item/clothing/shoes/black
 
 //NCR
@@ -10,22 +10,30 @@
 	name = NCR_PRIVATE
 	w_uniform = /obj/item/clothing/under/fallout/ncr
 	wear_suit = /obj/item/clothing/suit/storage/fallout/ncr
-	back = /obj/item/storage/backpack/marine/satchel
-	belt =	/obj/item/storage/belt/marine
+	back = /obj/item/storage/backpack/fallout/trekker
+	belt =	/obj/item/storage/belt/gun/fallout
 	gloves = /obj/item/clothing/gloves/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/helmet/fallout/ncr
 	id = /obj/item/card/id/ncr
-	l_store = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	r_store = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle
-	r_hand = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	l_hand = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	l_store = /obj/item/storage/pouch/fallout/medical/full
+	r_store = /obj/item/storage/pouch/fallout/magazine
+	suit_store = /obj/item/weapon/gun/fallout_rifle
+
+/datum/outfit/job/fallout/ncr/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/fallout_pistol, SLOT_IN_B_HOLSTER)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol, SLOT_IN_BELT)
 
 /datum/outfit/job/fallout/ncr/medic
 	name = NCR_MEDIC
 	back = /obj/item/storage/backpack/marine/satchel/corpsman
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/fallout/medical/full
 	head = /obj/item/clothing/head/helmet/fallout/ncr/helmet_medic
 	glasses = /obj/item/clothing/glasses/hud/health
 	id = /obj/item/card/id/ncr/medic
@@ -38,7 +46,7 @@
 /datum/outfit/job/fallout/ncr/engineer
 	name = NCR_ENGINEER
 	back = /obj/item/storage/backpack/marine/satchel/tech
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/fallout/tools/full
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	head = /obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer
 	id = /obj/item/card/id/ncr/engineer
@@ -106,13 +114,17 @@
 /datum/outfit/job/fallout/legion/prime
 	name = LEGION_PRIME
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/prime
-	belt = /obj/item/storage/belt/gun/revolver/standard_revolver
+	belt = /obj/item/weapon/gun/revolver/single_action/m44
 	head = /obj/item/clothing/head/helmet/fallout/legion/prime
 	id = /obj/item/card/id/legion/prime
-	l_store = /obj/item/ammo_magazine/revolver/standard_revolver
-	r_store = /obj/item/ammo_magazine/revolver/standard_revolver
-	r_hand = /obj/item/weapon/gun/revolver/standard_revolver
-	l_hand = /obj/item/ammo_magazine/revolver/standard_revolver
+	l_store = /obj/item/ammo_magazine/fallout_pistol/magnum44
+	r_store = /obj/item/storage/pouch/fallout
+	r_hand = /obj/item/weapon/shield/fallout_shield/buckler
+	l_hand = null
+
+/datum/outfit/job/fallout/legion/prime/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/magnum44, SLOT_IN_R_POUCH)
 
 /datum/outfit/job/fallout/legion/veteran
 	name = LEGION_VETERAN
@@ -120,11 +132,15 @@
 	belt = /obj/item/storage/belt/marine
 	head = /obj/item/clothing/head/helmet/fallout/legion/veteran
 	id = /obj/item/card/id/legion/veteran
-	l_store = /obj/item/ammo_magazine/rifle/bolt
-	r_store = /obj/item/ammo_magazine/rifle/bolt
-	suit_store = /obj/item/weapon/gun/shotgun/pump/bolt
-	r_hand = /obj/item/ammo_magazine/rifle/bolt
-	l_hand = /obj/item/ammo_magazine/rifle/bolt
+	l_store = null
+	r_store = null
+	suit_store = /obj/item/weapon/gun/fallout_rifle/cowboy_repeater
+	r_hand = null
+	l_hand = null
+
+/datum/outfit/job/fallout/legion/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/box/magnum357, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/fallout/legion/decanus
 	name = LEGION_DECANUS
@@ -135,7 +151,7 @@
 	l_store = /obj/item/storage/pouch/firstaid/injectors/full
 	r_store = /obj/item/ammo_magazine/smg/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	r_hand = /obj/item/ammo_magazine/smg/skorpion
+	r_hand = /obj/item/weapon/shield/fallout_shield/reinforced/legion
 	l_hand = /obj/item/ammo_magazine/smg/skorpion
 
 /datum/outfit/job/fallout/legion/leader
@@ -147,7 +163,7 @@
 	l_store = /obj/item/storage/pouch/firstaid/injectors/full
 	r_store = /obj/item/megaphone
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	r_hand = /obj/item/ammo_magazine/smg/skorpion
+	r_hand = /obj/item/weapon/shield/fallout_shield/reinforced/legion
 	l_hand = /obj/item/ammo_magazine/smg/skorpion
 
 /datum/outfit/job/fallout/legion/support

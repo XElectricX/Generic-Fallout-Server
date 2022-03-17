@@ -4,6 +4,7 @@
 	desc = "Holds small caliber rounds, fitted for pistols."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	icon_state = "9mag_pistol"
+	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/nine
 	max_rounds = 15
 
@@ -11,6 +12,7 @@
 	name = "10x25mm pistol magazine"
 	desc = "Magazine for your trusty sidearm."
 	icon_state = "10mag_pistol"
+	default_ammo = /datum/ammo/bullet/ten
 	max_rounds = 10
 
 /obj/item/ammo_magazine/fallout_pistol/acp
@@ -93,7 +95,7 @@
 	icon_state = "45mag_drum"
 	default_ammo = /datum/ammo/bullet/acp
 	max_rounds = 40
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_magazine/fallout_smg/subsonic
 	name = ".22 LR pan magazine"
@@ -101,14 +103,15 @@
 	icon_state = "22mag_pan"
 	default_ammo = /datum/ammo/bullet/subsonic
 	max_rounds = 100
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 
 //Rifle magazines
 /obj/item/ammo_magazine/fallout_rifle
 	name = "5.56x45mm magazine"
 	desc = "Common holder of 5.56mm ammunition. Fits most assault rifles."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
-	icon_state = "556mag"
+	icon_state = "556mag_rifle"
+	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/assault_rifle
 	max_rounds = 20
 
@@ -122,7 +125,7 @@
 /obj/item/ammo_magazine/fallout_rifle/winchester
 	name = ".308 Winchester magazine"
 	desc = "A magazine for holding large .308 rounds used in high power rifles."
-	icon_state = "308mag"
+	icon_state = "308mag_rifle"
 	default_ammo = /datum/ammo/bullet/winchester
 	max_rounds = 5
 
@@ -136,7 +139,8 @@
 /obj/item/ammo_magazine/fallout_rifle/bmg
 	name = ".50 BMG rifle magazine"
 	desc = "Probably more expensive than you."
-	icon_state = "50mag"
+	icon_state = "50mag_rifle"
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/bmg
 	max_rounds = 5
 
@@ -155,9 +159,26 @@
 	icon_state = "riotdrum"
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	max_rounds = 12
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 
 //Explosive ordnance magazines
 
 
 //Energy cells
+
+//Ammo boxes
+/obj/item/ammo_magazine/box
+	name = "\improper 9x19mm Box"
+	desc = "A box of ammunition."
+	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
+	icon_state = "9box"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/nine
+	max_rounds = 70
+
+/obj/item/ammo_magazine/box/magnum357
+	name = "\improper .357 Magnum Box"
+	icon_state = "38box"
+	default_ammo = /datum/ammo/bullet/magnum357
+	caliber = CALIBER_357
+	max_rounds = 60
