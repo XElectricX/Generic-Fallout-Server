@@ -1822,6 +1822,7 @@
 #include "fallout\fallout_modes.dm"
 #include "fallout\_defines_fallout\ammunition_defines.dm"
 #include "fallout\_defines_fallout\fallout_access.dm"
+#include "fallout\_defines_fallout\fallout_weapon_defines.dm"
 #include "fallout\_defines_fallout\job_defines.dm"
 #include "fallout\fallout clothing\faction_armors.dm"
 #include "fallout\fallout clothing\faction_coats.dm"

@@ -1,9 +1,24 @@
 //Basic melee weapon
 /obj/item/weapon/fallout_melee
-	name = "\improper To be determined"
-	desc = "Agony"
+	name = "\improper Machete"
+	desc = "A length of metal attached to a stick. Reliable cutting tool."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_melee.dmi'
-	var/force_wielded
+	icon_state = "sword_machete"
+	item_icons = list(
+		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_melee_worn.dmi',
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
+	flags_atom = CONDUCT
+	flags_item = TWOHANDED
+	w_class = WEIGHT_CLASS_BULKY
+	force = 15
+	var/force_wielded = 25
+	throwforce = 10
+	throw_speed = 1
+	throw_range = 3
+	attack_verb = list("slashed", "cut")
+	attack_speed = ATTACK_SPEED_FAST
+	//var/weapon_can_cleave = TRUE	Future var for cleaving mechanic
 	var/weapon_can_activate
 	var/weapon_active
 	var/wieldsound
@@ -55,22 +70,34 @@
 	if(!weapon_can_activate)
 		return
 
+//Swords
+/obj/item/weapon/fallout_melee/chinese	//Move to /chinese/electrified when normal sword sprite is made
+	name = "\improper Electrified Chinese Sword"
+	desc = "A blade commonly used by Chinese military personnel. This one is modified with a microfusion cell housing and wiring, designed for electrocuting enemies."
+	icon_state = "sword_chinese_electrified"
+	weapon_can_activate = TRUE
+
+/obj/item/weapon/fallout_melee/chinese/examine(mob/user, distance, infix, suffix)
+	..()
+
+/obj/item/weapon/fallout_melee/chinese/unique_action(mob/user)
+	..()
+
+
 //Hammers
 /obj/item/weapon/fallout_melee/hammer
 	name = "\improper Sledgehammer"
 	desc = "Cement on a stick. A crude and simple tool... or weapon."
 	icon_state = "hammer_sledge"
-	flags_atom = CONDUCT
-	flags_item = TWOHANDED
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	force = 25
 	force_wielded = 50
 	throwforce = 20
-	throw_speed = 1
+	throw_speed = 0.5
 	throw_range = 2
 	attack_verb = list("smashed", "hammered")
-	attack_speed = 20
+	attack_speed = ATTACK_SPEED_SLOW
 
 /obj/item/weapon/fallout_melee/hammer/rocket
 	name = "\improper Rocket Sledge"
@@ -152,6 +179,124 @@
 		update_icon()
 	return ..()
 
+//Gauntlets
+/obj/item/weapon/fallout_melee/gauntlet
+	name = "\improper Lacerator Gauntlet"
+	desc = "A leather glove with rows of metallic blades attached."
+	icon_state = "gauntlet_lacerator"
+	flags_atom = null
+	flags_item = null
+	w_class = WEIGHT_CLASS_NORMAL
+	force = 20
+	throwforce = 5
+	throw_speed = 2
+	throw_range = 5
+	attack_verb = list("lacerated", "punched")
+
+/obj/item/weapon/fallout_melee/gauntlet/power
+	name = "\improper Power Fist"
+	desc = "Mechanical gauntlet fitted with hydraulics and a battery. You could punch through concrete with it."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "powerfist"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+	item_state = "powerfist"
+	flags_atom = CONDUCT
+	w_class = WEIGHT_CLASS_BULKY
+	attack_verb = list("bonked", "punched", "fisted")
+	var/obj/item/cell/battery
+	var/knockback_bonus = 0.5
+	var/energy_cost = 50
+
+/obj/item/weapon/fallout_melee/gauntlet/power/Destroy()
+	if(battery)
+		QDEL_NULL(battery)
+	return ..()
+
+/obj/item/weapon/fallout_melee/gauntlet/power/examine(user)
+	. = ..()
+	if(battery)
+		to_chat(user, span_notice("It has [battery.charge] power remaining."))
+	else
+		to_chat(user, span_notice("There is no cell installed!"))
+	if(weapon_active)
+		to_chat(user, span_notice("The hydraulics are active."))
+	else
+		to_chat(user, span_notice("The hydraulics are inactive."))
+
+/obj/item/weapon/fallout_melee/gauntlet/power/unique_action(mob/user)
+	. = ..()
+	if(!weapon_active && energy_cost > battery.charge)
+		to_chat(user, span_warning("[src] lacks sufficient energy!"))
+		return
+	if(weapon_active)
+		weapon_active = FALSE
+		force = initial(force)
+		to_chat(user, span_italics("You power down [src]."))
+		playsound(loc, 'sound/machines/switch.ogg', 25)
+		return
+	weapon_active = TRUE
+	force = force * 2
+	to_chat(user, span_italics("You activate [src]'s hydraulics."))
+	playsound(loc, 'sound/machines/switch.ogg', 25)
+
+/obj/item/weapon/fallout_melee/gauntlet/power/attack_self(mob/user)
+	. = ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, span_warning("You feel [src] clamp shut around your hand!"))
+		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
+	else
+		to_chat(user, span_notice("You feel [src] loosen around your hand!"))
+		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
+
+/obj/item/weapon/fallout_melee/gauntlet/power/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(weapon_active)
+		attack_verb = "slammed"
+		playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
+		playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
+		battery.charge -= energy_cost
+		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
+		var/throw_distance = knockback_bonus * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
+		M.throw_at(throw_target, throw_distance, 0.5 + (knockback_bonus / 2))
+		if(battery.charge < energy_cost)
+			playsound(loc, 'sound/machines/switch.ogg', 50)
+			to_chat(user, span_warning("[src]'s battery meter flashes, indicating energy levels are too low!"))
+			weapon_active = FALSE
+			force = initial(force)
+			update_icon()
+	return ..()
+
+/obj/item/weapon/fallout_melee/gauntlet/power/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/cell))
+		return ..()
+	if(battery)
+		unload(user)
+	user.transferItemToLoc(I,src)
+	battery = I
+	to_chat(user, span_notice("You insert the [I] into [src]."))
+
+/obj/item/weapon/fallout_melee/gauntlet/power/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(!battery)
+		to_chat(user, span_notice("There is no cell installed!"))
+		return TRUE
+	unload(user)
+	to_chat(user, span_notice("You pop open the cover and remove the cell."))
+	return TRUE
+
+/// Remove the cell from the powerfist
+/obj/item/weapon/fallout_melee/gauntlet/power/proc/unload(mob/user)
+	user.dropItemToGround(battery)
+	battery = null
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+	weapon_active = FALSE
+	force = initial(force)
+
 //Shields
 /obj/item/weapon/shield/fallout_shield
 	name = "\improper Riot Shield"
@@ -160,20 +305,18 @@
 	item_icons = list(
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_melee_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
-		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi'
-		)
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 1
 	max_integrity = 200
 	force = 30
 	throwforce = 15
-	throw_speed = 1
+	throw_speed = 0.5
 	throw_range = 2
 	var/repair_material = /obj/item/stack/sheet/metal
 	materials = list(/datum/material/metal = 1000)
-	soft_armor = list("melee" = 40, "bullet" = 20, "laser" = 0, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 15, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	hard_armor = list("melee" = 15, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 10)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	attack_verb = "bashed"
@@ -185,8 +328,7 @@
 	max_integrity = 300
 	force = 40
 	throwforce = 20
-	soft_armor = list("melee" = 50, "bullet" = 30, "laser" = 15, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 25, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 10)
+	hard_armor = list("melee" = 25, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 10)
 
 /obj/item/weapon/shield/fallout_shield/reinforced/legion
 	name = "\improper Legionnaire Shield"
@@ -205,8 +347,7 @@
 	throw_speed = 2
 	throw_range = 7
 	repair_material = /obj/item/stack/sheet/wood
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	destroy_sound = 'sound/effects/woodhit.ogg'
 
 /obj/item/weapon/shield/fallout_shield/buckler/makeshift
