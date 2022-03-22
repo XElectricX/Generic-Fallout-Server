@@ -11,13 +11,18 @@
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	w_class = WEIGHT_CLASS_BULKY
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_BIG
 	force = 15
 	var/force_wielded = 25
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 3
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "cut")
 	attack_speed = ATTACK_SPEED_FAST
+	var/obj/item/cell/battery	//For weapons that use batteries
+	var/energy_cost	//Energy usage per swing
 	//var/weapon_can_cleave = TRUE	Future var for cleaving mechanic
 	var/weapon_can_activate
 	var/weapon_active
@@ -66,23 +71,301 @@
 
 //Basis for melee weapon activations like rippers and rocket sledges
 /obj/item/weapon/fallout_melee/unique_action(mob/user)
-	. = ..()
 	if(!weapon_can_activate)
-		return
+		return FALSE
+
+/* Currently not working due to worn icons not updating when called via unique_action, needs fix
+//Handles icon states, takes into account wielded and weapon_active status
+/obj/item/weapon/fallout_melee/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state) + (weapon_active ? "_on" : "")
+	update_item_state()
+
+/obj/item/weapon/fallout_melee/update_item_state(mob/user)
+	. = ..()
+	item_state += (weapon_active ? "_on" : "")
+	//item_state = initial(icon_state) + (flags_item & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
+*/
+
+//Proc for removing energy cells from weapons that have them
+/obj/item/weapon/fallout_melee/proc/unload(mob/user)
+	user.dropItemToGround(battery)
+	battery = null
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+	weapon_active = FALSE
+	force = initial(force)	//For weapons that have their force modified from activation
 
 //Swords
 /obj/item/weapon/fallout_melee/chinese	//Move to /chinese/electrified when normal sword sprite is made
 	name = "\improper Electrified Chinese Sword"
 	desc = "A blade commonly used by Chinese military personnel. This one is modified with a microfusion cell housing and wiring, designed for electrocuting enemies."
 	icon_state = "sword_chinese_electrified"
+	flags_equip_slot = ITEM_SLOT_BACK
 	weapon_can_activate = TRUE
+	energy_cost = 50
+	var/electrocution_damage = 20
 
 /obj/item/weapon/fallout_melee/chinese/examine(mob/user, distance, infix, suffix)
 	..()
+	if(battery)
+		to_chat(user, span_notice("It has [battery.charge] power remaining."))
+	else
+		to_chat(user, span_notice("There is no cell installed!"))
+	if(weapon_active)
+		to_chat(user, span_notice("The sword is crackling with electricity!"))
+	else
+		to_chat(user, span_notice("The battery pack is turned off."))
 
 /obj/item/weapon/fallout_melee/chinese/unique_action(mob/user)
 	..()
+	if(!weapon_active && energy_cost > battery.charge)
+		to_chat(user, span_warning("[src] lacks sufficient energy!"))
+		return
+	if(weapon_active)
+		weapon_active = FALSE
+		to_chat(user, span_italics("You power down [src]."))
+		playsound(loc, 'sound/machines/switch.ogg', 25)
+		/* Uncomment when sprites added
+		update_icon()*/
+		return
+	weapon_active = TRUE
+	to_chat(user, span_italics("You turn on [src]."))
+	playsound(loc, 'sound/machines/switch.ogg', 25)
+	/* Uncomment when sprites added
+	update_icon()*/
 
+/obj/item/weapon/fallout_melee/chinese/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
+	if(weapon_active)
+		M.apply_damage(electrocution_damage, "burn")
+		playsound(loc, 'sound/effects/sparks1.ogg', 50, TRUE)
+		battery.charge -= energy_cost
+		if(battery.charge < energy_cost)
+			playsound(loc, 'sound/effects/sparks3.ogg', 50, TRUE)
+			to_chat(user, span_warning("[src] fizzles out, it lacks power!"))
+			weapon_active = FALSE
+			update_icon()
+	return ..()
+
+/obj/item/weapon/fallout_melee/chinese/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/cell))
+		return ..()
+	if(battery)
+		unload(user)
+	user.transferItemToLoc(I,src)
+	battery = I
+	to_chat(user, span_notice("You insert the [I] into [src]."))
+
+/obj/item/weapon/fallout_melee/chinese/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(!battery)
+		to_chat(user, span_notice("There is no cell installed!"))
+		return TRUE
+	unload(user)
+	to_chat(user, span_notice("You pop open the cover and remove the cell."))
+	return TRUE
+
+/obj/item/weapon/fallout_melee/gladius
+	name = "\improper Machete Gladius"
+	desc = "A formidable blade crafted by Legion Blacksmiths. The symbol of achievement for combat-proven Legionnaires."
+	icon_state = "sword_gladius"
+	force = 40
+	force_wielded = 40	//No benefit to wielding a one-handed blade
+	throwforce = 25
+
+/obj/item/weapon/fallout_melee/scrap
+	name = "\improper Scrap Blade"
+	desc = "A shoddy amalgation of metal."
+	icon_state = "sword_scrap"
+
+/obj/item/weapon/fallout_melee/bumper
+	name = "\improper Bumper Sword"
+	desc = "A long, heavy sword made from scrap metal. Best used with both hands."
+	icon_state = "sword_bumper"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	force_wielded = 35
+	throwforce = 15
+	throw_speed = 0.5
+	throw_range = 2
+	attack_speed = ATTACK_SPEED_MEDIUM
+
+/obj/item/weapon/fallout_melee/knife
+	name = "\improper Survival Knife"
+	desc = "Common knife found all across the wasteland. Still a reliable cutting tool hundreds of years later."
+	icon_state = "knife_survival"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+	item_state = "knife"	//Needs a worn sprite
+	flags_item = null
+	w_class = WEIGHT_CLASS_SMALL
+	sharp = IS_SHARP_ITEM_ACCURATE
+	force = 10
+	throw_speed = 2
+	throw_range = 7
+	attack_verb = list("slashed", "cut", "stabbed", "knifed")
+	attack_speed = ATTACK_SPEED_VERY_FAST
+	//weapon_can_cleave = FALSE
+
+/obj/item/weapon/fallout_melee/knife/hunting
+	name = "\improper Hunting Knife"
+	icon_state = "knife_hunting"	//Also needs a worn sprite
+
+/obj/item/weapon/fallout_melee/knife/bowie
+	name = "\improper Bowie Knife"
+	icon_state = "knife_bowie"
+	item_icons = list(
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
+	item_state = "knife_bowie"
+
+/obj/item/weapon/fallout_melee/knife/trench
+	name = "\improper Trench Knife"
+	icon_state = "knife_trench"
+	item_icons = list(
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
+	item_state = "knife_trench"
+
+/obj/item/weapon/fallout_melee/knife/switchblade
+	name = "\improper Switchblade"
+	desc = "Compact blade that can be flipped open."
+	icon_state = "knife_switch"
+	item_icons = list(
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
+	item_state = "knife_switch"
+	w_class = WEIGHT_CLASS_TINY
+
+//Uses attack_self instead of unique_action for now because the game won't update worn icons for some reason
+/obj/item/weapon/fallout_melee/knife/switchblade/attack_self(mob/user)
+	. = ..()
+	if(weapon_active)
+		weapon_active = FALSE
+		force = 5
+		throwforce = 5
+		edge = FALSE
+		sharp = IS_NOT_SHARP_ITEM
+		hitsound = "swing_hit"
+		w_class = WEIGHT_CLASS_TINY
+		attack_verb = "hit"
+		playsound(loc, 'sound/weapons/flipblade.ogg', 25)
+		update_icon()
+		return
+	weapon_active = TRUE
+	force = initial(force)
+	throwforce = initial(throwforce)
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_ACCURATE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("slashed", "cut", "stabbed", "knifed")
+	playsound(loc, 'sound/weapons/flipblade.ogg', 25)
+	update_icon()
+	return
+
+/obj/item/weapon/fallout_melee/knife/switchblade/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state) + (weapon_active ? "_on" : "")
+	update_item_state()
+
+/obj/item/weapon/fallout_melee/knife/switchblade/update_item_state(mob/user)
+	. = ..()
+	item_state += (weapon_active ? "_on" : "")
+
+/obj/item/weapon/fallout_melee/knife/bone
+	name = "\improper Bone Knife"
+	desc = "Makeshift blade crafted from bone with a wooden handle."
+	icon_state = "knife_bone"
+	item_icons = list(
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
+	item_state = "knife_bone"
+
+//Spears
+/obj/item/weapon/fallout_melee/spear
+	name = "\improper Metal Spear"
+	desc = "Then there is the absolute Chad of a weapon, the spear.\
+			Seen in basically every pre-gunpowder battle, the backbone of most major armies, cheap, useful, easy to produce, no non-sense stabbing greatness.\
+			The friend of peasants, with reach and accuracy. Cheers to spear and all of its cousins; the pike, halberd, and others."
+	icon_state = "spear"
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	force_wielded = 40	//More effective wielded than one-handed
+	throwforce = 30	//An effective throwing weapon
+	throw_speed = 2
+	throw_range = 7
+	attack_verb = list("stabbed", "violently poked", "skewered")
+	attack_speed = ATTACK_SPEED_SLOW
+	reach = 2
+	//weapon_can_cleave = FALSE
+
+/obj/item/weapon/fallout_melee/spear/throwing
+	name = "\improper Javelin"
+	desc = "A stick made sharp, light, and aerodynamic. Impale your enemies from a distance!"
+	icon_state = "spear_throwing"
+	w_class = WEIGHT_CLASS_BULKY
+	force_wielded = 25
+	throwforce = 40
+	throw_speed = 3
+
+/obj/item/weapon/fallout_melee/spear/scrap
+	name = "\improper Scrap Spear"
+	desc = "Long, pointy metal stick."
+	icon_state = "spear_scrap"
+	force = 10
+	force_wielded = 30
+	throwforce = 20
+
+/obj/item/weapon/fallout_melee/spear/bone
+	name = "\improper Bone Spear"
+	desc = "Sharpened bone fashioned into a spear."
+	icon_state = "spear_bone"
+	force = 10
+	force_wielded = 30
+	throwforce = 20
+
+/obj/item/weapon/fallout_melee/spear/claw
+	name = "\improper Deathclaw Spear"
+	desc = "A spear made from the bones and claw of a Deathclaw."
+	icon_state = "spear_claw"
+	force = 25
+	force_wielded = 50
+	throwforce = 40
+
+//Axes
+/obj/item/weapon/fallout_melee/axe
+	name = "\improper Metal Axe"
+	desc = "Lumberjacking really fell off when most of the trees did."
+	icon_state = "axe_metal"	//Doesn't exist yet, but needs to
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	force = 25
+	force_wielded = 50
+	throwforce = 20
+	throw_speed = 0.5
+	throw_range = 2
+	attack_verb = list("cleaved", "cut", "axed", "sliced")
+	attack_speed = ATTACK_SPEED_SLOW
+
+/obj/item/weapon/fallout_melee/axe/fire
+	name = "\improper Fire Axe"
+	desc = "Natural enemy of fire."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "fireaxe"
+	item_icons = list(
+		slot_back_str = 'icons/mob/back.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+
+/obj/item/weapon/fallout_melee/axe/bone
+	name = "\improper Bone Axe"
+	desc = "Crude axe made from wood and bone."
+	icon_state = "axe_bone"
+	force = 20
+	force_wielded = 30	//Not that sharp
+	throwforce = 15
 
 //Hammers
 /obj/item/weapon/fallout_melee/hammer
@@ -91,12 +374,14 @@
 	icon_state = "hammer_sledge"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
 	force = 25
 	force_wielded = 50
 	throwforce = 20
 	throw_speed = 0.5
 	throw_range = 2
-	attack_verb = list("smashed", "hammered")
+	attack_verb = list("smashed", "hammered", "bludgeoned")
 	attack_speed = ATTACK_SPEED_SLOW
 
 /obj/item/weapon/fallout_melee/hammer/rocket
@@ -116,7 +401,7 @@
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 
 /obj/item/weapon/fallout_melee/hammer/rocket/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "The fuel gage reads [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units.")
 	if(weapon_active)
 		to_chat(user, span_notice("The booster is active."))
@@ -133,6 +418,8 @@
 			force = force_wielded
 		user.visible_message(span_notice("[user] deactivates the [src]'s booster."))
 		playsound(loc, 'sound/machines/switch.ogg', 25)
+		/* Uncomment when sprites added
+		update_icon()*/
 		return
 	weapon_active = TRUE
 	force_wielded = force_wielded * 2
@@ -140,11 +427,14 @@
 		force = force_wielded
 	user.visible_message(span_warning("[user] ignites the [src]'s booster."))
 	playsound(loc, 'sound/machines/switch.ogg', 25)
+	/* Uncomment when sprites added
+	update_icon()*/
 
 /obj/item/weapon/fallout_melee/hammer/rocket/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
 	if(weapon_active)
 		if(!CHECK_BITFIELD(flags_item, WIELDED))
 			to_chat(user, span_warning("You need both hands on the [src] to use the booster safely!"))
+			attack_verb = list("smashed", "hammered", "bludgeoned")
 			return ..()
 		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_consumption_rate)
 			to_chat(user, span_warning("The [src]'s booster fizzles! It lacks sufficient fuel."))
@@ -162,6 +452,8 @@
 			force_wielded = initial(force_wielded)
 			force = force_wielded
 			update_icon()
+	else
+		attack_verb = list("smashed", "hammered", "bludgeoned")
 	return ..()
 
 //Refuel code, only works on full sized fuel tanks currently
@@ -176,8 +468,40 @@
 		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, span_notice("You refuel the [src]."))
-		update_icon()
 	return ..()
+
+//Move to hammer/super and make it work off battery instead of fuel
+/obj/item/weapon/fallout_melee/hammer/rocket/super
+	name = "\improper Rocket Sledge"
+	desc = "High tech hammer made of dense, advanced materials."
+	icon_state = "hammer_super"
+	force = 30
+	force_wielded = 60
+
+//Bats
+/obj/item/weapon/fallout_melee/bat
+	name = "\improper Baseball Bat"
+	desc = "A swatter never runs out of bullets."
+	icon_state = "bat"
+	flags_atom = null
+	flags_equip_slot = ITEM_SLOT_BACK
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	throw_speed = 0.5	//Slightly heavier than a sword, so slower to throw
+	attack_verb = list("smashed", "hit a home run on", "bludgeoned", "smacked")
+
+/obj/item/weapon/fallout_melee/bat/spiked
+	name = "\improper Spiked Baseball Bat"
+	icon_state = "bat_spiked"
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_SIMPLE
+	force = 20
+	force_wielded = 30
+
+/obj/item/weapon/fallout_melee/bat/metal
+	name = "\improper Metal Baseball Bat"
+	icon_state = "bat_metal"
+	flags_atom = CONDUCT
 
 //Gauntlets
 /obj/item/weapon/fallout_melee/gauntlet
@@ -187,11 +511,34 @@
 	flags_atom = null
 	flags_item = null
 	w_class = WEIGHT_CLASS_NORMAL
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
 	force = 20
 	throwforce = 5
 	throw_speed = 2
 	throw_range = 5
 	attack_verb = list("lacerated", "punched")
+
+/obj/item/weapon/fallout_melee/gauntlet/punch
+	name = "\improper Punch Dagger"
+	desc = "Wood assembled into the form of a handle with a knife attached. Creatively simple weapon."
+	icon_state = "gauntlet_dagger"
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_SIMPLE
+	force = 20
+	attack_verb = list("punched", "stabbed")
+
+/obj/item/weapon/fallout_melee/gauntlet/mole
+	name = "\improper Mole Miner Gauntlet"
+	desc = "Digging tool repurposed into a weapon by the Mole Miner population."
+	icon_state = "gauntlet_mole"
+	flags_atom = CONDUCT
+	w_class = WEIGHT_CLASS_BULKY
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_SIMPLE
+	force = 30
+	throwforce = 10
+	attack_verb = list("lacerated", "slashed", "stabbed", "ripped apart")
 
 /obj/item/weapon/fallout_melee/gauntlet/power
 	name = "\improper Power Fist"
@@ -205,9 +552,8 @@
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bonked", "punched", "fisted")
-	var/obj/item/cell/battery
 	var/knockback_bonus = 0.5
-	var/energy_cost = 50
+	energy_cost = 50
 
 /obj/item/weapon/fallout_melee/gauntlet/power/Destroy()
 	if(battery)
@@ -235,11 +581,15 @@
 		force = initial(force)
 		to_chat(user, span_italics("You power down [src]."))
 		playsound(loc, 'sound/machines/switch.ogg', 25)
+		/* Uncomment when sprites added
+		update_icon()*/
 		return
 	weapon_active = TRUE
 	force = force * 2
 	to_chat(user, span_italics("You activate [src]'s hydraulics."))
 	playsound(loc, 'sound/machines/switch.ogg', 25)
+	/* Uncomment when sprites added
+	update_icon()*/
 
 /obj/item/weapon/fallout_melee/gauntlet/power/attack_self(mob/user)
 	. = ..()
@@ -263,11 +613,13 @@
 		var/throw_distance = knockback_bonus * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
 		M.throw_at(throw_target, throw_distance, 0.5 + (knockback_bonus / 2))
 		if(battery.charge < energy_cost)
-			playsound(loc, 'sound/machines/switch.ogg', 50)
+			playsound(loc, 'sound/effects/sparks3.ogg', 50, TRUE)
 			to_chat(user, span_warning("[src]'s battery meter flashes, indicating energy levels are too low!"))
 			weapon_active = FALSE
 			force = initial(force)
 			update_icon()
+	else
+		attack_verb = list("bonked", "punched", "fisted")
 	return ..()
 
 /obj/item/weapon/fallout_melee/gauntlet/power/attackby(obj/item/I, mob/user, params)
@@ -289,13 +641,82 @@
 	to_chat(user, span_notice("You pop open the cover and remove the cell."))
 	return TRUE
 
-/// Remove the cell from the powerfist
-/obj/item/weapon/fallout_melee/gauntlet/power/proc/unload(mob/user)
-	user.dropItemToGround(battery)
-	battery = null
-	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
-	weapon_active = FALSE
-	force = initial(force)
+//Knuckle weapons
+/obj/item/weapon/fallout_melee/knuckles
+	name = "\improper Brass Knuckles"
+	desc = "Brass metal shaped into the form of a fist with holes for the wearer's fingers."
+	icon_state = "knuckles_brass"
+	flags_item = null
+	w_class = WEIGHT_CLASS_SMALL
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	force = 15
+	throwforce = 5
+	throw_speed = 2
+	throw_range = 7
+	attack_verb = list("swung at", "punched", "pummeled")
+	attack_speed = ATTACK_SPEED_VERY_FAST
+	//weapon_can_cleave = FALSE
+
+/obj/item/weapon/fallout_melee/knuckles/spiked
+	name = "\improper Spiked Knuckles"
+	desc = "Metal shaped into the form of a fist with holes for the wearer's fingers and raised points along the edge."
+	icon_state = "knuckles_spike"
+	edge = TRUE
+	sharp = IS_SHARP_ITEM_SIMPLE
+	force = 20
+
+//Misc melee weapons
+/obj/item/weapon/fallout_melee/pipe
+	name = "\improper Lead Pipe"
+	desc = "Rusty pipe that's been given a new life as a skull cracker."
+	icon_state = "pipe"
+	w_class = WEIGHT_CLASS_NORMAL
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	force = 12
+	force_wielded = 15
+	throw_range = 7
+	attack_verb = list("bludgeoned", "smacked", "clubbed")
+
+/obj/item/weapon/fallout_melee/tire_iron
+	name = "\improper Tire Iron"
+	desc = "Not very useful these days. Except for beating people with it."
+	icon_state = "tire_iron"
+	w_class = WEIGHT_CLASS_NORMAL
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	force = 12
+	force_wielded = 15
+	throw_range = 7
+	attack_verb = list("swung at", "clubbed")
+
+/obj/item/weapon/fallout_melee/golf_club
+	name = "\improper Golf Club"
+	desc = "Fore!"
+	icon_state = "golf_club"
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	force = 12
+	force_wielded = 15
+	throw_range = 7
+	attack_verb = list("swung at", "practiced their backswing on", "clubbed")
+
+/obj/item/weapon/fallout_melee/whip
+	name = "\improper Leather Whip"
+	desc = "Inspires fear in some, horniness in others."
+	icon_state = "whip"
+	flags_atom = null
+	flags_item = null
+	w_class = WEIGHT_CLASS_NORMAL
+	edge = FALSE
+	sharp = IS_NOT_SHARP_ITEM
+	force = 15
+	hitsound = "swing_hit"
+	attack_verb = list("whipped", "lashed", "flogged")
+	attack_speed = ATTACK_SPEED_MEDIUM
+	reach = 3
+	//weapon_can_cleave = FALSE
 
 //Shields
 /obj/item/weapon/shield/fallout_shield
