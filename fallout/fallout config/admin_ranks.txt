@@ -1,0 +1,4 @@
+Name = Admin
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING

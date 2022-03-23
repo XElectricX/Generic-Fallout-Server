@@ -1,0 +1,4 @@
+# Settings for modes. deploytimelock is in minutes
+mode NCR vs Legion
+	requiredplayers 0
+endmode
