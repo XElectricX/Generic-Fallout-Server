@@ -1,0 +1,4 @@
+<h1>Welcome to Generic Fallout Server!</h1>
+
+<i>Another Fallout server, but actually good this time.</i>
+<br><br>
