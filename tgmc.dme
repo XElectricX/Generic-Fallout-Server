@@ -1854,6 +1854,8 @@
 #include "fallout\fallout weapons\fallout_projectiles.dm"
 #include "fallout\fallout weapons\fallout_rifles.dm"
 #include "fallout\fallout weapons\fallout_shotguns.dm"
+#include "fallout\fallout weapons\fallout_smgs.dm"
+#include "fallout\fallout weapons\fallout_weapon_system.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
