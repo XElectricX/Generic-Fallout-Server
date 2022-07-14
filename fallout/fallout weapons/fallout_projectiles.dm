@@ -1,28 +1,14 @@
 /datum/ammo
-	var/desc
+	var/desc	//Var needs to be defined here instead of the template below otherwise errors
 
-//Doing ..() doesn't work here so just pasting it all in
-/obj/item/ammo_magazine/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds)
-	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo
-	var/ammo_name = ammo.name
-
-	name = "handful of [ammo_name]\s"
-	icon_state = ammo.handful_icon_state
-
-	var/bullet_desc = ammo.desc	//These 2 lines are for giving bullets descriptions
-	desc = "[bullet_desc]"
-
-	default_ammo = new_ammo
-	caliber = new_caliber
-	if(maximum_rounds)
-		max_rounds = maximum_rounds
-	else
-		max_rounds = ammo.handful_amount
-	current_rounds = new_rounds
-	update_icon()
+//Basic "bullet"
+/datum/ammo/bullet/fallout
+	name = "bullet template"
+	desc = "This should not exist."
+	handful_icon_state = "small_casing"
 
 //Pistol rounds
-/datum/ammo/bullet/nine
+/datum/ammo/bullet/fallout/nine
 	name = "9x19mm Parabellum bullet"
 	desc = "Ubiquitous round used by all kinds of weapons. Small but plentiful."
 	damage = 12
@@ -32,7 +18,7 @@
 	point_blank_range = 1
 	shell_speed = 2.5
 
-/datum/ammo/bullet/ten
+/datum/ammo/bullet/fallout/ten
 	name = "10x25mm Auto bullet"
 	desc = "Common round used by semi-auto pistols and SMGs."
 	damage = 15
@@ -42,7 +28,7 @@
 	point_blank_range = 1
 	shell_speed = 2.3
 
-/datum/ammo/bullet/acp
+/datum/ammo/bullet/fallout/acp
 	name = ".45 ACP bullet"
 	desc = "Ol'e reliable. Subsonic round that still packs a punch."
 	damage = 13
@@ -51,7 +37,7 @@
 	shrapnel_chance = 10
 	shell_speed = 1.8
 
-/datum/ammo/bullet/subsonic
+/datum/ammo/bullet/fallout/subsonic
 	name = ".22 Long Rifle bullet"
 	desc = "Tiny subsonic round used in a variety of weapons from pistols to rifles. Practically littered across the wastes."
 	damage = 12
@@ -60,12 +46,15 @@
 	shrapnel_chance = 8
 	point_blank_range = 1
 
-/datum/ammo/bullet/magnum357
+/datum/ammo/bullet/fallout/magnum357
 	name = ".357 Magnum bullet"
 	desc = "Yee-fucking-haw."
-	damage = 20
+	damage = 25
+	penetration = 10
+	shrapnel_chance = 20
+	shell_speed = 2.2
 
-/datum/ammo/bullet/magnum44
+/datum/ammo/bullet/fallout/magnum44
 	name = ".44 Magnum bullet"
 	desc = "The ammo of choice for revolvers and carbines do more than look cool."
 	damage = 30
@@ -73,7 +62,7 @@
 	shrapnel_chance = 15
 	shell_speed = 2.5
 
-/datum/ammo/bullet/action_express
+/datum/ammo/bullet/fallout/action_express
 	name = ".50 Action Express bullet"
 	desc = "Absolute unit of a pistol bullet."
 	damage = 40
@@ -84,61 +73,74 @@
 	shell_speed = 2.8
 
 //Rifle rounds
-/datum/ammo/bullet/assault_rifle
+/datum/ammo/bullet/fallout/assault_rifle
 	name = "5.56x45mm rifle bullet"
 	desc = "Popular cartridge for assault rifles, carbines, marksman rifles, and machine guns."
-	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
-	icon_state = "medium_casing"
+	handful_icon_state = "medium_casing"
+	handful_amount = 4
 	damage = 20
-	penetration = 20
+	penetration = 40
 	shrapnel_chance = 20
 	accurate_range = 6
 
-/datum/ammo/bullet/winchester
+/datum/ammo/bullet/fallout/winchester
 	name = ".308 Winchester bullet"
 	desc = "Good for hunting wild animals. Or humans."
-	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
-	icon_state = "medium_casing"
+	handful_icon_state = "medium_casing"
+	handful_amount = 4
 	damage = 35
 	damage_falloff = 0.8
-	penetration = 30
+	penetration = 60
 	shrapnel_chance = 25
 	accurate_range = 8
 	accurate_range_min = 1
 	shell_speed = 2.8
 
-/datum/ammo/bullet/govt
+/datum/ammo/bullet/fallout/govt
 	name = ".45-70 Government bullet"
 	desc = "Inaccurate but powerful round. Put the fear of American munitions into your enemy."
-	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
-	icon_state = "medium_casing"
-	damage = 30
+	handful_icon_state = "medium_casing"
+	handful_amount = 4
+	damage = 40
 	damage_falloff = 2
-	penetration = 25
+	penetration = 40
 	shrapnel_chance = 15
 	accurate_range = 4
 	point_blank_range = 1
 	shell_speed = 2.5
 
-/datum/ammo/bullet/bmg
+/datum/ammo/bullet/fallout/bmg
 	name = ".50 BMG bullet"
 	desc = "You could kill a house with this. Usually used by HMGs and anti-materiel rifles."
-	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
-	icon_state = "large_casing"
-	damage = 50
+	handful_icon_state = "large_casing"
+	handful_amount = 1
+	damage = 60
 	damage_falloff = 0.6
-	penetration = 60
+	penetration = 70
+	shrapnel_chance = 5	//Doubtful a giant bullet would break up inside you instead of penetrating
 	accurate_range = 12
 	accurate_range_min = 1
-	shrapnel_chance = 5	//Doubtful a giant bullet would break up inside you instead of penetrating
+	shell_speed = 4	//It go fast
 
 //Shotgun rounds
-/datum/ammo/bullet/shotgun/buckshot
+/datum/ammo/bullet/fallout/buckshot
 	name = "buckshot shell"
 	desc = "For when you can't be bothered to aim."
+	icon_state = "buckshot"
+	handful_icon_state = "shell_buckshot"
+	handful_amount = 1
 	damage = 12
 	damage_falloff = 1.5
 	penetration = 5
 	shrapnel_chance = 8
 	point_blank_range = 1
-	shell_speed = 2.5
+	shell_speed = 2
+	bonus_projectiles_type = /datum/ammo/bullet/fallout/buckshot/extra
+	bonus_projectiles_amount = 5
+	bonus_projectiles_scatter = 4
+
+//The additional buckshot projectiles that spread out from one shell
+/datum/ammo/bullet/fallout/buckshot/extra
+	name = "additional buckshot"
+	icon_state = "buckshot"
+	bonus_projectiles_amount = 0
