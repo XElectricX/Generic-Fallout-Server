@@ -1,0 +1,9 @@
+{
+	"map_name": "Munitions Factory",
+	"map_path": "fallout/fallout maps",
+	"map_file": "munitions_factory.dmm",
+	"announce_text": "A small town built around a pre-war munitions factory. Residing in a valley, far from any civilization, it was left relatively untouched by the Great War.",
+	"traits":[{
+		"weather_sandstorm": true
+	}]
+}

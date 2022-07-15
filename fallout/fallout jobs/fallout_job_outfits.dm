@@ -107,7 +107,7 @@
 	id = /obj/item/card/id/legion
 	l_store = /obj/item/storage/pouch/magazine/pistol
 	r_store = /obj/item/ammo_magazine/pistol/g22
-	suit_store = /obj/item/storage/large_holster/blade/machete/full
+	suit_store = /obj/item/storage/holster/blade/machete/full
 	r_hand = /obj/item/ammo_magazine/pistol/g22
 	l_hand = /obj/item/ammo_magazine/pistol/g22
 
@@ -148,7 +148,7 @@
 	belt = /obj/item/storage/belt/gun/ts34/full
 	head = /obj/item/clothing/head/helmet/fallout/legion/decanus
 	id = /obj/item/card/id/legion/decanus
-	l_store = /obj/item/storage/pouch/firstaid/injectors/full
+	l_store = null
 	r_store = /obj/item/ammo_magazine/smg/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_hand = /obj/item/weapon/shield/fallout_shield/reinforced/legion
@@ -157,10 +157,10 @@
 /datum/outfit/job/fallout/legion/leader
 	name = LEGION_LEADER
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/centurion
-	belt = /obj/item/storage/belt/gun/mateba/captain/full
+	belt = /obj/item/storage/belt/gun/mateba
 	head = /obj/item/clothing/head/helmet/fallout/legion/centurion
 	id = /obj/item/card/id/legion/leader
-	l_store = /obj/item/storage/pouch/firstaid/injectors/full
+	l_store = null
 	r_store = /obj/item/megaphone
 	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_hand = /obj/item/weapon/shield/fallout_shield/reinforced/legion

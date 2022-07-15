@@ -8,6 +8,10 @@
 	flags_atom = NONE
 	max_integrity = 75
 
+//Leave it empty or else the game tries to smooth it, breaking the sprite
+/obj/structure/window/fallout/update_icon()
+	return
+
 /obj/structure/window/fallout/broken
 	name = "broken house window"
 	icon_state = "house_broken"
