@@ -47,6 +47,8 @@
 /datum/game_mode/fallout/ncr_vs_legion
 	name = "NCR vs Legion"
 	config_tag = "NCR vs Legion"
+	flags_round_type = MODE_LZ_SHUTTERS
+	shutters_drop_time = 5 MINUTES
 	valid_job_types = list(
 		/datum/job/fallout/ncr = -1,
 		/datum/job/fallout/ncr/medic = 5,
