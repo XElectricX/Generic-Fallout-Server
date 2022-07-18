@@ -13,16 +13,15 @@
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	soft_armor = list("melee" = 25, "bullet" = 40, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
-	slowdown = 0.6
+	slowdown = 0.3
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/weapon/twohanded,
+		/obj/item/weapon/fallout_melee,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch,
-		/obj/item/tank/emergency_oxygen
-		)
+		/obj/item/storage/pouch/fallout,
+		/obj/item/flashlight/fallout,
+		/obj/item/tank/emergency_oxygen)
 
 /obj/item/clothing/suit/storage/fallout/ncr/reinforced
 	name = "NCR reinforced armor vest"
@@ -30,7 +29,7 @@
 	icon_state = "ncr_vest_reinforced"
 	item_state = "ncr_vest_reinforced"
 	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = 40, "bio" = 20, "rad" = 25, "fire" = 30, "acid" = 20)
-	slowdown = 0.5
+	slowdown = 0.4
 
 /obj/item/clothing/suit/storage/fallout/ncr/mantle
 	name = "NCR mantle armor"
@@ -44,7 +43,7 @@
 	icon_state = "ncr_mantle_reinforced"
 	item_state = "ncr_mantle_reinforced"
 	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = 40, "bio" = 20, "rad" = 25, "fire" = 30, "acid" = 20)
-	slowdown = 0.5
+	slowdown = 0.4
 
 /obj/item/clothing/suit/storage/fallout/ncr/officer
 	name = "NCR officer armor"
@@ -57,10 +56,10 @@
 /obj/item/clothing/suit/storage/fallout/ncr/officer_reinforced
 	name = "NCR reinforced officer armor"
 	desc = "A reinforced set of NCRA officer armor. Ceramic inserts protect the vital organs quite well. Designed to keep the brass safe in active war zones."
-	icon_state = "ncr_captain_armour"
-	item_state = "ncr_captain_armour"
+	icon_state = "ncr_officer_reinforced"
+	item_state = "ncr_officer_reinforced"
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 30, "rad" = 35, "fire" = 45, "acid" = 30)
-	slowdown = 0.4
+	slowdown = 0.6
 
 /obj/item/clothing/suit/storage/fallout/ncr/patrol
 	name = "heavy patrol armor"
@@ -68,7 +67,7 @@
 	icon_state = "ncr_patrol"
 	item_state = "ncr_patrol"
 	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 65, "energy" = 65, "bomb" = 40, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 0)
-	slowdown = 0.3
+	slowdown = 0.7
 
 /obj/item/clothing/suit/storage/fallout/ncr/scout
 	name = "NCR scout armor"
@@ -76,7 +75,7 @@
 	icon_state = "ncr_scout"
 	item_state = "ncr_scout"
 	soft_armor = list("melee" = 15, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 5)
-	slowdown = 0.7
+	slowdown = 0.2
 
 /obj/item/clothing/suit/storage/fallout/ncr/scout_officer
 	name = "NCR scout officer armor"
@@ -84,7 +83,7 @@
 	icon_state = "ncr_scout_officer"
 	item_state = "ncr_scout_officer"
 	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 5)
-	slowdown = 0.7
+	slowdown = 0.3
 
 /obj/item/clothing/suit/storage/fallout/ncr/officer_coat
 	name = "NCR armored officer coat"
@@ -92,7 +91,7 @@
 	icon_state = "ncr_officer_coat"
 	item_state = "ncr_officer_coat"
 	soft_armor = list("melee" = 10, "bullet" = 20, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 15, "acid" = 5)
-	slowdown = 0.7
+	slowdown = 0.1
 
 /obj/item/clothing/suit/storage/fallout/ncr/ranger
 	name = "NCR ranger armor"
@@ -107,7 +106,7 @@
 	icon_state = "ncr_combatarmor"
 	item_state = "ncr_combatarmor"
 	soft_armor = list("melee" = 30, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
-	slowdown = 0.5
+	slowdown = 0.4
 
 /obj/item/clothing/suit/storage/fallout/ncr/exile
 	name = "tattered NCR armor"
@@ -130,16 +129,15 @@
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	soft_armor = list("melee" = 30, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 15, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0)
-	slowdown = 0.6
+	slowdown = 0.3
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/weapon/twohanded,
+		/obj/item/weapon/fallout_melee,
 		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch,
-		/obj/item/tank/emergency_oxygen
-		)
+		/obj/item/storage/pouch/fallout,
+		/obj/item/flashlight/fallout,
+		/obj/item/tank/emergency_oxygen)
 
 /obj/item/clothing/suit/storage/fallout/legion/prime
 	name = "Legion prime armor"
@@ -153,7 +151,7 @@
 	icon_state = "legion_explorer"
 	item_state = "legion_explorer"
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0)
-	slowdown = 0.7
+	slowdown = 0.2
 
 /obj/item/clothing/suit/storage/fallout/legion/veteran
 	name = "Legion veteran armor"
@@ -161,7 +159,7 @@
 	icon_state = "legion_veteran"
 	item_state = "legion_veteran"
 	soft_armor = list("melee" = 40, "bullet" = 35, "laser" = 15, "energy" = 15, "bomb" = 25, "bio" = 20, "rad" = 25, "fire" = 30, "acid" = 5)
-	slowdown = 0.5
+	slowdown = 0.3
 
 /obj/item/clothing/suit/storage/fallout/legion/vexillarius
 	name = "Legion vexillarius armor"
@@ -169,7 +167,7 @@
 	icon_state = "legion_vexillarius"
 	item_state = "legion_vexillarius"
 	soft_armor = list("melee" = 45, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 25, "fire" = 35, "acid" = 0)
-	slowdown = 0.5
+	slowdown = 0.4
 
 /obj/item/clothing/suit/storage/fallout/legion/slavemaster
 	name = "Legion slavemaster armor"
@@ -183,7 +181,7 @@
 	icon_state = "legion_scout_coat"
 	item_state = "legion_scout_coat"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 10, "rad" = 20, "fire" = 25, "acid" = 0)
-	slowdown = 0.7
+	slowdown = 0
 
 /obj/item/clothing/suit/storage/fallout/legion/venator
 	name = "Legion venator armor"
@@ -191,15 +189,15 @@
 	icon_state = "legion_venator"
 	item_state = "legion_venator"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 25, "energy" = 25, "bomb" = 35, "bio" = 20, "rad" = 25, "fire" = 35, "acid" = 20)
-	slowdown = 0.4
+	slowdown = 0.5
 
 /obj/item/clothing/suit/storage/fallout/legion/heavy
 	name = "Legion heavy armor"
 	desc = "A suit with the standard metal reinforcements of a veteran and a patched bulletproof vest worn over it."
-	icon_state = "legion_heavy"
-	item_state = "legion_metal" //placeholder until we get an item sprite
+	icon_state = "legion_metal" //placeholder until we get an item sprite
+	item_state = "legion_heavy"
 	soft_armor = list("melee" = 70, "bullet" = 70, "laser" = 30, "energy" = 30, "bomb" = 40, "bio" = 20, "rad" = 25, "fire" = 35, "acid" = 10)
-	slowdown = 0.3
+	slowdown = 0.7
 
 /obj/item/clothing/suit/storage/fallout/legion/centurion
 	name = "Centurion armor"
@@ -207,7 +205,7 @@
 	icon_state = "legion_centurion"
 	item_state = "legion_centurion"
 	soft_armor = list("melee" = 70, "bullet" = 50, "laser" = 35, "energy" = 35, "bomb" = 40, "bio" = 30, "rad" = 20, "fire" = 40, "acid" = 20)
-	slowdown = 0.4
+	slowdown = 0.6
 
 /obj/item/clothing/suit/storage/fallout/legion/centurion_ranger
 	name = "Centurion Ranger-hunter armor"
@@ -223,7 +221,7 @@
 	icon_state = "legion_centurion_powerarmor"
 	item_state = "legion_centurion_powerarmor"
 	soft_armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 60, "bio" = 40, "rad" = 40, "fire" = 60, "acid" = 50)
-	slowdown = 0.2
+	slowdown = 0.8
 
 /obj/item/clothing/suit/storage/fallout/legion/legate
 	name = "Legate armor"
@@ -231,7 +229,7 @@
 	icon_state = "legion_legate"
 	item_state = "legion_legate"
 	soft_armor = list("melee" = 70, "bullet" = 60, "laser" = 45, "energy" = 45, "bomb" = 45, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 40)
-	slowdown = 0.3
+	slowdown = 0.7
 /* Commented out due to possible balance concerns with Legion in combat armor, and the armor itself needs a better sprite
 /obj/item/clothing/suit/storage/fallout/legion/combat_armor
 	name = "Legion combat armor"

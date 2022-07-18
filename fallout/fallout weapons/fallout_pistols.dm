@@ -73,7 +73,7 @@
 	icon_state = "type17"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/type17_pistol_fire.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/ten
-	allowed_ammo_types = /obj/item/ammo_magazine/fallout_pistol/ten
+	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/ten)
 	caliber = CALIBER_10X25MM
 	max_shells = 10
 	fire_delay = 0.4 SECONDS
@@ -104,7 +104,7 @@
 	icon_state = "rugermk3"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/22_pistol_fire.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/subsonic
-	allowed_ammo_types = /obj/item/ammo_magazine/fallout_pistol/subsonic
+	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/subsonic)
 	caliber = CALIBER_10X25MM
 	max_shells = 15
 	scatter = 5
