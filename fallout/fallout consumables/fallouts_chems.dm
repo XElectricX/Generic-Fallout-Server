@@ -24,7 +24,7 @@
 		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
 
 /obj/item/reagent_containers/hypospray/fallout/stimpak
-	name = "Stimpak"
+	name = "stimpak"
 	desc = "A handheld delivery system for medicine, used to rapidly heal physical damage to the body."
 	icon_state = "stimpak"
 	volume = 10
@@ -44,7 +44,7 @@
 	list_reagents = list(/datum/reagent/medicine/super_stimpak = 10)
 */
 /obj/item/reagent_containers/hypospray/fallout/medx
-	name = "Med-X Injector"
+	name = "med-X injector"
 	desc = "A short-lasting shot of Med-X applied via hypodermic needle."
 	icon_state = "medx"
 	volume = 20
@@ -52,7 +52,7 @@
 	list_reagents = list(/datum/reagent/medicine/medx = 20)
 
 /obj/item/reagent_containers/hypospray/fallout/jet
-	name = "Jet Inhaler"
+	name = "jet inhaler"
 	desc = "A crude inhaler meant to aerolize and deliver Jet."
 	icon_state = "jet"
 	volume = 20
@@ -94,7 +94,7 @@
 	return TRUE
 
 /obj/item/reagent_containers/hypospray/fallout/turbo
-	name = "Turbo Inhaler"
+	name = "turbo inhaler"
 	desc = "A Jet inhaler strapped to a bottle of chemicals. The combined cocktail creates Turbo."
 	icon_state = "turbo"
 	volume = 10
@@ -145,3 +145,15 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/psycho = 10)
 */
+
+//Powders are applied topically
+/obj/item/stack/medical/heal_pack/healing_powder
+	name = "healing powder"
+	singular_name = "healing powder"
+	desc = "A herbal remedy made from crushed and heated broc and xander."
+	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
+	icon_state = "healing_powder"
+	amount = 3
+	max_amount = 3
+	heal_burn = 30
+	heal_flags = 7

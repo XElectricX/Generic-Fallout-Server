@@ -14,10 +14,10 @@
 	item_state = "ncr_helmet_goggles"
 
 /obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer
-	name = "NCR medic helmet"
+	name = "NCR engineer helmet"
 	desc = "A helmet issued to NCRA field engineers. Bears resemblance to a hard hat, but this one can stop bullets!"
-	icon_state = "ncr_helmet_engineering"
-	item_state = "ncr_helmet_engineering"
+	icon_state = "ncr_helmet_engineer"
+	item_state = "ncr_helmet_engineer"
 
 /obj/item/clothing/head/helmet/fallout/ncr/helmet_medic
 	name = "NCR medic helmet"
@@ -194,11 +194,11 @@
 	icon_state = "legion_slavemaster"
 	item_state = "legion_slavemaster"
 
-/obj/item/clothing/head/helmet/fallout/legion/venator	//Need a more metallic helmet sprite for a full metal set of armor
+/obj/item/clothing/head/helmet/fallout/legion/venator
 	name = "Legion venator hood"
 	desc = "A leather hood with a sturdy metal skullcap and a gold bull insignia in the front."
-	icon_state = "legion_venator"
-	item_state = "legion_metal"
+	icon_state = "legion_metal"
+	item_state = "legion_venator"	//Need a more metallic helmet sprite for a full metal set of armor
 
 /obj/item/clothing/head/helmet/fallout/legion/heavy
 	name = "Legion heavy helmet"

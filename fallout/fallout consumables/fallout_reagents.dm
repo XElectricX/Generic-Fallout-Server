@@ -20,7 +20,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 5	//Metabolizes quickly at 1 unit per tick
 
 /datum/reagent/medicine/stimpak/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(1, 1)
+	L.heal_limb_damage(5, 5)
 	var/mob/living/carbon/C = L
 	C.adjust_nutrition(-1)
 	..()

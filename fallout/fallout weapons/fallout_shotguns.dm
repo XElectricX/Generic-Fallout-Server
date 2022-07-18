@@ -51,10 +51,10 @@
 	recoil_unwielded = 3
 
 //Magazine-fed semi-automatic and automatic shotguns
-/obj/item/weapon/gun/fallout_shotgun/combat_shotgun
+/obj/item/weapon/gun/fallout_shotgun/combat
 	name = "\improper Combat Shotgun"
 	desc = "Magazine fed shotgun with select fire capabilities. Aim in the general direction of your enemy to fill them with holes."
-	icon_state = "combat_shotgun"
+	icon_state = "combat"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/combat_shotgun_fire.wav'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
@@ -72,10 +72,10 @@
 	recoil = 1.2
 	recoil_unwielded = 5
 
-/obj/item/weapon/gun/fallout_shotgun/combat_shotgun/short
+/obj/item/weapon/gun/fallout_shotgun/combat/short
 	name = "\improper Short Combat Shotgun"
 	desc = "Magazine fed shotgun with select fire capabilities. Aim in the general direction of your enemy to fill them with holes. Fits in your bag."
-	icon_state = "combat_shotgun_short"
+	icon_state = "combat_short"
 	w_class = WEIGHT_CLASS_NORMAL
 	damage_falloff_mult = 2 //Worse range
 	force = 10

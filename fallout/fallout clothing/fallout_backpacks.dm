@@ -3,8 +3,12 @@
 	name = "Survivalist Backpack"
 	desc = "Multiple bags tied together for your post-apocalyptic storage needs."
 	icon = 'fallout/fallout icons/fallout clothing/fallout_backpacks.dmi'
+	item_icons = list(
+		slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi',
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_misc_clothing.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_misc_clothing.dmi')
 	icon_state = "survivalist_pack"
-	item_icons = list(slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi')
+	item_state = "backpack"
 	w_class = WEIGHT_CLASS_HUGE
 	max_w_class = 4
 	max_storage_space = 16

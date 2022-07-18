@@ -1,6 +1,6 @@
 //Basic melee weapon
 /obj/item/weapon/fallout_melee
-	name = "\improper Machete"
+	name = "machete"
 	desc = "A length of metal attached to a stick. Reliable cutting tool."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_melee.dmi'
 	icon_state = "sword_machete"
@@ -10,6 +10,7 @@
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	edge = TRUE
 	sharp = IS_SHARP_ITEM_BIG
@@ -97,7 +98,7 @@
 
 //Swords
 /obj/item/weapon/fallout_melee/chinese	//Move to /chinese/electrified when normal sword sprite is made
-	name = "\improper Electrified Chinese Sword"
+	name = "electrified Chinese sword"
 	desc = "A blade commonly used by Chinese military personnel. This one is modified with a microfusion cell housing and wiring, designed for electrocuting enemies."
 	icon_state = "sword_chinese_electrified"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -166,7 +167,7 @@
 	return TRUE
 
 /obj/item/weapon/fallout_melee/gladius
-	name = "\improper Machete Gladius"
+	name = "machete gladius"
 	desc = "A formidable blade crafted by Legion Blacksmiths. The symbol of achievement for combat-proven Legionnaires."
 	icon_state = "sword_gladius"
 	force = 40
@@ -179,7 +180,7 @@
 	icon_state = "sword_scrap"
 
 /obj/item/weapon/fallout_melee/bumper
-	name = "\improper Bumper Sword"
+	name = "bumper sword"
 	desc = "A long, heavy sword made from scrap metal. Best used with both hands."
 	icon_state = "sword_bumper"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -191,7 +192,7 @@
 	attack_speed = ATTACK_SPEED_MEDIUM
 
 /obj/item/weapon/fallout_melee/knife
-	name = "\improper Survival Knife"
+	name = "survival knife"
 	desc = "Common knife found all across the wasteland. Still a reliable cutting tool hundreds of years later."
 	icon_state = "knife_survival"
 	item_icons = list(
@@ -209,11 +210,11 @@
 	//weapon_can_cleave = FALSE
 
 /obj/item/weapon/fallout_melee/knife/hunting
-	name = "\improper Hunting Knife"
+	name = "hunting knife"
 	icon_state = "knife_hunting"	//Also needs a worn sprite
 
 /obj/item/weapon/fallout_melee/knife/bowie
-	name = "\improper Bowie Knife"
+	name = "bowie knife"
 	icon_state = "knife_bowie"
 	item_icons = list(
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
@@ -229,7 +230,7 @@
 	item_state = "knife_trench"
 
 /obj/item/weapon/fallout_melee/knife/switchblade
-	name = "\improper Switchblade"
+	name = "switchblade"
 	desc = "Compact blade that can be flipped open."
 	icon_state = "knife_switch"
 	item_icons = list(
@@ -275,7 +276,7 @@
 	item_state += (weapon_active ? "_on" : "")
 
 /obj/item/weapon/fallout_melee/knife/bone
-	name = "\improper Bone Knife"
+	name = "bone knife"
 	desc = "Makeshift blade crafted from bone with a wooden handle."
 	icon_state = "knife_bone"
 	item_icons = list(
@@ -285,7 +286,7 @@
 
 //Spears
 /obj/item/weapon/fallout_melee/spear
-	name = "\improper Metal Spear"
+	name = "metal spear"
 	desc = "Then there is the absolute Chad of a weapon, the spear.\
 			Seen in basically every pre-gunpowder battle, the backbone of most major armies, cheap, useful, easy to produce, no non-sense stabbing greatness.\
 			The friend of peasants, with reach and accuracy. Cheers to spear and all of its cousins; the pike, halberd, and others."
@@ -302,7 +303,7 @@
 	//weapon_can_cleave = FALSE
 
 /obj/item/weapon/fallout_melee/spear/throwing
-	name = "\improper Javelin"
+	name = "javelin"
 	desc = "A stick made sharp, light, and aerodynamic. Impale your enemies from a distance!"
 	icon_state = "spear_throwing"
 	w_class = WEIGHT_CLASS_BULKY
@@ -311,7 +312,7 @@
 	throw_speed = 3
 
 /obj/item/weapon/fallout_melee/spear/scrap
-	name = "\improper Scrap Spear"
+	name = "scrap spear"
 	desc = "Long, pointy metal stick."
 	icon_state = "spear_scrap"
 	force = 10
@@ -319,7 +320,7 @@
 	throwforce = 20
 
 /obj/item/weapon/fallout_melee/spear/bone
-	name = "\improper Bone Spear"
+	name = "bone spear"
 	desc = "Sharpened bone fashioned into a spear."
 	icon_state = "spear_bone"
 	force = 10
@@ -327,7 +328,7 @@
 	throwforce = 20
 
 /obj/item/weapon/fallout_melee/spear/claw
-	name = "\improper Deathclaw Spear"
+	name = "deathclaw spear"
 	desc = "A spear made from the bones and claw of a Deathclaw."
 	icon_state = "spear_claw"
 	force = 25
@@ -336,7 +337,7 @@
 
 //Axes
 /obj/item/weapon/fallout_melee/axe
-	name = "\improper Metal Axe"
+	name = "metal axe"
 	desc = "Lumberjacking really fell off when most of the trees did."
 	icon_state = "axe_metal"	//Doesn't exist yet, but needs to
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -350,7 +351,7 @@
 	attack_speed = ATTACK_SPEED_SLOW
 
 /obj/item/weapon/fallout_melee/axe/fire
-	name = "\improper Fire Axe"
+	name = "fire axe"
 	desc = "Natural enemy of fire."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "fireaxe"
@@ -360,7 +361,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
 
 /obj/item/weapon/fallout_melee/axe/bone
-	name = "\improper Bone Axe"
+	name = "bone axe"
 	desc = "Crude axe made from wood and bone."
 	icon_state = "axe_bone"
 	force = 20
@@ -369,7 +370,7 @@
 
 //Hammers
 /obj/item/weapon/fallout_melee/hammer
-	name = "\improper Sledgehammer"
+	name = "sledgehammer"
 	desc = "Cement on a stick. A crude and simple tool... or weapon."
 	icon_state = "hammer_sledge"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -385,7 +386,7 @@
 	attack_speed = ATTACK_SPEED_SLOW
 
 /obj/item/weapon/fallout_melee/hammer/rocket
-	name = "\improper Rocket Sledge"
+	name = "rocket sledge"
 	desc = "A particularly savage weapon, this can replicate the effects of standing in front of a moving train."
 	icon_state = "hammer_rocket"
 	weapon_can_activate = TRUE
@@ -472,7 +473,7 @@
 
 //Move to hammer/super and make it work off battery instead of fuel
 /obj/item/weapon/fallout_melee/hammer/rocket/super
-	name = "\improper Rocket Sledge"
+	name = "super sledge"
 	desc = "High tech hammer made of dense, advanced materials."
 	icon_state = "hammer_super"
 	force = 30
@@ -480,7 +481,7 @@
 
 //Bats
 /obj/item/weapon/fallout_melee/bat
-	name = "\improper Baseball Bat"
+	name = "baseball bat"
 	desc = "A swatter never runs out of bullets."
 	icon_state = "bat"
 	flags_atom = null
@@ -491,7 +492,7 @@
 	attack_verb = list("smashed", "hit a home run on", "bludgeoned", "smacked")
 
 /obj/item/weapon/fallout_melee/bat/spiked
-	name = "\improper Spiked Baseball Bat"
+	name = "spiked baseball bat"
 	icon_state = "bat_spiked"
 	edge = TRUE
 	sharp = IS_SHARP_ITEM_SIMPLE
@@ -505,7 +506,7 @@
 
 //Gauntlets
 /obj/item/weapon/fallout_melee/gauntlet
-	name = "\improper Lacerator Gauntlet"
+	name = "lacerator gauntlet"
 	desc = "A leather glove with rows of metallic blades attached."
 	icon_state = "gauntlet_lacerator"
 	flags_atom = null
@@ -520,7 +521,7 @@
 	attack_verb = list("lacerated", "punched")
 
 /obj/item/weapon/fallout_melee/gauntlet/punch
-	name = "\improper Punch Dagger"
+	name = "punch dagger"
 	desc = "Wood assembled into the form of a handle with a knife attached. Creatively simple weapon."
 	icon_state = "gauntlet_dagger"
 	edge = TRUE
@@ -529,7 +530,7 @@
 	attack_verb = list("punched", "stabbed")
 
 /obj/item/weapon/fallout_melee/gauntlet/mole
-	name = "\improper Mole Miner Gauntlet"
+	name = "mole miner gauntlet"
 	desc = "Digging tool repurposed into a weapon by the Mole Miner population."
 	icon_state = "gauntlet_mole"
 	flags_atom = CONDUCT
@@ -541,7 +542,7 @@
 	attack_verb = list("lacerated", "slashed", "stabbed", "ripped apart")
 
 /obj/item/weapon/fallout_melee/gauntlet/power
-	name = "\improper Power Fist"
+	name = "power fist"
 	desc = "Mechanical gauntlet fitted with hydraulics and a battery. You could punch through concrete with it."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "powerfist"
@@ -643,7 +644,7 @@
 
 //Knuckle weapons
 /obj/item/weapon/fallout_melee/knuckles
-	name = "\improper Brass Knuckles"
+	name = "brass knuckles"
 	desc = "Brass metal shaped into the form of a fist with holes for the wearer's fingers."
 	icon_state = "knuckles_brass"
 	flags_item = null
@@ -659,7 +660,7 @@
 	//weapon_can_cleave = FALSE
 
 /obj/item/weapon/fallout_melee/knuckles/spiked
-	name = "\improper Spiked Knuckles"
+	name = "spiked knuckles"
 	desc = "Metal shaped into the form of a fist with holes for the wearer's fingers and raised points along the edge."
 	icon_state = "knuckles_spike"
 	edge = TRUE
@@ -668,7 +669,7 @@
 
 //Misc melee weapons
 /obj/item/weapon/fallout_melee/pipe
-	name = "\improper Lead Pipe"
+	name = "lead pipe"
 	desc = "Rusty pipe that's been given a new life as a skull cracker."
 	icon_state = "pipe"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -680,7 +681,7 @@
 	attack_verb = list("bludgeoned", "smacked", "clubbed")
 
 /obj/item/weapon/fallout_melee/tire_iron
-	name = "\improper Tire Iron"
+	name = "tire iron"
 	desc = "Not very useful these days. Except for beating people with it."
 	icon_state = "tire_iron"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -692,7 +693,7 @@
 	attack_verb = list("swung at", "clubbed")
 
 /obj/item/weapon/fallout_melee/golf_club
-	name = "\improper Golf Club"
+	name = "golf club"
 	desc = "Fore!"
 	icon_state = "golf_club"
 	edge = FALSE
@@ -703,7 +704,7 @@
 	attack_verb = list("swung at", "practiced their backswing on", "clubbed")
 
 /obj/item/weapon/fallout_melee/whip
-	name = "\improper Leather Whip"
+	name = "leather whip"
 	desc = "Inspires fear in some, horniness in others."
 	icon_state = "whip"
 	flags_atom = null
@@ -720,7 +721,7 @@
 
 //Shields
 /obj/item/weapon/shield/fallout_shield
-	name = "\improper Riot Shield"
+	name = "riot shield"
 	icon = 'fallout/fallout icons/fallout weapons/fallout_melee.dmi'
 	icon_state = "shield_riot"
 	item_icons = list(
@@ -743,7 +744,7 @@
 	attack_verb = "bashed"
 
 /obj/item/weapon/shield/fallout_shield/reinforced
-	name = "\improper Reinforced Riot Shield"
+	name = "reinforced riot shield"
 	icon_state = "shield_reinforced"
 	slowdown = 1.5
 	max_integrity = 300
@@ -752,12 +753,12 @@
 	hard_armor = list("melee" = 25, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 10)
 
 /obj/item/weapon/shield/fallout_shield/reinforced/legion
-	name = "\improper Legionnaire Shield"
+	name = "\improper Legionnaire shield"
 	desc = "A plated metal shield used by the Legion. Dense and heavy but affords good protection."
 	icon_state = "shield_legion"
 
 /obj/item/weapon/shield/fallout_shield/buckler
-	name = "\improper Wooden Buckler"
+	name = "wooden buckler"
 	desc = "A wooden shield for protection in combat."
 	icon_state = "shield_buckler"
 	w_class = WEIGHT_CLASS_BULKY
@@ -772,14 +773,14 @@
 	destroy_sound = 'sound/effects/woodhit.ogg'
 
 /obj/item/weapon/shield/fallout_shield/buckler/makeshift
-	name = "\improper Makeshift Shield"
+	name = "makeshift shield"
 	desc = "A buckler fashioned from a stop sign."
 	icon_state = "shield_stop"
 	repair_material = /obj/item/stack/sheet/metal
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 
 /obj/item/weapon/shield/fallout_shield/roman
-	name = "\improper Roman Shield"
+	name = "\improper Roman shield"
 	desc = "For strategic shield walls."
 	icon_state = "shield_roman"
 
