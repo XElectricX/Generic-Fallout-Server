@@ -52,7 +52,7 @@
 "ci" = (/obj/structure/fence,/turf/open/ground/fallout/sidewalk,/area/fallout/wasteland)
 "cl" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/monkeykabob,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/loadedbakedpotato,/obj/item/reagent_containers/food/snacks/donut/normal,/obj/item/reagent_containers/food/snacks/bananabreadslice,/turf/open/ground/fallout/road/top,/area/fallout/legion)
 "cn" = (/obj/structure/simple_door/repaired,/turf/open/floor/tile/dark,/area/fallout/town_hall)
-"co" = (/obj/machinery/power/apc,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
+"co" = (/obj/machinery/power/apc/fallout,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "cp" = (/obj/machinery/door/window{dir = 8},/obj/machinery/shower{dir = 8},/turf/open/floor/tile/white,/area/fallout/house)
 "cs" = (/turf/open/ground/fallout/savannah/dirt_corner,/area/fallout/wasteland)
 "ct" = (/obj/machinery/light{dir = 8},/turf/open/floor/mainship/sterile/side{dir = 8},/area/fallout/clinic)
@@ -92,7 +92,7 @@
 "dX" = (/turf/open/ground/fallout/road,/area/fallout/wasteland)
 "dY" = (/obj/structure/simple_door/metal/store,/turf/open/floor,/area/fallout/clinic)
 "dZ" = (/obj/structure/mirror{dir = 4; pixel_x = 20},/turf/open/floor/fallout/wood,/area/fallout/house)
-"ec" = (/obj/machinery/bioprinter/stocked,/obj/machinery/light/small{dir = 4},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"ec" = (/obj/structure/rack,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/defibrillator,/obj/item/defibrillator,/obj/item/defibrillator,/obj/item/defibrillator,/obj/machinery/light/small{dir = 4},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "eh" = (/obj/machinery/light/small,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "ek" = (/obj/structure/table/mainship,/obj/item/clothing/glasses/welding/superior,/turf/open/floor/tile/dark,/area/fallout/power_station)
 "eo" = (/turf/open/ground/fallout/road/broken/corner{dir = 1},/area/fallout/wasteland)
@@ -146,7 +146,6 @@
 "gB" = (/turf/open/ground/fallout/road/broken{dir = 9},/area/fallout/wasteland)
 "gC" = (/obj/structure/table,/obj/item/storage/fancy/cigarettes,/turf/open/floor/tile/red/redblue/full,/area/fallout/factory)
 "gE" = (/obj/structure/closet/crate/trashcart,/turf/open/floor/asteroidfloor,/area/fallout/wasteland)
-"gF" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/ground/fallout/sidewalk/one/border{dir = 4},/area/fallout/wasteland)
 "gH" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/open/floor,/area/fallout/police_station)
 "gL" = (/obj/machinery/computer/security/wooden_tv,/obj/structure/table/woodentable,/turf/open/floor/fallout/wood,/area/fallout/house)
 "gN" = (/turf/open/ground/fallout/dirt/border{dir = 4},/area/fallout/park)
@@ -178,7 +177,7 @@
 "hF" = (/obj/structure/bed,/turf/open/floor/fallout/wood/chestnut,/area/fallout/house)
 "hH" = (/obj/structure/bed/chair/sofa/right{dir = 8},/turf/open/floor,/area/fallout/house)
 "hL" = (/obj/structure/toilet/alternate{dir = 4; pixel_y = 3},/turf/open/floor/tile/white,/area/fallout/clinic)
-"hM" = (/obj/machinery/vending/tool,/turf/open/floor/fallout/tunnel/dirty,/area/fallout/ncr)
+"hM" = (/obj/machinery/vending/fallout/tools,/turf/open/floor/fallout/tunnel/dirty,/area/fallout/ncr)
 "hN" = (/obj/structure/flora/tree/joshua,/turf/open/ground/fallout/savannah,/area/fallout/wasteland)
 "hO" = (/obj/machinery/door/airlock/highsecurity,/turf/open/floor/tile/dark,/area/fallout/police_station)
 "hQ" = (/obj/structure/table/mainship,/obj/item/weapon/fallout_melee/axe/fire,/turf/open/floor/tile/dark,/area/fallout/police_station)
@@ -205,6 +204,7 @@
 "iG" = (/turf/closed/wall/sulaco,/area/fallout/police_station)
 "iK" = (/obj/machinery/light/small{dir = 8},/turf/open/ground/fallout/sidewalk/one/border,/area/fallout/legion)
 "iM" = (/obj/structure/closet/secure_closet/engineering_personal,/obj/effect/decal/warning_stripes/box/empty,/turf/open/floor/plating/mainship,/area/fallout/factory)
+"iN" = (/obj/machinery/vending/fallout/nuka,/turf/open/floor/tile/red/redblue/full,/area/fallout/factory)
 "iO" = (/obj/structure/table/woodentable,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "iP" = (/obj/effect/decal/warning_stripes{icon_state = "N"; pixel_y = 3},/turf/open/ground/fallout/road,/area/fallout/wasteland)
 "iQ" = (/obj/effect/decal/warning_stripes/box/arrow{dir = 8},/obj/effect/decal/warning_stripes/box/small{dir = 8},/turf/open/ground/fallout/road,/area/fallout/wasteland)
@@ -215,7 +215,7 @@
 "jd" = (/obj/structure/closet/secure_closet/miner,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "je" = (/obj/structure/table/woodentable,/obj/item/flashlight/lamp/green,/turf/open/floor/fallout/wood,/area/fallout/house)
 "jf" = (/obj/structure/bed/chair{dir = 4},/turf/open/floor,/area/fallout/police_station)
-"jg" = (/obj/machinery/power/apc{dir = 4},/turf/open/floor,/area/fallout/clinic)
+"jg" = (/obj/machinery/power/apc/fallout{dir = 4},/turf/open/floor,/area/fallout/clinic)
 "jj" = (/obj/machinery/door/airlock/multi_tile/secure,/turf/open/floor/plating/mainship,/area/fallout/factory)
 "jk" = (/turf/open/floor/plating/ground/dirtgrassborder/corner2{dir = 1},/area/fallout/wasteland)
 "jl" = (/obj/structure/bedsheetbin,/obj/structure/bedsheetbin,/turf/open/floor,/area/fallout/house)
@@ -232,17 +232,16 @@
 "jK" = (/obj/structure/closet/secure_closet/miner,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "jL" = (/obj/structure/bed/chair{dir = 8},/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "jM" = (/turf/open/ground/coast,/area/fallout/wasteland)
-"jP" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/ground/fallout/sidewalk,/area/fallout/wasteland)
+"jP" = (/obj/machinery/light/small,/obj/structure/rack,/obj/item/pizzabox/margherita,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "jQ" = (/obj/effect/decal/warning_stripes/box/small,/obj/effect/decal/warning_stripes/box/arrow{dir = 1},/turf/open/ground/fallout/road/one/vertical/left/bottom,/area/fallout/wasteland)
 "jR" = (/obj/machinery/light,/turf/open/floor,/area/fallout/store)
 "jS" = (/obj/item/storage/donut_box,/obj/structure/table,/turf/open/floor,/area/fallout/police_station)
 "jU" = (/obj/structure/bed,/obj/item/bedsheet/rainbow,/turf/open/floor/fallout/carpet/galactic,/area/fallout/house)
-"jW" = (/obj/machinery/light{dir = 4},/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/floor/tile/white,/area/fallout/factory)
 "jX" = (/obj/structure/window/fallout/metal/left,/turf/open/floor/plating,/area/fallout/army_camp)
 "jZ" = (/obj/structure/bookcase,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "kb" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor/tile/dark,/area/fallout/factory)
 "kf" = (/obj/machinery/door/airlock/mainship/command{dir = 2},/turf/open/floor/fallout/wood,/area/fallout/factory)
-"ki" = (/obj/item/storage/toolbox/mechanical,/turf/open/floor/fallout/wood,/area/fallout/wasteland)
+"ki" = (/obj/item/storage/fallout/toolbox/full,/turf/open/floor/fallout/wood,/area/fallout/wasteland)
 "kk" = (/obj/structure/rack,/obj/effect/spawner/random/tech_supply,/turf/open/floor/tile/dark,/area/fallout/factory)
 "kl" = (/obj/machinery/light{dir = 4},/turf/open/floor/plating/mainship,/area/fallout/factory)
 "kq" = (/obj/structure/table,/turf/open/floor,/area/fallout/army_camp)
@@ -267,7 +266,6 @@
 "lb" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/power_station)
 "li" = (/obj/structure/desertdam/decals/road/edge{icon_state = "road_edge_decal1"; pixel_x = -12},/turf/open/ground/fallout/road,/area/fallout/wasteland)
 "lk" = (/obj/structure/bed/chair/janicart,/turf/open/floor/tile/dark,/area/fallout/factory)
-"ll" = (/obj/effect/decal/warning_stripes/thick{dir = 4},/turf/open/floor/plating/mainship,/area/fallout/factory)
 "lm" = (/obj/machinery/light/small,/turf/open/ground/fallout/desert,/area/fallout/army_camp)
 "lo" = (/obj/structure/closet/secure_closet/engineering_welding,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "lp" = (/turf/open/ground/coast/corner{dir = 4},/area/fallout/wasteland)
@@ -277,7 +275,7 @@
 "lx" = (/obj/structure/window/fallout/metal/right,/turf/open/floor/plating,/area/fallout/army_camp)
 "lA" = (/obj/machinery/light/small{dir = 4},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/house)
 "lD" = (/obj/structure/bed/chair/comfy,/turf/open/floor/wood,/area/fallout/factory)
-"lE" = (/obj/machinery/vending/tool,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
+"lE" = (/obj/machinery/vending/fallout/tools,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "lG" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark,/area/fallout/factory)
 "lI" = (/obj/machinery/light{dir = 4},/turf/open/floor/fallout/wood,/area/fallout/town_hall)
 "lJ" = (/obj/structure/closet/cabinet,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
@@ -299,13 +297,12 @@
 "mp" = (/obj/structure/closet/secure_closet/security,/turf/open/floor/tile/dark,/area/fallout/factory)
 "mq" = (/obj/structure/table/reinforced,/obj/machinery/computer/emails,/obj/structure/window/reinforced{dir = 4},/turf/open/floor,/area/fallout/police_station)
 "mr" = (/obj/structure/bed/chair,/turf/open/floor,/area/fallout/store)
-"mu" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/ground/fallout/sidewalk/one/border{dir = 8},/area/fallout/wasteland)
 "mv" = (/obj/structure/largecrate/supply,/turf/open/floor/mainship/floor,/area/fallout/store)
 "mw" = (/obj/machinery/vending/cigarette,/turf/open/floor/tile/white,/area/fallout/factory)
 "my" = (/obj/structure/ship_ammo/rocket/banshee,/obj/effect/decal/warning_stripes/thick{dir = 8},/turf/open/floor/mainship/floor,/area/fallout/factory)
 "mA" = (/turf/open/ground/fallout/sidewalk/crosswalk/border/round{dir = 9},/area/fallout/wasteland)
 "mC" = (/obj/effect/landmark/start/job/fallout/legion/decanus,/turf/open/ground/fallout/sidewalk/one/border{dir = 1},/area/fallout/legion)
-"mE" = (/obj/structure/rack,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/toxin,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/toxin,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/machinery/light/small{dir = 8},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"mE" = (/obj/machinery/light/small{dir = 8},/obj/machinery/bioprinter/stocked,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "mG" = (/turf/open/ground/fallout/desert,/area/fallout/ncr)
 "mH" = (/obj/machinery/griddle,/turf/open/floor/tile/cafe,/area/fallout/factory)
 "mI" = (/obj/structure/barricade/wooden{dir = 4},/turf/open/ground,/area/fallout/wasteland)
@@ -342,6 +339,7 @@
 "oi" = (/obj/machinery/light,/turf/open/floor/tile/white,/area/fallout/factory)
 "oj" = (/turf/open/floor/mainship/cargo/arrow{dir = 1},/area/fallout/factory)
 "ok" = (/turf/open/floor/fallout/wood,/area/fallout/house)
+"om" = (/obj/machinery/vending/fallout/sarsaparilla,/turf/open/floor,/area/fallout/store)
 "on" = (/obj/structure/table,/obj/item/phone,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "oq" = (/obj/structure/bed,/obj/item/bedsheet/rd,/turf/open/floor,/area/fallout/house)
 "or" = (/turf/open/ground/fallout/rubble/edge{dir = 9},/area/fallout/wasteland)
@@ -362,7 +360,7 @@
 "oT" = (/obj/effect/decal/warning_stripes{icon_state = "N"; pixel_y = -13},/mob/living/simple_animal/corgi/narsie,/turf/open/ground/fallout/road,/area/fallout/legion)
 "oU" = (/obj/structure/sink/bathroom{dir = 1},/turf/open/floor/fallout/wood,/area/fallout/house)
 "oW" = (/obj/structure/largecrate/supply/supplies/flares,/turf/open/ground/fallout/desert,/area/fallout/ncr)
-"oX" = (/obj/machinery/door/airlock/glass,/turf/open/floor/tile/white,/area/fallout/factory)
+"oX" = (/obj/machinery/door/airlock/glass{dir = 1},/turf/open/floor/tile/white,/area/fallout/factory)
 "oZ" = (/turf/closed/wall/fallout/concrete,/area/fallout/clinic)
 "ph" = (/turf/open/ground/fallout/savannah/dirt{dir = 10},/area/fallout/wasteland)
 "pm" = (/obj/structure/flora/desert/bush,/turf/open/ground/fallout/desert,/area/fallout/wasteland)
@@ -407,6 +405,7 @@
 "qP" = (/obj/structure/table,/obj/item/phone,/turf/open/floor/tile/white,/area/fallout/factory)
 "qU" = (/obj/machinery/microwave,/obj/structure/table/mainship,/turf/open/floor,/area/fallout/house)
 "qW" = (/obj/structure/bed/chair/wood/wings{dir = 4},/turf/open/floor/plating/asteroidplating,/area/fallout/legion)
+"qY" = (/obj/machinery/vending/fallout/nuka,/turf/open/ground/fallout/road/top,/area/fallout/ncr)
 "qZ" = (/obj/structure/rack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "rd" = (/obj/structure/rack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/turf/open/ground/fallout/sidewalk,/area/fallout/ncr)
 "rf" = (/obj/structure/bed,/obj/item/bedsheet/yellow,/turf/open/floor,/area/fallout/house)
@@ -420,7 +419,7 @@
 "ry" = (/obj/structure/table/woodentable,/obj/item/weapon/fallout_melee/gladius,/turf/open/ground/fallout/sidewalk,/area/fallout/legion)
 "rA" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/toilet/alternate{dir = 4; pixel_y = 3},/turf/open/floor/fallout/wood,/area/fallout/house)
 "rC" = (/obj/effect/landmark/start/job/fallout,/obj/effect/landmark/start/latejoin,/turf/open/ground/fallout/sidewalk,/area/fallout/wasteland)
-"rD" = (/obj/structure/rack,/obj/item/storage/toolbox/mechanical,/turf/open/floor/tile/dark,/area/fallout/factory)
+"rD" = (/obj/machinery/power/apc/fallout{dir = 4},/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "rG" = (/obj/machinery/light/small{dir = 8},/turf/open/floor/fallout/wood/panel,/area/fallout/police_station)
 "rH" = (/obj/machinery/power/monitor,/turf/open/floor/tile/dark,/area/fallout/power_station)
 "rL" = (/turf/open/floor/fallout/wood/dark/broken/three,/area/fallout/wasteland)
@@ -451,7 +450,7 @@
 "sB" = (/obj/structure/fence,/turf/open/floor/asteroidfloor,/area/fallout/wasteland)
 "sD" = (/obj/structure/simple_door/metal/store,/turf/open/floor,/area/fallout/police_station)
 "sE" = (/turf/closed/wall/prison,/area/fallout/police_station)
-"sH" = (/obj/machinery/vending/MarineMed/Blood,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"sH" = (/obj/structure/rack,/obj/item/megaphone,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "sJ" = (/obj/machinery/conveyor{dir = 6},/turf/open/floor/mainship/floor,/area/fallout/factory)
 "sO" = (/obj/machinery/light{dir = 1},/turf/open/floor,/area/fallout/clinic)
 "sP" = (/obj/effect/decal/warning_stripes{icon_state = "N"; pixel_y = -13},/obj/machinery/floodlight/landing,/turf/open/ground/fallout/road,/area/fallout/legion)
@@ -564,8 +563,8 @@
 "xf" = (/obj/machinery/light/small,/turf/open/ground/fallout/sidewalk,/area/fallout/legion)
 "xh" = (/obj/structure/bedsheetbin,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "xi" = (/obj/machinery/vending/fallout/legion,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
-"xk" = (/obj/structure/table/mainship,/obj/item/storage/toolbox/mechanical,/turf/open/floor/tile/dark,/area/fallout/house)
-"xn" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/floor/mainship/floor,/area/fallout/factory)
+"xk" = (/obj/structure/table/mainship,/obj/item/storage/fallout/toolbox/full,/turf/open/floor/tile/dark,/area/fallout/house)
+"xn" = (/obj/structure/rack,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/toxin,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/toxin,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/roller,/obj/item/roller,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "xp" = (/obj/effect/decal/warning_stripes{icon_state = "N"; pixel_y = -13},/turf/closed/mineral/indestructible,/area/fallout/legion)
 "xq" = (/obj/structure/window/framed/colony,/turf/open/floor/plating,/area/fallout/factory)
 "xr" = (/obj/structure/simple_door/metal/store,/turf/open/floor,/area/fallout/army_camp)
@@ -594,13 +593,13 @@
 "yk" = (/obj/machinery/outputter,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/mainship/floor,/area/fallout/factory)
 "yn" = (/obj/structure/simple_door,/turf/open/floor,/area/fallout/store)
 "yr" = (/obj/structure/rack,/obj/item/stack/sheet/metal/large_stack,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
-"ys" = (/obj/machinery/power/apc{dir = 4},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/power_station)
+"ys" = (/obj/structure/cable,/obj/machinery/power/apc/fallout{dir = 4},/turf/open/floor/tile/dark,/area/fallout/power_station)
 "yu" = (/obj/structure/table/woodentable,/obj/machinery/light/small{dir = 8},/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "yw" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/red/redblue/full,/area/fallout/factory)
 "yx" = (/obj/machinery/door/window{dir = 2},/turf/open/floor/tile/white,/area/fallout/house)
 "yy" = (/obj/machinery/light{dir = 8},/turf/open/floor/fallout/wood,/area/fallout/town_hall)
 "yz" = (/obj/structure/bed/chair{dir = 1},/obj/machinery/light,/turf/open/floor/tile/red/redblue/full,/area/fallout/factory)
-"yB" = (/obj/machinery/vending/engivend,/turf/open/floor/fallout/tunnel/dirty,/area/fallout/ncr)
+"yB" = (/obj/machinery/vending/fallout/tools,/turf/open/floor,/area/fallout/store)
 "yC" = (/obj/structure/simple_door/glass,/turf/open/floor/fallout/wood,/area/fallout/town_hall)
 "yD" = (/obj/item/reagent_containers/food/snacks/mre_pack/meal1,/obj/structure/table,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "yF" = (/obj/structure/plasticflaps,/turf/open/floor/mainship/floor,/area/fallout/factory)
@@ -608,7 +607,7 @@
 "yH" = (/turf/open/ground/fallout/rubble/corner{dir = 8},/area/fallout/wasteland)
 "yI" = (/turf/open/floor/prison,/area/fallout/police_station)
 "yL" = (/turf/open/ground/fallout/sidewalk/turn_outer/bottom_left,/area/fallout/wasteland)
-"yM" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/floor/wood,/area/fallout/factory)
+"yM" = (/obj/machinery/iv_drip,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "yN" = (/obj/structure/bedsheetbin,/turf/open/floor/fallout/wood,/area/fallout/house)
 "yP" = (/obj/structure/bed/chair/sofa/left{dir = 1},/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "yQ" = (/obj/structure/largecrate/supply/supplies/water,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
@@ -617,7 +616,6 @@
 "yU" = (/obj/structure/table/woodentable,/turf/open/floor/fallout/wood,/area/fallout/town_hall)
 "yW" = (/obj/structure/closet/cabinet,/turf/open/floor,/area/fallout/house)
 "yZ" = (/obj/structure/barricade/sandbags{dir = 4},/turf/open/ground/fallout/road,/area/fallout/wasteland)
-"zc" = (/obj/structure/rack,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/storage/belt/fallout/medical/full,/obj/item/defibrillator,/obj/item/defibrillator,/obj/item/defibrillator,/obj/item/defibrillator,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "ze" = (/obj/structure/table,/obj/machinery/computer/med_data/laptop,/turf/open/floor/tile/cmo,/area/fallout/clinic)
 "zg" = (/obj/structure/table/woodentable,/obj/item/storage/fallout/medical/surgery,/obj/item/reagent_containers/spray/cleaner,/obj/item/clothing/mask/breath/medical,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "zh" = (/obj/structure/bedsheetbin,/turf/open/floor/tile/dark,/area/fallout/house)
@@ -646,7 +644,7 @@
 "Ai" = (/obj/structure/table,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/o2,/obj/item/storage/firstaid/toxin,/obj/item/storage/box/pillbottles,/obj/item/storage/box/beakers,/turf/open/floor/mainship/sterile/side{dir = 8},/area/fallout/clinic)
 "Ak" = (/turf/open/ground/fallout/dirt/corner{dir = 4},/area/fallout/wasteland)
 "Al" = (/turf/open/ground/fallout/dirt/border,/area/fallout/park)
-"Am" = (/obj/machinery/vending/medical/shipside,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"Am" = (/obj/machinery/iv_drip,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "An" = (/obj/structure/flora/pottedplant/twentytwo,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "Ar" = (/obj/structure/closet/secure_closet/engineering_chief,/turf/open/floor/prison,/area/fallout/factory)
 "As" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/open/floor/tile/cafe,/area/fallout/factory)
@@ -691,7 +689,6 @@
 "Cl" = (/turf/open/ground/fallout/sidewalk/turn_outer{dir = 4},/area/fallout/wasteland)
 "Cm" = (/obj/machinery/microwave,/obj/structure/table,/turf/open/floor,/area/fallout/house)
 "Cn" = (/obj/structure/barricade/sandbags,/turf/open/ground/fallout/sidewalk/turn_outer/bottom_right,/area/fallout/wasteland)
-"Co" = (/obj/effect/decal/warning_stripes/thick/corner{dir = 1},/turf/open/floor/plating/mainship,/area/fallout/factory)
 "Cq" = (/obj/machinery/mineral/unloading_machine/corner,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/mainship/floor,/area/fallout/factory)
 "Cs" = (/obj/structure/bed/chair/wood/wings,/turf/open/floor/fallout/wood/panel,/area/fallout/town_hall)
 "Cu" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/snacks/meatballsoup,/obj/item/reagent_containers/food/snacks/meatballsoup,/obj/item/reagent_containers/food/snacks/human/burger,/obj/item/reagent_containers/food/snacks/grown/banana,/obj/item/reagent_containers/food/snacks/grown/banana,/obj/item/reagent_containers/food/snacks/grown/banana,/turf/open/ground/fallout/road,/area/fallout/legion)
@@ -701,6 +698,7 @@
 "CD" = (/obj/structure/table,/obj/structure/paper_bin,/turf/open/floor/tile/white,/area/fallout/factory)
 "CE" = (/obj/structure/largecrate/chick,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "CG" = (/obj/structure/window/framed/prison/cell,/turf/open/floor/plating,/area/fallout/police_station)
+"CH" = (/obj/machinery/vending/fallout/vim,/turf/open/floor,/area/fallout/store)
 "CI" = (/turf/open/ground/fallout/savannah/dirt{dir = 6},/area/fallout/park)
 "CJ" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/open/floor,/area/fallout/house)
 "CK" = (/obj/structure/closet/toolcloset,/turf/open/floor/tile/dark,/area/fallout/factory)
@@ -709,6 +707,7 @@
 "CQ" = (/obj/machinery/shower{pixel_y = 16},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/fallout/wood,/area/fallout/house)
 "CT" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/tile/white,/area/fallout/clinic)
 "CU" = (/obj/effect/decal/warning_stripes{icon_state = "N"; pixel_y = -13},/turf/open/ground/fallout/road,/area/fallout/legion)
+"CV" = (/obj/machinery/vending/fallout/vim,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "CX" = (/turf/open/floor/tile/white,/area/fallout/clinic)
 "CY" = (/turf/open/ground/fallout/dirt/border{dir = 4},/area/fallout/wasteland)
 "Dh" = (/obj/structure/desertdam/decals/road/edge{icon_state = "road_edge_decal4"; pixel_y = 12},/obj/effect/decal/warning_stripes/box/arrow{dir = 4},/obj/effect/decal/warning_stripes/box/small{dir = 4},/turf/open/ground/fallout/road,/area/fallout/wasteland)
@@ -716,7 +715,6 @@
 "Dm" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/largecrate/supply,/turf/open/floor/mainship/floor,/area/fallout/factory)
 "Do" = (/obj/machinery/vending/medical/shipside,/turf/open/floor/mainship/sterile/side{dir = 1},/area/fallout/clinic)
 "Dp" = (/obj/structure/table,/obj/item/megaphone,/turf/open/floor,/area/fallout/army_camp)
-"Ds" = (/obj/effect/decal/warning_stripes/thick/corner{dir = 8},/turf/open/floor/plating/mainship,/area/fallout/factory)
 "Dt" = (/turf/open/ground/fallout/road/one/bottom,/area/fallout/wasteland)
 "Dx" = (/obj/structure/table,/obj/item/clothing/mask/cigarette/cigar,/turf/open/floor/tile/white,/area/fallout/factory)
 "DF" = (/obj/structure/bed,/obj/item/bedsheet/rd,/turf/open/floor/fallout/wood,/area/fallout/house)
@@ -742,13 +740,14 @@
 "El" = (/obj/structure/simple_door/tent,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Eq" = (/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "Et" = (/turf/closed/wall/r_wall,/area/fallout/factory)
+"Eu" = (/obj/machinery/vending/fallout/sarsaparilla,/turf/open/ground/fallout/road/top,/area/fallout/ncr)
 "Ev" = (/turf/open/ground/coast/corner2{dir = 8},/area/fallout/wasteland)
 "Ew" = (/obj/structure/closet/secure_closet/engineering_welding,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Ex" = (/obj/machinery/conveyor{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/open/floor/mainship/floor,/area/fallout/factory)
 "Ey" = (/obj/machinery/power/port_gen/pacman,/turf/open/floor/tile/dark,/area/fallout/power_station)
 "EA" = (/obj/structure/barricade/wooden{dir = 8},/turf/open/ground,/area/fallout/wasteland)
 "EB" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/open/ground/fallout/savannah,/area/fallout/wasteland)
-"EI" = (/obj/machinery/power/apc,/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/police_station)
+"EI" = (/obj/machinery/power/apc/fallout,/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/police_station)
 "EJ" = (/obj/structure/closet/cabinet,/turf/open/floor/fallout/wood,/area/fallout/house)
 "EK" = (/obj/structure/closet/secure_closet/medical3,/obj/machinery/light/small{dir = 8},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "EM" = (/obj/structure/rack,/obj/item/weapon/gun/fallout_rifle/cowboy_repeater,/turf/open/floor/tile/dark,/area/fallout/police_station)
@@ -761,18 +760,17 @@
 "EY" = (/turf/open/ground/fallout/dirt/border{dir = 9},/area/fallout/park)
 "EZ" = (/obj/structure/table,/obj/machinery/computer/security/wooden_tv,/turf/open/floor,/area/fallout/house)
 "Fb" = (/obj/structure/flora/ausbushes/reedbush,/turf/open/ground,/area/fallout/wasteland)
-"Fc" = (/obj/structure/rack,/obj/item/storage/toolbox,/turf/open/floor/tile/dark,/area/fallout/factory)
+"Fc" = (/obj/structure/rack,/obj/item/storage/fallout/toolbox/full,/turf/open/floor/tile/dark,/area/fallout/factory)
 "Fd" = (/obj/structure/sink{dir = 4; pixel_x = 10},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Ff" = (/obj/machinery/vending/MarineMed,/turf/open/floor/mainship/sterile/corner{dir = 8},/area/fallout/clinic)
 "Fg" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
-"Fh" = (/obj/machinery/power/apc{dir = 4},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/town_hall)
+"Fh" = (/obj/machinery/power/apc/fallout{dir = 4},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/town_hall)
 "Fi" = (/obj/structure/flora/tree/jungle,/turf/open/ground/fallout/savannah,/area/fallout/park)
 "Fn" = (/obj/structure/barricade/sandbags,/turf/open/ground/fallout/sidewalk,/area/fallout/wasteland)
 "Fo" = (/obj/structure/table/woodentable,/obj/item/flashlight/lamp/green,/turf/open/floor/fallout/wood/chestnut,/area/fallout/house)
 "Fp" = (/obj/structure/bed/chair/wood/wings{dir = 8},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Fr" = (/obj/structure/sink/bathroom{dir = 4; pixel_x = -12},/turf/open/floor/tile/white,/area/fallout/store)
 "Fu" = (/obj/structure/table/woodentable,/obj/structure/flora/pottedplant/two,/turf/open/floor,/area/fallout/house)
-"Fw" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/ground/fallout/sidewalk/one/border{dir = 1},/area/fallout/wasteland)
 "Fx" = (/obj/structure/barricade/wooden{dir = 8},/turf/open/ground/coast{dir = 1},/area/fallout/wasteland)
 "Fy" = (/obj/structure/toilet/alternate{dir = 8; pixel_y = 3},/turf/open/floor/tile/white,/area/fallout/house)
 "FH" = (/turf/open/floor/plating/ground/dirtgrassborder/corner2{dir = 8},/area/fallout/wasteland)
@@ -787,15 +785,14 @@
 "Ga" = (/obj/structure/simple_door/interior,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "Ge" = (/turf/open/ground/fallout/savannah/dirt_corner{dir = 1},/area/fallout/park)
 "Gh" = (/obj/machinery/light/small{dir = 1},/obj/structure/table/mainship,/obj/item/reagent_containers/spray/cleaner,/turf/open/floor,/area/fallout/house)
-"Gj" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/obj/machinery/light/small{dir = 1},/turf/open/floor/tile/dark,/area/fallout/factory)
+"Gj" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/tile/dark,/area/fallout/factory)
 "Gk" = (/obj/structure/simple_door/interior,/turf/open/floor/fallout/carpet/galactic,/area/fallout/house)
 "Gl" = (/obj/structure/toilet/alternate{dir = 8; pixel_y = 3},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Gm" = (/turf/open/floor/fallout/tunnel/damaged,/area/fallout/ncr)
 "Gn" = (/turf/open/ground/fallout/dirt/border{dir = 5},/area/fallout/wasteland)
 "Gr" = (/obj/machinery/light/small{dir = 4},/obj/structure/barricade/wooden{dir = 1},/turf/open/floor/fallout/wood,/area/fallout/house)
-"Gt" = (/obj/structure/closet/secure_closet/military_police,/obj/machinery/light/small{dir = 4},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"Gt" = (/obj/machinery/light/small{dir = 4},/obj/structure/table/fancywoodentable,/obj/item/reagent_containers/food/drinks/bottle/whiskey,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Gu" = (/obj/machinery/light/small{dir = 8},/turf/open/floor/asteroidfloor,/area/fallout/army_camp)
-"Gv" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/obj/machinery/light{dir = 4},/turf/open/floor/tile/white,/area/fallout/factory)
 "Gw" = (/obj/structure/closet/secure_closet/engineering_electrical,/obj/machinery/light/small,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "Gx" = (/obj/effect/landmark/start/job/fallout/ncr,/obj/machinery/light/small{dir = 8},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Gy" = (/obj/machinery/light/small{dir = 8},/obj/structure/bedsheetbin,/turf/open/floor,/area/fallout/house)
@@ -826,7 +823,7 @@
 "Hs" = (/obj/structure/table,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
 "Hv" = (/obj/machinery/light{dir = 8},/turf/open/floor,/area/fallout/store)
 "Hz" = (/turf/open/floor/tile/white,/area/fallout/house)
-"HD" = (/obj/machinery/light/small,/obj/machinery/autolathe,/turf/open/floor/fallout/tunnel/dirty,/area/fallout/ncr)
+"HD" = (/obj/machinery/light/small,/turf/open/floor/fallout/tunnel/dirty,/area/fallout/ncr)
 "HE" = (/obj/structure/bed/chair/office/light{dir = 4},/turf/open/floor/tile/white,/area/fallout/factory)
 "HH" = (/obj/structure/simple_door/interior,/turf/open/floor/fallout/wood,/area/fallout/town_hall)
 "HK" = (/turf/open/ground/fallout/savannah/dirt_corner{dir = 4},/area/fallout/park)
@@ -834,7 +831,8 @@
 "HU" = (/obj/structure/table,/obj/item/storage/fallout/medical/surgery,/obj/item/reagent_containers/spray/cleaner,/obj/item/clothing/mask/breath/medical,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "HW" = (/obj/machinery/light/small{dir = 4},/obj/structure/table,/turf/open/floor,/area/fallout/house)
 "Ia" = (/obj/structure/platform{dir = 1},/turf/open/floor/prison/plate,/area/fallout/factory)
-"Ib" = (/obj/structure/closet/secure_closet/captain,/turf/open/ground/fallout/sidewalk,/area/fallout/ncr)
+"Ib" = (/obj/structure/table/fancywoodentable,/obj/item/storage/fancy/cigar,/obj/item/tool/lighter/zippo,/turf/open/ground/fallout/sidewalk,/area/fallout/ncr)
+"Ic" = (/obj/machinery/vending/fallout/bawls,/turf/open/floor,/area/fallout/store)
 "Id" = (/turf/open/ground/fallout/savannah/dirt{dir = 4},/area/fallout/park)
 "Ie" = (/turf/open/ground/fallout/dirt/border{dir = 8},/area/fallout/wasteland)
 "Ii" = (/obj/machinery/conveyor{dir = 4},/obj/structure/window/reinforced,/turf/open/floor/mainship/floor,/area/fallout/factory)
@@ -852,7 +850,7 @@
 "IM" = (/obj/machinery/door/poddoor/timed_late,/turf/open/ground/fallout/road/one/bottom,/area/fallout/ncr)
 "IO" = (/obj/structure/table/woodentable,/obj/machinery/microwave,/turf/open/floor/fallout/wood,/area/fallout/house)
 "IP" = (/obj/structure/window/fallout/metal/left,/turf/open/floor/plating,/area/fallout/clinic)
-"IS" = (/obj/structure/table/mainship,/obj/item/storage/toolbox/mechanical,/turf/open/floor/tile/dark,/area/fallout/police_station)
+"IS" = (/obj/structure/table/mainship,/obj/item/storage/fallout/toolbox/full,/turf/open/floor/tile/dark,/area/fallout/police_station)
 "IT" = (/obj/structure/bed/chair/wood/wings{dir = 1},/turf/open/floor/wood,/area/fallout/factory)
 "IU" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/ncr)
 "IY" = (/obj/structure/table/woodentable,/obj/machinery/computer/emails,/turf/open/floor/fallout/wood,/area/fallout/house)
@@ -881,7 +879,7 @@
 "JP" = (/obj/structure/table,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/item/folder/blue,/turf/open/floor,/area/fallout/clinic)
 "JQ" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/red/redblue/full,/area/fallout/factory)
 "JS" = (/obj/structure/largecrate/supply/supplies/flares,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
-"JU" = (/obj/machinery/power/apc{dir = 8},/turf/open/floor/asteroidfloor,/area/fallout/store)
+"JU" = (/obj/machinery/power/apc/fallout{dir = 8},/turf/open/floor/asteroidfloor,/area/fallout/store)
 "JW" = (/obj/structure/table/woodentable,/obj/machinery/computer/emails,/turf/open/floor/prison,/area/fallout/factory)
 "JX" = (/turf/open/ground/fallout/road/one/left,/area/fallout/wasteland)
 "JY" = (/obj/structure/flora/pottedplant/twentytwo,/turf/open/floor/fallout/wood,/area/fallout/factory)
@@ -897,12 +895,11 @@
 "Kz" = (/obj/structure/largecrate/supply/supplies/sandbags,/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
 "KA" = (/turf/open/ground/fallout/rubble/edge{dir = 5},/area/fallout/wasteland)
 "KD" = (/obj/structure/largecrate/supply/supplies/mre,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
-"KG" = (/obj/machinery/power/apc,/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/house)
+"KG" = (/obj/machinery/power/apc/fallout,/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/house)
 "KJ" = (/obj/structure/sink/bathroom{dir = 8; pixel_x = 12},/turf/open/floor/fallout/wood,/area/fallout/house)
 "KL" = (/obj/item/reagent_containers/glass/bucket/janibucket,/obj/item/tool/mop,/turf/open/floor/tile/dark,/area/fallout/town_hall)
 "KM" = (/obj/machinery/door/airlock/mainship/secure{dir = 2},/turf/open/floor/tile/dark,/area/fallout/factory)
 "KN" = (/turf/open/ground/fallout/road/broken,/area/fallout/wasteland)
-"KO" = (/obj/effect/decal/warning_stripes/thick{dir = 1},/turf/open/floor/plating/mainship,/area/fallout/factory)
 "KP" = (/obj/structure/sink/puddle,/turf/open/ground/fallout/desert,/area/fallout/park)
 "KQ" = (/obj/machinery/light/small,/turf/open/floor/prison,/area/fallout/police_station)
 "KS" = (/turf/open/ground/fallout/sidewalk,/area/fallout/wasteland)
@@ -923,7 +920,7 @@
 "LE" = (/turf/open/floor/asteroidfloor,/area/fallout/wasteland)
 "LF" = (/obj/structure/bed/chair/sofa/left,/turf/open/floor/fallout/wood,/area/fallout/house)
 "LI" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor,/area/fallout/house)
-"LK" = (/obj/machinery/vending/MarineMed,/obj/machinery/light/small{dir = 8},/turf/open/ground/fallout/sidewalk,/area/fallout/ncr)
+"LK" = (/obj/machinery/light/small{dir = 8},/obj/machinery/vending/MarineMed/Blood,/turf/open/ground/fallout/sidewalk,/area/fallout/ncr)
 "LN" = (/obj/structure/sink{dir = 4; pixel_x = 10},/turf/open/floor/tile/dark,/area/fallout/police_station)
 "LR" = (/obj/machinery/griddle,/turf/open/floor,/area/fallout/house)
 "LW" = (/turf/open/ground/fallout/road/one/bottom,/area/fallout/ncr)
@@ -939,7 +936,7 @@
 "Mm" = (/obj/effect/decal/warning_stripes{icon_state = "N"; pixel_y = -13},/turf/open/ground/fallout/road,/area/fallout/wasteland)
 "Mn" = (/obj/structure/bed,/obj/item/bedsheet/purple,/turf/open/floor,/area/fallout/house)
 "Mq" = (/obj/structure/window/framed/prison/reinforced,/turf/open/floor/fallout/wood/panel,/area/fallout/police_station)
-"Mr" = (/obj/machinery/light/small{dir = 1},/obj/machinery/power/apc,/turf/open/floor/tile/dark,/area/fallout/factory)
+"Mr" = (/obj/machinery/light/small{dir = 1},/obj/machinery/power/apc/fallout/fusion_core,/turf/open/floor/tile/dark,/area/fallout/factory)
 "Mt" = (/turf/open/floor/prison,/area/fallout/factory)
 "Mu" = (/obj/machinery/light/small{dir = 1},/obj/structure/bedsheetbin,/turf/open/floor/fallout/wood,/area/fallout/house)
 "Mv" = (/obj/structure/table,/obj/machinery/door/window/secure{dir = 2},/turf/open/floor,/area/fallout/store)
@@ -964,7 +961,7 @@
 "Ne" = (/obj/machinery/door/poddoor/shutters/opened{dir = 2},/turf/open/floor/plating/ground/desertdam/asphalt/cement,/area/fallout/house)
 "Nh" = (/obj/structure/simple_door/house,/turf/open/floor/tile/white,/area/fallout/clinic)
 "Ni" = (/obj/structure/bed/chair/wood/wings,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
-"Nn" = (/obj/item/storage/toolbox/mechanical,/obj/structure/table/mainship,/obj/item/reagent_containers/spray/cleaner,/turf/open/floor/tile/dark,/area/fallout/town_hall)
+"Nn" = (/obj/item/storage/fallout/toolbox/full,/obj/structure/table/mainship,/obj/item/reagent_containers/spray/cleaner,/turf/open/floor/tile/dark,/area/fallout/town_hall)
 "Np" = (/turf/open/ground/fallout/sidewalk/three/border/right{dir = 1},/area/fallout/wasteland)
 "Nt" = (/obj/structure/table/mainship,/obj/machinery/computer/security/wooden_tv,/turf/open/floor,/area/fallout/house)
 "Nv" = (/obj/structure/flora/pottedplant/twentyone,/turf/open/floor/wood,/area/fallout/factory)
@@ -1043,9 +1040,9 @@
 "Qi" = (/obj/structure/bed/chair/wood/wings{dir = 8},/turf/open/floor/fallout/wood,/area/fallout/wasteland)
 "Qj" = (/turf/closed/mineral/indestructible,/area/fallout/legion)
 "Ql" = (/obj/structure/sign/electricshock,/turf/closed/wall/fallout/concrete,/area/fallout/power_station)
-"Qq" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/floor/mainship/plate,/area/fallout/factory)
 "Qr" = (/obj/structure/table,/obj/machinery/computer/emails,/obj/structure/window/reinforced{dir = 1},/turf/open/floor,/area/fallout/clinic)
 "Qs" = (/turf/open/ground/fallout/desert,/area/fallout/wasteland)
+"Qt" = (/obj/machinery/light{dir = 4},/obj/machinery/vending/fallout/nuka,/turf/open/floor,/area/fallout/store)
 "Qu" = (/obj/structure/toilet/alternate{dir = 4; pixel_y = 3},/turf/open/floor/tile/dark,/area/fallout/house)
 "Qw" = (/obj/structure/table/woodentable,/obj/structure/flora/pottedplant{icon_state = "plant-15"; pixel_y = 10},/turf/open/floor/fallout/wood,/area/fallout/farm_house)
 "QB" = (/obj/machinery/door/poddoor/timed_late,/turf/open/ground/fallout/road/one/bottom,/area/fallout/legion)
@@ -1064,7 +1061,7 @@
 "QZ" = (/turf/open/ground,/area/fallout/house)
 "Ra" = (/obj/structure/table,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/open/floor,/area/fallout/police_station)
 "Rc" = (/obj/machinery/door/poddoor/shutters{dir = 2},/turf/open/floor/plating/ground/desertdam/asphalt/cement,/area/fallout/house)
-"Rd" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/floor/tile/white,/area/fallout/factory)
+"Rd" = (/obj/effect/landmark/start/job/fallout/ncr/leader,/obj/structure/bed/chair/wood/wings{dir = 4},/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Rf" = (/obj/machinery/light/small,/obj/structure/bed/chair/wood/wings{dir = 1},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Rg" = (/obj/structure/filingcabinet/medical,/obj/machinery/light,/turf/open/floor/tile/cmo,/area/fallout/clinic)
 "Rl" = (/obj/machinery/vending/hydroseeds,/obj/machinery/light/small{dir = 4},/turf/open/floor/plating/ground/desertdam/asphalt,/area/fallout/legion)
@@ -1085,13 +1082,12 @@
 "RW" = (/obj/structure/coatrack,/obj/machinery/light/small{dir = 8},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Sd" = (/turf/open/ground/fallout/dirt/border{dir = 9},/area/fallout/wasteland)
 "Sg" = (/obj/structure/coatrack,/turf/open/floor/fallout/wood,/area/fallout/farm_house)
-"Si" = (/obj/structure/closet/secure_closet/staff_officer,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"Si" = (/obj/structure/rack,/obj/item/moneybag,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Sj" = (/obj/machinery/door/airlock/mainship/security,/turf/open/floor/tile/dark,/area/fallout/police_station)
 "Sq" = (/obj/structure/table,/turf/open/floor/tile/cafe,/area/fallout/factory)
 "St" = (/turf/open/ground/fallout/savannah/dirt,/area/fallout/wasteland)
 "Su" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/town_hall)
 "Sw" = (/obj/machinery/light/small{dir = 8},/turf/open/floor/tile/dark,/area/fallout/town_hall)
-"Sy" = (/obj/machinery/light/small{dir = 1},/obj/effect/landmark/start/job/fallout/ncr/leader,/turf/open/ground/fallout/sidewalk,/area/fallout/ncr)
 "Sz" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/asteroidfloor,/area/fallout/army_camp)
 "SB" = (/obj/structure/table/woodentable,/obj/item/weapon/fallout_melee/hammer/rocket,/turf/open/ground/fallout/road,/area/fallout/legion)
 "SC" = (/turf/open/ground/fallout/dirt/border{dir = 8},/area/fallout/park)
@@ -1099,7 +1095,7 @@
 "SF" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/fallout/wood/chestnut,/area/fallout/house)
 "SH" = (/turf/open/ground/fallout/road/three/left/bottom,/area/fallout/wasteland)
 "SL" = (/obj/structure/closet/crate/ammo,/turf/open/floor/mainship/floor,/area/fallout/factory)
-"SM" = (/obj/machinery/light/small{dir = 8},/obj/machinery/power/apc,/turf/open/floor/fallout/tunnel/damaged,/area/fallout/ncr)
+"SM" = (/obj/machinery/light/small{dir = 8},/obj/machinery/power/apc/fallout,/turf/open/floor/fallout/tunnel/damaged,/area/fallout/ncr)
 "SN" = (/turf/open/ground/fallout/road/three/right,/area/fallout/wasteland)
 "SO" = (/turf/open/floor/tile/white,/area/fallout/factory)
 "SV" = (/turf/open/ground/fallout/dirt/border,/area/fallout/wasteland)
@@ -1151,7 +1147,6 @@
 "UZ" = (/obj/structure/rack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/metal/large_stack,/obj/item/stack/sheet/mineral/phoron/medium_stack,/obj/machinery/light/small{dir = 1},/turf/open/floor/tile/dark,/area/fallout/power_station)
 "Va" = (/obj/structure/largecrate/supply/supplies/mre,/turf/open/ground/fallout/sidewalk,/area/fallout/legion)
 "Vb" = (/obj/structure/sink{dir = 1; pixel_y = -14},/turf/open/floor/tile/dark,/area/fallout/town_hall)
-"Vc" = (/obj/effect/decal/warning_stripes/thick,/turf/open/floor/plating/mainship,/area/fallout/factory)
 "Vd" = (/obj/structure/rack,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/turf/open/floor/fallout/tunnel/rusty,/area/fallout/ncr)
 "Vh" = (/obj/structure/simple_door/metal/barred,/turf/open/floor/prison,/area/fallout/police_station)
 "Vo" = (/obj/machinery/light,/turf/open/floor/mainship/floor,/area/fallout/store)
@@ -1167,10 +1162,10 @@
 "VF" = (/obj/item/binoculars,/turf/open/floor/fallout/wood,/area/fallout/wasteland)
 "VH" = (/obj/structure/flora/tree/joshua,/turf/open/ground/fallout/desert,/area/fallout/wasteland)
 "VK" = (/obj/structure/flora/ausbushes/sunnybush,/turf/open/floor/plating/ground/dirtgrassborder{icon_state = "grass1"},/area/fallout/house)
-"VM" = (/obj/machinery/power/apc{dir = 4},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/house)
+"VM" = (/obj/machinery/power/apc/fallout{dir = 4},/obj/structure/cable,/turf/open/floor/tile/dark,/area/fallout/house)
 "VP" = (/obj/structure/flora/pottedplant/two,/obj/machinery/light{dir = 8},/turf/open/floor/tile/white,/area/fallout/factory)
 "VQ" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table,/obj/item/folder/yellow,/turf/open/floor,/area/fallout/police_station)
-"VS" = (/obj/machinery/power/apc{dir = 4},/turf/open/ground/fallout/desert,/area/fallout/wasteland)
+"VS" = (/obj/machinery/power/apc/fallout{dir = 1},/turf/open/ground/fallout/desert,/area/fallout/wasteland)
 "VT" = (/obj/structure/table/woodentable,/obj/machinery/computer/emails,/turf/open/floor/fallout/wood,/area/fallout/factory)
 "VU" = (/obj/machinery/door/window{dir = 1},/obj/machinery/shower{dir = 1},/turf/open/floor/tile/white,/area/fallout/house)
 "VV" = (/obj/structure/sink{dir = 1; pixel_y = -14},/turf/open/floor/fallout/wood,/area/fallout/house)
@@ -1180,7 +1175,6 @@
 "Wp" = (/obj/structure/sink/bathroom{pixel_y = 22},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Wq" = (/obj/structure/coatrack,/turf/open/floor/fallout/wood,/area/fallout/house)
 "Wu" = (/obj/structure/table,/obj/machinery/computer/emails,/turf/open/floor,/area/fallout/house)
-"Wx" = (/obj/item/weapon/gun/sentry/premade/dumb/hostile,/turf/open/floor/plating/mainship,/area/fallout/factory)
 "Wz" = (/obj/structure/table,/obj/machinery/microwave,/turf/open/floor,/area/fallout/clinic)
 "WD" = (/turf/open/ground/fallout/dirt/corner{dir = 8},/area/fallout/wasteland)
 "WE" = (/turf/closed/wall,/area/fallout/factory)
@@ -1196,7 +1190,7 @@
 "Xd" = (/turf/closed/mineral/indestructible,/area/fallout/ncr)
 "Xh" = (/obj/structure/bed/chair{dir = 4},/turf/open/floor,/area/fallout/house)
 "Xj" = (/obj/structure/table,/obj/item/radio/intercom,/turf/open/floor/plating/asteroidplating,/area/fallout/army_camp)
-"Xl" = (/obj/structure/closet/secure_closet/military_police,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
+"Xl" = (/obj/structure/table/fancywoodentable,/obj/item/folder/red,/turf/open/floor/plating/asteroidplating,/area/fallout/ncr)
 "Xn" = (/obj/structure/simple_door/interior,/turf/open/floor/tile/dark,/area/fallout/house)
 "Xq" = (/turf/open/ground/fallout/road/broken/left1_top,/area/fallout/wasteland)
 "Xr" = (/obj/effect/decal/warning_stripes{icon_state = "W"; pixel_x = -2},/turf/open/ground/fallout/sidewalk/crosswalk/three,/area/fallout/wasteland)
@@ -1219,8 +1213,10 @@
 "Yh" = (/obj/structure/bed/chair/wood/wings{dir = 4},/turf/open/floor/fallout/wood,/area/fallout/house)
 "Yi" = (/obj/structure/desertdam/decals/road/edge{icon_state = "road_edge_decal1"; pixel_x = -12},/turf/open/ground/fallout/road/one/vertical,/area/fallout/wasteland)
 "Yj" = (/obj/structure/toilet/alternate{dir = 1},/turf/open/floor/fallout/wood,/area/fallout/house)
+"Ym" = (/obj/machinery/vending/fallout/nuka,/turf/open/floor,/area/fallout/police_station)
 "Yu" = (/obj/structure/bed,/obj/item/bedsheet/green,/turf/open/floor/fallout/wood,/area/fallout/house)
 "Yv" = (/obj/structure/table,/obj/item/reagent_containers/spray/cleaner,/turf/open/floor/tile/cafe,/area/fallout/factory)
+"YA" = (/obj/machinery/vending/fallout/sarsaparilla,/turf/open/ground/fallout/sidewalk,/area/fallout/legion)
 "YB" = (/turf/open/floor,/area/fallout/house)
 "YC" = (/obj/machinery/computer/fallout/objective,/turf/open/floor/wood,/area/fallout/factory)
 "YD" = (/obj/structure/table,/obj/item/folder/yellow,/obj/item/tool/pen,/turf/open/floor/tile/white,/area/fallout/factory)
@@ -1263,36 +1259,36 @@ uZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtEtMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsvrnananaMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyEtBGBGBGBGRUBGBGBGBGEteWGjgUEtfshhYCgtyMEtMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsvrnananaMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyEtBGBGBGBGRUBGBGBGBGEteWGjgUEtfshhYCgtXzEtMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsueQsQsQsQsQsQsQsvrGAGAGAMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyEtLqLqLqLqLqLqLqLqLqEtULULULEtXzXzlDXzXzEtWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEEtEtEtEtEtEtEtEtEtEtEtEtEtEtMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsvrGAGAGEMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyEtULULULULULULULULULEtEtKMEtEtDYdqsebcLnEtQCQCTBTBCKWEpULkArxqThagIiSEIiySjwsJEtnpnpnpnpnpAwnpnpnpnpoONbEtMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsVHQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEWETzWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEEtEtEtEtEtEtEtEtEtKMEtTPULmpEtXzITITITXzEtlGULULULLeWEMtjcMtxqrnDmBQOLPqPqOTzCEtREREREREREREREREREREmyNbEtMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWExdULzPWEsbPUWEPUdIWEMfMrxSWERwVTJYWESOSOSOSOSOORSOSOSOSOEtJwULtHEtXzXzXzXzXzEtvFULULyeQQWEMtJWPRxqojDmBQBQPqPqOTYfEteSdMdMdMdMdMdMdeREREmyBOEtMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEuOULxHWEDMAzWEpBtrWEavULkkWEJoaNBqWEpBSOSOSOSOSOSOSOSOSOEtZAULFMEtNvXzXzXzNvEtFcULULOYOYWEMtMtMtxqNbNbNbNbNbNbNbNbEtSLSLSLSLSLSLSLfHREREmyNbEtMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsLfQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsWElkULkbWEtYSOWESOXEWErDULcIWEhghghgWESOSOWEWEWEoXWEWESOSOEtEtgPEtEtaLaLEgaLaLEtWEfjULWEWEWExqxqhwxqNbFIbjbjbjxnNbNbEtSLSLSLSLSLSLNFfHREREmyNbEtMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsLfQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsWElkULkbWEtYSOWESOXEWEFcULcIWEhghghgWESOSOWEWEWEoXWEWESOSOEtEtgPEtEtaLaLEgaLaLEtWEfjULWEWEWExqxqhwxqNbFIbjbjbjNbNbNbEtSLSLSLSLSLSLNFfHREREmyNbEtMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEWETzWEWEWEQJWEQJWEWEWEapWEWExqxqkfWESOSOWEwpfySOtjWESOSOSOSOSOSOORSOSOSOSOSOSOrWRERERERErWREREREREREREREREREREREklEtEtEtEtEtEtEtEtEtoCREEtEtEtMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsueQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEMMSOSOSOSOSOORSOSOSOSOSOORSOSOSOSOSOSOSOWEOCSOSOGvWERdoiSOSOSOSOSOSOSOSOSOSOvIREREREREREREREREREREAVRERERERERERERERERERErWREREREREREREREREWxWEMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsWEtaSOoiSOSOSOSOSOSOSOSOSOSOSOSOSOSOoiSORdWEOzSOSOSOWEWEWEWEWEWEWEWEmgmgmgmgmgWExnFIOfXHXcXHXHXcXHXHXcbKXHXctMTmREREREREREREREREREREREAVREREREWEMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEWEQJWEWEWEMdSOWEWEWEUkqPSOqPAhWEWEWEWEWEWEwpfySOSOmwWEsnbxihEkEkWEywmgxCmgbvWECANbNbNbNbNbNbNbNbNbNbNbNbNbNbNbNbxnWEWEWEjjREWEyFyFyFWEWEWExXWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEMMSOSOSOSOSOORSOSOSOSOSOORSOSOSOSOSOSOSOWEOCSOSOAzWESOoiSOSOSOSOSOSOSOSOSOSOvIREREREREREREREREREREAVRERERERERERERERERERErWREREREREREREREREREWEMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsWEtaSOoiSOSOSOSOSOSOSOSOSOSOSOSOSOSOoiSOSOWEOzSOSOSOWEWEWEWEWEWEWEWEiNmgmgmgmgWENbFIOfXHXcXHXHXcXHXHXcbKXHXctMTmREREREREREREREREREREREAVREREREWEMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEWEQJWEWEWEMdSOWEWEWEUkqPSOqPAhWEWEWEWEWEWEwpfySOSOmwWEsnbxihEkEkWEywmgxCmgbvWECANbNbNbNbNbNbNbNbNbNbNbNbNbNbNbNbNbWEWEWEjjREWEyFyFyFWEWEWExXWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEaCSOxswKORSOSOSOsXWEwpzpSOHEwpWEwpzpSOSOORSOSOSOSOgVWENWePWEDLEkxaIBmgMwmggCWECANbNbNbNbNbNbNbNbNbNbNbNbNbNbNbNbNbWEiMrWREREWENbNbNbNbNbNbNbWEQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEfySOHEMbSOSOSOSOsXWEaCSOSOSOaCWEaCSOSOSOSOSOSOSOSOAzWEWEWEWEoPEkSqIBmgJQmgJQWEYTFIOfExkzExExkzExExkzExExkzlsPANbBOWEiMREDsVcWEzHzHzHNbxnNbnwWEQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEVPSOnLCDSOSOSOSOjWWEaCSOSOSOaCWEVPSOSOMNSOcHkVaBaBSOWEAspTqxTaEkYvIBmgxCmgxCWECANbNbNbNbNbNbNbNbNbNbtxNbNbNbNbNbNbWEiMREllQqWEIaIaIaIaIaIaumWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyuZ
-uZMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEfySOHEMbSOSOSOSOsXWEwpzpSOHEwpWEaCSOSOaBSODxBwcHwKSOWEAsEkEkEkEkWEmgmgHkmgMwWECANbNbNbNbNbprNbNbNbNbNbNbNbNbNbNbNbWEiMRECoKOWEisisisisisisisWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEfySOHEMbSOSOSOSOsXWEaCSOSOSOaCWEaCSOSOSOSOSOSOSOSOAzWEWEWEWEoPEkSqIBmgJQmgJQWEYTFIOfExkzExExkzExExkzExExkzlsPANbBOWEiMREREREWEzHzHzHNbNbNbnwWEQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyMyMyQsQsQsQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEVPSOnLCDSOSOSOSOAzWEaCSOSOSOaCWEVPSOSOMNSOcHkVaBaBSOWEAspTqxTaEkYvIBmgxCmgxCWECANbNbNbNbNbNbNbNbNbNbtxNbNbNbNbNbNbWEiMREREREWEIaIaIaIaIaIaumWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyuZ
+uZMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsWEfySOHEMbSOSOSOSOsXWEwpzpSOHEwpWEaCSOSOaBSODxBwcHwKSOWEAsEkEkEkEkWEmgmgHkmgMwWECANbNbNbNbNbprNbNbNbNbNbNbNbNbNbNbNbWEiMREREREWEisisisisisisisWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsueQsQsQsQsWEaCSOxswKoiSOSOSOsXWEhzqPoiqPYDWEwpzpSOSOSOoiSOSOSOSOWEakEkODmHEkzQmgmgyzmgJQWECAFIOfKcykKcKcykKcKcykKcKcykCqPANbNbWEiMAVREREWEisisisisisisisWEQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyMyMyuZ
 uZMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTWEWEWEWEWEWEMdSOxqxqWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEWEjjREWEQXQXQXWEQXQXQXWEzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsMyMyMyMyMyuZ
-uZMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQszTjPKSKSKSKSjPKSKSjPKSKSKSKSKSjPKSKSKSKSjPKSKSKSKSKSjPKSKSKSKSKSKSKSjPKSKSKSKSKSjPKSKSKSKSKSKSjPKSKSKSKSKSKSjPKSKSKSKSKSKSjPKSKSgFdvMDlKcizBMDSYmuzTQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyuZ
+uZMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQszTKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSsWdvMDlKcizBMDSYBpzTQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyuZ
 uZMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTKSBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlKSOwBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlPeOAdXZbcilidXztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyuZ
 uZMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHkHILAYAYAYkKAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYLpdXdXZbcilidXztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyuZ
 uZMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHsWUWdXdXdXiQdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXZbcilidXztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyMyuZ
-uZMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHPeOAdXdXdXQEohohohohohohohohohohohohohohohohohohohohohohohohohohohZpcilidXztmuzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyuZ
-uZMyMyMyQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTjPUWdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXiSdXdXdXdXDhwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSdXdXztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsueQsQsQsQsQsMyMyMyuZ
+uZMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHPeOAdXdXdXQEohohohohohohohohohohohohohohohohohohohohohohohohohohohZpcilidXztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyuZ
+uZMyMyMyQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTKSUWdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXiSdXdXdXdXDhwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSwSdXdXztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsueQsQsQsQsQsMyMyMyuZ
 uZMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTKSUWdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXhXdXdXdXdXlYdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXUuBpzTQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyMyuZ
 uZMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTKSUWdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXhXdXdXdXdXlYDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtZtAEzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyuZ
-uZMyMyQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHClqJdXdXkFrUMgMgMgMgFwMgMgMgMgMgMgMgFwMgMgMgMgMgMgFwMgMgMgMgMgMgFwMgMgMgMgYYjPzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyuZ
+uZMyMyQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHClqJdXdXkFrUMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgYYKSzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyuZ
 uZMyMyQsQsQsQsuLuLQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuLuLQsQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHsWUWdXrRztBpzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTzTQsQsQsQsQsQsQsQsQsQsQsQsuLuLuLQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyuZ
 uZMyQsQsQsQsQsuLQsuLQsQsQsQsQsQsQsuLuLuLQsQsQsuLuLuLQsQsQsuLQsQsuLuLQsQsQsQszTKSYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHYiGHsWUWdXrRztBpzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuLQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsuLuLuLuLuLuLuLQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuLuLQsQsMyuZ
-uZQsQsQsQsQsuLuLQsQsQsuLuLQsQsQsuLuLuLQsQsQsuLuLuLuLuLQsuLuLQsuLuLuLuLQsQsQszTjPMgMgMgMgMgMgMgMgFwMgMgMgMgMgMgMgFwMgMgMgMgMgMgMgFwMgMgMgMgMgMgMgsWUWdXdXztBpzTQsQsQsQsuLuLuLuLuLQsQsQsQsuLuLuLQsQsQsuLuLuLuLuLQsQsQsQsQsQsQsQsuLuLuLQsQsQsQsQsQsuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLQsQsQsQsQsQsuLuLuLuLuLuLQsQsuZ
-uZuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOgFUWdXdXztmuOOuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLuLuLuLuLuLuLuLuLuZ
+uZQsQsQsQsQsuLuLQsQsQsuLuLQsQsQsuLuLuLQsQsQsuLuLuLuLuLQsuLuLQsuLuLuLuLQsQsQszTKSMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgsWUWdXdXztBpzTQsQsQsQsuLuLuLuLuLQsQsQsQsuLuLuLQsQsQsuLuLuLuLuLQsQsQsQsQsQsQsQsuLuLuLQsQsQsQsQsQsuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLQsQsQsQsQsQsuLuLuLuLuLuLQsQsuZ
+uZuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOsWUWdXdXztBpOOuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLuLFbuLuLuLuLuLuLuLuLuLuLuLuZ
 uZjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMiCUWdXrRztvkjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMjMuZ
 uZhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuiCUWdXrRztvkhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuuZ
 uZhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuiCUWdXdXztvkhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuhuuZ
@@ -1315,7 +1311,7 @@ uZQsQsQsQsjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrjrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQs
 uZQsQsQsQsjrDlDlDlDlDlDlDlDlDlDlDlDlDlDlDlDljrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssEYJYJSjmVmVmVsEwIwImVwIJrmVmVTvVQXAmVHiaPmVmVmVsDKSsWUWdXdXztBpKSJtokokokUlokokokokokJtQsQsJtokokokokokUlokokokJtuLuLJtJtJtJtJtokokokokZHokokokxAJtcMuSSFJtPFdZJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsuZ
 uZQsQsQsQsjrDlddddddddddddddddddddddtoddddDljrQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssEsEsEsEsEmVmVhasEuMmlmVncRamVmVPXmVPjmVhasEmVmVhasEKSsWUWdXrRztBpKSJtEJqpjeJtbaokGViAxAJtQsQsJtxAiAGVokWFJtjeqpEJJtuLuLJtGVokokRToklSYhxAGRxAFpokokbsuSuSuSbsokoDJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
 uZQsQsQsQsjrDlDlDlDlDlDlDlDlDlDlDlDlDlDlDlDljrQsQsQsQsQsQsQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQssECamVqkmVmVmVmVmVmVmVmVmVmVmVmVmVmVmVmVmVsEmVmVmVhSKSsWUWdXrRztBpKSJtJtJtJtJtppokokokWFJtQsQsJtbaokokokizJtJtJtJtJtuLuLJtGVokiAokokeMJtJtJtJtJtokokJtJtJtJtJtJtJtJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
-uZQsQsQsQsjrDlddddfLddddddddddddddddddddddDljrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssEmVmVmVmVmVmVmVmVmVmVsYmVmVnknkjymVmVmVmVtUmVmVMKsEKSsWUWdXdXztBpKSJtWUWUWUPQokokWqtkvvJtYVYVJttkvvWqokokPQWUWUWUJtuLuLJtxAokxAokokWSJtWUWUWUPQokWFJtcMUJhFJtviugJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
+uZQsQsQsQsjrDlddddfLddddddddddddddddddddddDljrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssEmVmVmVmVmVmVmVmVmVmVsYmVmVYmnkjymVmVmVmVtUmVmVMKsEKSsWUWdXdXztBpKSJtWUWUWUPQokokWqtkvvJtYVYVJttkvvWqokokPQWUWUWUJtuLuLJtxAokxAokokWSJtWUWUWUPQokWFJtcMUJhFJtviugJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
 uZQsQsQsQsjrDlDlDlDlDlDlDlDlDlDlDlDlDlDlDlDljrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssECGVhCGsEsEevsEsEsEmZiGmZsEsEsEsEsEsEsEsEsEsEsEsEsEKSsWUWdXdXztBpKSJtWUWUixJtJtwmJtocJtJtFHuLJtJtocJtwmJtJtsAWUWUJtuLuLJtWqokJtocococJtWUWUWUJtokokJtACuSuSJtsTWFJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
 uZQsQsQsQsjrDlddddddddddddddtoddddddddddddDljrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssEICyIwhsEEIYJflsEANYJoMYJJbsEKSKSKSKSKSKSKSKSKSKSciKSsWUWdXrRztBpKSJtWUWUWUJtZgPTZVZgZgZgwLuLuLuLuLbEKSMZJtWUWUWUJtuLuLJtppWFJtuLuLuLJtWUWUWUJtOdokbsuSuSuSbsRIoUJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
 uZQsQsQsQsjrDlDlDlDlDlDlDlDlDlDlDlDlDlDlDlDljrQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssEyIyIrusEfoYJLNsEANYJYJYJANsEKSYiGHYiGHYiGHYiGHKSciKSsWUWdXrRztBpKSJtRcRcRcJtZgPTZgVKZgZgwLuLuLjktvFHKSuLJtRcNeNeJtuLuLJtJtwmJtuLuLuLJtNeRcNeJtJtJtJtJtocJtJtJtJtJtQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
@@ -1369,17 +1365,17 @@ uZMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQs
 XdDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQssBUWNcztLEsBgEgEPLPLPLPLPLPLPLynPLPLnMMvgYZGPLKSsWUWdXrRztBpKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSOGgNeLIdYLYLYLYLYLYLvyEYtKOGKSsWUWdXrRztBpKSQsQsQsQsQsQsQsQsQsQsQsQsQsCYDKphkZkZkZkZkZkZkZkZkZkZkZkZkZkZMyuZ
 XdDVDVDVDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSQsKSsBUWNcztLEsBsBsBPLFrIlvgewewewewGBewewewewewGOKSCcvJLAFRvJxLKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSOGgNeLIdYLYLYLImYLdjvySCOGOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQsQsQsQsCYzMtgkZkZkZkZkZkZkZkZkZkZkZkZMyMyMyuZ
 XdXdXdXdXdXdXdXdXdDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSKSKSjQcBvYKSKSKSKSPLwutAPLewewewewewewewewewewGOKSsWUWdXdXztBpKSnznznznznznznznznznznzKSKSOGXwAlAlAlpzeLIdYLYLYLYLYLYLvySCKPOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQsQsQsshicexkZkZkZkZkZkZkZkZkZkZkZpOpOpOpOpOQj
-XdDVDVDVEjEjEjEjXdXdDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLPLPLPLHvewewxyxyewxyxyewbTPLKSsWUWdXrRztBpKSnzZHRTokxAxAnzxAyNEJnzKSKSXwpzeLeLeLeLeLIdYLYLYLYLYLYLvyfNOVOGKSsWUWdXrRztBpKSQsQsQsQsQsVHQsQsQsQsshSViczMtgkZkZkZkZkZkZkZFXpOpOpOpOpOpOpOpOQj
-XdDVDVSMOmOmouJIVsXdXdXdXdXdXdXdXdXdXdXdDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLNdewewewewewxyxyewxyxyewxykvKSsWUWdXrRztBpKSJDxAokokokokPQokokWFnzKSKSpzeLzjvKvKvKvKXXYLFiYLYLYLYLvyeLSCOGKSsWUWdXrRztBpKSQsQsQsQsQsQsQsQsQsQsCYaMzMtgkZkZkZkZkZpOpOpOpOQjQjQjQjQjQjQjQjQj
-XdDVEjOmJIouOmOmGTDVDVRDRDRDRDRDRDRDRDXdXdDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLNdewxyxyewewxyxyewxyxyewxyEbKSsWUWdXdXztBpKSJDxAokokokWFnzvWokDFnzKSKSeLeLIdYLYLYLYLdjYLYLYLYLYLYLvyeLSCOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQsCYaMexkZkZkZpOpOpOQjQjQjQjQjJlZDJlpOpOpOpOQj
-XdDVEjGmOmPsOmGmOXDVDVRDKDqKmJCxyGyQRDoWXdXdDVDVDVQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLNdewxyxyewewxyxyewxyxyewxyEbKSsWUWdXdXztBpKSnzhsokokaYLFnznzaJnznzKSKSeLeLIdYLYLFiYLYLImYLdjYLMVYLvyeLSCOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQsCYaMexkZpOpOpOpOpOQjJZzgJZvCJlJlJlUoJapOpOQj
+XdDVDVDVEjEjEjEjXdXdDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLPLPLPLHvewewyBxyewxyxyewQtPLKSsWUWdXrRztBpKSnzZHRTokxAxAnzxAyNEJnzKSKSXwpzeLeLeLeLeLIdYLYLYLYLYLYLvyfNOVOGKSsWUWdXrRztBpKSQsQsQsQsQsVHQsQsQsQsshSViczMtgkZkZkZkZkZkZkZFXpOpOpOpOpOpOpOpOQj
+XdDVDVSMOmOmouJIVsXdXdXdXdXdXdXdXdXdXdXdDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLNdewewewewewxyxyewxyxyewomkvKSsWUWdXrRztBpKSJDxAokokokokPQokokWFnzKSKSpzeLzjvKvKvKvKXXYLFiYLYLYLYLvyeLSCOGKSsWUWdXrRztBpKSQsQsQsQsQsQsQsQsQsQsCYaMzMtgkZkZkZkZkZpOpOpOpOQjQjQjQjQjQjQjQjQj
+XdDVEjOmJIouOmOmGTDVDVRDRDRDRDRDRDRDRDXdXdDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLNdewxyxyewewxyxyewxyxyewCHEbKSsWUWdXdXztBpKSJDxAokokokWFnzvWokDFnzKSKSeLeLIdYLYLYLYLdjYLYLYLYLYLYLvyeLSCOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQsCYaMexkZkZkZpOpOpOQjQjQjQjQjJlZDJlpOpOpOpOQj
+XdDVEjGmOmPsOmGmOXDVDVRDKDqKmJCxyGyQRDoWXdXdDVDVDVQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLNdewxyxyewewxyxyewxyxyewIcEbKSsWUWdXdXztBpKSnzhsokokaYLFnznzaJnznzKSKSeLeLIdYLYLFiYLYLImYLdjYLMVYLvyeLSCOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQsCYaMexkZpOpOpOpOpOQjJZzgJZvCJlJlJlUoJapOpOQj
 XdDVEjouJIOmOmOmVdDVDVRDYbYbYbYbYbYbRDoWoWXdXdDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLNdewxyxyewewxyxyewxyxyewxyEbKSsWUWdXrRztBpKSnzbwokokokoknzWRHzLgnzKSKSeLeLIdYLYLYLYLYLYLYLYLYLYLYLvyEYtKOGKSsWUWdXrRztBpKSQsQsQsQsQsQsQsQsQsQsCYaMpOQjQjQjQjQjQjQjQGOxOxOxJlJlJlOxOxRlpOQj
-XdDVDVhMyBGmJIHDDVDVvdRDUFpnkAkAyDdgRDoWoWoWXdXdXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLNdewxyxyewewxyxyewxyxyewxyxzKSsWUWdXrRztBpKSnztLokokokoknzYNHeFynzKSKSeLeLIddjYLYLYLYLCIsZsZsZsZsZcKSCOGOGKSsWUWdXrRztBpKSQsQsQsQsQsQsQsQsQsQsCYpOQjQjwOwOwOwOwOpOpOxeOxNCCEYZYZOxOxNTpOQj
-XdDVDVDVDVOmOmDVDVbFrXRDdnDTYbYbtndnRDmGmGmGAZAZXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLNdewewjRewewjRewewewewewbTPLKSsWUWdXdXztBpKSnzZqokokOdgLnznznznznzKSKSeLeLGesZsZsZsZsZcKeLEYZiZiZiZitKOGOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQspOpOQjwOwOdzbbKswOwOpONYOxOxOxanOxOxszpOpOQj
+XdDVDVhMOmGmJIHDDVDVvdRDUFpnkAkAyDdgRDoWoWoWXdXdXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLNdewxyxyewewxyxyewxyxyewxyxzKSsWUWdXrRztBpKSnztLokokokoknzYNHeFynzKSKSeLeLIddjYLYLYLYLCIsZsZsZsZsZcKSCOGOGKSsWUWdXrRztBpKSQsQsQsQsQsQsQsQsQsQsCYpOQjQjwOwOwOwOwOpOpOyMOxNCCEYZYZOxOxNTpOQj
+XdDVDVDVDVOmOmDVDVbFrXRDdnDTYbYbtndnRDmGmGmGAZAZXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSDWMjMjdXdXdXMjMjbrKSPLNdewewjRewewjRewewewewewbTPLKSsWUWdXdXztBpKSnzZqokokOdgLnznznznznzKSKSeLeLGesZsZsZsZsZcKeLEYZiZiZiZitKOGOGKSsWUWdXdXztBpKSQsQsQsQsQsQsQsQsQsQspOpOQjwOwOdzbbKswOwOpONYOxxeOxanOxOxszpOpOQj
 XdDVDVrXrXOmGmIUrXrXrXRDGxuHYbYbRHCLRDmGmGmGAZAZXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsKSKSxUwHwHdXdXdXwHwHTUKSPLPLPLPLPLGOGOPLWXmcmcmcuEPLPLKSsWUWdXdXztBpKSnznzJDwmJDnznzMFddtsKSKSKSeLeLeLeLeLeLeLeLeLEYtKOGOGOGOGOGOGOGKSsWUWdXdXztBpKSMyQsQsQsQsQsMyQsQspOQjQjQjwOHafKfKqWZlwOpOpOOxanOxOxOxOxpOpOpOQj
 XdteZnteteteteteteteteRDterYteterYteRDteteteeGNLXdteKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSHmfUKSKSKSKSKSCcvJLAFRxLKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSCcvJLAXrvJxLKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSCcvJLAXrvJxLKSKSKSKSKSMyKSKSKSpOQjQjQbQbwOQbQbQbQbNzwOcAoQQbQbQbQbQbQbFKVaZNQj
 XdlQlQlQlQlQlQlQlQlQusRDRDRDlQlQRDRDRDZelQlQDPDPXdlQBlBlBlBlBlBlBlBlBlBlBlBlBlBlzIUfUfuyBlBlBlBlPedXdXdXvZBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlMhKSPeOAdXrRUumAKSBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlBlMhKSPeOAdXrRUumAKSBlBlBlBlBlBlBlBlcvQjiKcvcvwOwOwOmTwOwOwOEUcvcvcvcvcvcvcvcvcvhUQj
-XdLtLtLtLtLtLtLtLtLtLtLtLtpsLtLtpsLtLtLtLtLtLtLtbPLtAYAYAYAYAYAYAYAYAYAYAYAYAYAYfToHoHESAYAYAYAYLpdXdXdXyLAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYboCnPHdXdXPHpuboAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYboLpdXdXdXdXyLboAYMyMyAYMyAYMyAYwFmmwFwFwFwFwFNNwFNNwFwFwFJewFwFwFwFwFwFCkwFclQj
+XdLtLtLtLtLtLtLtLtLtLtLtqYpsLtLtpsEuLtLtLtLtLtLtbPLtAYAYAYAYAYAYAYAYAYAYAYAYAYAYfToHoHESAYAYAYAYLpdXdXdXyLAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYboCnPHdXdXPHpuboAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYAYboLpdXdXdXdXyLboAYMyMyAYMyAYMyAYwFmmwFwFwFwFwFNNwFNNwFwFwFJewFwFwFwFwFwFCkwFclQj
 XdWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJVBWJdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXwAwASNdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXJuWWdXdXdXdXyZJudXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXJudXdXdXdXdXdXMydXdXMydXdXdXdXdXbzCybzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzRmzVbzJHQj
 XdWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJVBWJdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXvGwAwAdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXxIWWdXdXdXdXyZxIdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXxIdXdXdXdXdXdXMydXdXdXdXdXdXdXdXbzCybzbzbzbzbzbzbzbzbzbzbzbzbzbzbzRmbzbzazbzCuQj
 XdMTWJWJMTMTPBWJMTMTWJWJMTMTPBWJMTMTWJWJMTMTPBWJeIMTdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmwAwAMmMmdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmvGSNMmMmdXxIMmMmdXdXMmMmxIdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmdXdXMmMmxIdXMmMmdXdXMmnhdXdXMmMmdXMyMmMmbzCyCUsPbzbzCUCUbzbzCUoTtJZjCUCUbzbzCUCUtJbzCUxp
@@ -1387,11 +1383,11 @@ XdWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJVBWJdXdXdXdXdXdXdXdXdXdXdXdXdXdX
 XdWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJWJVBWJdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXvGwASNdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXvGrvgBKNKNBrwASNxIWWdXdXPHdXyZxIdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXxIdXdXdXdXdXdXxIMydXdXdXdXdXdXMybzCybzbzbzbzSBbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzbzQj
 XdLWLWLWgWLWgWLWLWgWLWLWLWgWLWLWgWLWLWgWLWgWLWgWIMLWDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtSHTxUUUUjzDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtSHTxgBeoQsQsXqUUjzxIhbdXdXdXdXJXxIDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtDtxIDtDtDtDtMyDtxIMyMyDtDtDtMyDtDtglQBglglglglglglglglglglglglglglglglglglglgldCQj
 XdRDRDRDRDPZRDRDRDRDRDRDRDRDrhrhRDRDRDRDPZRDRDRDXdrhMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgNpRzbZRzsfMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgNpRzRzKhQsQsQsPmRzsfbyClqJdXrRkFrUbyMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgMgbyMgMgMgMgMgMgbyMgMgMgMgMgMgMgMgdVQjFWdVdVdVdVdVdVdVdVdVdVdVdVmCdVdVdVdVdVdVdVQj
-XdRDtejoteteteSyIbRDJkZnRDLKtetelqRDalZnteZnrdRDXdteKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSHmRBfUKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSHmRBkuzlriQsQsQsDQpZnfFngOvJLAXrvJxLKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSMyKSKSKSKSKSKSKSpOQjpOQbQbQbxfQbQbQbQbxfQbOcrypxcAxfQbQbQbQbQbQj
-XdRDYbYbYbYbYbYbXlRDwbYbRDAmYbYbHURDdWYbDXYbJcRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTzTzTzTdijXfvlxZcUWdXdXUuQFQFzTzTzTzTzTzTzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyQsQsQspOQjQjQjQjpOpOOxOxOxpOpOpOpOpOpOpOpOOxOxpOpOpOQj
+XdRDtejoteteteZnIbRDJkZnRDLKtetelqRDalZnteZnrdRDXdteKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSHmRBfUKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSHmRBkuzlriQsQsQsDQpZnfFngOvJLAXrvJxLKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSKSMyKSKSKSKSKSKSKSpOQjpOQbQbQbxfQbQbQbQbxfYAOcrypxcAxfQbQbQbQbQbQj
+XdRDYbYbYbYbYbRdXlRDwbYbRDAmYbYbHURDdWYbDXYbJcRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTzTzTzTdijXfvlxZcUWdXdXUuQFQFzTzTzTzTzTzTzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyQsQsQspOQjQjQjQjpOpOrDOxOxpOpOpOpOpOpOpOpOOxOxpOpOpOQj
 XdRDnxacfdYbYbYbGtRDEKYbElYbYbYbrQRDFLYbDXYbfARDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsdikqafkqtiUWdXdXdXiiLEQsQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyQsQsQsQsQsQsQspOpOpOpOQjpOYcOxOxOxJSaKJSpOpOpOpOxvOxOxtEpOpOQj
-XdRDroinYbYbfdYbSiRDTRYbRDYbYbYbHURDEwYbgnYbJcRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQszTQsQsQsdiVygpDptiUWdXnVPHLELEQsQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyQsQsQsQsMyQsQsQspOpOpOQjBKOxOxOxOxOxOxOxvuvucRlExvOxOxOxxvpOQj
-XdRDacUXYbGYYbGYSiRDTRGYRDmEzcsHecRDjKYbGYYbqZRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsdijsjskqpXUWdXrRdXLEQsQsQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyQsQsQsQsQsQspOpOQjQjOiXLrsKzBdOxOxOxOxOxOxOxOxOxOxOxxiQj
+XdRDroinYbYbYbfdYbRDTRYbRDxnYbYbHURDEwYbgnYbJcRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQszTQsQsQsdiVygpDptiUWdXnVPHLELEQsQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyMyQsQsQsQsMyQsQsQspOpOpOQjBKOxOxOxOxOxOxOxvuvucRlExvOxOxOxxvpOQj
+XdRDacUXYbGYsHjPSiRDTRGYRDmEYbYbecRDjKYbGYYbqZRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsdijsjskqpXUWdXrRdXLEQsQsQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsMyQsQsQsQsQsQspOpOQjQjOiXLrsKzBdOxOxOxOxOxOxOxOxOxOxOxxiQj
 XdRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDRDXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsdidixrdidihtPHdXdXLELEVHQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQjQjQjQjQjQjGPOxOxOxOxOxOxTVOxOxOxxiQj
 XdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTzTzTzTQsQsQsQsQsLELELEOAdXdXdXLELEQsQsQsQsZIQszTzTzTzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspOQjQjGwloOxOxOxOxOxOxOxOxLYQj
 XdDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsLfQsQsQsQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsLfQsQsQsLELELELELEdXrRdXLEQsQsQsQsQsZIQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQjQjQjbdbdOxOxOxOxOxOxxiQj
@@ -1399,7 +1395,7 @@ XdDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQs
 XdDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsQsQstStStSnRtStSLELELELEtStSnRtStStSQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQjQjQjxixixikrpOQj
 XdDVDVDVDVDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTzTzTzTQsQsQsQsQstSlacoEqyrtSQFQFLELEtSEaEqEqnUtSQsQsQsQsQszTzTzTzTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspOQjQjQjQjQjQjQj
 XdDVDVDVDVDVDVDVDVDVDVQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQszTQsQsQsQsQsQsQsOutShqEqEqDUtSGuLEiiSztSgdEqEqFgtSuQQsrVQsQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspOpOpOpOQj
-uZMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsQsQsQsQsQstSjdEqEqsutSLELELELEtSGCEqEqEqtSQsQsQsZIQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspOpOQj
+uZMyMyMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsQsQsQsQsQstSjdEqEqsutSLELELELEtSGCEqEqCVtSQsQsQsZIQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQspOpOQj
 uZMyMyMyMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQszTQsQsQsQsQsrVQsrVtStSnRtStStSLELEiiLEtStStSnRtStSQsQsQsZIQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
 uZMyMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsQsQsZIQsQsEfQsLEueLExOLELELELEEfQsLELEQsEfQsQsQsZIQsQsQsQszTQsQsQsQsQsQspmQsQsQsQsQsQsQsQsQsQsQsQsueQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ
 uZMyQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsVHQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQszTQsQsQsQslmQsQsQsQsQsLELELELELELELELELELELfLELEQsQsQsQseRQsQsQsQszTQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsLfQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsQsuZ

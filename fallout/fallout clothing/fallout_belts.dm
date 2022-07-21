@@ -90,9 +90,11 @@
 /obj/item/storage/belt/fallout/holster
 	name = "pistol holster belt"
 	desc = "Waist belt with a holster and 3 magazine pockets attached."
+	icon_state = "belt_holster"
+	item_state = "belt_holster"
 	max_w_class = WEIGHT_CLASS_NORMAL
-	storage_slots = 3
-	max_storage_space = 7
+	storage_slots = 4
+	max_storage_space = 9
 	can_hold = list(/obj/item/weapon/gun/fallout_pistol, /obj/item/ammo_magazine/fallout_pistol)
 
 	//The gun it holds, used for referencing later so we can update the icon.

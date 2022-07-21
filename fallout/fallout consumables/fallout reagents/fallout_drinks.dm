@@ -1,56 +1,48 @@
-/*
-/datum/reagent/consumable/nuka_cola
-	name = "Nuka Cola"
-	description = "Cola, cola never changes."
-	color = "#100800" // rgb: 16, 8, 0
-	taste_description = "the future"
-	glass_icon_state = "nukacolaglass"
-	glass_name = "Nuka Cola"
-	glass_desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland."
+//The existing drinks stuff seems fine so just going to use that, at least for now
+/*	TGMC nuka cola is fine minus the druggy part, will adjust when drink stuff is reworked
+/datum/reagent/consumable/drink/cold/nuka_cola/on_mob_life(mob/living/L, metabolism)
+	L.jitter(10)
+	//L.radiation += 1
+	return ..()*/
 
-/datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
-	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	..()
-	. = TRUE
-
-/datum/reagent/consumable/sunset
+/datum/reagent/consumable/drink/sarsaparilla
 	name = "Sunset Sarsaparilla"
-	description = "Build Mass With Sass!"
+	description = "Build Mass with Sass!"
 	color = "#994C00" // rgb: 153, 76, 0
 	taste_description = "root beer, vanilla and caramel"
-	glass_icon_state = "sunsetglass"
-	glass_name = "glass of Sunset Sarsaparilla"
-	glass_desc = "Beverage of the West Coast."
+	adj_sleepy = -1
 
-/datum/reagent/consumable/sunset/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
-	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	..()
-	. = TRUE
+//Add stuff later
+/datum/reagent/consumable/drink/sarsaparilla/on_mob_life(mob/living/L, metabolism)
+	return ..()
 
-/datum/reagent/consumable/vim
+/datum/reagent/consumable/drink/cold/vim
 	name = "Vim"
 	description = "You've Got Vim!"
 	color = "#946B4A"
-	taste_description = "off-brand nuka-cola"
-	glass_icon_state = "vimglass"
-	glass_name = "glass of Vim"
-	glass_desc = "Unrelated to Nuka-Cola, Vim trademark Circa 2077."
+	taste_description = "something sweet, with a bitter aftertaste"
 
-/datum/reagent/consumable/vim/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-0.5, 0)
-	M.adjustOxyLoss(0.5, 0)
-	M.drowsyness = max(0,M.drowsyness-3)
-	//310.15 is the normal bodytemp.
-	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	if(holder?.has_reagent(/datum/reagent/consumable/frostoil))
-		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
-	..()
-	. = TRUE
+//Slight toxins and oxyloss healing from that famous Vim! Vigor
+/datum/reagent/consumable/drink/cold/vim/on_mob_life(mob/living/L, metabolism)
+	L.adjustToxLoss(-0.5, 0)
+	L.adjustOxyLoss(-0.5, 0)
+	return ..()
 
+/datum/reagent/consumable/drink/cold/bawls
+	name = "Balls Guarana"
+	description = "For that Guarana Bounce!"
+	color = "#494A82"
+	taste_description = "insanely sweet"
+	adj_dizzy = 1
+	adj_drowsy = -1
+	adj_sleepy = -2
+
+//Energy drink, more more extreme than even Nuka Cola, add stuff later
+/datum/reagent/consumable/drink/cold/bawls/on_mob_life(mob/living/L, metabolism)
+	L.jitter(20)
+	return ..()
+
+/*
 /datum/reagent/consumable/vimquartz
 	name = "Vim Quartz"
 	description = "You've Got Vim! Quartz edition, worse than the Imitation."
@@ -401,26 +393,6 @@
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 	. = TRUE
-
-/datum/reagent/consumable/bawls
-	name = "Balls Guarana"
-	description = "For that Guarana Bounce!"
-	color = "#494A82"
-	taste_description = "insanely sweet coffee"
-	glass_icon_state = "bawlsglass"
-	glass_name = "glass of Balls Guarana"
-	glass_desc = "Beverage of the Balls Guarana Company."
-
-/datum/reagent/consumable/bawls/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-2)
-	M.drowsyness = max(0,M.drowsyness-1)
-	M.AdjustSleeping(-40, FALSE)
-	//310.15 is the normal bodytemp.
-	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	if(holder?.has_reagent(/datum/reagent/consumable/frostoil))
-		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
-	..()
-	. = 1
 
 /datum/reagent/consumable/ethanol/wastemead
 	name = "Waster Mead"

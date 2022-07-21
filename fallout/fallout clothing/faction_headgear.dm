@@ -18,6 +18,34 @@
 	desc = "A helmet issued to NCRA field engineers. Bears resemblance to a hard hat, but this one can stop bullets!"
 	icon_state = "ncr_helmet_engineer"
 	item_state = "ncr_helmet_engineer"
+	light_range = 5
+	light_power = 4
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer/Destroy()
+	GLOB.nightfall_toggleable_lights -= src
+	return ..()
+
+/obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, "You cannot turn the light on while in [user.loc]")
+		return
+	turn_light(user, !light_on)
+
+/obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
+	if(user == loc)
+		var/mob/M = loc
+		M.update_inv_head()
+	update_action_button_icons()
+	update_icon()
 
 /obj/item/clothing/head/helmet/fallout/ncr/helmet_medic
 	name = "NCR medic helmet"
@@ -167,8 +195,8 @@
 /obj/item/clothing/head/helmet/fallout/legion/explorer
 	name = "legion explorer hood"
 	desc = "A leather hood with metal reinforcements."
-	icon_state = "legion-explorer"
-	item_state = "legion-explorer"
+	icon_state = "legion_explorer"
+	item_state = "legion_explorer"
 
 /obj/item/clothing/head/helmet/fallout/legion/veteran
 	name = "Legion veteran helmet"

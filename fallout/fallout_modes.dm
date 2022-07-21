@@ -48,6 +48,7 @@
 	config_tag = "NCR vs Legion"
 	flags_round_type = MODE_LZ_SHUTTERS
 	shutters_drop_time = 5 MINUTES
+	respawn_time = 3 MINUTES	//Increase to 5 when out of testing
 	round_end_states = list(DRAW, NCR_VICTORY, LEGION_VICTORY)
 	valid_job_types = list(
 		/datum/job/fallout/ncr = -1,
