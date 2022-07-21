@@ -100,11 +100,11 @@
 	item_state = "ncr_ranger"
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 30, "energy" = 25, "bomb" = 25, "bio" = 10, "rad" = 20, "fire" = 35, "acid" = 10)
 
-/obj/item/clothing/suit/storage/fallout/ncr/combat_armor
+/obj/item/clothing/suit/storage/fallout/ncr/combat
 	name = "NCR combat armor"
 	desc = "Combat armor painted in the colors of the New California Republic Army, displaying its flag on the chest."
-	icon_state = "ncr_combatarmor"
-	item_state = "ncr_combatarmor"
+	icon_state = "ncr_combat"
+	item_state = "ncr_combat"
 	soft_armor = list("melee" = 30, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.4
 

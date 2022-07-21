@@ -373,6 +373,7 @@
 	name = "sledgehammer"
 	desc = "Cement on a stick. A crude and simple tool... or weapon."
 	icon_state = "hammer_sledge"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	edge = FALSE
@@ -484,6 +485,7 @@
 	name = "baseball bat"
 	desc = "A swatter never runs out of bullets."
 	icon_state = "bat"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	flags_atom = null
 	flags_equip_slot = ITEM_SLOT_BACK
 	edge = FALSE
@@ -509,6 +511,7 @@
 	name = "lacerator gauntlet"
 	desc = "A leather glove with rows of metallic blades attached."
 	icon_state = "gauntlet_lacerator"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	flags_atom = null
 	flags_item = null
 	w_class = WEIGHT_CLASS_NORMAL
@@ -647,6 +650,7 @@
 	name = "brass knuckles"
 	desc = "Brass metal shaped into the form of a fist with holes for the wearer's fingers."
 	icon_state = "knuckles_brass"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	flags_item = null
 	w_class = WEIGHT_CLASS_SMALL
 	edge = FALSE
@@ -672,6 +676,7 @@
 	name = "lead pipe"
 	desc = "Rusty pipe that's been given a new life as a skull cracker."
 	icon_state = "pipe"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -684,6 +689,7 @@
 	name = "tire iron"
 	desc = "Not very useful these days. Except for beating people with it."
 	icon_state = "tire_iron"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -696,6 +702,7 @@
 	name = "golf club"
 	desc = "Fore!"
 	icon_state = "golf_club"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
 	force = 12
@@ -707,6 +714,7 @@
 	name = "leather whip"
 	desc = "Inspires fear in some, horniness in others."
 	icon_state = "whip"
+	hitsound = 'sound/weapons/genhit3.ogg'
 	flags_atom = null
 	flags_item = null
 	w_class = WEIGHT_CLASS_NORMAL

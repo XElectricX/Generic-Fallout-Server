@@ -1,4 +1,4 @@
-/*	Fallout chemicals and their effects
+/*	Fallout chemicals and their effects -- See fallout_drinks.dm for beverages
 
 	Stimfluid - What goes inside stimpaks, heals brute and burns
 	Med-X - Increase max health and pain tolerance

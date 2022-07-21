@@ -1,20 +1,80 @@
-
 //Vending machine template for future vending machines
 /obj/machinery/vending/fallout
 	name = "vending machine"
 	desc = "A generic vending machine from pre-war times."
-	//icon = 'icons/obj/machines/vending.dmi'
-	//icon_state = "generic"
+	icon = 'fallout/fallout icons/fallout structures/fallout_vending.dmi'
+	icon_state = ""
 	vend_delay = 1
 	coverage = 100
+
+//Change sprite to use "_" instead of "-"
+//Note that the the open panel sprites still need to use "-panel" because the proc it is in needs too much work to change easily
+/obj/machinery/vending/fallout/update_icon()
+	if(machine_stat & BROKEN)
+		icon_state = "[initial(icon_state)]_broken"
+	else if(!(machine_stat & NOPOWER) )
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_off"
+
+//Same here
+/obj/machinery/vending/fallout/malfunction()
+	. = ..()
+	src.icon_state = "[initial(icon_state)]_broken"
+
+//Food and drink vendors
+/obj/machinery/vending/fallout/nuka
+	name = "\improper Nuka Cola vending machine"
+	desc = "Pre-war vending machine from the Nuka Cola company. Practically on every corner."
+	icon_state = "nuka"
+	icon_deny = "nuka_deny"
+	products = list(/obj/item/reagent_containers/food/drinks/cans/nuka_cola = -1)
+
+/obj/machinery/vending/fallout/sarsaparilla
+	name = "\improper Sunset Sarsaparilla vending machine"
+	desc = "Stylized to look like something out of a saloon, this vending machine is a cowboy's friend."
+	icon_state = "sarsaparilla"
+	icon_deny = "sarsaparilla"
+	products = list(/obj/item/reagent_containers/food/drinks/cans/sarsaparilla = -1)
+
+/obj/machinery/vending/fallout/vim
+	name = "\improper Vim! vending machine"
+	desc = "Pre-war vending machine from the Nuka Cola company. Practically on every corner."
+	icon_state = "vim"
+	icon_deny = "vim"
+	products = list(/obj/item/reagent_containers/food/drinks/cans/vim = -1)
+
+/obj/machinery/vending/fallout/bawls
+	name = "\improper Bawls Guarana vending machine"
+	desc = "Dispenses caffeinated energy drinks."
+	icon_state = "bawls"
+	icon_deny = "bawls"
+	products = list(/obj/item/reagent_containers/food/drinks/cans/bawls = -1)
+
+//Gear vendors
+/obj/machinery/vending/fallout/tools
+	name = "\improper RobCo Handy Hardware vending machine"
+	desc = "A pre-war RobCo vending machine that dispenses tools, equipment, and devices."
+	icon_state = "robco"
+	icon_deny = "robco_deny"
+	products = list(
+		/obj/item/stack/cable_coil = -1,
+		/obj/item/tool/crowbar = -1,
+		/obj/item/tool/weldingtool = -1,
+		/obj/item/tool/wirecutters = -1,
+		/obj/item/tool/wrench = -1,
+		/obj/item/tool/screwdriver = -1,
+		/obj/item/clothing/head/welding = -1,
+		/obj/item/clothing/gloves/yellow = -1,
+		/obj/item/cell/fallout/fission = -1)
 
 //NCR vendor
 /obj/machinery/vending/fallout/ncr
 	name = "\improper NCR Supply Vendor"
 	desc = "Standard dispenser of Republic gear."
-	icon_state = "marinearmory"
-	icon_vend = "marinearmory-vend"
-	icon_deny = "marinearmory"
+	icon_state = "ncr"
+	icon_vend = "ncr_vend"
+	icon_deny = "ncr"
 	wrenchable = FALSE
 	shut_up = TRUE
 	isshared = TRUE
@@ -112,7 +172,7 @@
 			/obj/item/clothing/suit/storage/fallout/ncr/scout = -1,
 			/obj/item/clothing/suit/storage/fallout/ncr/scout_officer = -1,
 			/obj/item/clothing/suit/storage/fallout/ncr/officer_coat = -1,
-			/obj/item/clothing/suit/storage/fallout/ncr/combat_armor = -1,
+			/obj/item/clothing/suit/storage/fallout/ncr/combat = -1,
 			/obj/item/clothing/head/helmet/fallout/ncr/combat = -1,
 			/obj/item/clothing/mask/fallout/ncr = -1,
 			/obj/item/clothing/head/helmet/fallout/ncr/goggles = -1,
@@ -145,15 +205,15 @@
 			/obj/item/clothing/shoes/fallout/ncr/scout = -1,
 			/obj/item/clothing/gloves/fallout/ncr/fingerless = -1,
 			/obj/item/clothing/gloves/fallout/ncr/patrol = -1),
-		"Medical" = list(/obj/item/reagent_containers/hypospray/fallout/stimpak = -1))
+		"Medical" = list(/obj/item/reagent_containers/hypospray/fallout/stimpak = -1, /obj/item/stack/medical/splint = -1))
 
 //Legion vendor
 /obj/machinery/vending/fallout/legion
 	name = "\improper Legion Supply Vendor"
 	desc = "Standard dispenser of Legion gear."
-	icon_state = "marinerequisitions"
-	icon_vend = "marinerequisitions-vend"
-	icon_deny = "marinerequisitions"
+	icon_state = "legion"
+	icon_vend = "legion_vend"
+	icon_deny = "legion"
 	wrenchable = FALSE
 	shut_up = TRUE
 	isshared = TRUE
@@ -289,4 +349,4 @@
 			/obj/item/clothing/shoes/fallout/legion/metal = -1,
 			/obj/item/clothing/gloves/fallout/legion = -1,
 			/obj/item/clothing/gloves/fallout/metal = -1),
-		"Medical" = list(/obj/item/stack/medical/heal_pack/healing_powder = -1))
+		"Medical" = list(/obj/item/stack/medical/heal_pack/healing_powder = -1, /obj/item/stack/medical/splint = -1))
