@@ -205,7 +205,11 @@
 			/obj/item/clothing/shoes/fallout/ncr/scout = -1,
 			/obj/item/clothing/gloves/fallout/ncr/fingerless = -1,
 			/obj/item/clothing/gloves/fallout/ncr/patrol = -1),
-		"Medical" = list(/obj/item/reagent_containers/hypospray/fallout/stimpak = -1, /obj/item/stack/medical/splint = -1))
+		"Medical" = list(
+			/obj/item/reagent_containers/hypospray/fallout/stimpak = -1,
+			/obj/item/reagent_containers/hypospray/fallout/medx = -1,
+			/obj/item/reagent_containers/hypospray/fallout/turbo = -1,
+			/obj/item/stack/medical/splint = -1))
 
 //Legion vendor
 /obj/machinery/vending/fallout/legion
@@ -349,4 +353,9 @@
 			/obj/item/clothing/shoes/fallout/legion/metal = -1,
 			/obj/item/clothing/gloves/fallout/legion = -1,
 			/obj/item/clothing/gloves/fallout/metal = -1),
-		"Medical" = list(/obj/item/stack/medical/heal_pack/healing_powder = -1, /obj/item/stack/medical/splint = -1))
+		"Medical" = list(
+			/obj/item/stack/medical/heal_pack/healing_powder = -1,
+			/obj/item/reagent_containers/glass/bitter_drink = -1,
+			/obj/item/berserk_powder = -1,
+			/obj/item/reagent_containers/glass/hydra = -1,
+			/obj/item/stack/medical/splint = -1))

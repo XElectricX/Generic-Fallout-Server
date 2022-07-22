@@ -2,19 +2,26 @@
 
 	Stimfluid - What goes inside stimpaks, heals brute and burns
 	Med-X - Increase max health and pain tolerance
+	Bitter Drink - Heals brute and burns slowly over time
+	Hydra - Repairs bones, slight painkiller effect, anti-venom
 	Jet - Spacedrugs equivalent with minor stamina healing
 	Turbo - Jet but with a speed and stamina bonus
+	Methamphetamine - Slight max health and max stamina boosts, makes you high
 	Psycho - Makes user stronger and more aggressive
 	Buffout - Make user stronger and increase max health, like Psycho and Med-X but inferior to both	*/
 
 #define COMSIG_STAMINA_REGEN "stamina_regen"
+
+//Want all chemicals to show up on health scanner for now
+/datum/reagent
+	scannable = TRUE
 
 //Medicinal drugs
 /datum/reagent/medicine/stimpak
 	name = "Stim Fluid"
 	description = "Advanced medicinal solution that boosts the body's natural regeneration from physical injuries and increases blood cell production. Depletes the patient's energy."
 	color = "#eb0000"
-	taste_description = "grossness"
+	taste_description = "antiseptic"
 	overdose_threshold = REAGENTS_OVERDOSE/1.5	//20 units
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.6	//30 units
 	custom_metabolism = REAGENTS_METABOLISM * 5	//Metabolizes quickly at 1 unit per tick
@@ -22,7 +29,7 @@
 /datum/reagent/medicine/stimpak/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(5, 5)
 	var/mob/living/carbon/C = L
-	C.adjust_nutrition(-1)
+	C.adjust_nutrition(-5)
 	..()
 
 /datum/reagent/medicine/stimpak/overdose_process(mob/living/L, metabolism)
@@ -46,6 +53,7 @@
 	name = "Med-X Fluid"
 	description = "Med-X is a potent painkiller, allowing users to withstand high amounts of pain and continue functioning. Addictive. Prolonged presence in the body can cause seizures and organ damage."
 	color = "#6D6374"
+	taste_description = "numbness"
 	overdose_threshold = REAGENTS_OVERDOSE/1.5	//20 units
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.6	//30 units
 	addiction_threshold = 25
@@ -53,17 +61,19 @@
 
 /datum/reagent/medicine/medx/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_notice("You feel tougher, able to shrug off pain more easily."))
-	L.maxHealth += 100
-	L.health += 100
+	L.health_threshold_dead -= 50
+	L.health_threshold_crit -= 50
 
 /datum/reagent/medicine/medx/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_notice("The numbness fades..."))
-	L.maxHealth -= 100
-	if(L.health > 100)
-		L.health = 100
+	L.health_threshold_dead += 50
+	L.health_threshold_crit += 50
+	L.adjust_blurriness(20)
+	L.dizzy(150)
 
 /datum/reagent/medicine/medx/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_MEDIUM
+	..()
 
 /datum/reagent/medicine/medx/overdose_process(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
@@ -91,6 +101,65 @@
 
 /datum/reagent/medicine/medx/addiction_act_stage4(mob/living/M)
 
+//Herbal remedies
+/datum/reagent/medicine/bitter_drink
+	name = "Bitter Drink"
+	description = "An especially pungent beverage. Slow acting but very healthy for the body."
+	color ="#A9FBFB"
+	taste_description = "gut wrenching bitterness"
+	overdose_threshold = REAGENTS_OVERDOSE/1.5	//20 units
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.6	//30 units
+	custom_metabolism = REAGENTS_METABOLISM
+
+/datum/reagent/medicine/bitter_drink/on_mob_life(mob/living/L, metabolism)
+	L.heal_limb_damage(2, 2)
+	..()
+
+/datum/reagent/medicine/bitter_drink/overdose_process(mob/living/L, metabolism)
+	L.adjustToxLoss(2)
+
+/datum/reagent/medicine/bitter_drink/overdose_crit_process(mob/living/L, metabolism)
+	L.adjustToxLoss(3)
+	L.adjustOxyLoss(2)
+	var/mob/living/carbon/human/H = L
+	var/affected_organ = pick("heart","lungs","liver","kidneys")
+	var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
+	I.take_damage(3)
+
+/datum/reagent/medicine/bitter_drink/on_overdose_crit_start(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You stomach is in agony!"))
+
+/datum/reagent/medicine/hydra
+	name = "Hydra"
+	description = "A cocktail of herbal medicines designed to mend broken bones, provide pain relief, and cure poisoning."
+	color ="#501c5a"
+	taste_description = "something tingly with a bit of iron"
+	overdose_threshold = REAGENTS_OVERDOSE/1.5	//20 units
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.6	//30 units
+	custom_metabolism = REAGENTS_METABOLISM/2
+	var/mending_ticker	//Track how long it has been
+	var/time_to_mend = 500	//Time needed to fix a bone
+
+/datum/reagent/medicine/hydra/on_mob_life(mob/living/carbon/human/L, metabolism)
+	L.adjustToxLoss(-3)
+	L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
+	for(var/datum/limb/target_limb in L.limbs)
+		if(target_limb.limb_status & LIMB_BROKEN)	//Only tick if you have broken limbs, no medicating in advance of a broken bone
+			mending_ticker++
+			if(mending_ticker >= time_to_mend)	//Enough time has passed to repair a bone!
+				target_limb.remove_limb_flags(LIMB_BROKEN)
+				mending_ticker = 0	//Reset the ticker
+				to_chat(L, "<span class='green'>The broken bones in your [target_limb.display_name] have been mended!</span>")
+	..()
+
+/datum/reagent/medicine/hydra/overdose_process(mob/living/carbon/human/L, metabolism)
+	L.adjustToxLoss(3)
+
+/datum/reagent/medicine/hydra/overdose_crit_process(mob/living/carbon/human/L, metabolism)
+	L.adjustToxLoss(8)
+
+/datum/reagent/medicine/hydra/on_overdose_crit_start(mob/living/carbon/human/L, metabolism)
+	to_chat(L, span_userdanger("You feel bone hurting juice coursing through your body!"))
 
 //Recreational drugs
 /datum/reagent/jet
@@ -110,7 +179,7 @@
 
 /datum/reagent/jet/on_mob_life(mob/living/L, metabolism)
 	L.adjustStaminaLoss(-1) //Refreshes user's stamina
-	L.adjust_drugginess(20)
+	L.set_drugginess(20)
 	if(prob(10) && !L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
 		step(L, pick(GLOB.alldirs))
 	if(prob(10))
@@ -161,6 +230,7 @@
 	description = "A chemical compound derived from Jet that increases speed and stamina."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
+	taste_description = "something sour and awful"
 	overdose_threshold = REAGENTS_OVERDOSE/3	//10u overdose
 	addiction_threshold = 5
 	custom_metabolism = REAGENTS_METABOLISM/2	//Metabolizes twice as slow to compensate for potency
@@ -188,14 +258,14 @@
 	RegisterSignal(L, COMSIG_STAMINA_REGEN, .proc/modify_stamina_regen)
 	to_chat(L, span_notice("The world around you slows down slightly. You feel like you could run for hours!"))
 	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
-	L.max_stamina_buffer = 75	//1.5x more stamina "health"
+	L.max_stamina_buffer += 25	//1.5x more stamina "health"
 	L.adjustStaminaLoss(-25)	//Initial stamina boost to pair with the increase in max stamina
 
 /datum/reagent/turbo/on_mob_delete(mob/living/L, metabolism)
 	UnregisterSignal(L, COMSIG_STAMINA_REGEN)
 	to_chat(L, span_notice("You feel out of breath, the world returning to normal..."))
 	L.remove_movespeed_modifier(type)
-	L.max_stamina_buffer = 50	//Restore max stamina to default
+	L.max_stamina_buffer -= 25	//Restore max stamina to default
 	L.adjustStaminaLoss(20)	//To simulate the user being "drained" of energy after it wears off
 	..()
 
@@ -256,6 +326,63 @@
 		L.emote(pick("twitch","drool","shiver"))
 	L.stuttering += 2
 	..()
+
+/datum/reagent/methamphetamine
+	name = "Methamphetamine"
+	description = "Performance enhancing recreational drug. Highly addictive."
+	color = "#d6f6ff"
+	taste_description = "tiny crystals and tingling"
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/1.25	//40 units
+	addiction_threshold = 25
+	custom_metabolism = REAGENTS_METABOLISM/2
+
+/datum/reagent/methamphetamine/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_notice("Your mind feels clear and your muscles twitch."))
+	L.health_threshold_crit -= 20
+	L.health_threshold_dead -= 20
+	L.max_stamina_buffer += 15
+	L.adjustStaminaLoss(-15)
+
+/datum/reagent/methamphetamine/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_notice("Your mind begins to cloud, and your muscles feel sore."))
+	L.health_threshold_dead += 20
+	L.health_threshold_crit += 20
+	L.max_stamina_buffer -= 15
+	L.adjustStaminaLoss(15)
+
+/datum/reagent/methamphetamine/on_mob_life(mob/living/L, metabolism)
+	L.adjustStaminaLoss(-1) //Refreshes user's stamina
+	L.jitter(2)
+	if(prob(2))
+		L.emote(pick("twitch","sniff","laugh","scream"))
+	..()
+
+/datum/reagent/methamphetamine/overdose_process(mob/living/L, metabolism)
+	L.adjustToxLoss(2)
+	var/mob/living/carbon/human/H = L
+	var/affected_organ = pick("heart","lungs","liver","kidneys")
+	var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
+	I.take_damage(1)
+
+/datum/reagent/methamphetamine/overdose_crit_process(mob/living/L, metabolism)
+	L.adjustToxLoss(4)
+	L.adjustOxyLoss(3)
+	var/mob/living/carbon/human/H = L
+	var/affected_organ = pick("heart","lungs","liver","kidneys","brain")
+	var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
+	I.take_damage(4)
+
+/datum/reagent/methamphetamine/on_overdose_crit_start(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel like your brain is being electrocuted!"))
+
+/datum/reagent/methamphetamine/addiction_act_stage1(mob/living/M)
+
+/datum/reagent/methamphetamine/addiction_act_stage2(mob/living/M)
+
+/datum/reagent/methamphetamine/addiction_act_stage3(mob/living/M)
+
+/datum/reagent/methamphetamine/addiction_act_stage4(mob/living/M)
 
 /* Do Psycho and Buffout later
 /datum/reagent/psycho
@@ -469,39 +596,6 @@
 datum/reagent/medicine/super_stimpak/on_mob_life(mob/living/M)
 
 /datum/reagent/medicine/super_stimpak/overdose_process(mob/living/M)
-
-
-// BITTER DRINK REAGENT
-/datum/reagent/medicine/bitter_drink
-	name = "Bitter drink"
-	description = "An herbal healing concoction which enables wounded soldiers and travelers to tend to their wounds without stopping during journeys."
-	reagent_state = LIQUID
-	color ="#A9FBFB"
-	taste_description = "bitterness"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM //in between powder/stimpaks and poultice/superstims?
-	overdose_threshold = 31
-
-/datum/reagent/medicine/bitter_drink/on_mob_life(mob/living/L, metabolism)
-
-/datum/reagent/medicine/bitter_drink/overdose_process(mob/living/M)
-
-
-// HEALING POWDER REAGENT
-/datum/reagent/medicine/healing_powder
-	name = "Healing powder"
-	description = "A healing powder derived from a mix of ground broc flowers and xander roots. Consumed orally, and produces a euphoric high."
-	reagent_state = SOLID
-	color = "#A9FBFB"
-	taste_description = "bitterness"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 30
-
-/datum/reagent/medicine/healing_powder/on_mob_life(mob/living/L, metabolism)
-
-/datum/reagent/medicine/healing_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-
-/datum/reagent/medicine/healing_powder/overdose_process(mob/living/M)
-
 
 // HEALING POULTICE REAGENT
 /datum/reagent/medicine/healing_powder/poultice

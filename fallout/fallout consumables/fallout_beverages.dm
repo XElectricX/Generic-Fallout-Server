@@ -17,12 +17,12 @@
 	name = "bottle of Vim!"
 	desc = "A soft drink competitor to Nuka Cola in the Commonwealth region. Label reads: \"You've got Vim!\""
 	icon = 'fallout/fallout icons/fallout items/fallout_drinks.dmi'
-	icon_state = "sarsaparilla"
+	icon_state = "vim"
 	list_reagents = list(/datum/reagent/consumable/drink/cold/vim = 50)
 
 /obj/item/reagent_containers/food/drinks/cans/bawls
 	name = "bottle of Balls Guarana"
 	desc = "Energy drink widespread throughout Texas. Name comes from the \"bounce\" it gives."
 	icon = 'fallout/fallout icons/fallout items/fallout_drinks.dmi'
-	icon_state = "sarsaparilla"
+	icon_state = "bawls"
 	list_reagents = list(/datum/reagent/consumable/drink/cold/bawls = 50)
