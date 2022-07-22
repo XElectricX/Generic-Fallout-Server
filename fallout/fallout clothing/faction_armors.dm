@@ -172,8 +172,8 @@
 /obj/item/clothing/suit/storage/fallout/legion/slavemaster
 	name = "Legion slavemaster armor"
 	desc = "Issued to slave masters to keep them cool during long hours of watching the slaves work in the sun."
-	icon_state = "legion_master"
-	item_state = "legion_master"
+	icon_state = "legion_slavemaster"
+	item_state = "legion_slavemaster"
 
 /obj/item/clothing/suit/storage/fallout/legion/scout_coat
 	name = "Legion scout coat"
