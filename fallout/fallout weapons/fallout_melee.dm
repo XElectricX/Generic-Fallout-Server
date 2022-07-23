@@ -22,6 +22,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "cut")
 	attack_speed = ATTACK_SPEED_FAST
+	var/haswieldedstate = FALSE	//If the weapon changes its on-mob sprite when wielded
 	var/obj/item/cell/battery	//For weapons that use batteries
 	var/energy_cost	//Energy usage per swing
 	//var/weapon_can_cleave = TRUE	Future var for cleaving mechanic
@@ -75,18 +76,17 @@
 	if(!weapon_can_activate)
 		return FALSE
 
-/* Currently not working due to worn icons not updating when called via unique_action, needs fix
 //Handles icon states, takes into account wielded and weapon_active status
 /obj/item/weapon/fallout_melee/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state) + (weapon_active ? "_on" : "")
+	icon_state = "[initial(icon_state)][weapon_active ? "_on" : ""]"
 	update_item_state()
 
 /obj/item/weapon/fallout_melee/update_item_state(mob/user)
-	. = ..()
-	item_state += (weapon_active ? "_on" : "")
-	//item_state = initial(icon_state) + (flags_item & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
-*/
+	if(haswieldedstate)
+		. = ..()
+		//item_state += "[weapon_active ? "_on" : ""]"
+		//item_state = initial(icon_state) + (flags_item & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
+
 
 //Proc for removing energy cells from weapons that have them
 /obj/item/weapon/fallout_melee/proc/unload(mob/user)
@@ -99,23 +99,25 @@
 //Swords
 /obj/item/weapon/fallout_melee/chinese	//Move to /chinese/electrified when normal sword sprite is made
 	name = "electrified Chinese sword"
-	desc = "A blade commonly used by Chinese military personnel. This one is modified with a microfusion cell housing and wiring, designed for electrocuting enemies."
+	desc = "A blade commonly used by Chinese military personnel. This one is modified with an energy cell housing and wiring, designed for electrocuting enemies."
 	icon_state = "sword_chinese_electrified"
 	flags_equip_slot = ITEM_SLOT_BACK
 	weapon_can_activate = TRUE
-	energy_cost = 50
-	var/electrocution_damage = 20
+	force = 25
+	force_wielded = 35
+	energy_cost = 200
+	var/electrocution_damage = 30
 
 /obj/item/weapon/fallout_melee/chinese/examine(mob/user, distance, infix, suffix)
-	..()
+	. = ..()
 	if(battery)
-		to_chat(user, span_notice("It has [battery.charge] power remaining."))
+		. += "It has [battery.charge] power remaining."
 	else
-		to_chat(user, span_notice("There is no cell installed!"))
+		. += "There is no cell installed!"
 	if(weapon_active)
-		to_chat(user, span_notice("The sword is crackling with electricity!"))
+		. += "The sword is crackling with electricity!"
 	else
-		to_chat(user, span_notice("The battery pack is turned off."))
+		. += "The battery pack is turned off."
 
 /obj/item/weapon/fallout_melee/chinese/unique_action(mob/user)
 	..()
@@ -137,7 +139,8 @@
 
 /obj/item/weapon/fallout_melee/chinese/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
 	if(weapon_active)
-		M.apply_damage(electrocution_damage, "burn")
+		M.apply_damage(electrocution_damage, BURN, user.zone_selected, M.get_soft_armor("energy", user.zone_selected))	//Checks energy armor
+		M.visible_message(span_warning("[M]'s [user.zone_selected] was shocked by [src]!"), span_warning("Your [user.zone_selected] was shocked by [src]!"))
 		playsound(loc, 'sound/effects/sparks1.ogg', 50, TRUE)
 		battery.charge -= energy_cost
 		if(battery.charge < energy_cost)
@@ -154,16 +157,16 @@
 		unload(user)
 	user.transferItemToLoc(I,src)
 	battery = I
-	to_chat(user, span_notice("You insert the [I] into [src]."))
+	to_chat(user, span_notice("You insert [I] into [src]."))
 
 /obj/item/weapon/fallout_melee/chinese/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(!battery)
-		to_chat(user, span_notice("There is no cell installed!"))
+		to_chat(user, span_notice("There is no battery installed!"))
 		return TRUE
+	to_chat(user, span_notice("You pop open the cover and remove [battery]."))
 	unload(user)
-	to_chat(user, span_notice("You pop open the cover and remove the cell."))
 	return TRUE
 
 /obj/item/weapon/fallout_melee/gladius
@@ -190,6 +193,7 @@
 	throw_speed = 0.5
 	throw_range = 2
 	attack_speed = ATTACK_SPEED_MEDIUM
+	haswieldedstate = TRUE
 
 /obj/item/weapon/fallout_melee/knife
 	name = "survival knife"
@@ -222,7 +226,7 @@
 	item_state = "knife_bowie"
 
 /obj/item/weapon/fallout_melee/knife/trench
-	name = "\improper Trench Knife"
+	name = "trench knife"
 	icon_state = "knife_trench"
 	item_icons = list(
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
@@ -272,8 +276,7 @@
 	update_item_state()
 
 /obj/item/weapon/fallout_melee/knife/switchblade/update_item_state(mob/user)
-	. = ..()
-	item_state += (weapon_active ? "_on" : "")
+	item_state = "[initial(item_state)][weapon_active ? "_on" : ""]"
 
 /obj/item/weapon/fallout_melee/knife/bone
 	name = "bone knife"
@@ -299,6 +302,7 @@
 	throw_range = 7
 	attack_verb = list("stabbed", "violently poked", "skewered")
 	attack_speed = ATTACK_SPEED_SLOW
+	haswieldedstate = TRUE
 	reach = 2
 	//weapon_can_cleave = FALSE
 
@@ -308,8 +312,11 @@
 	icon_state = "spear_throwing"
 	w_class = WEIGHT_CLASS_BULKY
 	force_wielded = 25
-	throwforce = 40
-	throw_speed = 3
+	throwforce = 50
+	throw_speed = 4
+
+/obj/item/weapon/fallout_melee/spear/throwing/throw_at(atom/target, range, speed, thrower, spin = FALSE, flying)
+	. = ..()
 
 /obj/item/weapon/fallout_melee/spear/scrap
 	name = "scrap spear"
@@ -385,6 +392,7 @@
 	throw_range = 2
 	attack_verb = list("smashed", "hammered", "bludgeoned")
 	attack_speed = ATTACK_SPEED_SLOW
+	haswieldedstate = TRUE
 
 /obj/item/weapon/fallout_melee/hammer/rocket
 	name = "rocket sledge"
@@ -406,9 +414,9 @@
 	. = ..()
 	to_chat(user, "The fuel gage reads [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units.")
 	if(weapon_active)
-		to_chat(user, span_notice("The booster is active."))
+		. += "The booster is active."
 	else
-		to_chat(user, span_notice("The booster is inactive."))
+		. += "The booster is inactive."
 
 /obj/item/weapon/fallout_melee/hammer/rocket/unique_action(mob/user)
 	. = ..()
@@ -418,7 +426,7 @@
 		force_wielded = initial(force_wielded)
 		if(CHECK_BITFIELD(flags_item, WIELDED))
 			force = force_wielded
-		user.visible_message(span_notice("[user] deactivates the [src]'s booster."))
+		user.visible_message(span_notice("[user] deactivates [src]'s booster."))
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		/* Uncomment when sprites added
 		update_icon()*/
@@ -427,7 +435,7 @@
 	force_wielded = force_wielded * 2
 	if(CHECK_BITFIELD(flags_item, WIELDED))
 		force = force_wielded
-	user.visible_message(span_warning("[user] ignites the [src]'s booster."))
+	user.visible_message(span_warning("[user] ignites [src]'s booster."))
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 	/* Uncomment when sprites added
 	update_icon()*/
@@ -435,11 +443,11 @@
 /obj/item/weapon/fallout_melee/hammer/rocket/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
 	if(weapon_active)
 		if(!CHECK_BITFIELD(flags_item, WIELDED))
-			to_chat(user, span_warning("You need both hands on the [src] to use the booster safely!"))
+			to_chat(user, span_warning("You need both hands on [src] to use the booster safely!"))
 			attack_verb = list("smashed", "hammered", "bludgeoned")
 			return ..()
 		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_consumption_rate)
-			to_chat(user, span_warning("The [src]'s booster fizzles! It lacks sufficient fuel."))
+			to_chat(user, span_warning("[src]'s booster fizzles! It lacks sufficient fuel."))
 			return ..()
 		attack_verb = "slammed"
 		playsound(loc, 'sound/weapons/rocket_sledge.ogg', 50, TRUE)
@@ -463,13 +471,13 @@
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/RS = target
 		if(RS.reagents.total_volume == 0)
-			to_chat(user, span_warning("The [target] is out of fuel!"))
+			to_chat(user, span_warning("[target] is out of fuel!"))
 			return ..()
 		var/fuel_transfer_amount = min(RS.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
 		RS.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refuel the [src]."))
+		to_chat(user, span_notice("You refuel [src]."))
 	return ..()
 
 //Move to hammer/super and make it work off battery instead of fuel
@@ -492,6 +500,7 @@
 	sharp = IS_NOT_SHARP_ITEM
 	throw_speed = 0.5	//Slightly heavier than a sword, so slower to throw
 	attack_verb = list("smashed", "hit a home run on", "bludgeoned", "smacked")
+	haswieldedstate = TRUE
 
 /obj/item/weapon/fallout_melee/bat/spiked
 	name = "spiked baseball bat"
@@ -502,7 +511,7 @@
 	force_wielded = 30
 
 /obj/item/weapon/fallout_melee/bat/metal
-	name = "\improper Metal Baseball Bat"
+	name = "metal baseball bat"
 	icon_state = "bat_metal"
 	flags_atom = CONDUCT
 
@@ -557,7 +566,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bonked", "punched", "fisted")
 	var/knockback_bonus = 0.5
-	energy_cost = 50
+	energy_cost = 200
 
 /obj/item/weapon/fallout_melee/gauntlet/power/Destroy()
 	if(battery)
@@ -567,13 +576,13 @@
 /obj/item/weapon/fallout_melee/gauntlet/power/examine(user)
 	. = ..()
 	if(battery)
-		to_chat(user, span_notice("It has [battery.charge] power remaining."))
+		. += "It has [battery.charge] power remaining."
 	else
-		to_chat(user, span_notice("There is no cell installed!"))
+		. += "There is no cell installed!"
 	if(weapon_active)
-		to_chat(user, span_notice("The hydraulics are active."))
+		. += "The hydraulics are active."
 	else
-		to_chat(user, span_notice("The hydraulics are inactive."))
+		. += "The hydraulics are inactive."
 
 /obj/item/weapon/fallout_melee/gauntlet/power/unique_action(mob/user)
 	. = ..()
@@ -589,7 +598,7 @@
 		update_icon()*/
 		return
 	weapon_active = TRUE
-	force = force * 2
+	force = force * 3
 	to_chat(user, span_italics("You activate [src]'s hydraulics."))
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 	/* Uncomment when sprites added
@@ -633,7 +642,7 @@
 		unload(user)
 	user.transferItemToLoc(I,src)
 	battery = I
-	to_chat(user, span_notice("You insert the [I] into [src]."))
+	to_chat(user, span_notice("You insert [I] into [src]."))
 
 /obj/item/weapon/fallout_melee/gauntlet/power/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -709,6 +718,7 @@
 	force_wielded = 15
 	throw_range = 7
 	attack_verb = list("swung at", "practiced their backswing on", "clubbed")
+	haswieldedstate = TRUE
 
 /obj/item/weapon/fallout_melee/whip
 	name = "leather whip"
@@ -738,7 +748,7 @@
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	slowdown = 1
+	slowdown = 0.2
 	max_integrity = 200
 	force = 30
 	throwforce = 15
@@ -754,7 +764,7 @@
 /obj/item/weapon/shield/fallout_shield/reinforced
 	name = "reinforced riot shield"
 	icon_state = "shield_reinforced"
-	slowdown = 1.5
+	slowdown = 0.4
 	max_integrity = 300
 	force = 40
 	throwforce = 20
@@ -770,11 +780,11 @@
 	desc = "A wooden shield for protection in combat."
 	icon_state = "shield_buckler"
 	w_class = WEIGHT_CLASS_BULKY
-	slowdown = 0.5
+	slowdown = 0
 	max_integrity = 100
 	force = 15
-	throwforce = 20	//Captain America this bad boy
-	throw_speed = 2
+	throwforce = 30	//Captain America this bad boy
+	throw_speed = 3
 	throw_range = 7
 	repair_material = /obj/item/stack/sheet/wood
 	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -797,14 +807,14 @@
 	var/health_status = (obj_integrity * 100)/max_integrity
 	switch(health_status)
 		if(0)
-			to_chat(user, span_warning("It's fallen apart. This needs repairs before it can offer protection again."))
+			. += span_warning("It's fallen apart. This needs repairs before it can offer protection again.")
 		if(0 to 30)
-			to_chat(user, span_warning("It's falling apart and will not be able to withstand further damage."))
+			. += span_warning("It's falling apart and will not be able to withstand further damage.")
 		if(30 to 80)
-			to_chat(user, span_notice("It has cracked edges and dents."))
+			. += span_notice("It has cracked edges and dents.")
 		if(80 to 100)
-			to_chat(user, span_notice("It appears in perfect condition."))
-	to_chat(user, span_notice("Alt click to tighten or loosen the anti-drop strap."))
+			. += span_notice("It appears in perfect condition.")
+	. += "Alt click to tighten or loosen the anti-drop strap."
 
 /obj/item/weapon/shield/fallout_shield/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -814,15 +824,15 @@
 			to_chat(user, span_warning("[src] doesn't need repairs."))
 			return
 		if(repair_material.get_amount() < 1)
-			to_chat(user, span_warning("You need one [repair_material.name] to mend the [src]."))
+			to_chat(user, span_warning("You need one [repair_material.name] to mend [src]."))
 			return
-		user.visible_message(span_notice("[user] begins to mend the [src]."))
+		user.visible_message(span_notice("[user] begins to mend [src]."))
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 		if(!repair_material.use(1))
 			return
 		repair_damage(max_integrity * 0.5)
-		user.visible_message(span_notice("[user] mended the [src] with [repair_material.name]."))
+		user.visible_message(span_notice("[user] mended [src] with [repair_material.name]."))
 
 /obj/item/weapon/shield/fallout_shield/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)

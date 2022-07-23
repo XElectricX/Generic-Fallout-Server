@@ -98,6 +98,7 @@
 	desc = "Stick magazine for 9mm SMGs."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	icon_state = "9mag_smg"
+	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/fallout/nine
 	caliber = CALIBER_9X19
 	max_rounds = 25
@@ -205,7 +206,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 //Explosive ordnance magazines
+/obj/item/ammo_magazine/standard_atgun
+	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/mortal_shell
+	w_class = WEIGHT_CLASS_NORMAL
 
 //Energy cells
 

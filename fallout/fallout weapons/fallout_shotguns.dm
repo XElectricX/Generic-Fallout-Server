@@ -29,8 +29,8 @@
 	force = 20
 	wield_delay = 0.8 SECONDS
 	aim_slowdown = 2
-	scatter = 5
-	scatter_unwielded = 20
+	scatter = 0
+	scatter_unwielded = 10
 	recoil = 1
 	recoil_unwielded = 5    //What you get for firing a long shotgun one-handed
 
@@ -45,7 +45,7 @@
 	damage_falloff_mult = 2 //Worse range
 	force = 10
 	wield_delay = 0.4 SECONDS
-	scatter = 10
+	scatter = 5
 	scatter_unwielded = 15
 	recoil = 1.3
 	recoil_unwielded = 3

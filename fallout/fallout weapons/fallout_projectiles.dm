@@ -6,6 +6,7 @@
 	name = "bullet template"
 	desc = "This should not exist."
 	handful_icon_state = "small_casing"
+	accuracy = 20	//Accuracy boost to reduce RNG but allow other factors to impact it
 
 //Pistol rounds
 /datum/ammo/bullet/fallout/nine
@@ -14,7 +15,7 @@
 	damage = 12
 	damage_falloff = 1.5
 	penetration = 5
-	shrapnel_chance = 8
+	shrapnel_chance = 3
 	point_blank_range = 1
 	shell_speed = 2.5
 
@@ -24,7 +25,7 @@
 	damage = 15
 	damage_falloff = 1.5
 	penetration = 7
-	shrapnel_chance = 12
+	shrapnel_chance = 3
 	point_blank_range = 1
 	shell_speed = 2.3
 
@@ -34,7 +35,7 @@
 	damage = 13
 	damage_falloff = 1.5
 	penetration = 5
-	shrapnel_chance = 10
+	shrapnel_chance = 3
 	shell_speed = 1.8
 
 /datum/ammo/bullet/fallout/subsonic
@@ -43,7 +44,7 @@
 	damage = 12
 	damage_falloff = 1.5
 	penetration = 2
-	shrapnel_chance = 8
+	shrapnel_chance = 5
 	point_blank_range = 1
 
 /datum/ammo/bullet/fallout/magnum357
@@ -51,7 +52,7 @@
 	desc = "Yee-fucking-haw."
 	damage = 25
 	penetration = 10
-	shrapnel_chance = 20
+	shrapnel_chance = 10
 	shell_speed = 2.2
 
 /datum/ammo/bullet/fallout/magnum44
@@ -80,7 +81,7 @@
 	handful_amount = 4
 	damage = 20
 	penetration = 40
-	shrapnel_chance = 20
+	shrapnel_chance = 15
 	accurate_range = 6
 
 /datum/ammo/bullet/fallout/winchester
@@ -91,7 +92,7 @@
 	damage = 35
 	damage_falloff = 0.8
 	penetration = 60
-	shrapnel_chance = 25
+	shrapnel_chance = 20
 	accurate_range = 8
 	accurate_range_min = 1
 	shell_speed = 2.8
@@ -132,7 +133,7 @@
 	damage = 12
 	damage_falloff = 1.5
 	penetration = 5
-	shrapnel_chance = 8
+	shrapnel_chance = 5
 	point_blank_range = 1
 	shell_speed = 2
 	bonus_projectiles_type = /datum/ammo/bullet/fallout/buckshot/extra
