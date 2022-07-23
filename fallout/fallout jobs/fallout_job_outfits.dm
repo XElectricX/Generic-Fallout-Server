@@ -22,7 +22,6 @@
 	r_store = /obj/item/flashlight/fallout
 
 /datum/outfit/job/fallout/ncr/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle, SLOT_IN_BELT)
@@ -42,7 +41,6 @@
 	l_hand = null
 
 /datum/outfit/job/fallout/ncr/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/ten, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/ten, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/ten, SLOT_IN_L_POUCH)
@@ -61,7 +59,6 @@
 	l_hand = null
 
 /datum/outfit/job/fallout/ncr/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle/winchester/extended, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle/winchester/extended, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_rifle/winchester/extended, SLOT_IN_L_POUCH)
@@ -76,7 +73,6 @@
 	suit_store = /obj/item/weapon/gun/fallout_smg/thompson
 
 /datum/outfit/job/fallout/ncr/captain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/acp/thompson, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/acp/thompson, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/acp/thompson, SLOT_IN_BELT)
@@ -88,12 +84,12 @@
 	name = NCR_LEADER
 	w_uniform = /obj/item/clothing/under/fallout/ncr/officer
 	wear_suit = /obj/item/clothing/suit/storage/fallout/ncr/officer_reinforced
+	belt = /obj/item/storage/belt/fallout/holster
 	mask = null
 	id = /obj/item/card/id/ncr/leader
 	suit_store = /obj/item/weapon/fallout_melee/chinese
 
 /datum/outfit/job/fallout/ncr/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/fallout_pistol/sequoia, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/govt, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/govt, SLOT_IN_BELT)
@@ -114,8 +110,7 @@
 	r_hand = null
 	l_hand = null
 
-/datum/outfit/job/fallout/ncr/captain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+/datum/outfit/job/fallout/ncr/support/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)
@@ -137,6 +132,9 @@
 	r_store = /obj/item/flashlight/fallout/lantern
 	l_hand = /obj/item/weapon/shield/fallout_shield/buckler
 
+/datum/outfit/job/fallout/legion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)
+
 /datum/outfit/job/fallout/legion/prime
 	name = LEGION_PRIME
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/prime
@@ -148,7 +146,6 @@
 	l_hand = /obj/item/weapon/shield/fallout_shield
 
 /datum/outfit/job/fallout/legion/prime/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/fallout_pistol/colt357, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/magnum357, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/magnum357, SLOT_IN_BELT)
@@ -165,7 +162,6 @@
 	l_hand = null
 
 /datum/outfit/job/fallout/legion/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/box/magnum357, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/fallout_pistol/colt357, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/magnum357, SLOT_IN_BELT)
@@ -186,7 +182,6 @@
 	r_hand = /obj/item/weapon/fallout_melee/gladius
 
 /datum/outfit/job/fallout/legion/decanus/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/acp, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/acp, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/acp, SLOT_IN_BELT)
@@ -205,12 +200,12 @@
 	suit_store = /obj/item/weapon/fallout_melee/hammer/rocket
 	l_hand = null
 
-/datum/outfit/job/fallout/legion/centurion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+/datum/outfit/job/fallout/legion/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/fallout_pistol/hunting_revolver, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/govt, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/govt, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/govt, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/fallout/legion/support
 	name = LEGION_SUPPORT

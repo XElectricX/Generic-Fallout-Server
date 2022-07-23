@@ -24,8 +24,8 @@
 	force = 15
 	wield_delay = 1 SECONDS
 	aim_slowdown = 2
-	scatter = 10
-	scatter_unwielded = 50
+	scatter = 5
+	scatter_unwielded = 20
 	recoil = 0.5
 	recoil_unwielded = 3
 
@@ -44,9 +44,10 @@
 	force = 12
 	wield_delay = 0.75 SECONDS
 	aim_slowdown = 1.2
-	scatter = 20
+	scatter = 3
+	scatter_unwielded = 15
 	recoil = 0
-	recoil_unwielded = 1
+	recoil_unwielded = 0.3
 
 /obj/item/weapon/gun/fallout_rifle/hunting
 	name = "\improper Hunting Rifle"
@@ -75,7 +76,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	scatter = 5
-	scatter_unwielded = 25
+	scatter_unwielded = 20
 	recoil = 1.2
 	recoil_unwielded = 3
 
@@ -95,7 +96,7 @@
 	scatter = 0
 	scatter_unwielded = 10
 	recoil = 0
-	recoil_unwielded = 1
+	recoil_unwielded = 0.4
 
 /obj/item/weapon/gun/fallout_rifle/anti_materiel
 	name = "\improper Hecate II Anti-Materiel Rifle"
@@ -139,7 +140,7 @@
 	force = 15
 	wield_delay = 0.75 SECONDS
 	aim_slowdown = 1.1
-	scatter = 5
+	scatter = 3
 	scatter_unwielded = 15
 	recoil = 0.2
 	recoil_unwielded = 1

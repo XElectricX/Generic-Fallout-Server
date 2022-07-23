@@ -23,8 +23,8 @@
 	force = 12
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.5
-	scatter = 15
-	scatter_unwielded = 25
+	scatter = 10
+	scatter_unwielded = 20
 	recoil = 0.5
 	recoil_unwielded = 1.5
 
@@ -41,8 +41,8 @@
 	force = 15
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.6
-	scatter = 10
-	scatter_unwielded = 20
+	scatter = 8
+	scatter_unwielded = 17
 	recoil = 0.3
 	recoil_unwielded = 1.2
 
@@ -59,8 +59,6 @@
 	force = 12
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.4
-	scatter = 15
-	scatter_unwielded = 30
 	recoil = 0.5
 	recoil_unwielded = 1.5
 
@@ -78,8 +76,8 @@
 	force = 20
 	wield_delay = 0.7 SECONDS
 	aim_slowdown = 0.7
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 8
+	scatter_unwielded = 25
 	recoil = 0.6
 	recoil_unwielded = 2
 
@@ -96,7 +94,7 @@
 /obj/item/weapon/gun/fallout_smg/american180
 	name = "\improper American 180"
 	desc = "Shoots angry bees."
-	icon_state = "smg10"
+	icon_state = "american180"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/american180.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	default_ammo_type = /obj/item/ammo_magazine/fallout_smg/subsonic
@@ -107,7 +105,7 @@
 	force = 20
 	wield_delay = 0.7 SECONDS
 	aim_slowdown = 0.7
-	scatter = 12
-	scatter_unwielded = 30
-	recoil = 0.3
-	recoil_unwielded = 1.2
+	scatter = 5
+	scatter_unwielded = 25
+	recoil = 0.1
+	recoil_unwielded = 0.4
