@@ -105,7 +105,7 @@ POPUP_ADMIN_PM
 # TOPIC_FILTERING_WHITELIST 127.0.0.1
 
 ## Only enable this if you have youtube-dl installed!
- INVOKE_YOUTUBEDL youtube-dl
+INVOKE_YOUTUBEDL youtube-dl
 
 #Here are the lobby music configs.
 #index link startSecond endSecond
@@ -233,3 +233,12 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Uncomment if you think xenos are struggling against marines
 #XENOS_ON_STRIKE
+
+## Lower number means faster walk speed
+WALK_DELAY -0.5
+
+## Lower numbers means faster sprint speed
+RUN_DELAY -1
+
+## If those with the COLOR permission can change their OOC color
+ALLOW_ADMIN_OOCCOLOR

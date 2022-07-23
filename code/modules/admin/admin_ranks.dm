@@ -129,7 +129,7 @@
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
 	//load text from file and process each entry
-	var/ranks_text = file2text("config/admin_ranks.txt")
+	var/ranks_text = file2text("cfg/admin_ranks.txt")
 	var/datum/admin_rank/previous_rank
 	var/regex/admin_ranks_regex = new(@"^Name\s*=\s*(.+?)\s*\n+Include\s*=\s*([\l @]*?)\s*\n+Exclude\s*=\s*([\l @]*?)\s*\n+Edit\s*=\s*([\l @]*?)\s*\n*$", "gm")
 	while(admin_ranks_regex.Find(ranks_text))
@@ -215,7 +215,7 @@
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		rank_names[R.name] = R
 	//ckeys listed in admins.txt are always made admins before sql loading is attempted
-	var/admins_text = file2text("config/admins.txt")
+	var/admins_text = file2text("cfg/admins.txt")
 	var/regex/admins_regex = new(@"^(?!#)(.+?)\s+=\s+(.+)", "gm")
 	while(admins_regex.Find(admins_text))
 		new /datum/admins(rank_names[admins_regex.group[2]], ckey(admins_regex.group[1]), TRUE)
