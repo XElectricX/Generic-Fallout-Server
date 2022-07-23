@@ -13,9 +13,8 @@ Format:
 endmap
 
 map debugdalus
-	voteweight 0
+	default
 endmap
 
 map pillar_of_spring
-	default
 endmap
