@@ -1,5 +1,7 @@
 /obj/item/radio/fallout
 	name = "handheld radio"
+	icon = 'fallout/fallout icons/fallout items/fallout_tools.dmi'
+	icon_state = "hand_radio_on"
 	frequency = FREQ_COMMON //common chat
 	broadcasting = TRUE  // Whether the radio will transmit dialogue it hears nearby.
 	listening = TRUE  // Whether the radio is currently receiving.

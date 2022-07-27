@@ -1,6 +1,8 @@
 /obj/item/binoculars/fallout
 	name = "binoculars"
 	desc = "A pair of binoculars. Examine a tile/object while in use to get coordinates."
+	icon = 'fallout/fallout icons/fallout items/fallout_tools.dmi'
+	icon_state = "binoculars"
 	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
 	item_state = "binoculars"
 	throw_range = 7

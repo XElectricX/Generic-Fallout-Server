@@ -10,6 +10,12 @@
 /obj/machinery/power/apc/fallout/fusion_core
 	cell_type = /obj/item/cell/fallout
 
+//Cell charger
+/obj/machinery/cell_charger/fallout
+	name = "cell recharger"
+	desc = "Crude machine designed to recharge spent batteries and cells."
+	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
+
 //Power cells
 /obj/item/cell/fallout
 	name = "fusion core"

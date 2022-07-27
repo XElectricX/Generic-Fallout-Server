@@ -258,3 +258,13 @@
 		M.reagents.add_reagent(reagents, amount)	//Add drugs
 		usr.visible_message("[usr] makes [M] huff [src]!", "You make [M] huff [src]!")
 		qdel(src)
+
+/obj/item/stack/medical/heal_pack/bandage
+	name = "bandages"
+	singular_name = "bandage"
+	desc = "A herbal remedy made from crushed and heated broc and xander."
+	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
+	icon_state = "bandage"
+	heal_brute = 20
+	heal_burn = 20
+	heal_flags = 7
