@@ -301,6 +301,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	density = TRUE
 	anchored = TRUE
 	layer = DOOR_CLOSED_LAYER
+	max_integrity = 120
 	explosion_block = 0.5
 	var/can_hold_padlock = TRUE
 	var/obj/item/lock_construct/padlock
@@ -556,6 +557,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	material_type = /obj/item/stack/sheet/cloth
 	open_sound = "sound/effects/curtain.ogg"
 	close_sound = "sound/effects/curtain.ogg"
+	max_integrity = 100
 
 /obj/structure/simple_door/tent/cloth
 	name = "cotton tent entrance"
@@ -576,6 +578,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	material_type = /obj/item/stack/sheet/metal
 	open_sound = "fallout/fallout sounds/door_metal_open.ogg"
 	close_sound = "fallout/fallout sounds/door_metal_close.ogg"
+	max_integrity = 200
 	explosion_block = 1.5
 	material_count = 5
 
@@ -584,6 +587,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	desc = "A heavy iron door."
 	icon_state = "iron"
 	door_type = "iron"
+	max_integrity = 500
 	explosion_block = 5
 	opening_time = 12
 	closing_time = 8
