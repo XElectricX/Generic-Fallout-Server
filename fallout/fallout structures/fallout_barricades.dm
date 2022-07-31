@@ -15,8 +15,9 @@
 	desc = "A wall made of metal rods designed to separate areas but allow visibility into the other side."
 	icon = 'fallout/fallout icons/fallout structures/fallout_obstacles.dmi'
 	icon_state = "iron_bars"
+	density = TRUE
 	max_integrity = 400
-	throwpass = TRUE	//Bars spaced out enough to let objects be thrown
+	coverage = 40
 
 #define GIRDER_DAMAGED 0
 #define GIRDER_BUILT 1
@@ -146,6 +147,8 @@
 		to_chat(user, span_notice("You begin to repair [src]..."))
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, action_time, TRUE, src, BUSY_ICON_BUILD))
+			return
+		if(!welder.remove_fuel(1, user))
 			return
 		obj_integrity += (obj_integrity + 100 > max_integrity ? max_integrity - obj_integrity : 100)	//Check to prevent the integrity from going over maximum
 		to_chat(user, span_notice("You [obj_integrity == max_integrity ? "fully repaired [src]." : "repaired some parts of [src]."]"))

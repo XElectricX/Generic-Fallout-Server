@@ -301,6 +301,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	density = TRUE
 	anchored = TRUE
 	layer = DOOR_CLOSED_LAYER
+	throwpass = FALSE
 	max_integrity = 120
 	explosion_block = 0.5
 	var/can_hold_padlock = TRUE
@@ -308,7 +309,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	var/door_type = "house"
 	var/base_opacity = TRUE
 	var/manual_opened = 0
-	var/material_count = 10
+	var/material_count = 4
 	var/hard_open = FALSE
 	var/moving = 0
 	var/material_type = /obj/item/stack/sheet/wood
@@ -358,24 +359,24 @@ GLOBAL_LIST_EMPTY(global_locks)
 	playsound(src.loc, open_sound, 30, 0, 0)
 	if(animate)
 		moving = 1
-		flick("[door_type]opening", src)
+		flick("[door_type]_opening", src)
 		sleep(opening_time)
 		moving = 0
 	set_opacity(0)
 	density = 0
-	icon_state = "[door_type]open"
+	icon_state = "[door_type]_open"
 	layer = DOOR_OPEN_LAYER
 
 /obj/structure/simple_door/proc/Close(animate)
 	playsound(src.loc, close_sound, 30, 0, 0)
 	manual_opened = 0
+	density = 1
 	if(animate)
 		moving = 1
-		flick("[door_type]closing", src)
+		flick("[door_type]_closing", src)
 		sleep(closing_time)
 	icon_state = door_type
 	set_opacity(base_opacity)
-	density = 1
 	moving = 0
 	layer = DOOR_CLOSED_LAYER
 
@@ -580,7 +581,6 @@ GLOBAL_LIST_EMPTY(global_locks)
 	close_sound = "fallout/fallout sounds/door_metal_close.ogg"
 	max_integrity = 200
 	explosion_block = 1.5
-	material_count = 5
 
 /obj/structure/simple_door/metal/iron
 	name = "iron door"
@@ -589,18 +589,9 @@ GLOBAL_LIST_EMPTY(global_locks)
 	door_type = "iron"
 	max_integrity = 500
 	explosion_block = 5
-	opening_time = 12
-	closing_time = 8
-
-/obj/structure/simple_door/metal/barred
-	name = "barred door"
-	desc = "Bars. No matter which side we're on, aren't we always behind them?"
-	icon_state = "barred"
-	door_type = "barred"
-	open_sound = "fallout/fallout sounds/door_chainlink_open.ogg"
-	close_sound = "fallout/fallout sounds/door_chainlink_close.ogg"
-	opacity = FALSE
-	base_opacity = FALSE
+	opening_time = 21
+	closing_time = 21
+	material_count = 10
 
 /obj/structure/simple_door/metal/store
 	name = "metal door"
@@ -616,6 +607,40 @@ GLOBAL_LIST_EMPTY(global_locks)
 	icon_state = "dirtystore"
 	door_type = "dirtystore"
 
+/obj/structure/simple_door/metal/blastdoor
+	name = "blast door"
+	desc = "Highly reinforced door meant to withstand anything up to an atomic bomb."
+	icon_state = "blastdoor"
+	door_type = "blastdoor"
+	open_sound = "fallout/fallout sounds/door_mechanical_open.ogg"
+	close_sound = "fallout/fallout sounds/door_mechanical_close.ogg"
+	max_integrity = 1000
+	explosion_block = 20
+	opening_time = 27
+	closing_time = 27
+	material_type = /obj/item/stack/sheet/plasteel
+	material_count = 25
+
+/obj/structure/simple_door/metal/airlock
+	name = "airlock"
+	desc = "Commonly found in military facilities."
+	icon_state = "airlock"
+	door_type = "airlock"
+	open_sound = "sound/machines/airlock.ogg"
+	close_sound = "sound/machines/airlock.ogg"
+	max_integrity = 400
+	explosion_block = 1.5
+	opening_time = 9
+	closing_time = 9
+	material_type = /obj/item/stack/sheet/plasteel
+
+/obj/structure/simple_door/metal/airlock/glass
+	name = "windowed airlock"
+	icon_state = "airlock_glass"
+	door_type = "airlock_glass"
+	opacity = FALSE
+	base_opacity = FALSE
+
 /obj/structure/simple_door/metal/ventilation
 	name = "ventilation panel"
 	desc = "As you take a closer look, you notice a handle at the bottom of the access hatch."
@@ -623,8 +648,107 @@ GLOBAL_LIST_EMPTY(global_locks)
 	door_type = "ventilation"
 	open_sound = "fallout/fallout sounds/door_mechanical_open.ogg"
 	close_sound = "fallout/fallout sounds/door_mechanical_close.ogg"
-	opening_time = 25
-	closing_time = 20
+	opening_time = 29
+	closing_time = 11
+
+//Gates, kind of like doors but you can shoot and see through them
+/obj/structure/simple_door/gate
+	name = "iron gate"
+	desc = "Bars. No matter which side we're on, aren't we always behind them?"
+	icon_state = "gate"
+	door_type = "gate"
+	open_sound = "fallout/fallout sounds/door_chainlink_open.ogg"
+	close_sound = "fallout/fallout sounds/door_chainlink_close.ogg"
+	opacity = FALSE
+	base_opacity = FALSE
+	throwpass = TRUE
+	max_integrity = 200
+	explosion_block = 1.5
+	coverage = 40
+	material_count = 12
+	material_type = /obj/item/stack/rods
+
+/obj/structure/simple_door/gate/cell
+	name = "cell gate"
+	icon_state = "gate_cell"
+	door_type = "gate_cell"
+	max_integrity = 400
+
+/obj/structure/simple_door/gate/wire
+	name = "wire fence gate"
+	desc = "83% chance the door knob is stuck."
+	icon_state = "gate_wire"
+	door_type = "gate_wire"
+	flags_atom = ON_BORDER
+	layer = ABOVE_ALL_MOB_LAYER
+	max_integrity = 150
+	coverage = 20
+	material_count = 8
+
+/obj/structure/simple_door/gate/wire/setDir(newdir)
+	. = ..()
+	update_layer()
+
+//For keeping the gate sprite over stuff if not facing north, like fences
+/obj/structure/simple_door/gate/wire/proc/update_layer()
+	switch(dir)
+		if(SOUTH)
+			layer = initial(layer)
+		if(NORTH)
+			layer = BELOW_OBJ_LAYER
+		else
+			layer = initial(layer) - 0.01
+
+/obj/structure/simple_door/gate/wire/Open(animate)
+	. = ..()
+	update_layer()
+
+/obj/structure/simple_door/gate/wire/Close(animate)
+	. = ..()
+	update_layer()
+
+//Following stuff allows wire gates to act like wire fences, but not for wooden gates because it only has a single directional sprite
+/obj/structure/simple_door/gate/wire/Initialize()
+	. = ..()
+	update_layer()
+	var/static/list/connections = list(COMSIG_ATOM_EXIT = .proc/on_try_exit)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/simple_door/gate/wire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
+
+/obj/structure/simple_door/gate/wire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+		return TRUE
+	if(istype(mover, /obj/vehicle/multitile))
+		visible_message(span_danger("[mover] drives over and destroys [src]!"))
+		deconstruct(FALSE)
+		return FALSE
+	if(density)
+		if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+			return FALSE
+		if(get_dir(loc, target) & dir)
+			return FALSE
+		else
+			return TRUE
+	else
+		return TRUE
+
+/obj/structure/simple_door/gate/wood
+	name = "wooden fence gate"
+	desc = "For keeping your ranch critters in or keeping raiders out."
+	icon_state = "gate_wood"
+	door_type = "gate_wood"
+	max_integrity = 120
+	coverage = 20
+	material_type = /obj/item/stack/sheet/wood
+	material_count = 4
 
 //Glass doors
 /obj/structure/simple_door/glass

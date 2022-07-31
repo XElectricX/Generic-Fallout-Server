@@ -47,7 +47,7 @@
 //Log wall, very weak
 /turf/closed/wall/fallout/log
 	name = "log cabin wall"
-	desc = "Robust slab of cement."
+	desc = "Hand-crafted from raw wood. Not very durable."
 	icon = 'fallout/fallout icons/fallout turfs/fallout_wood_walls.dmi'
 	icon_state = "log0"
 	walltype = "log"
