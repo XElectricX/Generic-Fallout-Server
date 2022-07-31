@@ -1850,6 +1850,7 @@
 #include "fallout\fallout structures\fallout_crates.dm"
 #include "fallout\fallout structures\fallout_debris.dm"
 #include "fallout\fallout structures\fallout_doors.dm"
+#include "fallout\fallout structures\fallout_fences.dm"
 #include "fallout\fallout structures\fallout_windows.dm"
 #include "fallout\fallout turfs\fallout_floors.dm"
 #include "fallout\fallout turfs\fallout_walls.dm"

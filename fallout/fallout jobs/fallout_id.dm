@@ -4,9 +4,8 @@
 	desc = "An NCR dog tag."
 	icon = 'fallout/fallout icons/fallout clothing/identification.dmi'
 	icon_state = "ncr"
-	access = list(NCR_ACCESS)
-	icon_state = "dogtag"
 	item_state = "dogtag"
+	access = list(NCR_ACCESS)
 	//iff_signal =
 
 /obj/item/card/id/ncr/medic
@@ -38,9 +37,8 @@
 	desc = "A roughly-made Legion badge with writing on paper over a leather frame."
 	icon = 'fallout/fallout icons/fallout clothing/identification.dmi'
 	icon_state = "legion"
-	access = list(LEGION_ACCESS)
-	icon_state = "dogtag"
 	item_state = "dogtag"
+	access = list(LEGION_ACCESS)
 	//iff_signal =
 
 /obj/item/card/id/legion/prime

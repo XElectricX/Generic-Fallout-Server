@@ -23,6 +23,10 @@
 	desc = "Insulated and semi-sterile crate that can keep medical supplies safe."
 	icon_state = "crate_medical"
 
+/obj/structure/closet/fallout/crate/medical/chest
+	name = "medical chest"
+	icon_state = "crate_medical_large"
+
 /obj/structure/closet/fallout/crate/metal
 	name = "metal crate"
 	desc = "A simple crate."
