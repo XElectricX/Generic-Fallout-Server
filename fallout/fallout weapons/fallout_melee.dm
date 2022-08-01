@@ -169,6 +169,19 @@
 	unload(user)
 	return TRUE
 
+/obj/item/weapon/fallout_melee/assaultron
+	name = "\improper Assaultron blade"
+	desc = "An improvised weapon made out of the severed arm blade of an Assaultron."
+	icon_state = "sword_assaultron"
+	force = 30
+	force_wielded = 45
+	throwforce = 20
+
+/obj/item/weapon/fallout_melee/assaultron/gold
+	name = "\improper Republic Assaultron blade"
+	desc = "The NCR's response to a need for weapons that can match the Legion. Manufactured from salvaged Assaultrons and adorned with a golden handle."
+	icon_state = "sword_assaultron_gold"
+
 /obj/item/weapon/fallout_melee/gladius
 	name = "machete gladius"
 	desc = "A formidable blade crafted by Legion Blacksmiths. The symbol of achievement for combat-proven Legionnaires."
@@ -178,7 +191,7 @@
 	throwforce = 25
 
 /obj/item/weapon/fallout_melee/scrap
-	name = "\improper Scrap Blade"
+	name = "scrap blade"
 	desc = "A shoddy amalgation of metal."
 	icon_state = "sword_scrap"
 
