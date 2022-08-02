@@ -54,3 +54,15 @@
 	name = "Trekker Satchel"
 	desc = "Leather bag with many pockets."
 	icon_state = "trekker_satchel"
+
+//Spear quiver, only holds throwing spears
+/obj/item/storage/backpack/fallout/quiver
+	name = "spear quiver"
+	desc = "Store your pointed sticks for throwing later."
+	icon_state = "quiver"
+	max_w_class = 4
+	storage_slots = 10
+	max_storage_space = 40
+	access_delay = 0
+	slowdown = 0
+	can_hold = list(/obj/item/weapon/fallout_melee/spear/throwing)

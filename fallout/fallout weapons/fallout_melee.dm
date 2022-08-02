@@ -325,11 +325,9 @@
 	icon_state = "spear_throwing"
 	w_class = WEIGHT_CLASS_BULKY
 	force_wielded = 25
-	throwforce = 50
+	throwforce = 62.5	//The formula for throwforce takes throw_speed into account, so this makes it do 50 damage
 	throw_speed = 4
-
-/obj/item/weapon/fallout_melee/spear/throwing/throw_at(atom/target, range, speed, thrower, spin = FALSE, flying)
-	. = ..()
+	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 3, "embedded_unsafe_removal_time" = 4 SECONDS)
 
 /obj/item/weapon/fallout_melee/spear/scrap
 	name = "scrap spear"
