@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/fallout_rifle
-	name = "\improper Service Rifle"
+	name = "service rifle"
 	desc = "Primary weapon of most NCRA soldiers. Fitted for the reliable 5.56mm cartridge, in addition to being cheap and easy to maintain."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_rifles.dmi'
 	icon_state = "service"
@@ -29,8 +29,26 @@
 	recoil = 0.5
 	recoil_unwielded = 3
 
+/obj/item/weapon/gun/fallout_rifle/r91
+	name = "\improper R-91 assault rifle"
+	desc = "Standard issue rifle of the US armed forces."
+	icon_state = "r91"
+	item_state = "R84"	//Needs an appropriate worn icon, this will do for now though
+	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/r91_rifle_fire.wav'
+	unload_sound = 'fallout/fallout sounds/fallout weapon sounds/r91_rifle_unload.wav'
+	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/r91_rifle_reload.wav'
+	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/r91_rifle_cock.wav'
+	fire_delay = 0.3 SECONDS
+	force = 18
+	wield_delay = 1.2 SECONDS
+	aim_slowdown = 2.1
+	scatter = 3
+	scatter_unwielded = 15
+	recoil = 0.7
+	recoil_unwielded = 4
+
 /obj/item/weapon/gun/fallout_rifle/varmint
-	name = "\improper Varmint Rifle"
+	name = "varmint rifle"
 	desc = "Basic and barebones long gun. Ubiquitous as one of the cheapest rifles out there."
 	icon_state = "varmint"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/varmint_rifle_fire.ogg'
@@ -50,7 +68,7 @@
 	recoil_unwielded = 0.3
 
 /obj/item/weapon/gun/fallout_rifle/hunting
-	name = "\improper Hunting Rifle"
+	name = "hunting rifle"
 	desc = "A simple bolt-action long gun. Hunting license not included."
 	icon_state = "hunting_rifle"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_fire.wav'
@@ -71,7 +89,7 @@
 	recoil_unwielded = 5
 
 /obj/item/weapon/gun/fallout_rifle/hunting/short
-	name = "\improper Short Hunting Rifle"
+	name = "short hunting rifle"
 	icon_state = "hunting_rifle_short"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
@@ -81,7 +99,7 @@
 	recoil_unwielded = 3
 
 /obj/item/weapon/gun/fallout_rifle/delisle
-	name = "\improper DeLisle Carbine"
+	name = "\improper DeLisle carbine"
 	desc = "Suppressed bolt-action rifle. One of the quietest firearms in existence."
 	icon_state = "delisle"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/american180.ogg'
@@ -99,7 +117,7 @@
 	recoil_unwielded = 0.4
 
 /obj/item/weapon/gun/fallout_rifle/anti_materiel
-	name = "\improper Hecate II Anti-Materiel Rifle"
+	name = "\improper Hecate II anti-materiel rifle"
 	desc = "Heavy bolt-action rifle chambered for .50 BMG. Necessary for when you want to kill someone and the wall they were hiding behind."
 	icon_state = "hecate"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/antimateriel_rifle_fire.wav'
