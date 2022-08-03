@@ -303,9 +303,9 @@
 //Spears
 /obj/item/weapon/fallout_melee/spear
 	name = "metal spear"
-	desc = "Then there is the absolute Chad of a weapon, the spear.\
-			Seen in basically every pre-gunpowder battle, the backbone of most major armies, cheap, useful, easy to produce, no non-sense stabbing greatness.\
-			The friend of peasants, with reach and accuracy. Cheers to spear and all of its cousins; the pike, halberd, and others."
+	desc = "Then there is the absolute Chad of a weapon, the spear. \
+			Seen in basically every pre-gunpowder battle, the backbone of most major armies. Cheap, useful, easy to produce, no non-sense stabbing greatness. \
+			The friend of peasants, with reach and accuracy. Cheers to the spear and all of its cousins; the pike, halberd, and others."
 	icon_state = "spear"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
@@ -686,7 +686,7 @@
 /obj/item/weapon/fallout_melee/knuckles/spiked
 	name = "spiked knuckles"
 	desc = "Metal shaped into the form of a fist with holes for the wearer's fingers and raised points along the edge."
-	icon_state = "knuckles_spike"
+	icon_state = "knuckles_spiked"
 	edge = TRUE
 	sharp = IS_SHARP_ITEM_SIMPLE
 	force = 20
@@ -741,7 +741,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
-	force = 15
 	hitsound = "swing_hit"
 	attack_verb = list("whipped", "lashed", "flogged")
 	attack_speed = ATTACK_SPEED_MEDIUM

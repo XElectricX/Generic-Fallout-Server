@@ -25,8 +25,8 @@
 /obj/item/clothing/under/fallout/ncr/pants
 	name = "NCR fatigue pants"
 	desc = "A set of standard issue fatigue pants without the upper overcoat. For when you really need to show off your guns."
-	icon_state = "ncr_fatigue_pants"
-	item_state = "ncr_fatigue_pants"
+	icon_state = "ncr_pants"
+	item_state = "ncr_pants"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/fallout/ncr/shorts
