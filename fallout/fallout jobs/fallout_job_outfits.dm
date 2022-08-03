@@ -120,7 +120,7 @@
 	name = LEGION_RECRUIT
 	w_uniform = /obj/item/clothing/under/fallout/legion
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion
-	back = /obj/item/storage/backpack/fallout/satchel/explorer
+	back = /obj/item/storage/backpack/fallout/quiver/full
 	belt = /obj/item/weapon/fallout_melee
 	gloves = /obj/item/clothing/gloves/fallout/legion
 	shoes = /obj/item/clothing/shoes/fallout/legion
@@ -154,6 +154,7 @@
 /datum/outfit/job/fallout/legion/veteran
 	name = LEGION_VETERAN
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/veteran
+	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt = /obj/item/storage/belt/fallout/holster
 	head = /obj/item/clothing/head/helmet/fallout/legion/veteran
 	id = /obj/item/card/id/legion/veteran
@@ -171,6 +172,7 @@
 /datum/outfit/job/fallout/legion/decanus
 	name = LEGION_DECANUS
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/venator
+	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt = /obj/item/storage/belt/fallout/legion
 	gloves = /obj/item/clothing/gloves/fallout/metal
 	shoes = /obj/item/clothing/shoes/fallout/legion/metal
@@ -191,6 +193,7 @@
 /datum/outfit/job/fallout/legion/leader
 	name = LEGION_LEADER
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/centurion
+	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt = /obj/item/storage/belt/fallout/holster
 	gloves = /obj/item/clothing/gloves/fallout/metal
 	shoes = /obj/item/clothing/shoes/fallout/legion/metal
@@ -211,6 +214,7 @@
 	name = LEGION_SUPPORT
 	w_uniform = /obj/item/clothing/under/fallout/legion/auxillary_male
 	wear_suit = null
+	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt =	/obj/item/storage/belt/fallout/medical/full
 	gloves = /obj/item/clothing/gloves/fallout/blacksmith
 	shoes = /obj/item/clothing/shoes/fallout/legion/sandals

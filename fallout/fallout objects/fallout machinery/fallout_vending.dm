@@ -94,6 +94,7 @@
 			/obj/item/ammo_magazine/box/shotgun = -1),
 		"Rifles" = list(
 			/obj/item/weapon/gun/fallout_rifle = -1,
+			/obj/item/weapon/gun/fallout_rifle/r91 = -1,
 			/obj/item/ammo_magazine/fallout_rifle = -1,
 			/obj/item/ammo_magazine/fallout_rifle/extended = -1,
 			/obj/item/weapon/gun/fallout_rifle/hunting = -1,
@@ -132,6 +133,7 @@
 			/obj/item/ammo_magazine/box/govt = -1),
 		"Melee" = list(
 			/obj/item/weapon/fallout_melee = -1,
+			/obj/item/weapon/fallout_melee/assaultron/gold = -1,
 			/obj/item/weapon/fallout_melee/knife = -1,
 			/obj/item/weapon/fallout_melee/knife/hunting = -1,
 			/obj/item/weapon/fallout_melee/knife/bowie = -1,
@@ -151,6 +153,7 @@
 			/obj/item/mortal_shell/smoke = -1,
 			/obj/item/mortal_shell/flare = -1),
 		"Equipment" = list(
+			/obj/item/reagent_containers/jerrycan = -1,
 			/obj/item/flashlight/fallout = -1,
 			/obj/item/flashlight/fallout/flare = -1,
 			/obj/item/radio/fallout = -1,
@@ -192,6 +195,8 @@
 			/obj/item/clothing/head/fallout/ncr/beret_recon = -1,
 			/obj/item/clothing/head/fallout/ncr/beret_officer = -1,
 			/obj/item/clothing/head/fallout/ncr/beret_staff = -1,
+			/obj/item/storage/backpack/fallout/trekker = -1,
+			/obj/item/storage/backpack/fallout/satchel/trekker = -1,
 			/obj/item/storage/belt/fallout/ncr = -1,
 			/obj/item/storage/belt/fallout/tools = -1,
 			/obj/item/storage/belt/fallout/medical = -1,
@@ -297,6 +302,7 @@
 			/obj/item/weapon/fallout_melee/gauntlet/mole = -1,
 			/obj/item/weapon/fallout_melee/knuckles = -1,
 			/obj/item/weapon/fallout_melee/knuckles/spiked = -1,
+			/obj/item/weapon/fallout_melee/whip = -1,
 			/obj/item/weapon/shield/fallout_shield/buckler = -1,
 			/obj/item/weapon/shield/fallout_shield/reinforced/legion = -1,
 			/obj/item/weapon/shield/fallout_shield/roman = -1),
@@ -304,6 +310,7 @@
 			/obj/item/explosive/grenade/stick = -1,
 			/datum/ammo/rocket/atgun_shell = -1),
 		"Equipment" = list(
+			/obj/item/reagent_containers/jerrycan = -1,
 			/obj/item/flashlight/fallout/lantern = -1,
 			/obj/item/flashlight/fallout/flare/torch = -1,
 			/obj/item/radio/fallout = -1,
@@ -338,6 +345,9 @@
 			/obj/item/clothing/mask/fallout/legion/decanus = -1,
 			/obj/item/clothing/mask/fallout/legion/centurion = -1,
 			/obj/item/clothing/head/fallout/legion = -1,
+			/obj/item/storage/backpack/fallout/explorer = -1,
+			/obj/item/storage/backpack/fallout/satchel/explorer = -1,
+			/obj/item/storage/backpack/fallout/quiver = -1,
 			/obj/item/storage/belt/fallout/legion = -1,
 			/obj/item/storage/belt/fallout/tools = -1,
 			/obj/item/storage/belt/fallout/medical = -1,

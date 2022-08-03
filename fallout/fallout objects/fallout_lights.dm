@@ -104,3 +104,45 @@
 	activation_sound = 'sound/items/flare.ogg'	//Needs torch sound file
 	fuel = 1500	//Lasts longer than a flare
 	lighting_message = "lit the torch"
+
+//Street lamps
+/obj/machinery/street_light
+	name = "street light"
+	desc = "Still providing the people with light hundreds of years later."
+	icon = 'fallout/fallout icons/fallout structures/street_lights.dmi'
+	icon_state = "single_on"
+	obj_flags = CAN_BE_HIT
+	layer = ABOVE_ALL_MOB_LAYER
+	use_power = NO_POWER_USE
+	power_channel = LIGHT
+	max_integrity = 800
+	integrity_failure = 200
+	light_range = 12
+	light_power = 1
+	pixel_x = -32
+
+/obj/machinery/street_light/Initialize()
+	. = ..()
+	set_light(light_range, light_power, light_color)
+	AddComponent(/datum/component/largetransparency, 0, 0, 0, 2)
+
+/obj/machinery/street_light/obj_break(damage_flag)
+	set_light(0)
+	icon_state = replacetext(icon_state, "_on", "")
+	return
+
+/obj/machinery/street_light/corner
+	icon_state = "corner_on"
+
+/obj/machinery/street_light/double
+	icon_state = "double_on"
+
+/obj/machinery/street_light/triple
+	icon_state = "triple_on"
+
+/obj/machinery/street_light/quadra
+	icon_state = "quadra_on"
+
+//Flood light used for faction camp lighting, increased range so it is not pathetic
+/obj/machinery/floodlight/landing
+	brightness_on = 12

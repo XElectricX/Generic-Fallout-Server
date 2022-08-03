@@ -3,8 +3,11 @@
 	desc = "Leftovers of buildings and other structures."
 	icon = 'fallout/fallout icons/fallout structures/fallout_debris.dmi'
 	icon_state = "debris1"
-	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
+	obj_flags = CAN_BE_HIT
+	density = TRUE
+	max_integrity = 1000
+	coverage = 80
 	bound_width = 64
 	bound_height = 64
 

@@ -307,8 +307,8 @@
 /obj/item/clothing/head/fallout/legion/slave
 	name = "Legion slave headwear"
 	desc = "A simple uncoloured linen cloth wrapped around the head, the mark of a servant slave trained in household work."
-	icon_state = "legion_slave"
-	item_state = "legion_slave"
+	icon_state = "legion_servant"
+	item_state = "legion_servant"
 
 //Enclave
 /obj/item/clothing/head/fallout/enclave
