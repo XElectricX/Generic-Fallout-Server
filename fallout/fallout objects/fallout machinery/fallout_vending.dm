@@ -308,7 +308,7 @@
 			/obj/item/weapon/shield/fallout_shield/roman = -1),
 		"Explosives & Ordnance" = list(
 			/obj/item/explosive/grenade/stick = -1,
-			/datum/ammo/rocket/atgun_shell = -1),
+			/obj/item/ammo_magazine/standard_atgun = -1),
 		"Equipment" = list(
 			/obj/item/reagent_containers/jerrycan = -1,
 			/obj/item/flashlight/fallout/lantern = -1,
