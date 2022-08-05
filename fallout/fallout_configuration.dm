@@ -241,3 +241,70 @@
 	if(!silent)
 		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
 	return parsed_maps
+
+//Stuff needed to use YouTube-dl for music instead of files
+/datum/controller/subsystem/ticker/choose_lobby_song()
+	var/all_music = CONFIG_GET(keyed_list/lobby_music)
+	var/key = SAFEPICK(all_music)
+	if(key)
+		var/music_options = splittext(all_music[key], " ")
+		return list(music_options[1])
+
+/client/play_title_music()
+	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
+		var/ytdl = CONFIG_GET(string/invoke_youtubedl)
+		if(!ytdl || !SSticker.login_music)
+			return
+		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(SSticker.login_music[1])]\"")
+		var/stdout = output[SHELLEO_STDOUT]
+		var/list/data = list()
+		data = safe_json_decode(stdout)
+		if(!data)
+			stack_trace("Lobby music - [SSticker.login_music[1]] failed to parse correctly")
+			return
+		var/web_sound_url = ""
+		web_sound_url = data["url"]
+		var/list/music_extra_data = list()
+		music_extra_data["title"] = data["title"]
+		music_extra_data["start"] = data["start_time"]
+		music_extra_data["end"] = data["end_time"]
+		tgui_panel?.play_music(web_sound_url,music_extra_data)
+
+//Stop the lobby music once you spawn in
+/mob/living/carbon/human/on_spawn(mob/new_player/summoner)
+	..()
+	summoner.client.stop_sounds()
+
+//Round end music!
+/datum/config_entry/keyed_list/round_end_music
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_TEXT
+
+/datum/game_mode/declare_completion()
+	for(var/client/player AS in GLOB.clients)
+		player.play_round_end_song()
+	..()
+
+/client/proc/play_round_end_song()
+	if(prefs && (prefs.toggles_sound & SOUND_NOENDOFROUND))
+		return
+	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
+	if(!ytdl)
+		return
+	var/all_music = CONFIG_GET(keyed_list/round_end_music)
+	var/key = SAFEPICK(all_music)
+	var/music_options = splittext(all_music[key], " ")
+	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(music_options[1])]\"")
+	var/stdout = output[SHELLEO_STDOUT]
+	var/list/data = list()
+	data = safe_json_decode(stdout)
+	if(!data)
+		stack_trace("End round music - [music_options[1]] failed to parse correctly")
+		return
+	var/web_sound_url = ""
+	web_sound_url = data["url"]
+	var/list/music_extra_data = list()
+	music_extra_data["title"] = data["title"]
+	music_extra_data["start"] = data["start_time"]
+	music_extra_data["end"] = data["end_time"]
+	tgui_panel?.play_music(web_sound_url,music_extra_data)
