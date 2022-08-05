@@ -14,13 +14,13 @@ HOSTEDBY Some retard
 TITLE Generic Fallout Server
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
+HUB
 
 ## Time for server to start after it finishes loading
 lobby_countdown 0
 
 ## Time for server to restart/shut down after round ends
-round_end_countdown 60
+round_end_countdown 180
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
@@ -45,7 +45,7 @@ LOCALHOST_RANK
 
 SEE_OWN_NOTES
 
-AUTOMUTE_ON
+#AUTOMUTE_ON
 
 PROTECT_LEGACY_ADMINS
 
@@ -55,9 +55,9 @@ PROTECT_LEGACY_RANKS
 #FORUMURL
 #WIKIURL
 #RULESURL
-#DISCORDURL
+DISCORDURL https://discord.gg/zBG4pappNX
 #DONATIONURL
-#GITHUBURL
+GITHUBURL https://github.com/XElectricX/Generic-Fallout-Server/tree/dev
 #BANAPPEALS
 
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
@@ -108,36 +108,48 @@ POPUP_ADMIN_PM
 INVOKE_YOUTUBEDL youtube-dl
 
 #Here are the lobby music configs.
-#index link startSecond endSecond
+#index link
 
-#Space Hero
-LOBBY_MUSIC 1 https://youtu.be/fNdMC6_eUGk 1 180
 #Man of War, the good version
-LOBBY_MUSIC 2 https://youtu.be/EslVBQL3Zt8 1 180
+LOBBY_MUSIC 1 https://youtu.be/EslVBQL3Zt8
 #Praise the lord and pass the ammunition
-LOBBY_MUSIC 3 https://youtu.be/uV9s1a6AZT0 1 180
-#Blood upon the risers
-LOBBY_MUSIC 4 https://youtu.be/vzrYgDnewSI 1 180
+LOBBY_MUSIC 2 https://youtu.be/uV9s1a6AZT0
 #Dawson's Christian
-LOBBY_MUSIC 5 https://youtu.be/w34fSnJNP-4 1 180
-#Bomber
-LOBBY_MUSIC 6 https://youtu.be/OlkH687M4YM 1 180
-#Sam Jones
-LOBBY_MUSIC 7 https://youtu.be/-mO7vkdkJhg 1 180
-#Carry On Wayward Son
-LOBBY_MUSIC 8 https://youtu.be/2X_2IdybTV0 1 180
-#Pioneer's Song
-LOBBY_MUSIC 9 https://youtu.be/80VU36nKUZc 1 180
-#Pushin' The Speed Of Light
-LOBBY_MUSIC 10 https://youtu.be/ud6LiVJkwyA 1 180
+LOBBY_MUSIC 3 https://youtu.be/w34fSnJNP-4
 #Spilit of Motherwill
-LOBBY_MUSIC 11 https://youtu.be/uB2CFA2RyLE 1 180
-#Space camp song!
-LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
+LOBBY_MUSIC 4 https://youtu.be/uB2CFA2RyLE
 #A New Age
-LOBBY_MUSIC 13 https://youtu.be/JUNROUfqJr0 1 180
-#I know the darkness from inside
-LOBBY_MUSIC 14 https://youtu.be/Zo60Lx5KXEI 1 180
+LOBBY_MUSIC 5 https://youtu.be/JUNROUfqJr0
+#Strahlende Trompete
+LOBBY_MUSIC 6 https://youtu.be/usezOk4XF8E
+#Stars of the Midnight Range
+LOBBY_MUSIC 7 https://youtu.be/nHPSa5wYK_o
+#New Vegas Valley
+LOBBY_MUSIC 8 https://youtu.be/DNm6Pph2Abc
+#Lone Star
+LOBBY_MUSIC 9 https://youtu.be/lNFMpoKp2mI
+#JinglejanglejinglejangleJANGLE
+LOBBY_MUSIC 10 https://youtu.be/EO7Ejrsq6NQ
+#Home on the Wastes
+LOBBY_MUSIC 11 https://youtu.be/TcQqVAlkNIA
+#Heartaches by the Number
+LOBBY_MUSIC 12 https://youtu.be/AlrzwZpFPyE
+#BIIIIIIIIIIIIIIIIIIIG Iron
+LOBBY_MUSIC 13 https://youtu.be/7BCGAQbNVNE
+#Way Back Home
+LOBBY_MUSIC 14 https://youtu.be/QSBco8kVuZM
+#Down in the Valley to Pray
+LOBBY_MUSIC 15 https://youtu.be/i0H6dcYMHzE
+
+## Music that plays when the round ends
+#Von Spanien nach Amerika
+ROUND_END_MUSIC 1 https://youtu.be/dVmxvBRF8sQ
+#Happy Times
+ROUND_END_MUSIC 2 https://youtu.be/GCfMTqGDlaE
+#Hallo Mister X
+ROUND_END_MUSIC 3 https://youtu.be/_zU-YkBkYNY
+#Bob-Omb Battlefield Remaster
+ROUND_END_MUSIC 4 https://youtu.be/PM6Co6IUBxU
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
