@@ -26,6 +26,19 @@
 	scatter = 3
 	scatter_unwielded = 8
 	recoil_unwielded = 0.6
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod)
 
 /obj/item/weapon/gun/fallout_pistol/p220
 	name = "\improper SIG Sauer P220 Pistol"

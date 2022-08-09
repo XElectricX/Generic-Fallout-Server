@@ -141,7 +141,7 @@
 	icon_state = "22mag_pan"
 	default_ammo = /datum/ammo/bullet/fallout/subsonic
 	caliber = CALIBER_22LR
-	max_rounds = 100
+	max_rounds = 180
 	w_class = WEIGHT_CLASS_NORMAL
 
 //Rifle magazines
@@ -159,8 +159,15 @@
 	name = "\improper 5.56x45mm extended magazine"
 	desc = "Quad-stack arrangement for holding more rounds than your standard magazine."
 	icon_state = "556mag_quad"
-	default_ammo = /datum/ammo/bullet/fallout/assault_rifle
 	max_rounds = 30
+
+/obj/item/ammo_magazine/fallout_rifle/machinegun
+	name = "\improper 5.56x45mm machinegun magazine"
+	desc = "A large box holding folded belts of ammunition."
+	icon_state = "556mag_mg"
+	w_class = WEIGHT_CLASS_SMALL
+	max_rounds = 90
+	reload_delay = 3 SECONDS
 
 /obj/item/ammo_magazine/fallout_rifle/winchester
 	name = "\improper .308 Winchester magazine"
@@ -174,7 +181,6 @@
 	name = "\improper extended .308 Winchester magazine"
 	desc = "Double the size for double the lead."
 	icon_state = "308mag_extended"
-	default_ammo = /datum/ammo/bullet/fallout/winchester
 	max_rounds = 10
 
 /obj/item/ammo_magazine/fallout_rifle/bmg
@@ -213,6 +219,46 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 //Energy cells
+
+//Ammo pack that can be used for storage or feeding guns
+/obj/item/ammo_magazine/fallout_ammopack
+	name = "\improper 5.56x45mm ammo backpack"
+	desc = "Large container that can be filled with ammo. Can be used to directly feed certain machineguns by click-dragging."
+	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
+	icon_state = "ammopack"
+	item_icons = list(slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi')
+	item_state = "ammopack"
+	item_state_worn = TRUE
+	flags_atom = CONDUCT
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	flags_magazine = MAGAZINE_REFILLABLE|MAGAZINE_WORN
+	default_ammo = /datum/ammo/bullet/fallout/assault_rifle
+	caliber = CALIBER_556X45
+	max_rounds = 500
+	time_to_equip = 1 SECONDS
+	time_to_unequip = 1 SECONDS
+	slowdown = 0.3
+
+/obj/item/ammo_magazine/fallout_ammopack/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(isgun(over))
+		var/obj/item/weapon/gun/gun_to_connect = over
+		var/mob/living/carbon/human/user = usr //this is us
+		if(!gun_to_connect.Adjacent(user) || !in_range(src, user))
+			return
+		if(gun_to_connect.reload(src, user))
+			to_chat(user, span_notice("[gun_to_connect] is now being fed directly from [src]."))
+		return
+	if(istype(over, /obj/machinery/deployable))
+		var/obj/machinery/deployable/mounted/turret_containing_gun = over
+		var/mob/living/carbon/human/user = usr //this is us
+		if(!turret_containing_gun.Adjacent(user) || !in_range(src, user))
+			return
+		if(!isgun(turret_containing_gun.internal_item))
+			return
+		if(turret_containing_gun.reload(user, src))
+			to_chat(user, span_notice("[turret_containing_gun] is now being fed directly from [src]."))
+		return
 
 //Ammo boxes
 /obj/item/ammo_magazine/box

@@ -15,11 +15,15 @@
 	soft_armor = list("melee" = 25, "bullet" = 40, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	slowdown = 0.3
 	allowed = list(
-		/obj/item/weapon/gun,
+		/obj/item/weapon/gun/fallout_pistol,
+		/obj/item/weapon/gun/fallout_smg,
+		/obj/item/weapon/gun/fallout_rifle,
+		/obj/item/weapon/gun/fallout_shotgun,
 		/obj/item/weapon/twohanded,
 		/obj/item/weapon/fallout_melee,
 		/obj/item/storage/holster/blade,
 		/obj/item/storage/pouch/fallout,
+		/obj/item/storage/backpack/fallout/satchel,
 		/obj/item/flashlight/fallout,
 		/obj/item/tank/emergency_oxygen)
 
@@ -131,11 +135,15 @@
 	soft_armor = list("melee" = 30, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 15, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0)
 	slowdown = 0.3
 	allowed = list(
-		/obj/item/weapon/gun,
+		/obj/item/weapon/gun/fallout_pistol,
+		/obj/item/weapon/gun/fallout_smg,
+		/obj/item/weapon/gun/fallout_rifle,
+		/obj/item/weapon/gun/fallout_shotgun,
 		/obj/item/weapon/twohanded,
 		/obj/item/weapon/fallout_melee,
 		/obj/item/storage/holster/blade,
 		/obj/item/storage/pouch/fallout,
+		/obj/item/storage/backpack/fallout/satchel,
 		/obj/item/flashlight/fallout,
 		/obj/item/tank/emergency_oxygen)
 

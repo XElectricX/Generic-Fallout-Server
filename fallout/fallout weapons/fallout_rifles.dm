@@ -15,7 +15,6 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	reciever_flags = AMMO_RECIEVER_MAGAZINES
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle, /obj/item/ammo_magazine/fallout_rifle/extended)
 	caliber = CALIBER_556X45
@@ -28,6 +27,25 @@
 	scatter_unwielded = 20
 	recoil = 0.5
 	recoil_unwielded = 3
+	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 20, "rail_x" = 18, "rail_y" = 23, "under_x" = 33, "under_y" = 16)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung)
 
 /obj/item/weapon/gun/fallout_rifle/r91
 	name = "\improper R-91 assault rifle"
@@ -66,6 +84,7 @@
 	scatter_unwielded = 15
 	recoil = 0
 	recoil_unwielded = 0.3
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 19, "rail_x" = 13, "rail_y" = 21, "under_x" = 27, "under_y" = 15)
 
 /obj/item/weapon/gun/fallout_rifle/hunting
 	name = "hunting rifle"
@@ -87,6 +106,7 @@
 	scatter_unwielded = 15
 	recoil = 0.8
 	recoil_unwielded = 5
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 19, "rail_x" = 19, "rail_y" = 21, "under_x" = 30, "under_y" = 15)
 
 /obj/item/weapon/gun/fallout_rifle/hunting/short
 	name = "short hunting rifle"
@@ -115,6 +135,7 @@
 	scatter_unwielded = 10
 	recoil = 0
 	recoil_unwielded = 0.4
+	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 20, "rail_x" = 23, "rail_y" = 22, "under_x" = 28, "under_y" = 16)
 
 /obj/item/weapon/gun/fallout_rifle/anti_materiel
 	name = "\improper Hecate II anti-materiel rifle"
@@ -162,6 +183,7 @@
 	scatter_unwielded = 15
 	recoil = 0.2
 	recoil_unwielded = 1
+	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 21, "rail_x" = 16, "rail_y" = 22, "under_x" = 30, "under_y" = 17)
 
 //Trimmed down unique_action to work like a lever action instead of pump action when the gun is operated
 /obj/item/weapon/gun/fallout_rifle/cowboy_repeater/unique_action(mob/user, dont_operate = FALSE)
@@ -183,3 +205,120 @@
 		cycle(user, FALSE)
 	update_ammo_count()
 	update_icon()
+
+//Heavy weapons
+/obj/item/weapon/gun/fallout_rifle/m60
+	name = "\improper M60 machinegun"
+	desc = "Heavy and cumbersome, the M60 is a powerful weapon for laying down suppressive fire."
+	icon_state = "m60"
+	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
+	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/machinegun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/machinegun, /obj/item/ammo_magazine/fallout_ammopack)
+	max_shells = 500
+	fire_delay = 0.18 SECONDS
+	force = 35
+	wield_delay = 2 SECONDS
+	aim_slowdown = 3
+	scatter = 3
+	recoil = 1
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 17, "rail_x" = 17, "rail_y" = 19, "under_x" = 28, "under_y" = 13)
+
+//For switching the sprite to the one with a belt
+/obj/item/weapon/gun/fallout_rifle/m60/update_icon()
+	. = ..()
+	for(var/obj/item/ammo_magazine/belt in chamber_items)	//Check if it has a belt mag
+		if(istype(belt, /obj/item/ammo_magazine/fallout_ammopack))
+			icon_state = base_gun_icon + "_b"
+			if(!rounds)
+				icon_state = base_gun_icon + "_u"
+
+/obj/item/weapon/gun/fallout_rifle/howard
+	name = "\improper Howard MG"
+	desc = "A flexible machinegun. The Howard MG is lighter than most LMGs while still being capable of sustained fire. \
+			It features the ability to accept both standard rifle magazines and machinegun box magazines."
+	icon_state = "howard"
+	fire_sound =  'sound/weapons/guns/fire/t42.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/extended
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/fallout_rifle,
+		/obj/item/ammo_magazine/fallout_rifle/extended,
+		/obj/item/ammo_magazine/fallout_rifle/machinegun)
+	max_shells = 90
+	fire_delay = 0.25 SECONDS
+	force = 25
+	wield_delay = 1.5 SECONDS
+	aim_slowdown = 2.5
+	scatter = 7
+	recoil = 0.8
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 17, "rail_x" = 20, "rail_y" = 20, "under_x" = 24, "under_y" = 12)
+
+//Keep the minigun here I guess
+/obj/item/weapon/gun/fallout_minigun
+	name = "\improper CZ53 Rockwell minigun"
+	desc = "Absolute peak dakka. Can use either machinegun magazines or be attached to an ammo backpack. Has a deployable tripod."
+	icon = 'fallout/fallout icons/fallout weapons/fallout_heavy.dmi'
+	icon_state = "minigun"
+	fire_animation = "minigun_fire"
+	item_icons = list(
+		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_rifles_worn.dmi',
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi')
+	muzzleflash_iconstate = "muzzle_flash"
+	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+	w_class = WEIGHT_CLASS_HUGE
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/machinegun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/machinegun, /obj/item/ammo_magazine/fallout_ammopack)
+	caliber = CALIBER_556X45
+	max_shells = 500
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.5 SECONDS
+	force = 40
+	wield_delay = 1.5 SECONDS
+	aim_slowdown = 3.5
+	scatter = 10
+	scatter_unwielded = 40
+	deployed_scatter_change = -8
+	recoil = 1
+	recoil_unwielded = 20
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+	attachable_offset = list("rail_x" = 26, "rail_y" = 20, "under_x" = 30, "under_y" = 8)
+	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/lasersight)
+
+//For switching the sprite to the one with a belt
+/obj/item/weapon/gun/fallout_minigun/update_icon()
+	..()
+	if(!length(chamber_items))
+		icon_state = base_gun_icon + "_u"
+		fire_animation = initial(fire_animation)
+	else
+		icon_state = base_gun_icon
+	if(length(chamber_items) && !rounds)
+		icon_state = base_gun_icon + "_e"
+	for(var/obj/item/ammo_magazine/belt in chamber_items)	//Check if it has a belt mag
+		if(istype(belt, /obj/item/ammo_magazine/fallout_ammopack))
+			icon_state = base_gun_icon + "_b"
+			fire_animation = initial(fire_animation) + "_b"
+			if(!rounds)
+				icon_state = base_gun_icon + "_u"
