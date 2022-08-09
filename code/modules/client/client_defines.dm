@@ -18,7 +18,7 @@
 	var/datum/preferences/prefs 	= null
 	var/inprefs = FALSE
 	///remembers what our context menu setting is currently set to
-	var/shift_to_open_context_menu = TRUE
+	var/shift_to_open_context_menu = FALSE
 
 
 	//Mob related
