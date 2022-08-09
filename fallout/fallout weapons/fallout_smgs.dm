@@ -27,6 +27,21 @@
 	scatter_unwielded = 20
 	recoil = 0.5
 	recoil_unwielded = 1.5
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod)
 
 /obj/item/weapon/gun/fallout_smg/ten
 	name = "\improper 10mm Submachinegun"
@@ -82,12 +97,11 @@
 	recoil_unwielded = 2
 
 //For switching the sprite to the one with a drum
-/obj/item/weapon/gun/fallout_smg/thompson/update_icon_state()
+/obj/item/weapon/gun/fallout_smg/thompson/update_icon()
 	. = ..()
-	for(var/obj/drum in contents)	//Check if it has a drum mag
-		if(istype(drum,/obj/item/ammo_magazine/fallout_smg/acp/drum))
-			icon_state = base_gun_icon + "_drum"
-		else if(length(chamber_items) && !rounds)
+	for(var/obj/item/ammo_magazine/fallout_smg/acp/drum/drum in contents)	//Check if it has a drum mag
+		icon_state = base_gun_icon + "_drum"
+		if(length(chamber_items) && !rounds)
 			icon_state = base_gun_icon + "_drum_e"
 
 
@@ -100,7 +114,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/fallout_smg/subsonic
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_smg/subsonic)
 	caliber = CALIBER_22LR
-	max_shells = 100
+	max_shells = 180
 	fire_delay = 0.2 SECONDS
 	force = 20
 	wield_delay = 0.7 SECONDS

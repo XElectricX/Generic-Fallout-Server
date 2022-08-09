@@ -33,9 +33,26 @@
 	scatter_unwielded = 10
 	recoil = 1
 	recoil_unwielded = 5    //What you get for firing a long shotgun one-handed
-
 	cocked_message = "You rack the pump."
 	cock_locked_message = "The pump is locked and ready to fire."
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung)
 
 /obj/item/weapon/gun/fallout_shotgun/short
 	name = "\improper Short Pump Shotgun"
@@ -84,3 +101,10 @@
 	scatter_unwielded = 30
 	recoil = 1.5
 	recoil_unwielded = 3
+
+//Tweaks to the underbarrel shotgun
+/obj/item/weapon/gun/shotgun/combat/masterkey
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_CAN_POINTBLANK
+	default_ammo_type = /datum/ammo/bullet/fallout/buckshot
+	damage_mult = 1
+	damage_falloff_mult = 2
