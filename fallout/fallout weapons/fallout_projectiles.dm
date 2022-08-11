@@ -115,13 +115,25 @@
 	desc = "You could kill a house with this. Usually used by HMGs and anti-materiel rifles."
 	handful_icon_state = "large_casing"
 	handful_amount = 1
-	damage = 60
+	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF
+	damage = 80
 	damage_falloff = 0.6
 	penetration = 70
-	shrapnel_chance = 5	//Doubtful a giant bullet would break up inside you instead of penetrating
+	shrapnel_chance = 0	//Doubtful a giant bullet would break up inside you instead of penetrating
 	accurate_range = 12
 	accurate_range_min = 1
+	max_range = 40
 	shell_speed = 4	//It go fast
+	on_pierce_multiplier = 0.5 //Damage and penetration values are halved every time it pierces through something
+
+/datum/ammo/bullet/fallout/bmg/on_hit_mob(mob/M, obj/projectile/P)
+	P.proj_max_range -= 15
+
+/datum/ammo/bullet/fallout/bmg/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 15
+
+/datum/ammo/bullet/fallout/bmg/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 30
 
 //Shotgun rounds
 /datum/ammo/bullet/fallout/buckshot

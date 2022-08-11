@@ -101,6 +101,8 @@
 			/obj/item/weapon/gun/fallout_rifle/hunting/short = -1,
 			/obj/item/ammo_magazine/fallout_rifle/winchester = -1,
 			/obj/item/ammo_magazine/fallout_rifle/winchester/extended = -1,
+			/obj/item/weapon/gun/fallout_rifle/anti_materiel = -1,
+			/obj/item/ammo_magazine/fallout_rifle/bmg = -1,
 			/obj/item/weapon/gun/fallout_rifle/delisle = -1,
 			/obj/item/weapon/gun/fallout_rifle/varmint = -1),
 		"Heavy Armaments" = list(
@@ -271,6 +273,8 @@
 			/obj/item/weapon/gun/fallout_rifle/hunting/short = -1,
 			/obj/item/ammo_magazine/fallout_rifle/winchester = -1,
 			/obj/item/ammo_magazine/fallout_rifle/winchester/extended = -1,
+			/obj/item/weapon/gun/fallout_rifle/anti_materiel = -1,
+			/obj/item/ammo_magazine/fallout_rifle/bmg = -1,
 			/obj/item/weapon/gun/fallout_rifle/delisle = -1,
 			/obj/item/weapon/gun/fallout_rifle/varmint = -1),
 		"Heavy Armaments" = list(
