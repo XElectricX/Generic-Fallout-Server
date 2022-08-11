@@ -146,17 +146,29 @@
 	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/antimateriel_rifle_reload.wav'
 	cocked_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/bmg
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/bmg)
 	caliber = CALIBER_50BMG
 	max_shells = 5
 	fire_delay = 1 SECONDS
-	force = 20
+	force = 40
+	wield_delay = 1.2 SECONDS
 	scatter = 0
 	scatter_unwielded = 15
 	recoil = 1.5
 	recoil_unwielded = 10
+	recoil_backtime_multiplier = 5
+	recoil_deviation = 0
+	attachable_offset = list("rail_x" = 22, "rail_y" = 19, "under_x" = 32, "under_y" = 13)
+	starting_attachment_types = list(/obj/item/attachable/scope/anti_materiel, /obj/item/attachable/bipod)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/anti_materiel,
+		/obj/item/attachable/bipod)
 
 /obj/item/weapon/gun/fallout_rifle/cowboy_repeater
 	name = "\improper Winchester Model 1892"
