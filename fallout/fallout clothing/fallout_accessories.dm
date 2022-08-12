@@ -131,3 +131,21 @@
 	name = "blue face wrap"
 	icon_state = "mask_blue"
 	item_state = "mask_blue"
+
+//Attachables below
+/obj/item/armor_module/fallout
+	name = "accessory template"
+	desc = "Oh no, this shouldn't happen."
+	icon = 'fallout/fallout icons/fallout clothing/fallout_accessories.dmi'
+	icon_state = ""
+	attach_icon = 'fallout/fallout icons/fallout clothing/fallout_accessories_worn.dmi'
+	attach_delay = 0 SECONDS
+	detach_delay = 0 SECONDS
+
+//Capes
+/obj/item/armor_module/fallout/cape
+	name = "cape"
+	desc = "Stylish."
+	icon_state = ""	//Add a basic cape sprite some time in the future
+	attachment_layer = CAPE_LAYER
+	slot = ATTACHMENT_SLOT_CAPE
