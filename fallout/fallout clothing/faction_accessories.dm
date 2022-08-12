@@ -117,3 +117,20 @@
 	name = "\improper Centurion's bandana"
 	icon_state = "bandana_legion_centurion"
 	item_state = "bandana_legion_centurion"
+
+//Capes
+/obj/item/armor_module/fallout/cape/legion
+	name = "red Legion cape"
+	desc = "Worn proudly by Legionnaires."
+	icon = 'fallout/fallout icons/fallout clothing/faction_accessories.dmi'
+	icon_state = "cape_legion"
+	attach_icon = 'fallout/fallout icons/fallout clothing/faction_accessories_worn.dmi'
+
+/obj/item/armor_module/fallout/cape/legion/black
+	name = "red Legion cape"
+	icon_state = "cape_legion_black"
+
+/obj/item/armor_module/fallout/cape/legion/side
+	name = "\improper Legion mantle of authority"
+	desc = "Typically bestowed upon Centurions and Legates."
+	icon_state = "cape_legion_side"

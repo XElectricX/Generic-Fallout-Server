@@ -171,7 +171,7 @@
 
 /datum/outfit/job/fallout/legion/decanus
 	name = LEGION_DECANUS
-	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/venator
+	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/decanus
 	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt = /obj/item/storage/belt/fallout/legion
 	gloves = /obj/item/clothing/gloves/fallout/metal
