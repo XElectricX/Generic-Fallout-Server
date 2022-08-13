@@ -45,6 +45,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/ten, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_smg/ten, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/fallout/medical/stimpak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/fallout/ncr/engineer
@@ -106,13 +107,12 @@
 	mask = null
 	id = /obj/item/card/id/ncr/support
 	l_store = /obj/item/storage/pouch/fallout/medical/doctor/full
-	suit_store = /obj/item/weapon/gun/fallout_pistol/m1911
+	suit_store = null
 	r_hand = null
 	l_hand = null
 
 /datum/outfit/job/fallout/ncr/support/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)
 
 //Legion
@@ -222,5 +222,9 @@
 	mask = null
 	id = /obj/item/card/id/legion/support
 	l_store = /obj/item/storage/pouch/fallout/medical/doctor/full
-	suit_store = /obj/item/weapon/fallout_melee/spear
+	suit_store = null
 	l_hand = null
+
+/datum/outfit/job/fallout/legion/support/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)

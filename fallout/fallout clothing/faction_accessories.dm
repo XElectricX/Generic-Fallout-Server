@@ -127,7 +127,7 @@
 	attach_icon = 'fallout/fallout icons/fallout clothing/faction_accessories_worn.dmi'
 
 /obj/item/armor_module/fallout/cape/legion/black
-	name = "red Legion cape"
+	name = "black Legion cape"
 	icon_state = "cape_legion_black"
 
 /obj/item/armor_module/fallout/cape/legion/side

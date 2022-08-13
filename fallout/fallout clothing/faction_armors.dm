@@ -66,7 +66,7 @@
 	slowdown = 0.6
 
 /obj/item/clothing/suit/storage/fallout/ncr/patrol
-	name = "heavy patrol armor"
+	name = "\improper NCR heavy patrol armor"
 	desc = "The standard issue heavy patrol armor is based on pre-war combat armor design, and has similar capabilities. Designed for NCRA troopers sent into active war zones."
 	icon_state = "ncr_patrol"
 	item_state = "ncr_patrol"
