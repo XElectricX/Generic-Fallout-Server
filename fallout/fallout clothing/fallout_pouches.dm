@@ -29,6 +29,7 @@
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
+		/obj/item/tweezers,
 		/obj/item/healthanalyzer)
 
 /obj/item/storage/pouch/fallout/medical/stimpak

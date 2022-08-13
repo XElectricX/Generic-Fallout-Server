@@ -205,9 +205,10 @@
 	upgraded = FALSE
 	name = "damaged [initial(name)]"
 	density = FALSE
-	modify_max_integrity(initial(max_integrity))
+	max_integrity = initial(max_integrity)
 	visible_message(span_warning("[src] falls apart!"))
 	update_icon()
+	return
 
 /obj/structure/fallout_girder/update_icon_state()
 	switch(girder_state)

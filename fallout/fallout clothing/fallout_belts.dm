@@ -75,7 +75,15 @@
 	item_state = "belt_medical"
 	storage_slots = 7
 	max_storage_space = 14
-	can_hold = list(/obj/item/weapon/gun/fallout_pistol, /obj/item/ammo_magazine/fallout_pistol)
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/tool/surgery,
+		/obj/item/stack/nanopaste,
+		/obj/item/reagent_containers,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
+		/obj/item/storage/syringe_case,
+		/obj/item/tweezers)
 
 /obj/item/storage/belt/fallout/medical/full/Initialize()
 	. = ..()

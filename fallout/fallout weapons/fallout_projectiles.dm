@@ -1,3 +1,6 @@
+/obj/projectile
+	friendly_fire_multiplier = 1	//By default this halves all damage taken via bullets, so setting it to normal here
+
 /datum/ammo
 	var/desc	//Var needs to be defined here instead of the template below otherwise errors
 

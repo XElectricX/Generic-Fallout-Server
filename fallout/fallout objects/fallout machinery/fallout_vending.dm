@@ -240,7 +240,9 @@
 			/obj/item/reagent_containers/hypospray/fallout/stimpak = -1,
 			/obj/item/reagent_containers/hypospray/fallout/medx = -1,
 			/obj/item/reagent_containers/hypospray/fallout/turbo = -1,
-			/obj/item/stack/medical/splint = -1))
+			/obj/item/stack/medical/heal_pack/bandage = -1,
+			/obj/item/stack/medical/splint = -1,
+			/obj/item/tweezers = -1))
 
 //Legion vendor
 /obj/machinery/vending/fallout/legion
@@ -416,4 +418,6 @@
 			/obj/item/reagent_containers/glass/bitter_drink = -1,
 			/obj/item/berserk_powder = -1,
 			/obj/item/reagent_containers/glass/hydra = -1,
-			/obj/item/stack/medical/splint = -1))
+			/obj/item/stack/medical/heal_pack/bandage = -1,
+			/obj/item/stack/medical/splint = -1,
+			/obj/item/tweezers = -1))

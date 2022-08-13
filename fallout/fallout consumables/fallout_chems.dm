@@ -240,6 +240,7 @@
 	desc = "Potent powders that enhance one's abilities."
 	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
 	icon_state = "berserk_powder"
+	w_class = WEIGHT_CLASS_SMALL
 	reagents = /datum/reagent/methamphetamine	//Meth. It's meth.
 	var/amount = 20
 	var/time_to_apply = 3 SECONDS
@@ -262,7 +263,7 @@
 /obj/item/stack/medical/heal_pack/bandage
 	name = "bandages"
 	singular_name = "bandage"
-	desc = "A herbal remedy made from crushed and heated broc and xander."
+	desc = "Clean cloth rolls for stopping bleeding and protecting burnt flesh."
 	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
 	icon_state = "bandage"
 	heal_brute = 20

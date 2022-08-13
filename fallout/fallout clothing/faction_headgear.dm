@@ -74,8 +74,8 @@
 /obj/item/clothing/head/helmet/fallout/ncr/patrol
 	name = "\improper NCR heavy patrol helmet"
 	desc = "A combat helmet hand-manufactured with heavy materials in the NCRA. Designed to be used in active war zones."
-	icon_state = "ncr_patrol_helmet"
-	item_state = "ncr_patrol_helmet"
+	icon_state = "ncr_patrol"
+	item_state = "ncr_patrol"
 
 /obj/item/clothing/head/helmet/fallout/ncr/ranger
 	name = "\improper NCR ranger helmet"
@@ -99,14 +99,14 @@
 /obj/item/clothing/head/helmet/fallout/ncr/combat
 	name = "\improper NCR combat helmet"
 	desc = "An old military grade pre-war combat helmet, repainted to the colour scheme of the New California Republic."
-	icon_state = "ncr_combathelmet"
-	item_state = "ncr_combathelmet"
+	icon_state = "ncr_combat"
+	item_state = "ncr_combat"
 
 /obj/item/clothing/head/helmet/fallout/ncr/combat_mk2
 	name = "reinforced NCR combat helmet"
 	desc = "An advanced pre-war titanium plated, ceramic coated, kevlar, padded helmet designed to withstand extreme punishment of all forms, repainted to the colour scheme of the New California Republic."
-	icon_state = "ncr_combathelmet_mk2"
-	item_state = "ncr_combathelmet_mk2"
+	icon_state = "ncr_combat_mk2"
+	item_state = "ncr_combat_mk2"
 
 //NCR hats
 /obj/item/clothing/head/fallout/ncr
