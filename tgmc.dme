@@ -1857,6 +1857,7 @@
 #include "fallout\fallout objects\fallout_vehicles.dm"
 #include "fallout\fallout objects\fallout machinery\fallout_appliances.dm"
 #include "fallout\fallout objects\fallout machinery\fallout_computers.dm"
+#include "fallout\fallout objects\fallout machinery\fallout_turrets.dm"
 #include "fallout\fallout objects\fallout machinery\fallout_vending.dm"
 #include "fallout\fallout structures\fallout_barricades.dm"
 #include "fallout\fallout structures\fallout_closets.dm"
