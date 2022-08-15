@@ -6,3 +6,10 @@
 	zoom_tile_offset = 11
 	zoom_viewsize = 6
 	accuracy_unwielded_mod = 0
+
+/obj/item/attachable/scope/missile_launcher
+	name = "missile launcher targeting scope"
+	desc = "Provides magnification and targeting lock."
+	icon_state = "sniperscope_invisible"
+	zoom_tile_offset = 11
+	zoom_viewsize = 6

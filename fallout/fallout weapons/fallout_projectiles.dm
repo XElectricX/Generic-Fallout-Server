@@ -160,3 +160,15 @@
 	name = "additional buckshot"
 	icon_state = "buckshot"
 	bonus_projectiles_amount = 0
+
+//Missile
+/datum/ammo/rocket/fallout_missile
+	name = "missile"
+	flags_ammo_behavior = AMMO_EXPLOSIVE
+	max_range = 50
+	damage = 20	//The actual explosion does the damage
+	penetration = 60
+	bullet_color = LIGHT_COLOR_FIRE
+
+/datum/ammo/rocket/fallout_missile/drop_nade(turf/T)
+	explosion(T, 1, 3, 4, 4)

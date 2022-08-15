@@ -138,12 +138,13 @@
 //Bandoliers
 /obj/item/storage/belt/fallout/bandolier
 	name = "bandolier"
-	desc = "Hold individual shells and bullets."
+	desc = "Hold individual shells, bullets, and explosives."
 	icon_state = "bandolier"
 	item_state = "bandolier"
-	storage_slots = 7
-	max_storage_space = 7
-	can_hold = list(/obj/item/ammo_magazine/handful)	//You only put handfuls into this
+	max_w_class = WEIGHT_CLASS_SMALL
+	storage_slots = 14
+	max_storage_space = 14
+	can_hold = list(/obj/item/ammo_magazine/handful, /obj/item/explosive/grenade)	//Can fit handfuls and explosives
 
 /obj/item/storage/belt/fallout/bandolier/alt
 	name = "leather bandolier"

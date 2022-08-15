@@ -212,6 +212,17 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 //Explosive ordnance magazines
+/obj/item/ammo_magazine/fallout_missile
+	name = "missile"
+	desc = "Pre-war rocket assembly with high explosives and guidance systems."
+	icon_state = "rocket"	//Needs a proper Fallout missile sprite
+	w_class = WEIGHT_CLASS_NORMAL
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	default_ammo = /datum/ammo/rocket/fallout_missile
+	caliber = CALIBER_MISSILE
+	max_rounds = 1
+	reload_delay = 2 SECONDS
+
 /obj/item/ammo_magazine/standard_atgun
 	w_class = WEIGHT_CLASS_NORMAL
 
