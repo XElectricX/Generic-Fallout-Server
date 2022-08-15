@@ -106,6 +106,8 @@
 			/obj/item/weapon/gun/fallout_rifle/delisle = -1,
 			/obj/item/weapon/gun/fallout_rifle/varmint = -1),
 		"Heavy Armaments" = list(
+			/obj/item/weapon/gun/launcher/rocket/fallout = -1,
+			/obj/item/ammo_magazine/fallout_missile = -1,
 			/obj/item/ammo_magazine/fallout_rifle/machinegun = -1,
 			/obj/item/weapon/gun/fallout_minigun = -1,
 			/obj/item/weapon/gun/fallout_rifle/howard = -1,
@@ -155,7 +157,9 @@
 			/obj/item/weapon/shield/fallout_shield = -1,
 			/obj/item/weapon/shield/fallout_shield/reinforced = -1),
 		"Explosives & Ordnance" = list(
-			/obj/item/explosive/grenade/m15 = -1,
+			/obj/item/explosive/grenade/fallout = -1,
+			/obj/item/explosive/grenade/fallout/molotov = -1,
+			/obj/item/explosive/grenade/fallout/dynamite = -1,
 			/obj/item/mortal_shell/he = -1,
 			/obj/item/mortal_shell/incendiary = -1,
 			/obj/item/mortal_shell/smoke = -1,
@@ -280,6 +284,8 @@
 			/obj/item/weapon/gun/fallout_rifle/delisle = -1,
 			/obj/item/weapon/gun/fallout_rifle/varmint = -1),
 		"Heavy Armaments" = list(
+			/obj/item/weapon/gun/launcher/rocket/fallout = -1,
+			/obj/item/ammo_magazine/fallout_missile = -1,
 			/obj/item/ammo_magazine/fallout_rifle/machinegun = -1,
 			/obj/item/weapon/gun/fallout_minigun = -1,
 			/obj/item/weapon/gun/fallout_rifle/howard = -1,
@@ -344,7 +350,10 @@
 			/obj/item/weapon/shield/fallout_shield/reinforced/legion = -1,
 			/obj/item/weapon/shield/fallout_shield/roman = -1),
 		"Explosives & Ordnance" = list(
-			/obj/item/explosive/grenade/stick = -1,
+			/obj/item/explosive/grenade/fallout/stick = -1,
+			/obj/item/explosive/grenade/fallout/molotov = -1,
+			/obj/item/explosive/grenade/fallout/incendiary = -1,
+			/obj/item/explosive/grenade/fallout/dynamite = -1,
 			/obj/item/ammo_magazine/standard_atgun = -1),
 		"Attachments" = list(
 			/obj/item/attachable/suppressor = -1,
