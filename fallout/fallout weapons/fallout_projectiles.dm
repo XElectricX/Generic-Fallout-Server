@@ -15,7 +15,7 @@
 /datum/ammo/bullet/fallout/nine
 	name = "9x19mm Parabellum bullet"
 	desc = "Ubiquitous round used by all kinds of weapons. Small but plentiful."
-	damage = 12
+	damage = 9
 	damage_falloff = 1.5
 	penetration = 5
 	shrapnel_chance = 3
@@ -25,7 +25,7 @@
 /datum/ammo/bullet/fallout/ten
 	name = "10x25mm Auto bullet"
 	desc = "Common round used by semi-auto pistols and SMGs."
-	damage = 15
+	damage = 13
 	damage_falloff = 1.5
 	penetration = 7
 	shrapnel_chance = 3
@@ -35,7 +35,7 @@
 /datum/ammo/bullet/fallout/acp
 	name = ".45 ACP bullet"
 	desc = "Ol'e reliable. Subsonic round that still packs a punch."
-	damage = 13
+	damage = 11
 	damage_falloff = 1.5
 	penetration = 5
 	shrapnel_chance = 3
@@ -44,7 +44,7 @@
 /datum/ammo/bullet/fallout/subsonic
 	name = ".22 Long Rifle bullet"
 	desc = "Tiny subsonic round used in a variety of weapons from pistols to rifles. Practically littered across the wastes."
-	damage = 12
+	damage = 7
 	damage_falloff = 1.5
 	penetration = 2
 	shrapnel_chance = 5
@@ -53,7 +53,7 @@
 /datum/ammo/bullet/fallout/magnum357
 	name = ".357 Magnum bullet"
 	desc = "Yee-fucking-haw."
-	damage = 25
+	damage = 20
 	penetration = 10
 	shrapnel_chance = 10
 	shell_speed = 2.2
@@ -61,7 +61,7 @@
 /datum/ammo/bullet/fallout/magnum44
 	name = ".44 Magnum bullet"
 	desc = "The ammo of choice for revolvers and carbines do more than look cool."
-	damage = 30
+	damage = 25
 	penetration = 15
 	shrapnel_chance = 15
 	shell_speed = 2.5
@@ -69,7 +69,7 @@
 /datum/ammo/bullet/fallout/action_express
 	name = ".50 Action Express bullet"
 	desc = "Absolute unit of a pistol bullet."
-	damage = 40
+	damage = 35
 	damage_falloff = 1.5
 	penetration = 20
 	shrapnel_chance = 20
@@ -82,7 +82,7 @@
 	desc = "Popular cartridge for assault rifles, carbines, marksman rifles, and machine guns."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
-	damage = 20
+	damage = 15
 	penetration = 40
 	shrapnel_chance = 15
 	accurate_range = 6
@@ -92,7 +92,7 @@
 	desc = "Good for hunting wild animals. Or humans."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
-	damage = 35
+	damage = 40
 	damage_falloff = 0.8
 	penetration = 60
 	shrapnel_chance = 20
@@ -119,7 +119,7 @@
 	handful_icon_state = "large_casing"
 	handful_amount = 1
 	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF
-	damage = 80
+	damage = 70
 	damage_falloff = 0.6
 	penetration = 70
 	shrapnel_chance = 0	//Doubtful a giant bullet would break up inside you instead of penetrating
@@ -145,9 +145,9 @@
 	icon_state = "buckshot"
 	handful_icon_state = "shell_buckshot"
 	handful_amount = 1
-	damage = 12
+	damage = 6
 	damage_falloff = 1.5
-	penetration = 5
+	penetration = 0
 	shrapnel_chance = 5
 	point_blank_range = 1
 	shell_speed = 2
