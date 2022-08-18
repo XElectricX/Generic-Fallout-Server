@@ -6,6 +6,7 @@
 	type_of_casings = "bullet"
 	damage_falloff_mult = 0
 	cock_delay = 0
+	movement_acc_penalty_mult = 2	//Only doubles the accuracy and scatter penalties, 5 was wayyy too much
 	upper_akimbo_accuracy = 0
 	lower_akimbo_accuracy = 0
 	//For bolt actions, pump actions have their own under fallout_shotgun
@@ -156,3 +157,8 @@
 	update_ammo_count()
 	update_icon()
 	return TRUE
+
+//We make it a multiplier instead!
+/obj/item/weapon/gun/modify_fire_delay(value, mob/user)
+	fire_delay *= (1 + value)	//For example, if attachment has a value of -0.1, the fire delay is multiplied by 0.9, so a 10% increase
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
