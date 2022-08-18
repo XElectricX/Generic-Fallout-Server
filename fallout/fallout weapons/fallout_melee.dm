@@ -759,14 +759,14 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.2
-	max_integrity = 200
+	max_integrity = 700
 	force = 30
 	throwforce = 15
 	throw_speed = 0.5
 	throw_range = 2
 	var/repair_material = /obj/item/stack/sheet/metal
 	materials = list(/datum/material/metal = 1000)
-	hard_armor = list("melee" = 15, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 10)
+	hard_armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 10)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	attack_verb = "bashed"
@@ -775,10 +775,10 @@
 	name = "reinforced riot shield"
 	icon_state = "shield_reinforced"
 	slowdown = 0.4
-	max_integrity = 300
+	max_integrity = 1500
 	force = 40
 	throwforce = 20
-	hard_armor = list("melee" = 25, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 10)
+	hard_armor = list("melee" = 20, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 /obj/item/weapon/shield/fallout_shield/reinforced/legion
 	name = "\improper Legionnaire shield"
@@ -791,13 +791,13 @@
 	icon_state = "shield_buckler"
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 0
-	max_integrity = 100
+	max_integrity = 300
 	force = 15
 	throwforce = 30	//Captain America this bad boy
 	throw_speed = 3
 	throw_range = 7
 	repair_material = /obj/item/stack/sheet/wood
-	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	hard_armor = list("melee" = 5, "bullet" = 3, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	destroy_sound = 'sound/effects/woodhit.ogg'
 
 /obj/item/weapon/shield/fallout_shield/buckler/makeshift
@@ -811,6 +811,49 @@
 	name = "\improper Roman shield"
 	desc = "For strategic shield walls."
 	icon_state = "shield_roman"
+
+//Shield associated code below
+/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 80))
+	. = ..()
+
+//Rework how shields calculate damage taken to be based on flat damage reduction instead of percentages
+/datum/component/shield/item_intercept_attack(attack_type, incoming_damage, damage_type, silent)
+	var/obj/item/parent_item = parent
+	var/status_cover_modifier = 1
+	if(parent_item.obj_integrity <= parent_item.integrity_failure)
+		return incoming_damage
+	if(affected.IsSleeping() || affected.IsUnconscious() || affected.IsAdminSleeping()) //We don't do jack if we're literally KOed/sleeping/paralyzed.
+		return incoming_damage
+	if(affected.IsStun() || affected.IsKnockdown() || affected.IsParalyzed()) //Halve shield cover if we're paralyzed or stunned
+		status_cover_modifier *= 0.5
+	if(iscarbon(affected))
+		var/mob/living/carbon/C = affected
+		if(C.stagger) //Lesser penalty to shield cover for being staggered.
+			status_cover_modifier *= 0.75
+	switch(attack_type)
+		if(COMBAT_TOUCH_ATTACK)
+			if(!prob(cover.getRating(damage_type) * status_cover_modifier))
+				return FALSE //Bypassed the shield.
+			incoming_damage = max(0, incoming_damage - hard_armor.getRating(damage_type))
+			incoming_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01
+			return prob(50 - round(incoming_damage / 3))
+		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01 * status_cover_modifier  //Determine cover ratio; this is the % of damage we actually intercept.
+			if(!absorbing_damage)	//This should be checked before we get to damage calculations!
+				return incoming_damage //We are transparent to this kind of damage.
+			var/calculated_damage = max(0, absorbing_damage - hard_armor.getRating(damage_type)) //We apply hard armor *first* _not_ *after* soft armor
+			if(incoming_damage != absorbing_damage)	//If only part of the damage is being reduced, use the formula below
+				. = incoming_damage - absorbing_damage + calculated_damage	//The math for calculating the resulting damage taken
+			else
+				. = calculated_damage
+			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
+			if(attack_type == COMBAT_MELEE_ATTACK && !silent && !calculated_damage)	//If you block all or what was absorbed of a melee attack
+				affected.visible_message(span_avoidharm("[affected] [. ? "negated most of the attack" : "performed a flawless block"]!"), span_avoidharm("You [. ? "blocked most of the damage" : "blocked the attack"]!"))
+			if(!.)	//If damage is nullified to the user, user gets told so
+				if(!silent && attack_type != COMBAT_PROJ_ATTACK)	//No need to spam another message if you already got from being melee'ed
+					to_chat(affected, span_avoidharm("\The [parent_item.name] absorbs the damage!"))
+			if(transfer_damage_cb)
+				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
 
 /obj/item/weapon/shield/fallout_shield/examine(mob/user, distance, infix, suffix)
 	. = ..()
