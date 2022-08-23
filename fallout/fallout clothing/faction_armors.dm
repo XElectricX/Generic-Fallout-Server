@@ -207,6 +207,7 @@
 	item_state = "legion_decanus"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 25, "energy" = 25, "bomb" = 35, "bio" = 20, "rad" = 25, "fire" = 35, "acid" = 20)
 	slowdown = 0.5
+	starting_attachments = list(/obj/item/armor_module/fallout/cape/legion/black)
 
 /obj/item/clothing/suit/storage/fallout/legion/centurion
 	name = "\improper Centurion armor"

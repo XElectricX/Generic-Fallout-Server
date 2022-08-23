@@ -47,21 +47,25 @@
 	name = "NCR vs Legion"
 	config_tag = "NCR vs Legion"
 	flags_round_type = MODE_LZ_SHUTTERS
-	shutters_drop_time = 5 MINUTES
+	shutters_drop_time = 7 MINUTES
 	respawn_time = 3 MINUTES	//Increase to 5 when out of testing
 	round_end_states = list(DRAW, NCR_VICTORY, LEGION_VICTORY)
 	valid_job_types = list(
 		/datum/job/fallout/ncr = -1,
-		/datum/job/fallout/ncr/medic = 5,
-		/datum/job/fallout/ncr/engineer = 5,
-		/datum/job/fallout/ncr/captain = 5,
-		/datum/job/fallout/ncr/support = 5,
+		/datum/job/fallout/ncr/heavy = 1,
+		/datum/job/fallout/ncr/medic = 3,
+		/datum/job/fallout/ncr/engineer = 3,
+		/datum/job/fallout/ncr/captain = 3,
+		/datum/job/fallout/ncr/support = 2,
 		/datum/job/fallout/ncr/leader = 1,
 		/datum/job/fallout/legion = -1,
 		/datum/job/fallout/legion/prime = 5,
 		/datum/job/fallout/legion/veteran = 5,
-		/datum/job/fallout/legion/decanus = 5,
-		/datum/job/fallout/legion/support = 5,
+		/datum/job/fallout/legion/decanus = 1,
+		/datum/job/fallout/legion/decanus/prime = 1,
+		/datum/job/fallout/legion/decanus/veteran = 1,
+		/datum/job/fallout/legion/vexillarius = 1,
+		/datum/job/fallout/legion/support = 2,
 		/datum/job/fallout/legion/leader = 1)
 
 /datum/game_mode/ncr_vs_legion/announce()

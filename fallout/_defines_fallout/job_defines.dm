@@ -1,15 +1,15 @@
 /// SEE fallout_jobs.dm FOR JOB DATUMS ///
 
-//Job category defines
-#define JOB_CAT_WASTELAND "Wasteland"
-#define JOB_CAT_TOWN "Maravillo"
-#define JOB_CAT_BROTHERHOOD "Brotherhood of Steel"
-#define JOB_CAT_ENCLAVE "Enclave"
-#define JOB_CAT_RAIDER "Raiders"
-#define JOB_CAT_TALON "Talon Company"
-#define JOB_CAT_REGULATOR "Regulators"
-#define JOB_CAT_NCR "NCR"
-#define JOB_CAT_LEGION "Legion"
+//Faction and job category defines, since it is the same value for all intents and purposes
+#define WASTELAND "Wasteland"
+#define TOWN "Maravillo"
+#define BROTHERHOOD "Brotherhood of Steel"
+#define ENCLAVE "Enclave"
+#define RAIDERs "Raiders"
+#define TALON_COMPANY "Talon Company"
+#define REGULATORS "Regulators"
+#define NCR "NCR"
+#define LEGION "Legion"
 
 //Job title defines
 #define WASTELANDER "Wastelander"
@@ -46,6 +46,7 @@
 
 //NCR
 #define NCR_PRIVATE "NCR Private"
+#define NCR_HEAVY "NCR Heavy Trooper"
 #define NCR_MEDIC "NCR Field Medic"
 #define NCR_ENGINEER "NCR Field Engineer"
 #define NCR_CAPTAIN "NCR Captain"
@@ -56,6 +57,13 @@
 #define LEGION_RECRUIT "Recruit Legionary"
 #define LEGION_PRIME "Prime Legionary"
 #define LEGION_VETERAN "Veteran Legionary"
-#define LEGION_DECANUS "Legionary Decanus"
+#define LEGION_DECANUS "Recruit Decanus"
+#define LEGION_DECANUS_PRIME "Prime Decanus"
+#define LEGION_DECANUS_VETERAN "Veteran Decanus"
+#define LEGION_VEXILLARIUS "Legion Vexillarius"
 #define LEGION_LEADER "Legion Centurion"
 #define LEGION_SUPPORT "Legion Medicus"
+
+GLOBAL_LIST_INIT(jobs_ncr, list(NCR_PRIVATE, NCR_HEAVY, NCR_MEDIC, NCR_ENGINEER, NCR_CAPTAIN, NCR_LEADER, NCR_SUPPORT))
+GLOBAL_LIST_INIT(jobs_legion, list(LEGION_RECRUIT, LEGION_PRIME, LEGION_VETERAN, \
+LEGION_DECANUS, LEGION_DECANUS_PRIME, LEGION_DECANUS_VETERAN, LEGION_VEXILLARIUS, LEGION_LEADER, LEGION_SUPPORT))

@@ -8,6 +8,9 @@
 	icon_state = "x3"
 	job = /datum/job/fallout/ncr
 
+/obj/effect/landmark/start/job/fallout/ncr/heavy
+	job = /datum/job/fallout/ncr/heavy
+
 /obj/effect/landmark/start/job/fallout/ncr/medic
 	job = /datum/job/fallout/ncr/medic
 
@@ -36,6 +39,15 @@
 
 /obj/effect/landmark/start/job/fallout/legion/decanus
 	job = /datum/job/fallout/legion/decanus
+
+/obj/effect/landmark/start/job/fallout/legion/decanus_prime
+	job = /datum/job/fallout/legion/decanus/prime
+
+/obj/effect/landmark/start/job/fallout/legion/decanus_veteran
+	job = /datum/job/fallout/legion/decanus/veteran
+
+/obj/effect/landmark/start/job/fallout/legion/vexillarius
+	job = /datum/job/fallout/legion/vexillarius
 
 /obj/effect/landmark/start/job/fallout/legion/leader
 	job = /datum/job/fallout/legion/leader
