@@ -3,6 +3,11 @@
 	name = NCR_PRIVATE
 	medical = SKILL_MEDICAL_NOVICE
 
+/datum/skills/ncr_heavy
+	name = NCR_HEAVY
+	medical = SKILL_MEDICAL_NOVICE
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
 /datum/skills/ncr_medic
 	name = NCR_MEDIC
 	medical = SKILL_MEDICAL_PRACTICED

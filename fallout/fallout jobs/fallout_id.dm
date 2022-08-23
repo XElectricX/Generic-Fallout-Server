@@ -34,12 +34,11 @@
 //Legion
 /obj/item/card/id/legion
 	name = "Legion badge"
-	desc = "A roughly-made Legion badge with writing on paper over a leather frame."
+	desc = "A medallion signifying allegiance to Caesar's Legion."
 	icon = 'fallout/fallout icons/fallout clothing/identification.dmi'
 	icon_state = "legion"
 	item_state = "dogtag"
 	access = list(LEGION_ACCESS)
-	//iff_signal =
 
 /obj/item/card/id/legion/prime
 	icon_state = "legion_prime"
@@ -58,7 +57,6 @@
 	access = list(LEGION_LEADER_ACCESS)
 
 /obj/item/card/id/legion/support
-	icon_state = "legion"
 	access = list(LEGION_SUPPORT_ACCESS)
 
 /obj/item/card/id/legion/examine(mob/user)
