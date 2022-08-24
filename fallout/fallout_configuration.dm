@@ -1,6 +1,6 @@
 //Redirects the config folder to the fallout folder
 /datum/controller/configuration
-	directory = "fallout/fallout config"
+	directory = "cfg"
 
 //Editing the ticker because the startup messages are built into it
 /datum/controller/subsystem/ticker/fire()
