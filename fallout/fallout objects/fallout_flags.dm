@@ -53,7 +53,7 @@
 
 /obj/structure/flag/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(I == flag_type)	//Returning your flag
+	if(istype(I, flag_type))	//Returning your flag
 		flag_add(I)
 		return
 	if(user.faction == flag_faction)	//To prevent grief
