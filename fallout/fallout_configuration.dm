@@ -12,7 +12,7 @@
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
-			to_chat(world, span_role_body("Welcome to the lobby of [CONFIG_GET(string/server_name)]! The game has begun."))
+			to_chat(world, span_role_body("Welcome to the lobby of [CONFIG_GET(string/title)]! The game has begun."))
 			//to_chat(world, span_role_body("The game has begun."))
 			current_state = GAME_STATE_PREGAME
 			//to_chat(world, SSpersistence.seasons_info_message())
