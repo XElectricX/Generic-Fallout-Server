@@ -308,3 +308,33 @@
 	music_extra_data["start"] = data["start_time"]
 	music_extra_data["end"] = data["end_time"]
 	tgui_panel?.play_music(web_sound_url,music_extra_data)
+
+//Very likely safe to overwrite as the last time this proc was updated was 3 years ago
+/world/update_status()
+	var/server_name = CONFIG_GET(string/server_name)
+	if(!server_name || Master?.current_runlevel == RUNLEVEL_INIT)
+		// If you didn't see a server name, or the master controller
+		// is stilling initing, we don't update the hub.
+		return
+	// Start generating the hub status
+	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
+	// Current outputt should look like
+	/*
+	Something — Lost in space...	|	TerraGov Marine Corps — Sulaco
+	Map: Loading...					|	Map: Icy Caves
+	Mode: Lobby						|	Mode: Crash
+	Round time: 0:0					|	Round time: 4:54
+	*/
+	var/discord_url = CONFIG_GET(string/discordurl)
+	var/webmap_host = CONFIG_GET(string/webmap_host)
+	var/title = CONFIG_GET(string/title) ? CONFIG_GET(string/title) : "Lost in space..."
+	//var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
+	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
+	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
+	var/new_status = ""
+	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[title] &#8212; [server_name]</a></b>"
+	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
+	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
+	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
+	// Finally set the new status
+	status = new_status
