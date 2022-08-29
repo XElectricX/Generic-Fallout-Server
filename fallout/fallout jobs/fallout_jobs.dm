@@ -19,6 +19,7 @@
 	total_positions = -1
 	faction = WASTELAND
 	job_category = WASTELAND
+	exp_type = EXP_TYPE_REGULAR_ALL
 	selection_color = "#909090"
 	var/desc = "Explore, scavenge, hunt, build, trade. Maybe you're a native to the Capital Wasteland, or just passing by?"
 	var/faction_desc = "You are your own person in the vast wasteland. Do as you wish."
@@ -246,3 +247,8 @@
 	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
 	dat = replacetext(dat, "\t", "")
 	return dat
+
+//In order to make the Fallout jobs be seamlessly tracked, adding them to the regular jobs GLOB on initialization of the jobs subsystem
+/datum/controller/subsystem/job/Initialize(timeofday)
+	GLOB.jobs_regular_all += GLOB.jobs_ncr + GLOB.jobs_legion
+	. = ..()
