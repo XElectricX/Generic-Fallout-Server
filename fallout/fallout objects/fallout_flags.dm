@@ -56,11 +56,10 @@
 	if(istype(I, flag_type))	//Returning your flag
 		flag_add(I)
 		return
-	if(user.faction == flag_faction)	//To prevent grief
-		to_chat(user, span_warning("What are you, French?"))
-		return
-	if(istype(I, /obj/item/flag))	//Ends the game if it's a foreign flag
+	if(istype(I, /obj/item/flag) && user.faction == flag_faction)	//Ends the game if it's a foreign flag with an anti-grief check
 		flag_captured(I, user)
+	else
+		to_chat(user, span_warning("What are you, French?"))
 
 //Readds your flag back to the pole
 /obj/structure/flag/proc/flag_add(obj/item/I)
@@ -71,7 +70,10 @@
 	update_icon()
 
 //Determines who wins
-/obj/structure/flag/proc/flag_captured()
+/obj/structure/flag/proc/flag_captured(obj/item/I, mob/user, params)
+	if(!has_flag)
+		visible_message(span_alert("The home flag is missing! It needs to be on the pole to win!"))
+		return
 	var/datum/game_mode/ncr_vs_legion/mode = SSticker.mode
 	switch(flag_type)
 		if(NCR_FLAG)
@@ -80,6 +82,7 @@
 		if(LEGION_FLAG)
 			message_admins("Round finished: Legion victory") //Legion took objective
 			mode.round_finished = LEGION_VICTORY
+	qdel(I)
 
 /obj/structure/flag/ncr
 	name = "\improper NCR flag"
