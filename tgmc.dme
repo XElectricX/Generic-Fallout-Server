@@ -1870,6 +1870,7 @@
 #include "fallout\fallout structures\fallout_fences.dm"
 #include "fallout\fallout structures\fallout_windows.dm"
 #include "fallout\fallout systems\fallout_ambience.dm"
+#include "fallout\fallout systems\fallout_emotes.dm"
 #include "fallout\fallout turfs\fallout_floors.dm"
 #include "fallout\fallout turfs\fallout_walls.dm"
 #include "fallout\fallout weapons\fallout_attachments.dm"
