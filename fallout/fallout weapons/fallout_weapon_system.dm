@@ -9,6 +9,7 @@
 	movement_acc_penalty_mult = 2	//Only doubles the accuracy and scatter penalties, 5 was wayyy too much
 	upper_akimbo_accuracy = 0
 	lower_akimbo_accuracy = 0
+	akimbo_additional_delay = 0
 	//For bolt actions, pump actions have their own under fallout_shotgun
 	cocked_message = "You work the bolt."
 	cock_locked_message = "The bolt is locked and ready to fire."
