@@ -1,26 +1,35 @@
+/area/start
+	ambience = null	//For some reason it has this enabled and because of it, ambience code bugs out
+
 //General areas
 /area/fallout
 	name = "Fallout"
 	icon = 'fallout/fallout icons/fallout_areas.dmi'
 	icon_state = "wasteland"
+	ambience = "wasteland"	//The variable points to a folder, so in this case music is located under cfg/wasteland
+	min_ambience_cooldown = 5 SECONDS
+	max_ambience_cooldown = 120 SECONDS
 
 /area/fallout/wasteland
 	name = "Wasteland"
 
 /area/fallout/underground
 	name = "Underground"
+	ambience = "underground"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 
 /area/fallout/ncr
 	name = "NCR Camp"
 	icon_state = "ncr"
+	ambience = "ncr"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 
 /area/fallout/legion
 	name = "Legion Camp"
 	icon_state = "legion"
+	ambience = "legion"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 
@@ -28,6 +37,7 @@
 /area/fallout/tunnel
 	name = "Tunnel"
 	icon_state = "tunnel"
+	ambience = "underground"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 
@@ -43,6 +53,7 @@
 	icon_state = "objective"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	ambience = "underground"
 
 /area/fallout/house
 	name = "House"
