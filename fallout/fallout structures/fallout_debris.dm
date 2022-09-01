@@ -11,6 +11,29 @@
 	bound_width = 64
 	bound_height = 64
 
+/obj/structure/debris/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/welder = I
+	if(!welder.isOn())
+		return FALSE
+	var/action_time = 10 SECONDS
+	if(user.skills.getRating("construction"))
+		action_time = action_time - (user.skills.getRating("construction")SECONDS * 1.5)
+	to_chat(user, span_notice("You begin to weld through parts of [src]..."))
+	add_overlay(GLOB.welding_sparks)
+	playsound(loc, 'sound/items/welder.ogg', 50)	//Replace this and all other welding actions with a looping_sound later
+	if(!do_after(user, action_time, TRUE, src, BUSY_ICON_BUILD))
+		cut_overlay(GLOB.welding_sparks)
+		return
+	cut_overlay(GLOB.welding_sparks)
+	if(!welder.remove_fuel(5, user))
+		return
+	playsound(loc, 'sound/effects/clang.ogg', 50)
+	to_chat(user, span_notice("You salvaged [src] into pieces!"))
+	var/obj/item/stack/S = new /obj/item/stack/sheet/metal(loc)
+	S.amount = 20
+	qdel(src)
+	return
+
 /obj/structure/debris/two
 	icon_state = "debris2"
 
