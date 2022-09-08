@@ -1832,6 +1832,8 @@
 #include "fallout\fallout consumables\fallout reagents\fallout_drinks.dm"
 #include "fallout\fallout consumables\fallout reagents\fallout_reagents.dm"
 #include "fallout\fallout hud\fallout_lobby_menu.dm"
+#include "fallout\fallout hud\fallout_notification.dm"
+#include "fallout\fallout hud\fallout_screen_objects.dm"
 #include "fallout\fallout jobs\fallout_id.dm"
 #include "fallout\fallout jobs\fallout_job_outfits.dm"
 #include "fallout\fallout jobs\fallout_job_skills.dm"
