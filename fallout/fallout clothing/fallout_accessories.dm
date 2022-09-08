@@ -21,6 +21,9 @@
 	item_state = "gloves_metal"
 
 //Shoes
+/obj/item/clothing/shoes
+	slowdown = 0
+
 /obj/item/clothing/shoes/fallout
 	name = "rags"
 	desc = "Cloth rags bundled into something you could wrap around your feet."
@@ -31,7 +34,6 @@
 	flags_armor_protection = FEET
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
-	slowdown = 0
 
 /obj/item/clothing/shoes/fallout/cowboy
 	name = "cowboy boots"

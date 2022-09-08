@@ -144,7 +144,7 @@
 	desc = "For when you can't be bothered to aim."
 	icon_state = "buckshot"
 	handful_icon_state = "shell_buckshot"
-	handful_amount = 1
+	handful_amount = 4
 	damage = 6
 	damage_falloff = 1.5
 	penetration = 0

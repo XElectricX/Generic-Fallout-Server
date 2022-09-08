@@ -64,6 +64,7 @@
 	belt = /obj/item/storage/belt/fallout/tools/full
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer
+	glasses = /obj/item/clothing/glasses/welding
 	id = /obj/item/card/id/ncr/engineer
 	suit_store = /obj/item/weapon/gun/fallout_rifle/hunting
 	l_store = /obj/item/storage/pouch/fallout/magazine
@@ -251,6 +252,7 @@
 	gloves = /obj/item/clothing/gloves/fallout/blacksmith
 	shoes = /obj/item/clothing/shoes/fallout/legion/sandals
 	head = /obj/item/clothing/head/fallout/legion
+	glasses = /obj/item/clothing/glasses/welding
 	mask = null
 	id = /obj/item/card/id/legion/support
 	l_store = /obj/item/storage/pouch/fallout/medical/doctor/full
