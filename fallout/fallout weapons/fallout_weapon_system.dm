@@ -36,6 +36,49 @@
 	else
 		icon_state = base_gun_icon
 
+/obj/item/weapon/gun/able_to_fire(mob/user)
+	if(!user || user.stat != CONSCIOUS || !isturf(user.loc))	/* FALLOUT EDIT: Remove lying_angle check! */
+		return
+	if(rounds - rounds_per_shot < 0 && rounds)
+		to_chat(user, span_warning("Theres not enough rounds left to fire."))
+		return FALSE
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+		to_chat(user, span_warning("The chamber is open! Close it first."))
+		return FALSE
+	if(!user.dextrous)
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		return FALSE
+	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
+		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
+		to_chat(user, span_warning("The safety is on!"))
+		return FALSE
+	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
+		if(!master_gun && !CHECK_BITFIELD(flags_item, WIELDED))
+			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+			return FALSE
+		if(master_gun && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
+			to_chat(user, span_warning("You need a more secure grip to fire [src]!"))
+			return FALSE
+	if(LAZYACCESS(user.do_actions, src))
+		to_chat(user, "<span class='warning'>You are doing something else currently.")
+		return FALSE
+	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
+		if(!master_gun && !wielded_stable())
+			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
+			return FALSE
+		if(master_gun && !master_gun.wielded_stable())
+			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
+			return FALSE
+	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
+		return FALSE
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
+		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
+		return FALSE
+	return TRUE
+
 //Deleting the check that prevents empty mags from being loaded into guns and adding RNG hand reload sounds
 /obj/item/weapon/gun/reload(obj/item/new_mag, mob/living/user, force = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) || user?.do_actions)
