@@ -1,5 +1,54 @@
 /*	I suppose put anything related to basic mob stuff here	*/
 
+/mob/living
+	var/can_crawl = FALSE	//If this kind of mob can crawl while lying down or not
+	var/crawl_speed = 8	//Multiplicative; see on_floored_trait_gain in init_signals.dm
+
+/mob/living/carbon/human
+	can_crawl = TRUE
+
+#define MOVESPEED_ID_CRAWLING "CRAWLING"
+//These 3 procs handle who can crawl or not
+/mob/living/on_floored_trait_gain(datum/source)
+	if(buckled && buckled.buckle_lying != -1)
+		set_lying_angle(buckled.buckle_lying) //Might not actually be laying down, like with chairs, but the rest of the logic applies.
+	else if(!lying_angle)
+		set_lying_angle(pick(90, 270))
+	if(!can_crawl)
+		set_canmove(FALSE)
+	add_movespeed_modifier(MOVESPEED_ID_CRAWLING, TRUE, 0, NONE, TRUE, crawl_speed)
+
+/mob/living/on_floored_trait_loss(datum/source)
+	if(lying_angle)
+		set_lying_angle(0)
+	if(!can_crawl && !HAS_TRAIT(src, TRAIT_IMMOBILE))	//If you're incapacitated, you can't move anyways
+		set_canmove(TRUE)
+	remove_movespeed_modifier(MOVESPEED_ID_CRAWLING)
+
+/mob/living/on_immobile_trait_loss(datum/source)
+	if(!HAS_TRAIT(src, TRAIT_FLOORED) || can_crawl)
+		set_canmove(TRUE)
+
+/mob/living/set_lying_angle(new_lying)
+	if(new_lying == lying_angle)
+		return
+	. = lying_angle
+	lying_angle = new_lying
+	update_transform()
+	lying_prev = lying_angle
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_LYING_ANGLE)
+	if(lying_angle)
+		density = FALSE
+		var/obj/item/item_to_unwield = get_held_item()	//Check for unwielding any wielded guns you lie down with
+		if(item_to_unwield)
+			item_to_unwield.unwield(usr)
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		density = TRUE
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
 //No reason for this to be running at all
 /mob/living/ff_check(total_damage, mob/living/victim)
 	return
