@@ -5,6 +5,13 @@
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/ammo_magazine/handful/update_icon_state()
+	if(max_rounds > 4)
+		setDir(current_rounds + round(current_rounds/3))
+	else if (max_rounds > 1)
+		setDir(2 ** (current_rounds-1))
+	return
+
 //Changes to handfuls-related stuff going here, no other simple way to do it, have to copy paste it all back and then make changes
 /obj/item/ammo_magazine/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds)
 	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo

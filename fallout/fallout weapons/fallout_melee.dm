@@ -760,8 +760,8 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.2
 	max_integrity = 700
-	force = 30
-	throwforce = 15
+	force = 10
+	throwforce = 10
 	throw_speed = 0.5
 	throw_range = 2
 	var/repair_material = /obj/item/stack/sheet/metal
@@ -770,13 +770,14 @@
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	attack_verb = "bashed"
+	attack_speed = ATTACK_SPEED_SLOW
 
 /obj/item/weapon/shield/fallout_shield/reinforced
 	name = "reinforced riot shield"
 	icon_state = "shield_reinforced"
 	slowdown = 0.4
 	max_integrity = 1500
-	force = 40
+	force = 20
 	throwforce = 20
 	hard_armor = list("melee" = 20, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
@@ -792,7 +793,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 0
 	max_integrity = 300
-	force = 15
 	throwforce = 30	//Captain America this bad boy
 	throw_speed = 3
 	throw_range = 7

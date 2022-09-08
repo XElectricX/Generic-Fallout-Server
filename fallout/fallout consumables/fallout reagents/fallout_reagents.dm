@@ -257,7 +257,7 @@
 	..()
 	RegisterSignal(L, COMSIG_STAMINA_REGEN, .proc/modify_stamina_regen)
 	to_chat(L, span_notice("The world around you slows down slightly. You feel like you could run for hours!"))
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.2)
 	L.max_stamina_buffer += 25	//1.5x more stamina "health"
 	L.adjustStaminaLoss(-25)	//Initial stamina boost to pair with the increase in max stamina
 
@@ -271,7 +271,7 @@
 
 /datum/reagent/turbo/on_mob_life(mob/living/L, metabolism)
 	if(prob(5))
-		to_chat(L, span_bold("Faster, faster, faster!"))
+		to_chat(L, span_userdanger("Faster, faster, faster!"))
 	L.jitter(5)
 	if(prob(10))
 		L.emote(pick("twitch", "shiver","blinkr"))
