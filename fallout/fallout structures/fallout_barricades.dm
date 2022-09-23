@@ -1,3 +1,6 @@
+/obj/structure/barricade/attack_animal(mob/living/user)
+	return attack_alien(user, user.melee_damage)
+
 /obj/structure/barricade/metal
 	max_integrity = 300
 
