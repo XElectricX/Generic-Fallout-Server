@@ -7,6 +7,12 @@
 /mob/living/carbon/human
 	can_crawl = TRUE
 
+/mob/living/carbon/human/attack_animal(mob/living/M as mob)
+	. = ..()
+	if(M.melee_damage && istype(M, /mob/living/carbon/fallout))
+		var/mob/living/carbon/fallout/living_mob = M
+		M.do_attack_animation(src, living_mob.attack_effect)
+
 #define MOVESPEED_ID_CRAWLING "CRAWLING"
 //These 3 procs handle who can crawl or not
 /mob/living/on_floored_trait_gain(datum/source)
