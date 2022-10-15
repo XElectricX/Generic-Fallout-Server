@@ -138,16 +138,130 @@
 /obj/item/armor_module/fallout
 	name = "accessory template"
 	desc = "Oh no, this shouldn't happen."
-	icon = 'fallout/fallout icons/fallout clothing/fallout_accessories.dmi'
+	icon = 'fallout/fallout icons/fallout items/armor_modules.dmi'
 	icon_state = ""
-	attach_icon = 'fallout/fallout icons/fallout clothing/fallout_accessories_worn.dmi'
+	w_class = WEIGHT_CLASS_HUGE
+	flags_attach_features = ATTACH_NO_HANDS|ATTACH_REMOVABLE
+	///To prevent runtimes, but no reason it cannot be used as normal
+	var/flags_armor_features
+	///Primarily used for process() as I cannot pass arguments onto it
+	var/mob/living/carbon/human/human_owner
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
+	///Sound played on activate()
+	var/activation_sound
+	///Constant battery usage whenever this armor piece is equipped
+	var/passive_energy_cost = 0
+	///How much energy this module needs when activated
+	var/active_energy_cost = 0
+	///Which slot this attachment needs to be in to use enable_mod or disable_mod; var/flags_equip_slot would be used but then the user can equip it directly
+	var/equip_slot
+	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
+	var/list/attachments_by_slot = list()
+	///Typepath list of allowed attachment types.
+	var/list/attachments_allowed = list()
+	///List of attachment types that is attached to the object on initialize.
+	var/list/starting_attachments = list()
+
+/obj/item/armor_module/fallout/Initialize()
+	. = ..()
+	attachments_allowed = string_list(attachments_allowed)
+	starting_attachments = string_list(starting_attachments)
+	if(!length(attachments_allowed) || !length(attachments_by_slot))
+		return
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
+
+/obj/item/armor_module/fallout/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(flags_armor_protection && !flags_equip_slot)	//Check flags_equip_slot or else items like helmets apply armor twice
+		user.add_limb_armor(src)
+	if(slowdown)
+		user.add_movespeed_modifier(type, TRUE, 0, (flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
+	if(user.pa_cell)
+		user.pa_cell.action_energy_drain += passive_energy_cost
+	if(!length(attachments_allowed) || !length(attachments_by_slot))	//Check if anything can be attached to this object
+		return
+	for(var/module_slot in attachments_by_slot)
+		var/obj/item/armor_module/fallout/attachment = attachments_by_slot[module_slot]
+		if(!attachment)
+			continue
+		attachment.enable_mod(src, user, slot)
+
+/obj/item/armor_module/fallout/unequipped(mob/living/carbon/human/unequipper, slot)
+	. = ..()
+	if(flags_armor_protection && !flags_equip_slot)	//Check flags_equip_slot or else items like helmets remove armor twice
+		unequipper.remove_limb_armor(src)
+	if(slowdown)
+		unequipper.remove_movespeed_modifier(type)
+	if(unequipper.pa_cell)
+		unequipper.pa_cell.action_energy_drain -= passive_energy_cost
+	if(!length(attachments_allowed) || !length(attachments_by_slot))	//Check if anything can be attached to this object
+		return
+	for(var/module_slot in attachments_by_slot)
+		var/obj/item/armor_module/fallout/attachment = attachments_by_slot[module_slot]
+		if(!attachment)
+			continue
+		attachment.disable_mod(src, unequipper, slot)
+
+///What this module does when the object it is attached to is equipped
+/obj/item/armor_module/fallout/proc/enable_mod(obj/item/armor_module/fallout/attached_to, mob/living/carbon/human/user, which_slot)
+	if(attached_to.equip_slot != which_slot)
+		return
+	human_owner = user
+
+///What this module does when the object it is attached to is unequipped
+/obj/item/armor_module/fallout/proc/disable_mod(obj/item/armor_module/fallout/attached_to, mob/living/carbon/human/user, which_slot)
+	if(attached_to.equip_slot != which_slot)
+		return
+	human_owner = null
+
+//Modifying to include an ATTACH_NO_OVERLAY check
+/datum/component/attachment_handler/update_parent_overlay(datum/source)
+	var/obj/item/parent_item = parent
+	for(var/slot in slots) //Cycles through all the slots.
+		var/obj/item/attachment = slots[slot]
+		var/image/overlay = attachable_overlays[slot]
+		parent_item.overlays -= overlay //First removes the existing overlay that occupies the slots overlay.
+		if(!attachment) //No attachment, no overlay.
+			attachable_overlays[slot] = null
+			continue
+		var/list/attachment_data = attachment_data_by_slot[slot]
+		var/icon = attachment_data[OVERLAY_ICON]
+		var/icon_state = attachment.icon_state
+		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_OVERLAY))
+			if(attachment_data[OVERLAY_ICON] == attachment.icon)
+				icon_state = attachment.icon_state + "_a"
+			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+				icon_state = attachment.icon_state
+				icon = attachment.icon
+				overlay = image(icon, parent_item, icon_state)
+				overlay.overlays += attachment.overlays
+			else
+				overlay = image(icon, parent_item, icon_state)
+			var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
+			var/slot_y = 0
+			for(var/attachment_slot in attachment_offsets)
+				if("[slot]_x" == attachment_slot)
+					slot_x = attachment_offsets["[slot]_x"]
+					continue
+				if("[slot]_y" == attachment_slot)
+					slot_y = attachment_offsets["[slot]_y"]
+					continue
+			var/pixel_shift_x = attachment_data[PIXEL_SHIFT_X] ? attachment_data[PIXEL_SHIFT_X] : 0 //This also is incase the attachments pixel_shift_x and y are null. If so it defaults to 0.
+			var/pixel_shift_y = attachment_data[PIXEL_SHIFT_Y] ? attachment_data[PIXEL_SHIFT_Y] : 0
+			overlay.pixel_x = slot_x - pixel_shift_x
+			overlay.pixel_y = slot_y - pixel_shift_y
+			attachable_overlays[slot] = overlay
+			parent_item.overlays += overlay
 
 //Capes
 /obj/item/armor_module/fallout/cape
 	name = "cape"
 	desc = "Stylish."
+	icon = 'fallout/fallout icons/fallout clothing/fallout_accessories.dmi'
 	icon_state = ""	//Add a basic cape sprite some time in the future
+	attach_icon = 'fallout/fallout icons/fallout clothing/fallout_accessories_worn.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	flags_attach_features = ATTACH_NO_HANDS|ATTACH_APPLY_ON_MOB|ATTACH_REMOVABLE
 	attachment_layer = CAPE_LAYER
 	slot = ATTACHMENT_SLOT_CAPE
