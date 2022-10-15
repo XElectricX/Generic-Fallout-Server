@@ -1828,6 +1828,7 @@
 #include "fallout\fallout clothing\fallout_coats.dm"
 #include "fallout\fallout clothing\fallout_pouches.dm"
 #include "fallout\fallout clothing\fallout_uniforms.dm"
+#include "fallout\fallout clothing\power_armor.dm"
 #include "fallout\fallout consumables\fallout_beverages.dm"
 #include "fallout\fallout consumables\fallout_chems.dm"
 #include "fallout\fallout consumables\fallout reagents\fallout_drinks.dm"

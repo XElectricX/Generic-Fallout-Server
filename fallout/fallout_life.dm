@@ -6,6 +6,60 @@
 
 /mob/living/carbon/human
 	can_crawl = TRUE
+	///Holder for power armor battery
+	var/obj/item/cell/fallout/pa_cell
+	var/is_wearing_power_armor = FALSE
+
+/mob/living/carbon/human/Stat()
+	. = ..()
+	if(is_wearing_power_armor)
+		if(statpanel("Power Armor"))
+			if(pa_cell)
+				stat("Internal Power Systems Info:", "[src.pa_cell.name] - [src.pa_cell.charge]/[src.pa_cell.maxcharge] | [src.pa_cell.charge/src.pa_cell.maxcharge*100]% | \
+				Mechanical Power Cost - [src.pa_cell.action_energy_drain] | Current Module Energy Usage Rate - [src.pa_cell.passive_energy_drain]")
+			var/obj/item/module	//Holder for modules
+			var/obj/item/armor_module/fallout/armor_piece	//Holder for armor pieces
+			if(istype(head, /obj/item/armor_module/fallout/helmet))
+				armor_piece = head
+				for(var/attachments in armor_piece.attachments_by_slot)
+					if(!armor_piece.attachments_by_slot[attachments])
+						stat("[armor_piece.name]:", "NO MODULE")
+						continue
+					module = armor_piece.attachments_by_slot[attachments]
+					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
+			if(istype(wear_suit, /obj/item/armor_module/fallout/torso) && wear_suit != /obj/item/armor_module/fallout/torso)
+				armor_piece = wear_suit
+				for(var/attachments in armor_piece.attachments_by_slot)
+					if(!armor_piece.attachments_by_slot[attachments])
+						stat("[armor_piece.name]:", "NO MODULE")
+						continue
+					module = armor_piece.attachments_by_slot[attachments]
+					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
+			if(istype(gloves, /obj/item/armor_module/fallout/arms) && gloves != /obj/item/armor_module/fallout/arms)
+				armor_piece = gloves
+				for(var/attachments in armor_piece.attachments_by_slot)
+					if(!armor_piece.attachments_by_slot[attachments])
+						stat("[armor_piece.name]:", "NO MODULE")
+						continue
+					module = armor_piece.attachments_by_slot[attachments]
+					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
+			if(istype(shoes, /obj/item/armor_module/fallout/legs) && shoes != /obj/item/armor_module/fallout/legs)
+				armor_piece = shoes
+				for(var/attachments in armor_piece.attachments_by_slot)
+					if(!armor_piece.attachments_by_slot[attachments])
+						stat("[armor_piece.name]:", "NO MODULE")
+						continue
+					module = armor_piece.attachments_by_slot[attachments]
+					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
+
+/mob/living/carbon/human/Moved(atom/oldloc, direction)
+	. = ..()
+	if(is_wearing_power_armor && pa_cell)
+		if(!pa_cell.drain_power(pa_cell.action_energy_drain) && !HAS_TRAIT(src, TRAIT_IMMOBILE))
+			to_chat(src, span_warning("The internal battery is out of power!"))
+			playsound_local(src, 'sound/mecha/lowpowernano.ogg', 100)
+			playsound_local(src, 'sound/mecha/lowpower.ogg', 50)
+			ADD_TRAIT(src, TRAIT_IMMOBILE, "power_armor_no_energy")
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	. = ..()

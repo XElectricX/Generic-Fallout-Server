@@ -25,6 +25,10 @@
 	item_state = "fusion_core"
 	charge_overlay = "fusion_core"
 	w_class = WEIGHT_CLASS_SMALL
+	///How much energy gets drained per action while in power armor; sum of all armor piece energy costs
+	var/action_energy_drain = 0
+	///How much energy gets drained while using modules in power armor; sum of all active module energy costs
+	var/passive_energy_drain = 0
 	maxcharge = 30000
 	materials = list(/datum/material/metal = 5000)
 	/*	Gun-related stuff for when energy guns are implemented
@@ -37,6 +41,13 @@
 //No overlays yet
 /obj/item/cell/fallout/update_overlays()
 	..()
+
+///Calculates energy consumption
+/obj/item/cell/fallout/proc/drain_power(power_usage)
+	if(charge < power_usage)
+		return FALSE
+	else
+		return charge -= power_usage
 
 /obj/item/cell/fallout/fission
 	name = "fission battery"
