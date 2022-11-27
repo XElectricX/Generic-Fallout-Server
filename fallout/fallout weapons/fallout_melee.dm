@@ -766,7 +766,7 @@
 	throw_range = 2
 	var/repair_material = /obj/item/stack/sheet/metal
 	materials = list(/datum/material/metal = 1000)
-	hard_armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 10)
+	hard_armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "fire" = 5, "acid" = 10)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	attack_verb = "bashed"
@@ -779,7 +779,7 @@
 	max_integrity = 1500
 	force = 20
 	throwforce = 20
-	hard_armor = list("melee" = 20, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	hard_armor = list("melee" = 20, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "fire" = 10, "acid" = 10)
 
 /obj/item/weapon/shield/fallout_shield/reinforced/legion
 	name = "\improper Legionnaire shield"
@@ -797,7 +797,7 @@
 	throw_speed = 3
 	throw_range = 7
 	repair_material = /obj/item/stack/sheet/wood
-	hard_armor = list("melee" = 5, "bullet" = 3, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	hard_armor = list("melee" = 5, "bullet" = 3, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 0, "acid" = 0)
 	destroy_sound = 'sound/effects/woodhit.ogg'
 
 /obj/item/weapon/shield/fallout_shield/buckler/makeshift
@@ -813,7 +813,7 @@
 	icon_state = "shield_roman"
 
 //Shield associated code below
-/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 80))
+/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 0, "fire" = 50, "acid" = 80))
 	. = ..()
 
 //Rework how shields calculate damage taken to be based on flat damage reduction instead of percentages

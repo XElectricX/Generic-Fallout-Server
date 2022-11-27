@@ -8,8 +8,8 @@
 	mob_size = MOB_SIZE_BIG
 	melee_damage = 50
 	maxHealth = 1000
-	soft_armor = list("melee" = 60, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = 25, "bio" = 10, "rad" = 80, "fire" = 10, "acid" = 20)
-	//hard_armor = list("melee" = 5, "bullet" = 3, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 60, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = 25, "bio" = 10, "fire" = 10, "acid" = 20)
+	//hard_armor = list("melee" = 5, "bullet" = 3, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 0, "acid" = 0)
 	idle_sound = list('fallout/fallout sounds/fallout mob sounds/deathclaw_idle.ogg')
 	aggro_sound = list(\
 		'fallout/fallout sounds/fallout mob sounds/deathclaw_aggro1.ogg',\
@@ -30,7 +30,7 @@
 	mob_size = MOB_SIZE_SMALL
 	melee_damage = 5
 	maxHealth = 25
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 40, "rad" = 100, "fire" = 0, "acid" = 30)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 40, "fire" = 0, "acid" = 30)
 	idle_sound = list(\
 		'fallout/fallout sounds/fallout mob sounds/radroach_idle1.ogg',\
 		'fallout/fallout sounds/fallout mob sounds/radroach_idle2.ogg',\
@@ -53,7 +53,7 @@
 	mob_size = MOB_SIZE_SMALL
 	melee_damage = 10
 	maxHealth = 40
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 30, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
 	idle_sound = list(\
 		'fallout/fallout sounds/fallout mob sounds/molerat_idle1.ogg',\
 		'fallout/fallout sounds/fallout mob sounds/molerat_idle2.ogg')
@@ -78,7 +78,7 @@
 	melee_damage = 15
 	attack_speed = ATTACK_SPEED_FAST
 	maxHealth = 50
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 10, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
 	idle_sound = list(\
 		'fallout/fallout sounds/fallout mob sounds/dog_bark1.ogg',\
 		'fallout/fallout sounds/fallout mob sounds/dog_bark2.ogg')
@@ -111,7 +111,7 @@
 	melee_damage = 15
 	attack_speed = ATTACK_SPEED_SLOW
 	maxHealth = 200
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "fire" = 0, "acid" = 100)
 	idle_sound = list(\
 		'fallout/fallout sounds/fallout mob sounds/centaur_idle1.ogg',\
 		'fallout/fallout sounds/fallout mob sounds/centaur_idle2.ogg')

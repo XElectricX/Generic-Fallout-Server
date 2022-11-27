@@ -203,7 +203,7 @@
 	L.dizzy(5)
 	if(prob(10))
 		L.emote(pick("twitch","drool","shiver"))
-	L.stuttering += 1
+	L.set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	..()
 
 /datum/reagent/jet/addiction_act_stage3(mob/living/L, metabolism)
@@ -212,7 +212,7 @@
 	L.dizzy(10)
 	if(prob(20))
 		L.emote(pick("twitch","drool","shiver"))
-	L.stuttering += 1
+	L.set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	..()
 
 /datum/reagent/jet/addiction_act_stage4(mob/living/L, metabolism)
@@ -222,7 +222,7 @@
 	L.dizzy(30)
 	if(prob(50))
 		L.emote(pick("twitch","drool","shiver"))
-	L.stuttering += 2
+	L.set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	..()
 
 /datum/reagent/turbo	//Turbo twice as potent as Jet, thus half the thresholds
@@ -312,7 +312,7 @@
 	L.dizzy(20)
 	if(prob(40))
 		L.emote(pick("twitch","drool","shiver"))
-	L.stuttering += 1
+	L.set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	..()
 
 /datum/reagent/turbo/addiction_act_stage4(mob/living/L, metabolism)
@@ -324,7 +324,7 @@
 	L.dizzy(40)
 	if(prob(50))
 		L.emote(pick("twitch","drool","shiver"))
-	L.stuttering += 2
+	L.set_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 	..()
 
 /datum/reagent/methamphetamine

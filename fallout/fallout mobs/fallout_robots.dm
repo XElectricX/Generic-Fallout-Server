@@ -7,5 +7,5 @@
 	melee_damage = 15
 	attack_speed = ATTACK_SPEED_SLOW
 	maxHealth = 130
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 100, "fire" = 60, "acid" = 50)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 100, "fire" = 60, "acid" = 50)
 	attacktext = "pummels"
