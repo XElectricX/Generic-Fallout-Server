@@ -2,6 +2,7 @@
 /turf/closed/wall/indestructible/splashscreen
 	name = "Lobby"
 	icon = 'fallout/fallout icons/fallout_lobby.dmi'
+	pixel_x = 0	//De-widescreen the lobby image
 
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
@@ -30,7 +31,7 @@
 	walltype = "concrete"
 	max_integrity = 3000
 	explosion_block = 4
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = 60, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 20)
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = 60, "bio" = 100, "fire" = 100, "acid" = 20)
 
 
 //Metal tunnel wall, as strong as concrete
@@ -41,7 +42,7 @@
 	walltype = "tunnel"
 	max_integrity = 3000
 	explosion_block = 4
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = 60, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 20)
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = 60, "bio" = 100, "fire" = 100, "acid" = 20)
 
 
 //Log wall, very weak
@@ -53,7 +54,7 @@
 	walltype = "log"
 	max_integrity = 500
 	explosion_block = 0
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 50, "bomb" = 0, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 50, "bomb" = 0, "bio" = 20, "fire" = 0, "acid" = 0)
 
 
 //House wall, slightly weak
@@ -65,7 +66,7 @@
 	walltype = "house"
 	max_integrity = 800
 	explosion_block = 1
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 50, "bomb" = 0, "bio" = 20, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 50, "bomb" = 0, "bio" = 20, "fire" = 10, "acid" = 10)
 
 //Broken house wall
 /turf/closed/wall/fallout/house/broken

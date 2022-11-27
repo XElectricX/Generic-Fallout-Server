@@ -214,7 +214,6 @@
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
-	SSpathfinder.remove_from_pathfinding(mob_parent)
 
 /datum/ai_behavior/xeno/fallout/ask_for_pathfinding()
 	if(get_dist(mob_parent, current_node) <= 1)
