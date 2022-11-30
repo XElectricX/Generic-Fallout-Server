@@ -67,7 +67,7 @@
 	if(!in_range(A, user) || !user.Adjacent(A))
 		return
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty."))
+		user.notification("[src] is empty.")
 		return
 	if(ismob(A))
 		var/mob/M = A
@@ -109,7 +109,7 @@
 	if(!in_range(A, user) || !user.Adjacent(A))
 		return
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty."))
+		user.notification("[src] is empty.")
 		return
 	if(ismob(A))
 		var/mob/M = A
