@@ -261,3 +261,146 @@
 		return
 	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
+
+//Override fracture() to use the notification system instead of a self message
+/datum/limb/fracture()
+	if(limb_status & (LIMB_BROKEN|LIMB_DESTROYED|LIMB_ROBOT) )
+		return
+	owner.notification("Your [display_name] is broken.")
+	owner.visible_message(span_warning("You hear a loud cracking sound coming from [owner]!"))
+	var/F = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
+	playsound(owner,F, 45, 1)
+	if(owner.species && !(owner.species.species_flags & NO_PAIN))
+		owner.emote("scream")
+	add_limb_flags(LIMB_BROKEN)
+	remove_limb_flags(LIMB_REPAIRED)
+	broken_description = pick("broken","fracture","hairline fracture")
+	// Fractures have a chance of getting you out of restraints
+	if (prob(25))
+		release_restraints()
+	/// Emit a signal for autodoc to support the life if available
+	SEND_SIGNAL(owner, COMSIG_HUMAN_LIMB_FRACTURED, src)
+	return
+
+/mob/living/carbon/adjust_nutrition_speed(old_nutrition)
+	var/mob/human = src
+	switch(nutrition)
+		if(0 to NUTRITION_HUNGRY) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
+			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, round(1.5 - (nutrition / 250), 0.1)) //From 0.5 to 1.5
+			if(old_nutrition < NUTRITION_HUNGRY)	//Prevent spam
+				return
+			human.notification("You are hungry.")
+		if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+			switch(old_nutrition)	//More checks to prevent spam
+				if(0 to NUTRITION_HUNGRY)
+					human.notification("You are satisfied.")
+				if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+					return
+				if(NUTRITION_OVERFED to INFINITY)
+					human.notification("You feel fit again.")
+			remove_movespeed_modifier(MOVESPEED_ID_HUNGRY)
+		if(NUTRITION_OVERFED to INFINITY) //Overeating
+			if(old_nutrition > NUTRITION_OVERFED)
+				return
+			human.notification("You feel bloated.")
+			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, 0.5)
+
+//Overriding to use notification() instead of some chat messages
+/mob/living/carbon/human/handle_blood()
+	if(species.species_flags & NO_BLOOD)
+		return
+	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
+		//Blood regeneration if there is some space
+		if(blood_volume < BLOOD_VOLUME_NORMAL)
+			blood_volume += 0.1 // regenerate blood VERY slowly
+		if(blood_volume > BLOOD_VOLUME_MAXIMUM) //Warning: contents under pressure.
+			var/spare_blood = blood_volume - ((BLOOD_VOLUME_MAXIMUM + BLOOD_VOLUME_NORMAL) / 2) //Knock you to the midpoint between max and normal to not spam.
+			if(drip(spare_blood))
+				var/bleed_range = 0
+				switch(spare_blood)
+					if(0 to 30) //20 is the functional minimum due to midpoint calc
+						to_chat(src, span_notice("Some spare blood leaks out of your nose."))
+					if(30 to 100)
+						to_chat(src, span_notice("Spare blood gushes out of your ears and mouth. Must've had too much."))
+						bleed_range = 1
+					if(100 to INFINITY)
+						visible_message(span_notice("Several jets of blood open up across [src]'s body and paint the surroundings red. How'd [p_they()] do that?"), \
+							span_notice("Several jets of blood open up across your body and paint your surroundings red. You feel like you aren't under as much pressure any more."))
+						bleed_range = 3
+				if(bleed_range)
+					for(var/turf/canvas in RANGE_TURFS(bleed_range, src))
+						add_splatter_floor(canvas)
+					for(var/mob/canvas in viewers(bleed_range, src))
+						canvas.add_blood(species.blood_color) //Splash zone
+					playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
+	//Effects of bloodloss
+		switch(blood_volume)
+			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+				if(prob(1))
+					var/word = pick("dizzy","woozy","faint","light headed")
+					notification("You feel [word].")
+				if(oxyloss < 20)
+					adjustOxyLoss(3)
+			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+				if(eye_blurry < 50)
+					adjust_blurriness(5)
+				if(oxyloss < 40)
+					adjustOxyLoss(6)
+				else
+					adjustOxyLoss(3)
+				if(prob(10) && stat == UNCONSCIOUS)
+					adjustToxLoss(1)
+				if(prob(15))
+					Unconscious(rand(20,60))
+					var/word = pick("extremely dizzy","very woozy","weak","fatigued","unable to focus")
+					notification("You feel [word].")
+			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
+				adjustOxyLoss(5)
+				adjustToxLoss(2)
+				if(prob(15))
+					var/word = pick("your head pounding","your life draining from your body","extremely weak","horribly fatigued")
+					notification("You feel [word].")
+			if(0 to BLOOD_VOLUME_SURVIVE)
+				death()
+		// Without enough blood you slowly go hungry.
+		if(blood_volume < BLOOD_VOLUME_SAFE)
+			switch(nutrition)
+				if(300 to INFINITY)
+					adjust_nutrition(-10)
+				if(200 to 300)
+					adjust_nutrition(-3)
+		//Bleeding out
+		var/blood_max = 0
+		for(var/l in limbs)
+			var/datum/limb/temp = l
+			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
+				continue
+			blood_max += temp.brute_dam / 60
+			if (temp.surgery_open_stage)
+				blood_max += 0.6  //Yer stomach is cut open
+		if(blood_max)
+			drip(blood_max)
+
+//Override for brain damage notifications
+/datum/internal_organ/brain/set_organ_status()
+	var/old_organ_status = organ_status
+	if(damage > min_broken_damage)
+		if(organ_status != ORGAN_BROKEN)
+			organ_status = ORGAN_BROKEN
+			owner.notification("AIN'T THAT A KICK IN THE HEAD?")
+			return TRUE
+		return FALSE
+	if(damage > min_bruised_damage)
+		if(organ_status != ORGAN_BRUISED)
+			organ_status = ORGAN_BRUISED
+			owner.notification("A throbbing pain pulses around your head.")
+			return TRUE
+		return FALSE
+	if(organ_status != ORGAN_HEALTHY)
+		organ_status = ORGAN_HEALTHY
+		return TRUE
+	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	if(organ_status >= ORGAN_BRUISED)
+		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
+	else
+		REMOVE_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)

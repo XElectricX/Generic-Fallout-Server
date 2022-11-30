@@ -14,7 +14,7 @@
 
 /obj/vehicle/ridden/motorbike/fallout/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(buckling_mob.mob_size >= MOB_SIZE_XENO)	//Prevent big mobs (mainly power armor users) from getting on
-		buckling_mob.notification(buckling_mob, "You are too big to ride [src].")
+		buckling_mob.notification("You are too big to ride [src].")
 		return FALSE
 	return . = ..()
 

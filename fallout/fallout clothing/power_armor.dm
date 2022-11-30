@@ -148,7 +148,7 @@
 ///Suiting up procedures
 /obj/item/clothing/power_armor/proc/enter_armor(mob/living/carbon/human/user)
 	if(user.is_wearing_power_armor || user.mob_size > MOB_SIZE_HUMAN)	//To prevent power armor inception
-		user.notification(user, "You are too big to enter.")
+		user.notification("You are too big to enter.")
 		return
 	playsound(src, "sound/mecha/mechmove01.ogg", 100, TRUE, 7, 0.5)
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BAR))
@@ -230,7 +230,7 @@
 /datum/action/exit_pa/action_activate()
 	var/mob/living/carbon/human/user = owner
 	if(user.lying_angle)
-		user.notification(user, "You must be upright to initiate exit procedures.")
+		user.notification("You must be upright to initiate exit procedures.")
 		return
 	playsound(user, "sound/mecha/mechmove01.ogg", 100, TRUE, 7, 0.5)
 	if(!do_after(user, 3 SECONDS, TRUE, user, BUSY_ICON_BAR))
@@ -854,7 +854,7 @@
 		return TRUE
 	else
 		if(!user.pa_cell || user.pa_cell.charge < active_energy_cost)
-			user.notification(user, "[src] lacks power.")
+			user.notification("[src] lacks power.")
 			return FALSE
 		active = TRUE
 		animate(user, time = 5 SECONDS, easing = LINEAR_EASING, alpha = 5, color = "#000000")
@@ -904,7 +904,7 @@
 		return TRUE
 	else
 		if(!user.pa_cell || user.pa_cell.charge < active_energy_cost)
-			user.notification(user, "[src] lacks power.")
+			user.notification("[src] lacks power.")
 			return FALSE
 		active = TRUE
 		/*	Change how human/update_sight() works first
