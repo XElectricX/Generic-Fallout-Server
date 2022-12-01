@@ -5,6 +5,15 @@
 	icon = 'fallout/fallout icons/fallout items/fallout_storage.dmi'
 	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
 
+//Instead of drawing an item, alt clicking will open the storage menu
+/obj/item/storage/AltClick(mob/user)
+	if(Adjacent(usr))
+		open(user)
+
+//Pill bottles retain their item dispensing function
+/obj/item/storage/pill_bottle/AltClick(mob/user)
+	attempt_draw_object(user)
+
 //Toolboxes
 /obj/item/storage/fallout/toolbox
 	name = "toolbox"
