@@ -80,8 +80,8 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
-			/obj/item/weapon/combat_knife/vali_knife = 6,
 			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/combat_knife/vali_knife = 12,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -122,6 +122,7 @@
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 16,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
+			/obj/item/ammo_magazine/flamer_tank/water = -1,
 			/obj/item/jetpack_marine = 3,
 			/obj/item/bodybag/tarp = 10,
 		),
@@ -149,6 +150,7 @@
 			/obj/item/attachable/heavy_barrel = -1,
 			/obj/item/attachable/lace = -1,
 			/obj/item/attachable/flashlight = -1,
+			/obj/item/attachable/flashlight/under = -1,
 			/obj/item/attachable/magnetic_harness = -1,
 			/obj/item/attachable/reddot = -1,
 			/obj/item/attachable/motiondetector = -1,
@@ -156,7 +158,7 @@
 			/obj/item/attachable/scope/mini = -1,
 			/obj/item/attachable/angledgrip = -1,
 			/obj/item/attachable/verticalgrip = -1,
-			/obj/item/attachable/bipod = -1,
+			/obj/item/attachable/foldable/bipod = -1,
 			/obj/item/attachable/gyro = -1,
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/burstfire_assembly = -1,
@@ -169,8 +171,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -326,6 +326,7 @@
 			/obj/item/attachable/heavy_barrel = -1,
 			/obj/item/attachable/lace = -1,
 			/obj/item/attachable/flashlight = -1,
+			/obj/item/attachable/flashlight/under = -1,
 			/obj/item/attachable/magnetic_harness = -1,
 			/obj/item/attachable/reddot = -1,
 			/obj/item/attachable/motiondetector = -1,
@@ -333,7 +334,7 @@
 			/obj/item/attachable/scope/mini = -1,
 			/obj/item/attachable/angledgrip = -1,
 			/obj/item/attachable/verticalgrip = -1,
-			/obj/item/attachable/bipod = -1,
+			/obj/item/attachable/foldable/bipod = -1,
 			/obj/item/attachable/gyro = -1,
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/burstfire_assembly = -1,
@@ -346,8 +347,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -516,6 +515,7 @@
 			/obj/item/attachable/heavy_barrel = -1,
 			/obj/item/attachable/lace = -1,
 			/obj/item/attachable/flashlight = -1,
+			/obj/item/attachable/flashlight/under = -1,
 			/obj/item/attachable/magnetic_harness = -1,
 			/obj/item/attachable/reddot = -1,
 			/obj/item/attachable/motiondetector = -1,
@@ -523,7 +523,7 @@
 			/obj/item/attachable/scope/mini = -1,
 			/obj/item/attachable/angledgrip = -1,
 			/obj/item/attachable/verticalgrip = -1,
-			/obj/item/attachable/bipod = -1,
+			/obj/item/attachable/foldable/bipod = -1,
 			/obj/item/attachable/gyro = -1,
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/burstfire_assembly = -1,
@@ -536,8 +536,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -684,6 +682,7 @@
 			/obj/item/attachable/heavy_barrel = -1,
 			/obj/item/attachable/lace = -1,
 			/obj/item/attachable/flashlight = -1,
+			/obj/item/attachable/flashlight/under = -1,
 			/obj/item/attachable/magnetic_harness = -1,
 			/obj/item/attachable/reddot = -1,
 			/obj/item/attachable/motiondetector = -1,
@@ -691,7 +690,7 @@
 			/obj/item/attachable/scope/mini = -1,
 			/obj/item/attachable/angledgrip = -1,
 			/obj/item/attachable/verticalgrip = -1,
-			/obj/item/attachable/bipod = -1,
+			/obj/item/attachable/foldable/bipod = -1,
 			/obj/item/attachable/gyro = -1,
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/burstfire_assembly = -1,
@@ -702,8 +701,6 @@
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/attachable/flamer_nozzle/long = -1,
-			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1,
 		),
 		"Boxes" = list(
 			/obj/item/ammo_magazine/packet/p9mm = -1,
@@ -756,8 +753,8 @@
 		Professionals. Better cigarettes for better people. Yes, better people."
 	vend_delay = 14
 	icon_state = "cigs"
-	icon_vend = null
-	icon_deny = null
+	icon_vend = "cigs-vend"
+	icon_deny = "cigs-deny"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -924,7 +921,7 @@
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
-	icon_deny = "lascharger-denied"
+	icon_deny = "lascharger-deny"
 	vending_flags = VENDING_RECHARGER
 	wrenchable = TRUE
 	drag_delay = FALSE
@@ -964,6 +961,8 @@
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "sustenance"
+	icon_vend = "sustenance-vend"
+	icon_deny = "sustenance-deny"
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
@@ -999,6 +998,7 @@
 	name = "\improper MarineMed"
 	desc = "Marine Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "marinemed"
+	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = ALL_MARINE_ACCESS
@@ -1100,6 +1100,7 @@
 	name = "\improper MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack dispensery."
 	icon_state = "bloodvendor"
+	icon_vend = "bloodvendor-vend"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
@@ -1134,7 +1135,7 @@
 	desc = "Am automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus-vend"
-	icon_deny = "surplus-deny"
+	icon_deny = "surplus_armor-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -1234,7 +1235,7 @@
 	desc = "Am automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus-vend"
-	icon_deny = "surplus-deny"
+	icon_deny = "surplus_clothes-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -1247,6 +1248,7 @@
 			/obj/item/clothing/under/marine/orion_fatigue = -1,
 			/obj/item/clothing/under/marine/red_fatigue = -1,
 			/obj/item/clothing/under/marine/lv_fatigue = -1,
+			/obj/item/clothing/under/marine/striped = -1,
 			/obj/item/clothing/under/marine/jaeger = -1,
 			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
@@ -1354,13 +1356,13 @@
 			/obj/item/instrument/harmonica = -1,
 		),
 		"Service Dress" = list(
-			/obj/effect/essentials_set/white_dress = -1,
+			/obj/effect/vendor_bundle/white_dress = -1,
 			/obj/item/clothing/under/whites = -1,
 			/obj/item/clothing/suit/white_dress_jacket = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
-			/obj/effect/essentials_set/service_uniform = -1,
+			/obj/effect/vendor_bundle/service_uniform = -1,
 			/obj/item/clothing/under/service = -1,
 			/obj/item/clothing/head/garrisoncap = -1,
 			/obj/item/clothing/head/servicecap = -1,
@@ -1444,7 +1446,6 @@
 		),
 		"Equipment" = list(
 			/obj/item/clothing/mask/gas/swat = -1,
-			/obj/item/clothing/glasses/night/imager_goggles = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
 			/obj/item/clothing/suit/storage/marine/specialist = -1,
 			/obj/item/clothing/head/helmet/marine/specialist = -1,
@@ -1537,6 +1538,7 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
+	icon_vend = "tool-vend"
 	isshared = TRUE
 	products = list(
 		/obj/item/stack/cable_coil = -1,
