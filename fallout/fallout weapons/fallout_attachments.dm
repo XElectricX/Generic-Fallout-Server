@@ -93,15 +93,15 @@
 	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.3
 
-/obj/item/attachable/bipod
+/obj/item/attachable/foldable/bipod
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil and scatter when properly placed."
+	deploy_time = 1 SECONDS
 	melee_mod = 0
 	size_mod = 0
-	deployment_accuracy_mod = 0.3
-	deployment_recoil_mod = -2
-	deployment_scatter_mod = -2
-	deployment_burst_scatter_mod = 0
-	deployment_aim_mode_delay_mod = 0
+	accuracy_mod = 0.3
+	recoil_mod = -2
+	scatter_mod = -2
+	burst_scatter_mod = 0
 
 /obj/item/attachable/scope/mini
 	name = "short range scope"

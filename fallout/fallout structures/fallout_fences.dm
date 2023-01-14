@@ -6,7 +6,6 @@
 	flags_atom = ON_BORDER
 	layer = ABOVE_ALL_MOB_LAYER	//So that the railings and wooden fences appear above stuff
 	density = TRUE
-	throwpass = TRUE
 	anchored = TRUE
 	max_integrity = 150
 	coverage = 20

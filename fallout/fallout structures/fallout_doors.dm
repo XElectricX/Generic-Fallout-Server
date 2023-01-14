@@ -301,7 +301,6 @@ GLOBAL_LIST_EMPTY(global_locks)
 	density = TRUE
 	anchored = TRUE
 	layer = DOOR_CLOSED_LAYER
-	throwpass = FALSE
 	max_integrity = 120
 	explosion_block = 0.5
 	var/can_hold_padlock = TRUE
@@ -661,7 +660,6 @@ GLOBAL_LIST_EMPTY(global_locks)
 	close_sound = "fallout/fallout sounds/door_chainlink_close.ogg"
 	opacity = FALSE
 	base_opacity = FALSE
-	throwpass = TRUE
 	max_integrity = 200
 	explosion_block = 1.5
 	coverage = 40

@@ -169,7 +169,6 @@
 #define BULLET_FEEDBACK_SCREAM (1<<3)
 #define BULLET_FEEDBACK_SHRAPNEL (1<<4)
 #define BULLET_FEEDBACK_IMMUNE (1<<5)
-#define PROJECTILE_HIT 1
 
 //Adding FALSE values if damage is 0
 /mob/living/bullet_act(obj/projectile/proj)
@@ -186,54 +185,36 @@
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
 	if(!damage)
 		return FALSE	//Fallout edit
-	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
+	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
 		bullet_ping(proj)
 		return FALSE	//Fallout edit
+	if(!damage)
+		return FALSE	//Fallout edit
 	flash_weak_pain()
 	var/feedback_flags = NONE
-	var/living_hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
-	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
-	if(living_hard_armor || living_soft_armor)
-		if(proj.penetration > 0)
-			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
-				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-			if(living_hard_armor)
-				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
-			if(living_soft_armor)
-				living_soft_armor = max(0, living_soft_armor - proj.penetration) //Flat removal.
-		if(iscarbon(proj.firer))
-			var/mob/living/carbon/shooter_carbon = proj.firer
-			if(shooter_carbon.stagger)
-				damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
-		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
-			feedback_flags |= BULLET_FEEDBACK_PEN
-		else
-			if(living_hard_armor)
-				damage = max(0, damage - living_hard_armor) //Damage soak.
-			if(!damage) //Damage fully negated by hard armor.
-				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(living_soft_armor >= 100) //Damage fully negated by soft armor.
-				damage = 0
-				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_SOAK
-			else if(living_soft_armor) //Soft armor/padding, damage reduction.
-				damage = max(0, damage - (damage * living_soft_armor * 0.01))
+	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
+		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+	if(iscarbon(proj.firer))
+		var/mob/living/carbon/shooter_carbon = proj.firer
+		if(shooter_carbon.stagger)
+			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
+	var/original_damage = damage
+	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
+	if(damage == original_damage)
+		feedback_flags |= BULLET_FEEDBACK_PEN
+	else if(!damage)
+		feedback_flags |= BULLET_FEEDBACK_SOAK
+		bullet_soak_effect(proj)
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-		//We are checking the total distributed mob's armor now, not just the limb.
-		//Fire mod represents our fire resistance, while hard armor represents certain armor's resistance to burning material sticking to it.
-		var/fire_mod = get_fire_resist()
-		var/fire_hard_armor = get_hard_armor("fire", BODY_ZONE_CHEST)
-		if(fire_mod > 0 && fire_hard_armor < 100) //If the modifier is not bigger than zero or the hard armor is 100 then the armor fully absorbs this effect.
-			adjust_fire_stacks(CEILING(proj.ammo.incendiary_strength * fire_mod * ((100- fire_hard_armor) * 0.01), 1)) //We could add an ammo fire strength in time, as a variable.
-			IgniteMob()
-			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
+		adjust_fire_stacks(proj.ammo.incendiary_strength)
+		if(IgniteMob())
+			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		adjust_sunder(proj.sundering)
+		adjust_sunder(proj.sundering * get_sunder())
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
 		if(shrapnel_roll)

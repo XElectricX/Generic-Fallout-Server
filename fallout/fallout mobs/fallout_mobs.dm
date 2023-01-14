@@ -41,7 +41,7 @@
 	return update_icons()
 
 //To-do: use add hard-armor system to these mobs, they only calculate soft armor
-/mob/living/carbon/fallout/apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health)
+/mob/living/carbon/fallout/apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration)
 	if(..())
 		SEND_SIGNAL(src, COMSIG_MOB_TAKING_DAMAGE, damage)
 

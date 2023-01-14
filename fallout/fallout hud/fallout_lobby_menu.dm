@@ -1,12 +1,12 @@
 //Editing existing defines because it's easier than making new ones
-/obj/screen/text/lobby/title
+/atom/movable/screen/text/lobby/title
 	maptext = "<span class=menutitle>Terminal booting...</span>"
 
-/obj/screen/text/lobby/title/Initialize()
+/atom/movable/screen/text/lobby/title/Initialize()
 	. = ..()
 	maptext = "<span class=menutitle>[SSmapping.configs[GROUND_MAP].map_name]</span>"
 
-/obj/screen/text/lobby/year/Initialize()
+/atom/movable/screen/text/lobby/year/Initialize()
 	. = ..()
 	maptext = "<span class=menutext>Current Year: 2286</span>"
 
@@ -44,27 +44,27 @@
 	popup.open(FALSE)
 
 //The buttons in the lobby you click on
-/obj/screen/text/lobby/clickable
+/atom/movable/screen/text/lobby/clickable
 	maptext_x = 20
 	icon = 'fallout/fallout icons/fallout_lobby_buttons.dmi'
 	icon_state = "middle"
 
-/obj/screen/text/lobby/clickable/setup_character
+/atom/movable/screen/text/lobby/clickable/setup_character
 	maptext = "<span class=menutext>Setup Character</span>"
 	icon_state = "top"
 
-/obj/screen/text/lobby/clickable/polls
+/atom/movable/screen/text/lobby/clickable/polls
 	maptext = "<span class=menutext>Polls</span>"
 	icon_state = "bottom"
 
-/obj/screen/text/lobby/clickable/MouseEntered(location, control, params)
+/atom/movable/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	color = COLOR_DARK_MODERATE_LIME_GREEN
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'fallout/fallout sounds/obj_switch_button_b.wav',50)
 
-/obj/screen/text/lobby/clickable/MouseExited(location, control, params)
+/atom/movable/screen/text/lobby/clickable/MouseExited(location, control, params)
 	color = initial(color)
 
-/obj/screen/text/lobby/clickable/Click()
+/atom/movable/screen/text/lobby/clickable/Click()
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'fallout/fallout sounds/obj_switch_button_a.wav', 50)

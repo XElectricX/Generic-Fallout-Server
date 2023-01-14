@@ -93,7 +93,7 @@
 	if(owner.flags_item & NODROP)
 		return FALSE
 
-	if(!istype(over_object, /obj/screen))
+	if(!istype(over_object, /atom/movable/screen))
 		return TRUE
 
 	//Makes sure owner is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
@@ -150,7 +150,7 @@
 		open(usr)
 		return
 
-	if(!istype(over_object, /obj/screen))
+	if(!istype(over_object, /atom/movable/screen))
 		return ..()
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
