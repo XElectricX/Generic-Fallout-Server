@@ -18,7 +18,7 @@
 	var/admin = FALSE
 
 
-/obj/item/alien_embryo/Initialize()
+/obj/item/alien_embryo/Initialize(mapload)
 	. = ..()
 	if(!isliving(loc))
 		return
@@ -144,7 +144,7 @@
 
 	new_xeno = new(affected_mob)
 
-	new_xeno.hivenumber = hivenumber
+	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.update_icons()
 
 	//If we have a candidate, transfer it over.
@@ -171,7 +171,7 @@
 
 	victim.emote_burstscream()
 
-	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
 
 /mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
@@ -220,7 +220,7 @@
 	log_combat(src, null, "chestbursted as a larva.")
 	log_game("[key_name(src)] chestbursted as a larva at [AREACOORD(src)].")
 
-	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
+	if(((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_ruler?.z == loc.z) || (!mind))
 		burrow()
 
 	victim.death()

@@ -63,7 +63,7 @@
 	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
-/obj/structure/mopbucket/Initialize()
+/obj/structure/mopbucket/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
@@ -118,7 +118,7 @@
 	icon_state = "jarshelf_0"
 	var/randomise = 1 //Random icon
 
-/obj/structure/xenoautopsy/jar_shelf/Initialize()
+/obj/structure/xenoautopsy/jar_shelf/Initialize(mapload)
 	. = ..()
 	if(randomise)
 		icon_state = "jarshelf_[rand(0,9)]"
@@ -127,27 +127,72 @@
 	name = "cryo tank"
 	icon_state = "tank_empty"
 	desc = "It is empty."
+	density = TRUE
+	max_integrity = 100
+	resistance_flags = UNACIDABLE
+	hit_sound = 'sound/effects/Glasshit.ogg'
+	destroy_sound = "shatter"
+	///Whatever is contained in the tank
+	var/obj/occupant
+	///What this tank is replaced by when broken
+	var/obj/structure/broken_state = /obj/structure/xenoautopsy/tank/escaped
+
+
+/obj/structure/xenoautopsy/tank/deconstruct(disassembled = TRUE)
+	if(!broken_state)
+		return ..()
+
+	new broken_state(loc)
+	new /obj/item/shard(loc)
+
+	release_occupant()
+
+	return ..()
+
+/obj/structure/xenoautopsy/tank/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			take_damage(100, BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(50, BRUTE, BOMB)
+
+///Releases whatever is inside the tank
+/obj/structure/xenoautopsy/tank/proc/release_occupant()
+	if(occupant)
+		new occupant(loc)
 
 /obj/structure/xenoautopsy/tank/escaped
 	name = "broken cryo tank"
 	icon_state = "tank_escaped"
 	desc = "Something broke it..."
+	broken_state = null
 
 /obj/structure/xenoautopsy/tank/broken
 	icon_state = "tank_broken"
 	desc = "Something broke it..."
+	broken_state = null
 
 /obj/structure/xenoautopsy/tank/alien
 	icon_state = "tank_alien"
 	desc = "There is something big inside..."
+	occupant = /obj/item/alien_embryo
 
 /obj/structure/xenoautopsy/tank/hugger
 	icon_state = "tank_hugger"
 	desc = "There is something spider-like inside..."
+	occupant = /obj/item/clothing/mask/facehugger
+
+/obj/structure/xenoautopsy/tank/hugger/release_occupant()
+	var/obj/item/clothing/mask/facehugger/hugger = new occupant(loc)
+	hugger.go_active()
 
 /obj/structure/xenoautopsy/tank/larva
 	icon_state = "tank_larva"
 	desc = "There is something worm-like inside..."
+	occupant = /obj/item/alien_embryo
+	broken_state = /obj/structure/xenoautopsy/tank/broken
 
 /obj/item/alienjar
 	name = "sample jar"
@@ -155,7 +200,7 @@
 	icon_state = "jar_sample"
 	desc = "Used to store organic samples inside for preservation."
 
-/obj/item/alienjar/Initialize()
+/obj/item/alienjar/Initialize(mapload)
 	. = ..()
 
 	var/image/sample_image = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")
@@ -187,6 +232,28 @@
 /obj/structure/stairs/seamless/platform/alt
 	icon_state = "railstairs_seamless_vert"
 
+/obj/structure/stairs/seamless/platform/adobe //west and east
+	icon_state = "adobe_stairs"
+
+/obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/stairs/seamless/platform/adobe/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+/obj/structure/stairs/seamless/platform/adobe/straight
+	icon_state = "adobe_stairs_straight"
+
+/obj/structure/stairs/seamless/platform/adobe_vert //north and west
+	icon_state = "adobe_stairs_vertical"
+
+/obj/structure/stairs/seamless/platform/adobe_vert/straight
+	icon_state = "adobe_stairs_vertical_straight"
 
 /obj/structure/stairs/corner
 	icon_state = "staircorners"
@@ -212,22 +279,23 @@
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 100
 
-/obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
-	. = ..()
-	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
+/obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/T)
+	if(istype(mover) && CHECK_BITFIELD(mover.pass_flags, PASS_GLASS))
 		return prob(60)
 
-	var/obj/structure/bed/B = A
-	if(istype(A, /obj/structure/bed) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
+	var/obj/structure/bed/B = mover
+	if(istype(B) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
 		return FALSE
 
-	if(istype(A, /obj/vehicle))	//no vehicles
+	if(istype(mover, /obj/vehicle))	//no vehicles
 		return FALSE
 
-	if(isliving(A)) // You Shall Not Pass!
-		var/mob/living/M = A
+	if(isliving(mover)) // You Shall Not Pass!
+		var/mob/living/M = mover
 		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
 			return FALSE
+
+	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
@@ -261,3 +329,41 @@
 	anchored = TRUE
 	coverage = 15
 	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/tankholder
+	name = "tank holder"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "holder"
+	desc = "A metallic frame that can hold tanks and extinguishers."
+	density = TRUE
+	anchored = TRUE
+	coverage = 15
+	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/tankholder/oxygen
+	icon_state = "holder_oxygen"
+
+/obj/structure/tankholder/oxygentwo
+	icon_state = "holder_oxygen_f"
+
+/obj/structure/tankholder/oxygenthree
+	icon_state = "holder_oxygen_fr"
+
+/obj/structure/tankholder/generic
+	icon_state = "holder_generic"
+
+/obj/structure/tankholder/extinguisher
+	icon_state = "holder_extinguisher"
+
+/obj/structure/tankholder/foamextinguisher
+	icon_state = "holder_foam_extinguisher"
+
+/obj/structure/tankholder/anesthetic
+	icon_state = "holder_anesthetic"
+
+/obj/structure/tankholder/emergencyoxygen
+	icon_state = "holder_anesthetic"
+
+/obj/structure/tankholder/emergencyoxygentwo
+	icon_state = "holder_emergency_engi"
+

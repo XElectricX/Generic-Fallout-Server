@@ -16,6 +16,7 @@ GLOBAL_LIST_EMPTY(ready_players)			//all /mob/new_player that are (ready == TRUE
 GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
 GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/xenomorph
 GLOBAL_LIST_EMPTY(alive_xeno_list)			//as above except stat != DEAD
+GLOBAL_LIST_EMPTY(alive_xeno_list_hive)		//living xenos by hive
 GLOBAL_LIST_EMPTY(dead_xeno_list)
 GLOBAL_LIST_EMPTY(human_mob_list)			//all /mob/living/carbon/human including synths and species
 GLOBAL_LIST_EMPTY(alive_human_list)			//as above except stat != DEAD
@@ -26,7 +27,6 @@ GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Exclud
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(alive_living_list)		//all alive /mob/living, including clientless.
-GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
 GLOBAL_LIST_EMPTY(offered_mob_list)				//all /mobs offered by admins
 GLOBAL_LIST_EMPTY(ai_list)
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define

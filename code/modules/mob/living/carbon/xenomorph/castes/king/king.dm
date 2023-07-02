@@ -17,11 +17,14 @@
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 	bubble_icon = "alienroyal"
+	inherent_verbs = list(
+		/mob/living/carbon/xenomorph/proc/hijack,
+	)
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
-	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_king_death)
 	SSmonitor.stats.king++
+	playsound(loc, 'sound/voice/xenos_roaring.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)
@@ -43,3 +46,6 @@
 /mob/living/carbon/xenomorph/king/on_death()
 	. = ..()
 	SSmonitor.stats.king--
+
+/mob/living/carbon/xenomorph/king/death_cry()
+	playsound(loc, 'sound/voice/alien_king_died.ogg', 75, 0)

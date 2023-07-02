@@ -21,11 +21,9 @@
 	var/mob/living/carbon/human/squad_leader
 	var/mob/living/carbon/human/overwatch_officer
 
-	var/supply_cooldown = 0 //Cooldown for supply drops
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 
-	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
 	///Faction of that squad
 	var/faction = FACTION_TERRAGOV
@@ -60,74 +58,6 @@
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
-
-/datum/squad/alpha/rebel
-	id = ALPHA_SQUAD_REBEL
-	access = list(ACCESS_MARINE_ALPHA_REBEL)
-	radio_freq = FREQ_ALPHA_REBEL
-	faction = FACTION_TERRAGOV_REBEL
-	current_positions = list(
-		REBEL_SQUAD_MARINE = 0,
-		REBEL_SQUAD_ENGINEER = 0,
-		REBEL_SQUAD_CORPSMAN = 0,
-		REBEL_SQUAD_SMARTGUNNER = 0,
-		REBEL_SQUAD_LEADER = 0,
-)
-	max_positions = list(
-		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1,
-)
-
-/datum/squad/bravo/rebel
-	id = BRAVO_SQUAD_REBEL
-	access = list(ACCESS_MARINE_BRAVO_REBEL)
-	radio_freq = FREQ_BRAVO_REBEL
-	faction = FACTION_TERRAGOV_REBEL
-	current_positions = list(
-		REBEL_SQUAD_MARINE = 0,
-		REBEL_SQUAD_ENGINEER = 0,
-		REBEL_SQUAD_CORPSMAN = 0,
-		REBEL_SQUAD_SMARTGUNNER = 0,
-		REBEL_SQUAD_LEADER = 0,
-)
-	max_positions = list(
-		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1,
-)
-
-/datum/squad/charlie/rebel
-	id = CHARLIE_SQUAD_REBEL
-	access = list(ACCESS_MARINE_CHARLIE_REBEL)
-	radio_freq = FREQ_CHARLIE_REBEL
-	faction = FACTION_TERRAGOV_REBEL
-	current_positions = list(
-		REBEL_SQUAD_MARINE = 0,
-		REBEL_SQUAD_ENGINEER = 0,
-		REBEL_SQUAD_CORPSMAN = 0,
-		REBEL_SQUAD_SMARTGUNNER = 0,
-		REBEL_SQUAD_LEADER = 0,
-)
-	max_positions = list(
-		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1,
-)
-
-/datum/squad/delta/rebel
-	id = DELTA_SQUAD_REBEL
-	access = list(ACCESS_MARINE_DELTA_REBEL)
-	radio_freq = FREQ_DELTA_REBEL
-	faction = FACTION_TERRAGOV_REBEL
-	current_positions = list(
-		REBEL_SQUAD_MARINE = 0,
-		REBEL_SQUAD_ENGINEER = 0,
-		REBEL_SQUAD_CORPSMAN = 0,
-		REBEL_SQUAD_SMARTGUNNER = 0,
-		REBEL_SQUAD_LEADER = 0,
-)
-	max_positions = list(
-		REBEL_SQUAD_MARINE = -1,
-		REBEL_SQUAD_LEADER = 1,
-)
 
 //SOM squads
 /datum/squad/zulu
@@ -206,27 +136,8 @@
 		SOM_SQUAD_LEADER = 1,
 )
 
-GLOBAL_LIST_EMPTY(glovemarkings)
-GLOBAL_LIST_EMPTY(armormarkings)
-GLOBAL_LIST_EMPTY(armormarkings_sl)
-GLOBAL_LIST_EMPTY(helmetmarkings)
-GLOBAL_LIST_EMPTY(helmetmarkings_sl)
-
 /datum/squad/New()
 	. = ..()
-	var/image/armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
-	var/image/armorsl = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
-	armor.color = color
-	armorsl.color = color
-	GLOB.armormarkings[type] = armor
-	GLOB.armormarkings_sl[type] = armorsl
-	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
-	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
-	helmet.color = color
-	helmetsl.color = color
-	GLOB.helmetmarkings[type] = helmet
-	GLOB.helmetmarkings_sl[type] = helmetsl
-
 	tracking_id = SSdirection.init_squad(name, squad_leader)
 
 
@@ -350,7 +261,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
-		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
+		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE))
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
 			squad_leader.comm_title = J.comm_title
@@ -381,7 +292,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
-		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT)
+		squad_leader.set_skills(squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT))
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
@@ -405,30 +316,27 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/text = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)
 	if(ishuman(sender))
 		var/obj/item/card/id/ID = sender.get_idcard()
-		nametext = "[ID?.rank] [sender.name] transmits: "
+		nametext = "[ID?.rank] [sender.real_name] transmits: "
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
-	var/text = span_notice("<B>\[Overwatch\]:</b> [format_message(message, sender)]")
-	for(var/i in marines_list)
-		var/mob/living/L = i
-		message_member(L, text, sender)
+	if(is_ic_filtered(message) || NON_ASCII_CHECK(message))
+		to_chat(sender, span_boldnotice("Message invalid. Check your message does not contain filtered words or characters."))
+		return
 
+	var/header = "AUTOMATED CIC NOTICE:"
+	if(sender)
+		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
 
-/datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
-	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
-		return FALSE
-	return message_member(squad_leader, span_notice("<B>\[SL Overwatch\]:</b> [format_message(message, sender)]"), sender)
-
+	for(var/mob/living/marine AS in marines_list)
+		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
 		return
-	if(sender)
-		target.playsound_local(target, 'sound/effects/radiostatic.ogg')
-	to_chat(target, message)
+	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
 	return TRUE
 
 

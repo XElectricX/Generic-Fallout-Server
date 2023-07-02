@@ -17,8 +17,7 @@
 	var/obj/item/clothing/under/uniform_to_copy = item_to_copy
 	current_variant = uniform_to_copy.current_variant
 	for(var/key in uniform_to_copy.attachments_by_slot)
-		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
-			attachments += new /datum/item_representation/armor_module/colored(uniform_to_copy.attachments_by_slot[key])
+		if(!isitem(uniform_to_copy.attachments_by_slot[key]))
 			continue
 		if(istype(uniform_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
 			attachments += new /datum/item_representation/armor_module/storage(uniform_to_copy.attachments_by_slot[key])
@@ -47,7 +46,12 @@
 		"scale" = 1,
 		))
 	for(var/datum/item_representation/armor_module/attachment AS in attachments)
-		icon_to_convert = icon(initial(attachment.item_type.icon), initial(attachment.item_type.icon_state), SOUTH)
+		if(!initial(attachment.item_type.icon_state))
+			continue
+		if(initial(attachment.item_type.greyscale_config))
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(attachment.item_type.greyscale_config), attachment.colors), initial(attachment.item_type.icon_state), dir = SOUTH)
+		else
+			icon_to_convert = icon(initial(attachment.item_type.icon), initial(attachment.item_type.icon_state), SOUTH)
 		tgui_data["icons"] += list(list(
 			"icon" = icon2base64(icon_to_convert),
 			"translateX" = NO_OFFSET,

@@ -6,6 +6,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
 
 	slowdown = 0
+	appearance_flags = KEEP_APART|TILE_BOUND
 
 	///Reference to parent modular armor suit.
 	var/obj/item/clothing/parent
@@ -15,11 +16,11 @@
 	///Icon sheet of the attachment overlays
 	var/attach_icon = null
 	///Proc typepath that is called when this is attached to something.
-	var/on_attach = .proc/on_attach
+	var/on_attach = PROC_REF(on_attach)
 	///Proc typepath that is called when this is detached from something.
-	var/on_detach = .proc/on_detach
+	var/on_detach = PROC_REF(on_detach)
 	///Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.
-	var/can_attach = .proc/can_attach
+	var/can_attach = PROC_REF(can_attach)
 	///Pixel shift for the item overlay on the X axis.
 	var/pixel_shift_x = 0
 	///Pixel shift for the item overlay on the Y axis.
@@ -27,9 +28,9 @@
 	///Bitfield flags of various features.
 	var/flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	///Time it takes to attach.
-	var/attach_delay = 2 SECONDS
+	var/attach_delay = 1.5 SECONDS
 	///Time it takes to detach.
-	var/detach_delay = 2 SECONDS
+	var/detach_delay = 1.5 SECONDS
 	///Used for when the mob attach overlay icon is different than icon.
 	var/mob_overlay_icon
 	///Pixel shift for the mob overlay on the X axis.
@@ -51,7 +52,15 @@
 	///Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.
 	var/prefered_slot = SLOT_WEAR_SUIT
 
-/obj/item/armor_module/Initialize()
+	///List of slots this attachment has.
+	var/list/attachments_by_slot = list()
+	///Starting attachments that are spawned with this.
+	var/list/starting_attachments = list()
+
+	///The signal for this module if it can toggled
+	var/toggle_signal
+
+/obj/item/armor_module/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
 
@@ -68,7 +77,8 @@
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
+	base_icon = icon_state
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
 			if(istype(parent, selection))
@@ -100,6 +110,8 @@
 		return
 	LAZYADD(actions_types, /datum/action/item_action/toggle)
 	var/datum/action/item_action/toggle/new_action = new(src)
+	if(toggle_signal)
+		new_action.keybinding_signals = list(KEYBINDING_NORMAL = toggle_signal)
 	new_action.give_action(user)
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/toggle/action)
@@ -125,8 +137,8 @@
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
-	greyscale_config = /datum/greyscale_config/modularchest
-	greyscale_colors = ARMOR_PALETTE_DESERT
+	greyscale_config = null
+	greyscale_colors = ARMOR_PALETTE_DRAB
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
@@ -147,8 +159,8 @@
 	. = ..()
 	if(!secondary_color)
 		return
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(handle_color))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(extra_examine))
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
@@ -168,24 +180,6 @@
 				new_color = ARMOR_PALETTE_BLACK
 	set_greyscale_colors(new_color)
 	update_icon()
-
-///Will force faction colors on this armor module
-/obj/item/armor_module/armor/proc/limit_colorable_colors(faction)
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			set_greyscale_colors("#2A4FB7")
-			colorable_colors = list(
-				"blue" = "#2A4FB7",
-				"aqua" = "#2098A0",
-				"purple" = "#871F8F",
-			)
-		if(FACTION_TERRAGOV_REBEL)
-			set_greyscale_colors("#CC2C32")
-			colorable_colors = list(
-				"red" = "#CC2C32",
-				"orange" = "#BC4D25",
-				"yellow" = "#B7B21F",
-			)
 
 /obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -246,16 +240,11 @@
 ///Colors the armor when the parent is right clicked with facepaint.
 /obj/item/armor_module/armor/proc/handle_color(datum/source, obj/I, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "Right click the [parent] with paint to color the [src]"
+	examine_list += "Right click the [parent] with paint to color [src]"
 
-///When vended, limits the paintable colors based on the vending machine's faction
-/obj/item/armor_module/armor/on_vend(mob/user, faction, fill_container = FALSE, auto_equip = FALSE)
-	. = ..()
-	if(faction)
-		limit_colorable_colors(faction)

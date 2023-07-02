@@ -15,7 +15,7 @@
 	anchored = TRUE
 	coverage = 20
 
-/obj/structure/morgue/Initialize()
+/obj/structure/morgue/Initialize(mapload)
 	. = ..()
 	connected = new tray_path(src)
 
@@ -27,7 +27,7 @@
 	if (morgue_open)
 		icon_state = "[morgue_type]0"
 	else
-		if (contents.len > 1) //not counting the morgue tray
+		if (length(contents) > 1) //not counting the morgue tray
 			icon_state = "[morgue_type]2"
 		else
 			icon_state = "[morgue_type]1"
@@ -138,6 +138,7 @@
 
 
 /obj/structure/morgue_tray/MouseDrop_T(atom/movable/O, mob/user)
+	. = ..()
 	if (!istype(O) || O.anchored || !isturf(O.loc))
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/bodybag))
@@ -189,7 +190,7 @@
 	if(cremating)
 		return
 
-	if(contents.len <= 1) //1 because the tray is inside.
+	if(length(contents) <= 1) //1 because the tray is inside.
 		visible_message(span_warning(" You hear a hollow crackle."))
 	else
 		visible_message(span_warning(" You hear a roar as the crematorium activates."))

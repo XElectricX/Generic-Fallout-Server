@@ -95,7 +95,7 @@
 	},
 /area/bigredv2/outside/se)
 "ds" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "du" = (
@@ -182,7 +182,7 @@
 /area/bigredv2/outside/office_complex)
 "gP" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "gW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -209,7 +209,7 @@
 /area/bigredv2/outside/office_complex)
 "hE" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "hL" = (
@@ -399,11 +399,11 @@
 /area/bigredv2/outside/office_complex)
 "pH" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "pO" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "pV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -427,7 +427,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "qR" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -534,7 +534,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "uj" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -553,7 +553,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ur" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "uD" = (
@@ -632,13 +632,13 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "xY" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
 "ya" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "yd" = (
@@ -993,7 +993,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
@@ -1005,8 +1005,8 @@
 "Lv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/folder/red,
 /obj/item/ammo_casing/bullet,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "LF" = (
@@ -1118,7 +1118,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "PS" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -1264,7 +1264,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "Vh" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -1386,7 +1386,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/office_complex)
 "ZQ" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 

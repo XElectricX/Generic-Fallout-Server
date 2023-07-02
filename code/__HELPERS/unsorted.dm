@@ -23,9 +23,22 @@
 
 #define UNTIL(X) while(!(X)) stoplag()
 
-//datum may be null, but it does need to be a typed var
+/**
+ * NAMEOF: Compile time checked variable name to string conversion
+ * evaluates to a string equal to "X", but compile errors if X isn't a var on datum.
+ * datum may be null, but it does need to be a typed var.
+ **/
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
+/**
+ * NAMEOF that actually works in static definitions because src::type requires src to be defined
+ */
+
+#if DM_VERSION >= 515
+#define NAMEOF_STATIC(datum, X) (nameof(type::##X))
+#else
+#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
+#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -51,7 +64,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/GUID()
 	var/const/GUID_VERSION = "b"
 	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][length(world.contents)][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
 
 	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
 
@@ -167,8 +180,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
  *	Variables:
- *	bypass_window - check for PASSLASER - laser like behavior
- *	projectile - check for PASSPROJECTILE - bullet like behavior
+ *	bypass_window - check for PASS_GLASS - laser like behavior
+ *	projectile - check for PASS_PROJECTILE - bullet like behavior
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
  *	air_pass - whether to bypass non airtight atoms
  */
@@ -200,13 +213,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.flags_pass & PASSPROJECTILE) && projectile)
+		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((object.flags_pass & PASSLASER) && bypass_window)
+		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
 			continue
-		if((object.flags_pass & PASSAIR) && air_pass)
+		if((object.allow_pass_flags & PASS_AIR) && air_pass)
 			continue
 		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue
@@ -651,7 +664,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/tool/crowbar)))
 
 
@@ -697,6 +710,14 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
+///Converts a screen loc param to a x,y coordinate pixel on the screen
+/proc/params2screenpixel(scr_loc)
+	var/list/x_and_y = splittext(scr_loc, ",")
+	var/list/x_dirty = splittext(x_and_y[1], ":")
+	var/list/y_dirty = splittext(x_and_y[2], ":")
+	var/x = (text2num(x_dirty[1])-1)*32 + text2num(x_dirty[2])
+	var/y = (text2num(y_dirty[1])-1)*32 + text2num(y_dirty[2])
+	return list(x, y)
 
 //Returns TRUE if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/I)
@@ -707,11 +728,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 		istype(I, /obj/item/tool/pen) 		 || \
 		istype(I, /obj/item/tool/shovel) \
 	)
-
-
-//Actually better performant than reverse_direction()
-#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
-
 
 /proc/reverse_nearby_direction(direction)
 	switch(direction)
@@ -924,7 +940,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	for(var/area/A in world)
 		GLOB.sorted_areas.Add(A)
 
-	sortTim(GLOB.sorted_areas, /proc/cmp_name_asc)
+	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -954,7 +970,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		return GetAllContents()
 	var/list/processing = list(src)
 	. = list()
-	while(processing.len)
+	while(length(processing))
 		var/atom/A = processing[1]
 		processing.Cut(1,2)
 		if(ignore_typecache[A.type])
@@ -962,14 +978,14 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		processing += A.contents
 		. += A
 
-/atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 25 SECONDS) //Does a "shaking" effect on a sprite, code is from tgstation
+/// Perform a shake on an atom, resets its position afterwards
+/atom/proc/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
 	var/initialpixelx = pixel_x
 	var/initialpixely = pixel_y
-	var/shiftx = rand(-pixelshiftx,pixelshiftx)
-	var/shifty = rand(-pixelshifty,pixelshifty)
-	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.2, loop = duration)
-	pixel_x = initialpixelx
-	pixel_y = initialpixely
+	animate(src, pixel_x = initialpixelx + rand(-pixelshiftx,pixelshiftx), pixel_y = initialpixelx + rand(-pixelshifty,pixelshifty), time = shake_interval, flags = ANIMATION_PARALLEL)
+	for (var/i in 3 to ((duration / shake_interval))) // Start at 3 because we already applied one, and need another to reset
+		animate(pixel_x = initialpixelx + rand(-pixelshiftx,pixelshiftx), pixel_y = initialpixely + rand(-pixelshifty,pixelshifty), time = shake_interval)
+	animate(pixel_x = initialpixelx, pixel_y = initialpixely, time = shake_interval)
 
 /atom/proc/contains(atom/A)
 	if(!A)
@@ -1000,7 +1016,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	move_resist = INFINITY
 	var/ready_to_die = FALSE
 
-/mob/dview/Initialize() //Properly prevents this mob from gaining huds or joining any global lists
+/mob/dview/Initialize(mapload) //Properly prevents this mob from gaining huds or joining any global lists
 	SHOULD_CALL_PARENT(FALSE)
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -1081,11 +1097,11 @@ will handle it, but:
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, fade_out), I), duration - 0.5 SECONDS)
 
 /proc/fade_out(image/I, list/show_to)
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
-	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, remove_images_from_clients), I, show_to), 0.5 SECONDS)
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input
@@ -1231,7 +1247,7 @@ will handle it, but:
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
  *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects like projectiles
+ *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects like projectiles
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
  *	air_pass - whether to bypass non airtight atoms
  */
@@ -1281,7 +1297,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	start -start point of the path
  *	end - end point of the path
  *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether PASSPROJECTILE will be checked to ignore dense objects in the same way as projectiles
+ *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects in the same way as projectiles
  *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
  *	air_pass - whether to bypass non airtight atoms
  */

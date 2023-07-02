@@ -17,7 +17,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "gi" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "gJ" = (
@@ -48,8 +48,8 @@
 /area/lv624/lazarus/quartstorage)
 "ju" = (
 /obj/structure/rack,
-/obj/item/multitool,
-/obj/item/multitool,
+/obj/item/tool/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "jV" = (

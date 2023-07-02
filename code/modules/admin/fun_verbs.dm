@@ -68,6 +68,19 @@
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
+/datum/admins/proc/rouny_all()
+	set name = "Toggle Glob Xeno Rouny"
+	set category = "Fun"
+	set desc = "Toggle all living xenos into rouny versions of themselves"
+
+	if(!check_rights(R_FUN))
+		return
+
+	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
+		if(!isliving(xenotorouny))
+			return
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
+
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
@@ -566,27 +579,27 @@
 		if("CAS: Widow Maker")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb, get_turf(usr.loc), 2, 4, 6, 0, 0, 0, 3), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb), get_turf(usr.loc), 2, 4, 6, 0, 0, 0, 3), 1 SECONDS)
 		if("CAS: Banshee")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb, get_turf(usr.loc), 2, 4, 7, 6, 7, 0, 3), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb), get_turf(usr.loc), 2, 4, 7, 6, 7, 0, 3), 1 SECONDS)
 		if("CAS: Keeper")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb, get_turf(usr.loc), 4, 5, 5, 6, 0, 0, 3), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb), get_turf(usr.loc), 4, 5, 5, 6, 0, 0, 3), 1 SECONDS)
 		if("CAS: Fatty")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_fatty, get_turf(usr.loc)), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_fatty), get_turf(usr.loc)), 1 SECONDS)
 		if("CAS: Napalm")
 			playsound(usr.loc, 'sound/machines/hydraulics_2.ogg', 70, TRUE)
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_napalm, get_turf(usr.loc)), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_napalm), get_turf(usr.loc)), 1 SECONDS)
 		if("Small Bomb")
-			explosion(usr.loc, 1, 2, 3, 3, small_animation = TRUE)
+			explosion(usr.loc, 1, 2, 3, 3)
 		if("Medium Bomb")
-			explosion(usr.loc, 2, 3, 4, 4, small_animation = TRUE)
+			explosion(usr.loc, 2, 3, 4, 4)
 		if("Big Bomb")
 			explosion(usr.loc, 3, 5, 7, 5)
 		if("Maxcap")
@@ -626,7 +639,7 @@
 /proc/delayed_detonate_bomb_fatty(turf/impact)
 	impact.ceiling_debris_check(2)
 	explosion(impact, 2, 3, 4)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_fatty_final, impact), 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_fatty_final), impact), 3 SECONDS)
 
 /proc/delayed_detonate_bomb_fatty_final(turf/impact)
 	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
@@ -1070,3 +1083,34 @@
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+///Adjusts gravity, modifying the jump component for all mobs
+/datum/admins/proc/adjust_gravity()
+	set category = "Fun"
+	set name = "Adjust Gravity"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/choice = tgui_input_list(usr, "What would you like to set gravity to?", "Gravity adjustment", list("Standard gravity", "Low gravity", "John Woo", "Exceeding orbital velocity"))
+	switch(choice)
+		if("Standard gravity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity return to normal."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component()
+		if("Low gravity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity pull gently at you."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE)
+		if("John Woo")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity grow weak, and the urge to fly."))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+		if("Exceeding orbital velocity")
+			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity fade to nothing. Will you even come back down?"))
+			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, flags_pass = HOVERING|PASS_PROJECTILE)
+		else
+			return
+
+	log_admin("[key_name(usr)] set gravity to [choice].")

@@ -38,6 +38,11 @@
 #define TRAP_ACID_NORMAL "acid"
 #define TRAP_ACID_STRONG "strong acid"
 
+//Xeno acid strength defines
+#define WEAK_ACID_STRENGTH 0.016
+#define REGULAR_ACID_STRENGTH 0.04
+#define STRONG_ACID_STRENGTH 0.1
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/alien/weeds/node,
@@ -113,8 +118,6 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
 
-#define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
-
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,
 	/mob/living/carbon/xenomorph/mantis/ai,
@@ -145,3 +148,22 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	} else { \
 		xeno.remove_filter("overheal_vis"); \
 	}
+
+/// Used by the is_valid_for_resin_structure proc.
+/// 0 is considered valid , anything thats not 0 is false
+/// Simply not allowed by the area to build
+#define NO_ERROR 0
+#define ERROR_JUST_NO 1
+#define ERROR_NOT_ALLOWED 2
+/// No weeds here, but it is weedable
+#define ERROR_NO_WEED 3
+/// Area is not weedable
+#define ERROR_CANT_WEED 4
+/// Gamemode-fog prevents spawn-building
+#define ERROR_FOG 5
+/// Blocked by a xeno
+#define ERROR_BLOCKER 6
+/// No adjaecent wall or door tile
+#define ERROR_NO_SUPPORT 7
+/// Failed to other blockers such as egg, power plant , coocon , traps
+#define ERROR_CONSTRUCT 8

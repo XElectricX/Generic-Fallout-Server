@@ -10,10 +10,8 @@
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
 	secondary_color = TRUE
-	///List of slots the cape has.
-	var/list/attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
-	///Starting attachments that are spawned with this.
-	var/list/starting_attachments = list(/obj/item/armor_module/armor/cape_highlight)
+	attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
+	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight)
 	///True if the hood is up, false if not.
 	var/hood = FALSE
 
@@ -25,6 +23,7 @@
 		/obj/item/armor_module/armor/cape_highlight,
 		/obj/item/armor_module/armor/cape_highlight/half,
 		/obj/item/armor_module/armor/cape_highlight/scarf,
+		/obj/item/armor_module/armor/cape_highlight/kama,
 	), \
 	starting_attachments = starting_attachments)
 
@@ -63,6 +62,20 @@
 	greyscale_config = /datum/greyscale_config/cape/short
 	starting_attachments = list()
 
+/obj/item/armor_module/armor/cape/short/classic
+	name = "6E chameleon cape (classic short)"
+	greyscale_config = /datum/greyscale_config/cape/short/old
+
+/obj/item/armor_module/armor/cape/kama
+	name = "6E chameleon kama"
+	desc = "A chromatic kama to improve on the design of the 7E badge, this kama is capable of two colors, for all your fashion needs. Hanged from the belt, it serves to flourish the lower extremities.  \n Interact with facepaint to color. Attaches onto a uniform."
+	slot = ATTACHMENT_SLOT_KAMA
+	attachment_layer = KAMA_LAYER
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/kama)
+	greyscale_config = /datum/greyscale_config/cape/kama
+
+
 /obj/item/armor_module/armor/cape_highlight
 	name = "Cape Highlight"
 	desc = "A cape to improve on the design of the 7E badge, this cape is capable of six colors, for all your fashion needs. This variation of the cape functions more as a scarf. \n Interact with facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
@@ -74,6 +87,9 @@
 	greyscale_colors = VISOR_PALETTE_GOLD
 	flags_item_map_variant = NONE
 	colorable_colors = VISOR_PALETTES_LIST
+
+/obj/item/armor_module/armor/cape_highlight/kama
+	greyscale_config = /datum/greyscale_config/cape_highlight/kama
 
 /obj/item/armor_module/armor/cape_highlight/half
 	greyscale_config = /datum/greyscale_config/cape_highlight/half

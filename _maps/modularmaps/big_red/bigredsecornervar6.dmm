@@ -44,12 +44,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "dI" = (
-/obj/machinery/computer/rdservercontrol,
+/obj/machinery/prop/computer/rdservercontrol,
 /turf/open/shuttle/escapepod,
-/area/bigredv2/caves/secomplex)
-"dV" = (
-/obj/structure/largecrate/supply/weapons/hpr,
-/turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "eE" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -96,7 +92,7 @@
 /area/bigredv2/caves/secomplex)
 "gC" = (
 /obj/effect/landmark/weed_node,
-/obj/item/stack/sheet/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
@@ -129,7 +125,7 @@
 /turf/open/floor/tile/damaged/panel,
 /area/bigredv2/caves/secomplex)
 "iV" = (
-/obj/structure/largecrate/guns,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "jb" = (
@@ -159,7 +155,7 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/secomplex)
 "kq" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "kt" = (
@@ -176,10 +172,6 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
-"kI" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/secomplex)
 "kX" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -188,7 +180,7 @@
 /area/bigredv2/caves/secomplex)
 "lc" = (
 /obj/item/limb/l_arm,
-/obj/item/stack/sheet/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "le" = (
@@ -199,7 +191,9 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "lC" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external{
+	dir = 2
+	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "lH" = (
@@ -214,10 +208,6 @@
 	},
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
-"mc" = (
-/obj/structure/largecrate/random/barrel/green,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/secomplex)
 "mH" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/communications,
@@ -227,10 +217,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
-"nb" = (
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "nc" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -310,7 +296,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "te" = (
-/obj/item/stack/sheet/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/secomplex)
 "tp" = (
@@ -341,8 +327,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "ur" = (
-/obj/structure/largecrate/supply/supplies/metal,
 /obj/effect/landmark/weed_node,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "uy" = (
@@ -371,11 +357,6 @@
 "vs" = (
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/secomplex)
-"vH" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/secomplex)
 "vT" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -403,8 +384,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "xa" = (
-/obj/structure/largecrate/supply/explosives/mines,
 /obj/effect/landmark/weed_node,
+/obj/structure/largecrate/random/case/double,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "xg" = (
@@ -417,10 +398,6 @@
 /area/bigredv2/caves/secomplex)
 "xn" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/caves/secomplex)
-"xw" = (
-/obj/structure/largecrate/supply/supplies/sandbags,
-/turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "yj" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -438,13 +415,9 @@
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
-"yU" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/secomplex)
 "za" = (
-/obj/structure/largecrate/supply/supplies/plasteel,
 /obj/effect/decal/cleanable/cobweb2,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "zh" = (
@@ -452,7 +425,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "zn" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "zE" = (
@@ -467,12 +440,8 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
-"Af" = (
-/obj/structure/largecrate/supply/weapons/sentries,
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/secomplex)
 "Am" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Ap" = (
@@ -538,8 +507,8 @@
 "GI" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/item/ammo_magazine/shotgun/flechette,
-/obj/item/ammo_magazine/shotgun/flechette,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
@@ -549,7 +518,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "GV" = (
-/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "GZ" = (
@@ -592,7 +561,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "JW" = (
-/obj/structure/closet/crate/secure/gear,
+/obj/effect/spawner/random/misc/structure/table_parts,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Kf" = (
@@ -600,7 +569,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Kq" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Ks" = (
@@ -610,7 +579,7 @@
 /area/bigredv2/caves/secomplex)
 "KZ" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Le" = (
@@ -651,7 +620,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Nw" = (
-/obj/item/stack/sheet/metal,
+/obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Ny" = (
@@ -660,13 +629,6 @@
 	name = "Maintenance Hatch"
 	},
 /turf/open/shuttle/elevator/grating,
-/area/bigredv2/caves/secomplex)
-"Oh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1;
-	welded = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "OG" = (
 /obj/effect/landmark/weed_node,
@@ -711,17 +673,17 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "QG" = (
-/obj/structure/largecrate/random/barrel/blue,
+/obj/effect/spawner/random/misc/structure/barrel,
 /obj/effect/decal/cleanable/cobweb2,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QK" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "QY" = (
-/obj/structure/largecrate/machine,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Rb" = (
@@ -767,7 +729,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "SZ" = (
-/obj/effect/landmarkweed_node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
@@ -792,7 +754,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "UC" = (
-/obj/machinery/r_n_d/server,
+/obj/machinery/prop/r_n_d/server,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "UJ" = (
@@ -818,7 +780,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Wh" = (
-/obj/item/analyzer/plant_analyzer,
+/obj/item/tool/analyzer/plant_analyzer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Wt" = (
@@ -866,7 +828,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Yn" = (
-/obj/structure/largecrate/random/barrel/blue,
+/obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "YO" = (
@@ -882,7 +844,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Zb" = (
-/obj/structure/largecrate,
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Zd" = (
@@ -970,7 +932,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (2,1,1) = {"
@@ -1039,7 +1001,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (3,1,1) = {"
@@ -1108,7 +1070,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (4,1,1) = {"
@@ -1177,7 +1139,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (5,1,1) = {"
@@ -1246,7 +1208,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (6,1,1) = {"
@@ -1315,7 +1277,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (7,1,1) = {"
@@ -1384,7 +1346,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (8,1,1) = {"
@@ -1453,7 +1415,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (9,1,1) = {"
@@ -1522,7 +1484,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (10,1,1) = {"
@@ -1545,7 +1507,7 @@ Dx
 Dx
 Dx
 Dx
-nb
+Ro
 Ro
 Ir
 qY
@@ -1591,7 +1553,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (11,1,1) = {"
@@ -1660,7 +1622,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (12,1,1) = {"
@@ -1729,7 +1691,7 @@ Dx
 Dx
 Dx
 zI
-fs
+zI
 fs
 "}
 (13,1,1) = {"
@@ -2485,7 +2447,7 @@ im
 im
 le
 SG
-Oh
+xn
 SG
 le
 zI
@@ -3936,8 +3898,8 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (45,1,1) = {"
@@ -3946,7 +3908,7 @@ Ir
 Ro
 Ro
 Ro
-nb
+Ro
 Ro
 Ir
 Ro
@@ -4005,8 +3967,8 @@ KZ
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (46,1,1) = {"
@@ -4074,8 +4036,8 @@ Ls
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (47,1,1) = {"
@@ -4143,8 +4105,8 @@ Md
 yj
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (48,1,1) = {"
@@ -4212,8 +4174,8 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (49,1,1) = {"
@@ -4281,8 +4243,8 @@ xn
 kH
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (50,1,1) = {"
@@ -4332,7 +4294,7 @@ My
 Ir
 Ro
 le
-vH
+Iv
 tu
 Iv
 nY
@@ -4350,8 +4312,8 @@ gi
 Tw
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (51,1,1) = {"
@@ -4419,8 +4381,8 @@ jQ
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (52,1,1) = {"
@@ -4488,8 +4450,8 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (53,1,1) = {"
@@ -4557,8 +4519,8 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (54,1,1) = {"
@@ -4626,8 +4588,8 @@ Kf
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (55,1,1) = {"
@@ -4685,8 +4647,8 @@ le
 TA
 kd
 le
-dV
-Af
+QY
+QY
 yr
 yr
 le
@@ -4695,8 +4657,8 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (56,1,1) = {"
@@ -4764,8 +4726,8 @@ Lq
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (57,1,1) = {"
@@ -4833,8 +4795,8 @@ jQ
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (58,1,1) = {"
@@ -4902,8 +4864,8 @@ fb
 sz
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (59,1,1) = {"
@@ -4971,8 +4933,8 @@ xn
 Nw
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (60,1,1) = {"
@@ -5040,8 +5002,8 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (61,1,1) = {"
@@ -5073,16 +5035,16 @@ Dx
 Dx
 Dx
 Dx
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Ro
@@ -5102,15 +5064,15 @@ le
 QY
 zE
 JW
-kI
+QY
 le
 QD
 YX
 Nw
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (62,1,1) = {"
@@ -5142,16 +5104,16 @@ Dx
 Dx
 Dx
 Dx
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Ro
@@ -5171,15 +5133,15 @@ zn
 yr
 yr
 yr
-mc
+Yn
 le
 lc
 YX
 zh
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (63,1,1) = {"
@@ -5211,16 +5173,16 @@ zI
 zI
 zI
 zI
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Ro
@@ -5247,49 +5209,49 @@ FX
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (64,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5309,56 +5271,56 @@ zn
 yr
 gG
 yr
-yU
+QY
 le
 Tw
 GZ
 kH
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (65,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5377,7 +5339,7 @@ kd
 le
 QK
 yr
-xw
+QY
 ur
 le
 QD
@@ -5385,49 +5347,49 @@ xn
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (66,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5446,7 +5408,7 @@ vT
 le
 QG
 Yn
-xw
+QY
 za
 le
 SG
@@ -5454,49 +5416,49 @@ SG
 SG
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (67,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5523,49 +5485,49 @@ le
 le
 le
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (68,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5592,49 +5554,49 @@ Dx
 Dx
 Dx
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (69,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5661,49 +5623,49 @@ Dx
 Dx
 Dx
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (70,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 zI
 Dx
 Dx
@@ -5730,49 +5692,11 @@ Dx
 Dx
 Dx
 zI
-fs
-fs
+zI
+zI
 fs
 "}
 (71,1,1) = {"
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
-fs
 zI
 zI
 zI
@@ -5799,7 +5723,45 @@ zI
 zI
 zI
 zI
-fs
-fs
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
 fs
 "}

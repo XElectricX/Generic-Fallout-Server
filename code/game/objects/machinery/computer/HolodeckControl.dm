@@ -37,7 +37,9 @@
 /obj/structure/table/holotable/wood
 	name = "table"
 	desc = "A square piece of wood standing on four wooden legs. It can not move."
-	icon_state = "woodtable"
+	icon = 'icons/obj/smooth_objects/wood_table_reinforced.dmi'
+	base_icon_state = "wood_table_reinforced"
+	icon_state = "woodtable-0"
 	table_prefix = "wood"
 
 /obj/structure/holowindow
@@ -105,7 +107,6 @@
 		visible_message(span_notice("[user] dunks [I] into the [src]!"))
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))
@@ -117,6 +118,6 @@
 			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
 		else
 			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
-		return 0
+		return FALSE
 	else
 		return ..()

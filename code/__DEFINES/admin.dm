@@ -7,7 +7,8 @@
 #define MUTE_ADMINHELP (1<<3)
 #define MUTE_DEADCHAT (1<<4)
 #define MUTE_LOOC (1<<5)
-#define MUTE_ALL (1<<6)-1
+#define MUTE_TTS (1<<6)
+#define MUTE_ALL (1<<7)-1
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA 1
@@ -75,6 +76,7 @@
 #define AHELP_RESOLVED 3
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME 10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDEND_EORG_DELAY 10 SECONDS //Amount of time (in deciseconds) after the rounds ends that the end round report is given to the players.
 
 #define SPAM_TRIGGER_TIME_PERIOD 10 SECONDS //The time period for checking spammy messages
 #define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200

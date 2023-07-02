@@ -13,13 +13,6 @@
 #define ACTIVE_POWER_USE 2
 
 
-// NanoUI flags
-#define STATUS_INTERACTIVE 2 // GREEN Visibility
-#define STATUS_UPDATE 1 // ORANGE Visibility
-#define STATUS_DISABLED 0 // RED Visibility
-#define STATUS_CLOSE -1 // Close the interface
-
-
 //bitflags for door switches.
 #define OPEN (1<<0)
 #define IDSCAN (1<<1)
@@ -30,13 +23,12 @@
 //used in design to specify which machine can build it
 #define IMPRINTER (1<<0)	//For circuits. Uses glass/chemicals.
 #define PROTOLATHE (1<<1)	//New stuff. Uses glass/metal/chemicals
-#define AUTOLATHE (1<<2)	//Uses glass/metal only.
-#define CRAFTLATHE (1<<3)	//Uses fuck if I know. For use eventually.
-#define MECHFAB (1<<4) 	//Remember, objects utilising this flag should have construction_time and construction_cost vars.
-#define BIOGENERATOR (1<<5) 	//Uses biomass
-#define LIMBGROWER (1<<6) 	//Uses synthetic flesh
-#define SMELTER (1<<7) 	//uses various minerals
-#define NANITE_COMPILER (1<<8) //Prints nanite disks
+#define CRAFTLATHE (1<<2)	//Uses fuck if I know. For use eventually.
+#define MECHFAB (1<<3) 	//Remember, objects utilising this flag should have construction_time and construction_cost vars.
+#define BIOGENERATOR (1<<4) 	//Uses biomass
+#define LIMBGROWER (1<<5) 	//Uses synthetic flesh
+#define SMELTER (1<<6) 	//uses various minerals
+#define NANITE_COMPILER (1<<7) //Prints nanite disks
 
 
 #define FIREDOOR_OPEN 1

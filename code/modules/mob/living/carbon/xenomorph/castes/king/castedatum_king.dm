@@ -19,14 +19,18 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 575
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
+	maximum_active_caste = 1
+	evolve_min_xenos = 12
+	death_evolution_delay = 7 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 45, FIRE = 100, ACID = 45)
@@ -42,6 +46,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/petrify,
@@ -52,9 +57,9 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
 	)
 
@@ -77,7 +82,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 600
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -102,7 +107,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 625
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
@@ -129,7 +134,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 650
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -156,7 +161,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 650
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
@@ -170,6 +175,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/petrify,
@@ -181,8 +187,8 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
 	)

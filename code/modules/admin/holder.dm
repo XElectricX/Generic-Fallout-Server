@@ -3,8 +3,8 @@
 
 	var/target
 	var/name = "nobody's admin datum (no rank)"
-	var/client/owner	= null
-	var/fakekey			= null
+	var/client/owner = null
+	var/fakekey = null
 
 	var/datum/marked_datum
 	var/marked_file
@@ -185,7 +185,7 @@
 
 //This proc checks whether subject has at least ONE of the rights specified in rights_required.
 /proc/check_rights_for(client/subject, rights_required)
-	if(subject && subject.holder)
+	if(subject?.holder)
 		return subject.holder.check_for_rights(rights_required)
 	return FALSE
 
@@ -294,6 +294,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
+	/client/proc/show_traitor_panel,
+	/client/proc/validate_objectives,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -352,6 +354,7 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/reestablish_db_connection,
+	/client/proc/reestablish_tts_connection,
 	/datum/admins/proc/view_runtimes,
 	/client/proc/toggle_cdn
 	)
@@ -378,6 +381,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
+	/datum/admins/proc/rouny_all,
 	/datum/admins/proc/hive_status,
 	/datum/admins/proc/ai_report,
 	/datum/admins/proc/command_report,
@@ -415,6 +419,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/spatial_agent,
 	/datum/admins/proc/set_xeno_stat_buffs,
 	/datum/admins/proc/check_bomb_impacts,
+	/datum/admins/proc/adjust_gravity,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -551,7 +556,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMINTICKET, FALSE))
+	if(check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE
@@ -653,7 +658,7 @@ GLOBAL_PROTECT(admin_verbs_log)
 
 
 /proc/IsAdminAdvancedProcCall()
-	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
+	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
 
 
 /proc/GenTgsStealthKey()

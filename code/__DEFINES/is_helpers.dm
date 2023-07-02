@@ -21,7 +21,9 @@
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
-#define islava(A) (istype(A, /turf/open/lavaland/lava))
+#define islava(A) (istype(A, /turf/open/liquid/lava))
+
+#define iswater(A) (istype(A, /turf/open/liquid/water))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
 
@@ -110,6 +112,7 @@
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
 #define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
+#define isxenoking(A) (istype(A, /mob/living/carbon/xenomorph/king))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -171,17 +174,17 @@
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
-#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
-
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
 
-#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
+#define ismodularsuit(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
 
 #define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
 
 #define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
+
+#define ishat(A) (istype(A, /obj/item/clothing/head))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 
@@ -201,7 +204,7 @@
 
 #define isscrewdriver(I) (istype(I, /obj/item/tool/screwdriver))
 
-#define ismultitool(I) (istype(I, /obj/item/multitool))
+#define ismultitool(I) (istype(I, /obj/item/tool/multitool))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
@@ -278,7 +281,12 @@
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))
-#define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME))
+#define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME)) || (A == XENO_HIVE_FALLEN)
 
 // Slot helpers
 #define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))
+
+// Objective helpers
+#define ismaroonobjective(O) (istype(O, /datum/objective/maroon))
+#define isstealobjective(O) (istype(O, /datum/objective/steal))
+#define isassassinateobjective(O) (istype(O, /datum/objective/assassinate))
