@@ -103,7 +103,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 4
 	max_storage_space = 9
-	can_hold = list(/obj/item/weapon/gun/fallout_pistol, /obj/item/ammo_magazine/fallout_pistol)
+	can_hold = list(/obj/item/weapon/gun/fallout/pistol, /obj/item/ammo_magazine/fallout_pistol)
 
 	//The gun it holds, used for referencing later so we can update the icon.
 	//Will need worn sprites and such later, for now most of this is not doing anything

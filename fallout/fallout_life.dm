@@ -159,7 +159,8 @@
 	#ifdef DEBUG_HUMAN_ARMOR
 	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
-	take_overall_damage(b_loss, f_loss, armor * 100, updating_health = TRUE)
+	take_overall_damage(b_loss, BRUTE, BOMB, updating_health = TRUE)
+	take_overall_damage(f_loss, BURN, BOMB, updating_health = TRUE)
 
 /* All of this is necessary just to stop blood splattering effect when damage taken is 0, incredible */
 //Need to redefine because projectile.dm undefined them -_-

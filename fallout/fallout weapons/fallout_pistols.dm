@@ -1,12 +1,9 @@
 //Mag-fed handguns
-/obj/item/weapon/gun/fallout_pistol
-	name = "\improper Browning Highpower Pistol"
+/obj/item/weapon/gun/fallout/pistol
+	name = "\improper Browning Hi-Power Pistol"
 	desc = "Common 9mm pistol."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_pistols.dmi'
-	icon_state = "browning_highpower"
-	item_icons = list(
-		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
-		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi')
+	icon_state = "hipower"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/9mm_pistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
@@ -38,9 +35,15 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/bipod)
+		/obj/item/attachable/foldable/bipod)
+	attack_speed = ATTACK_SPEED_VERY_FAST
 
-/obj/item/weapon/gun/fallout_pistol/p220
+/obj/item/weapon/gun/fallout/pistol/hipower
+	name = "\improper L9A1 FN Hi-Power Pistol"
+	desc = "Modernization of a classic hand gun."
+	icon_state = "hipower_british"
+
+/obj/item/weapon/gun/fallout/pistol/p220
 	name = "\improper SIG Sauer P220 Pistol"
 	desc = "Of Swiss origin, the P220 is very lightweight and compact."
 	icon_state = "p220"
@@ -51,7 +54,7 @@
 	scatter_unwielded = 12
 	recoil_unwielded = 0
 
-/obj/item/weapon/gun/fallout_pistol/m9fs	//Has burst to differentiate it from other pistols
+/obj/item/weapon/gun/fallout/pistol/m9fs	//Has burst to differentiate it from other pistols
 	name = "\improper Beretta M9FS Pistol"
 	desc = "Italian-made handgun with a burst setting."
 	icon_state = "beretta_m9fs"
@@ -63,7 +66,7 @@
 	burst_scatter_mult = 1.1
 	recoil_unwielded = 0.7
 
-/obj/item/weapon/gun/fallout_pistol/n99
+/obj/item/weapon/gun/fallout/pistol/n99
 	name = "\improper N99 Pistol"
 	desc = "One of the most popular handguns in the wastes. Relatively powerful for its size and highly customizable."
 	icon_state = "n99"
@@ -80,7 +83,7 @@
 	scatter_unwielded = 10
 	recoil_unwielded = 0.8
 
-/obj/item/weapon/gun/fallout_pistol/type17
+/obj/item/weapon/gun/fallout/pistol/type17
 	name = "\improper Shanxi Type 17 Pistol"
 	desc = "The standard issue sidearm of People's Liberation Army soldiers, re-chambered in the modern 10mm caliber and magazine-fed."
 	icon_state = "type17"
@@ -95,7 +98,7 @@
 	scatter_unwielded = 13
 	recoil_unwielded = 0.8
 
-/obj/item/weapon/gun/fallout_pistol/m1911
+/obj/item/weapon/gun/fallout/pistol/m1911
 	name = "\improper Colt M1911 Pistol"
 	desc = "An ancient sidearm that continues to prove itself as one of the most reliable even today."
 	icon_state = "m1911"
@@ -111,7 +114,7 @@
 	scatter_unwielded = 15
 	recoil_unwielded = 0.5
 
-/obj/item/weapon/gun/fallout_pistol/ruger
+/obj/item/weapon/gun/fallout/pistol/ruger
 	name = "\improper Ruger MK3 Pistol"
 	desc = "Integrally suppressed and chambered in the subsonic .22 LR caliber."
 	icon_state = "rugermk3"
@@ -124,7 +127,7 @@
 	scatter_unwielded = 10
 	recoil_unwielded = 0
 
-/obj/item/weapon/gun/fallout_pistol/deagle
+/obj/item/weapon/gun/fallout/pistol/deagle
 	name = "\improper Desert Eagle"
 	desc = "The classic hand cannon, chambered in the rare .50 Action Express round."
 	icon_state = "deagle"
@@ -143,7 +146,7 @@
 	recoil_unwielded = 1.5
 
 //Revolvers
-/obj/item/weapon/gun/fallout_pistol/colt357
+/obj/item/weapon/gun/fallout/pistol/colt357
 	name = "\improper .357 Colt Revolver"
 	desc = "God created man, Sam Colt made them equal."
 	icon_state = "357_colt"
@@ -163,7 +166,12 @@
 	recoil = 0.3
 	recoil_unwielded = 1
 
-/obj/item/weapon/gun/fallout_pistol/police_revolver
+/obj/item/weapon/gun/fallout/pistol/colt357/webley
+	name = "\improper Webley Mk2 Revolver"
+	desc = "An old, top-break revolver that has been modified for use with .357 Magnum."
+	icon_state = "webley"
+
+/obj/item/weapon/gun/fallout/pistol/police_revolver
 	name = "\improper Colt Official Police Revolver"
 	desc = "Widespread and very popular among police officers and armies around the pre-war world."
 	icon_state = "357_revolver"
@@ -182,7 +190,7 @@
 	recoil = 0.3
 	recoil_unwielded = 1
 
-/obj/item/weapon/gun/fallout_pistol/magnum44
+/obj/item/weapon/gun/fallout/pistol/magnum44
 	name = "\improper S&W M29 .44 Magnum Revolver"
 	desc = "Big iron."
 	icon_state = "44_revolver"
@@ -203,7 +211,7 @@
 	recoil = 0.3
 	recoil_unwielded = 1.1
 
-/obj/item/weapon/gun/fallout_pistol/hunting_revolver
+/obj/item/weapon/gun/fallout/pistol/hunting_revolver
 	name = "\improper Hunting Revolver"
 	desc = "Sold as the Magnum Research BFR before the Great War, this powerful handgun is the most accurate revolvers available these days."
 	icon_state = "hunting_revolver"
@@ -224,7 +232,7 @@
 	recoil = 0.1
 	recoil_unwielded = 1.2
 
-/obj/item/weapon/gun/fallout_pistol/sequoia
+/obj/item/weapon/gun/fallout/pistol/sequoia
 	name = "\improper Ranger Sequoia"
 	desc = "This revolver features a dark finish with intricate engravings etched all around the weapon. Engraved along the barrel are the words \"For Honorable Service\" and \"Against All Tyrants\". The handgrip bears the symbol of the NCR Rangers, a bear, and a brass plate attached to the bottom that reads \"20 Years\"."
 	icon_state = "sequoia"

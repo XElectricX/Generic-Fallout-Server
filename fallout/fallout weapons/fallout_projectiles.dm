@@ -92,6 +92,7 @@
 	desc = "Good for hunting wild animals. Or humans."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
+	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB
 	damage = 40
 	damage_falloff = 0.8
 	penetration = 60
@@ -99,12 +100,14 @@
 	accurate_range = 8
 	accurate_range_min = 1
 	shell_speed = 2.8
+	on_pierce_multiplier = 0.5
 
 /datum/ammo/bullet/fallout/govt
 	name = ".45-70 Government bullet"
 	desc = "Inaccurate but powerful round. Put the fear of American munitions into your enemy."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
+	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB
 	damage = 40
 	damage_falloff = 2
 	penetration = 40
@@ -112,6 +115,21 @@
 	accurate_range = 4
 	point_blank_range = 1
 	shell_speed = 2.5
+	on_pierce_multiplier = 0.5
+
+/datum/ammo/bullet/fallout/russian
+	name = "7.62x54mmR rifle bullet"
+	desc = "An ancient ammo type that is still used by some rifles. Quite powerful but rare."
+	handful_icon_state = "medium_casing"
+	handful_amount = 4
+	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB
+	damage = 50
+	penetration = 50
+	shrapnel_chance = 25
+	accurate_range = 7
+	accurate_range_min = 1
+	shell_speed = 2.5
+	on_pierce_multiplier = 0.5
 
 /datum/ammo/bullet/fallout/bmg
 	name = ".50 BMG bullet"
@@ -127,7 +145,7 @@
 	accurate_range_min = 1
 	max_range = 40
 	shell_speed = 4	//It go fast
-	on_pierce_multiplier = 0.5 //Damage and penetration values are halved every time it pierces through something
+	on_pierce_multiplier = 0.5
 
 /datum/ammo/bullet/fallout/bmg/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 15

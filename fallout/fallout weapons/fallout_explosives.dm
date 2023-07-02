@@ -21,7 +21,7 @@
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	default_ammo_type = /obj/item/ammo_magazine/fallout_missile
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_missile)
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	caliber = CALIBER_MISSILE
 	fire_delay = 2 SECONDS
 	force = 40

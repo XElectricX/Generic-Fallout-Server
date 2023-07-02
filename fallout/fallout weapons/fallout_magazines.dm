@@ -172,23 +172,70 @@
 	name = "\improper 5.56x45mm machinegun magazine"
 	desc = "A large box holding folded belts of ammunition."
 	icon_state = "556mag_mg"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 90
 	reload_delay = 3 SECONDS
+
+/obj/item/ammo_magazine/fallout_rifle/pan
+	name = "\improper .308 Winchester pan magazine"
+	desc = "Pan magazine used by the iconic Lewis machinegun."
+	icon_state = "308mag_pan"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 90
+	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/fallout_rifle/winchester
 	name = "\improper .308 Winchester magazine"
 	desc = "A magazine for holding large .308 rounds used in high power rifles."
-	icon_state = "308mag_rifle"
+	icon_state = "308mag"
 	default_ammo = /datum/ammo/bullet/fallout/winchester
 	caliber = CALIBER_308WIN
+	max_rounds = 10
+	reload_delay = 0.5 SECONDS
+
+/obj/item/ammo_magazine/fallout_rifle/winchester/short
+	name = "short .308 Winchester magazine"
+	desc = "Compact magazine with space for 5 rounds."
+	icon_state = "308mag_short"
 	max_rounds = 5
+	reload_delay = 0	//Small and easy to reload
 
 /obj/item/ammo_magazine/fallout_rifle/winchester/extended
-	name = "\improper extended .308 Winchester magazine"
-	desc = "Double the size for double the lead."
+	name = "extended .308 Winchester magazine"
+	desc = "A bulkier and longer magazine that can hold up to 15 rounds."
 	icon_state = "308mag_extended"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 15
+	reload_delay = 1 SECONDS
+
+/obj/item/ammo_magazine/fallout_rifle/winchester/clip
+	name = "\improper .308 Winchester clip"
+	desc = "A stripper clip that can be used to load rifles with internal magazines."
+	icon_state = "clip"
+	max_rounds = 5
+
+/obj/item/ammo_magazine/fallout_rifle/winchester/en_bloc
+	name = "\improper .308 Winchester en bloc clip"
+	desc = "An en bloc clip that can hold 8 .308 rounds for the M1 Garand."
+	icon_state = "en_bloc"
+	default_ammo = /datum/ammo/bullet/fallout/winchester
+	caliber = CALIBER_308WIN
+	max_rounds = 8
+
+/obj/item/ammo_magazine/fallout_rifle/russian
+	name = "\improper 7.62x54mmR magazine"
+	desc = "Rifle magazine for large 7.62x54mm rimmed rounds."
+	icon_state = "762mag"
+	default_ammo = /datum/ammo/bullet/fallout/russian
+	caliber = CALIBER_762X54
 	max_rounds = 10
+	reload_delay = 0.5 SECONDS
+
+/obj/item/ammo_magazine/fallout_rifle/russian/clip
+	name = "\improper 7.62x54mmR clip"
+	desc = "A stripper clip that can be used to load rifles with internal magazines."
+	icon_state = "clip"
+	max_rounds = 5
 
 /obj/item/ammo_magazine/fallout_rifle/bmg
 	name = "\improper .50 BMG rifle magazine"
@@ -198,6 +245,7 @@
 	default_ammo = /datum/ammo/bullet/fallout/bmg
 	caliber = CALIBER_50BMG
 	max_rounds = 5
+	reload_delay = 1 SECONDS
 
 /obj/item/ammo_magazine/fallout_pistol/rifle
 	name = "\improper 9x19mm rifle magazine"
@@ -224,7 +272,7 @@
 	desc = "Pre-war rocket assembly with high explosives and guidance systems."
 	icon_state = "rocket"	//Needs a proper Fallout missile sprite
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	flags_magazine = null
 	default_ammo = /datum/ammo/rocket/fallout_missile
 	caliber = CALIBER_MISSILE
 	max_rounds = 1
@@ -237,6 +285,26 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 //Energy cells
+
+//Loose ammo belt for machineguns
+/obj/item/ammo_magazine/fallout_belt
+	name = "\improper 5.56x45mm ammo belt"
+	desc = "Long chain links for holding rounds together and uniform."
+	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
+	icon_state = "ammobelt"
+	flags_atom = CONDUCT
+	w_class = WEIGHT_CLASS_NORMAL
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	default_ammo = /datum/ammo/bullet/fallout/assault_rifle
+	caliber = CALIBER_556X45
+	max_rounds = 300
+	reload_delay = 1.5 SECONDS
+
+/obj/item/ammo_magazine/fallout_belt/winchester
+	name = "\improper .308 ammo belt"
+	default_ammo = /datum/ammo/bullet/fallout/winchester
+	caliber = CALIBER_308WIN
+	max_rounds = 250
 
 //Ammo pack that can be used for storage or feeding guns
 /obj/item/ammo_magazine/fallout_ammopack
@@ -369,6 +437,12 @@
 	icon_state = "4570box"
 	default_ammo = /datum/ammo/bullet/fallout/govt
 	caliber = CALIBER_4570
+
+/obj/item/ammo_magazine/box/russian
+	name = "\improper 7.62x54mmR Box"
+	icon_state = "762box"
+	default_ammo = /datum/ammo/bullet/fallout/russian
+	caliber = CALIBER_762X54
 
 //Shotgun shell boxes
 /obj/item/ammo_magazine/box/shotgun

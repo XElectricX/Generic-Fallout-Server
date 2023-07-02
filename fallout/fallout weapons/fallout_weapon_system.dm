@@ -1,6 +1,10 @@
 //Anything gun weapon-related that doesn't fit in the other files go here
 
-/obj/item/weapon/gun
+/obj/item/weapon/gun/fallout
+	item_state = ""
+	item_icons = list(
+		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
+		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi')
 	reciever_flags = AMMO_RECIEVER_MAGAZINES
 	load_method = MAGAZINE
 	type_of_casings = "bullet"
@@ -16,27 +20,58 @@
 	//For lever actions
 	chamber_opened_message = "You swing the lever down."
 	chamber_closed_message = "You pull back the lever."
+	attack_speed = ATTACK_SPEED_MEDIUM
 
-/*Changes to what gun sprites are selected
+/*
+Changes to what gun sprites are selected
 "_c" for chambered (round chambered, no magazine)
 "_e" for empty (magazine but no ammo/has ammo but not chambered)
-"_u" for unloaded (no ammo and no magazine)*/
-/obj/item/weapon/gun/update_icon(mob/user)
+"_u" for unloaded (no ammo and no magazine)
+*/
+/obj/item/weapon/gun/fallout/update_icon(mob/user)
 	. = ..()
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
-		icon_state = base_gun_icon + "_e"
-	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
-		icon_state = base_gun_icon
-	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && (!length(chamber_items) && max_chamber_items) && rounds)	//Only guns with magazines
-		icon_state = base_gun_icon + "_c"
-	else if((length(chamber_items) && max_chamber_items) && !rounds)
-		icon_state = base_gun_icon + "_e"
-	else if((!length(chamber_items) && max_chamber_items) && !rounds)
-		icon_state = base_gun_icon + "_u"
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))	//Stationary guns have only one sprite state
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
+			icon_state = base_gun_icon + "_e"
+		else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
+			icon_state = base_gun_icon
+		else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && (!length(chamber_items) && max_chamber_items) && rounds)	//Only guns with magazines
+			icon_state = base_gun_icon + "_c"
+		//Let's use this for pump and bolt actions with internal magazines that are not cocked for now
+		else if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && rounds && !in_chamber)
+			icon_state = base_gun_icon + "_e"
+		else if((length(chamber_items) && max_chamber_items) && !rounds)
+			icon_state = base_gun_icon + "_e"
+		else if((!length(chamber_items) && max_chamber_items) && !rounds)
+			icon_state = base_gun_icon + "_u"
+		else
+			icon_state = base_gun_icon
 	else
-		icon_state = base_gun_icon
+		icon_state =  base_gun_icon
 
-/obj/item/weapon/gun/able_to_fire(mob/user)
+/obj/item/weapon/gun/fallout/update_item_state()
+	var/current_state = item_state
+	if(flags_gun_features & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
+		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+		item_state = "[initial(icon_state)]_[remaining_rounds][flags_item & WIELDED ? "_w" : ""]"
+	else if(flags_gun_features & GUN_SHOWS_LOADED) //shows loaded or unloaded
+		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][flags_item & WIELDED ? "_w" : ""]"
+	else
+		//For some reason guns just don't use item_states so... I fix that
+		if(!initial(item_state))
+			item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
+		else
+			item_state = "[initial(item_state)][flags_item & WIELDED ? "_w" : ""]"
+		return
+
+	if(current_state != item_state && ishuman(gun_user))
+		var/mob/living/carbon/human/human_user = gun_user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
+
+/obj/item/weapon/gun/fallout/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || !isturf(user.loc))	/* FALLOUT EDIT: Remove lying_angle check! */
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
@@ -80,7 +115,7 @@
 	return TRUE
 
 //Deleting the check that prevents empty mags from being loaded into guns and adding RNG hand reload sounds
-/obj/item/weapon/gun/reload(obj/item/new_mag, mob/living/user, force = FALSE)
+/obj/item/weapon/gun/fallout/reload(obj/item/new_mag, mob/living/user, force = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) || user?.do_actions)
 		return
 	if(!(new_mag.type in allowed_ammo_types))
@@ -168,7 +203,7 @@
 					'fallout/fallout sounds/fallout weapon sounds/insert_shell_5.wav',
 					'fallout/fallout sounds/fallout weapon sounds/insert_shell_6.wav'), 75, 1)
 			else
-				if((length(chamber_items) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && rounds))
+				if((CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && rounds))	//FALLOUT EDIT: Remove bit that prevents loading a partially filled non-revolver
 					to_chat(user, span_warning("[src] must be completely empty to use the [mag]!"))
 					return FALSE
 				var/rounds_to_fill = mag.current_rounds < max_chamber_items ? mag.current_rounds : max_chamber_items
@@ -203,6 +238,6 @@
 	return TRUE
 
 //We make it a multiplier instead!
-/obj/item/weapon/gun/modify_fire_delay(value, mob/user)
+/obj/item/weapon/gun/fallout/modify_fire_delay(value, mob/user)
 	fire_delay *= (1 + value)	//For example, if attachment has a value of -0.1, the fire delay is multiplied by 0.9, so a 10% increase
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)

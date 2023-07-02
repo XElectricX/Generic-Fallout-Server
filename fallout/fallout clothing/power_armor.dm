@@ -472,10 +472,10 @@
 	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
 	attachments_allowed = list(/obj/item/armor_module/fallout/stealth_boy)
 	allowed = list(
-		/obj/item/weapon/gun/fallout_pistol,
-		/obj/item/weapon/gun/fallout_smg,
-		/obj/item/weapon/gun/fallout_rifle,
-		/obj/item/weapon/gun/fallout_shotgun,
+		/obj/item/weapon/gun/fallout/pistol,
+		/obj/item/weapon/gun/fallout/smg,
+		/obj/item/weapon/gun/fallout/rifle,
+		/obj/item/weapon/gun/fallout/shotgun,
 		/obj/item/weapon/twohanded,
 		/obj/item/weapon/fallout_melee,
 		/obj/item/storage/holster/blade,
