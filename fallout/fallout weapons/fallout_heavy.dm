@@ -10,7 +10,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	w_class = WEIGHT_CLASS_HUGE
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_DEPLOYED_FIRE_ONLY

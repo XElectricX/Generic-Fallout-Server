@@ -16,7 +16,7 @@
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_skill_category = SKILL_SHOTGUNS
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	default_ammo_type = /datum/ammo/bullet/fallout/buckshot
 	allowed_ammo_types = list()

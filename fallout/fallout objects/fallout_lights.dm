@@ -88,7 +88,7 @@
 		force = on_damage
 		heat = 1500
 		damtype = BURN
-		addtimer(CALLBACK(src, .proc/turn_off), fuel)
+		addtimer(CALLBACK(src, PROC_REF(turn_off)), fuel)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = usr
 			C.toggle_throw_mode()

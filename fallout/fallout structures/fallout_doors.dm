@@ -501,16 +501,12 @@ GLOBAL_LIST_EMPTY(global_locks)
 //Auto-closing - FIX LATER
 /obj/structure/simple_door/Exited(atom/movable/M, direction)
 	. = ..()
-	to_chat(world, "Exit proc triggered")
 	if(!density && !manual_opened && ishuman(M))
-		to_chat(world, "first check")
 		var/mob/living/carbon/human/H = M
 		if(H.client && H.stat != 2)
-			to_chat(world, "second check")
 			if(hard_open)
 				TryToSwitchState(H)
 			else
-				to_chat(world, "should be switching")
 				TryToSwitchState(H,1)
 	if(M.loc == loc)
 		return 1
@@ -709,11 +705,11 @@ GLOBAL_LIST_EMPTY(global_locks)
 /obj/structure/simple_door/gate/wire/Initialize()
 	. = ..()
 	update_layer()
-	var/static/list/connections = list(COMSIG_ATOM_EXIT = .proc/on_try_exit)
+	var/static/list/connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_try_exit))
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/simple_door/gate/wire/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+/obj/structure/simple_door/gate/wire/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return NONE
 	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
@@ -722,7 +718,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 
 /obj/structure/simple_door/gate/wire/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message(span_danger("[mover] drives over and destroys [src]!"))

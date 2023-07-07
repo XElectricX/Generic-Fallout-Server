@@ -15,7 +15,7 @@
 	if(!client)	//No one to notify
 		return
 	SHOULD_NOT_SLEEP(TRUE)
-	INVOKE_ASYNC(src, .proc/notification_perform, text, color)
+	INVOKE_ASYNC(src, PROC_REF(notification_perform), text, color)
 
 /// Essentially balloon alerts but in the style of Fallout notifications, only called by proc/notification
 /mob/proc/notification_perform(text, color)
@@ -26,7 +26,7 @@
 	balloon_alert.alpha = 0
 	balloon_alert.color = color
 	balloon_alert.maptext = MAPTEXT("<span style='-dm-text-outline: 2px #0005'>[text]</span>")
-	balloon_alert.maptext_height = WXH_TO_HEIGHT(client.MeasureText(text, null, BALLOON_TEXT_WIDTH))
+	WXH_TO_HEIGHT(client.MeasureText(text, null, BALLOON_TEXT_WIDTH), balloon_alert.maptext_height)
 	balloon_alert.maptext_width = BALLOON_TEXT_WIDTH
 	balloon_alert.maptext_x = -32*((text2num(screen_offset[1])-1)/2) + 32
 	//I don't know why the formula below works but it does; through countless trial and error, the text is aligned
@@ -75,9 +75,9 @@
 	animate(alpha = 0, time = BALLOON_TEXT_FADE_TIME, easing = LINEAR_EASING)
 
 	//Delete maptext and graphics after use
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/remove_image_from_client, balloon_alert, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/remove_image_from_client, notification_icon, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/remove_image_from_client, notification_border, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), balloon_alert, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), notification_icon, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), notification_border, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
 
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT

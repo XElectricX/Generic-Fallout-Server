@@ -42,7 +42,7 @@
 ///Enable spawning
 /obj/effect/ai_node/mob_spawner/proc/spawner_toggle(mob_detected)
 	if(mob_detected)
-		SSspawning.registerspawner(src, spawn_delay, spawn_types, max_amount, spawn_amount, use_postspawn ? CALLBACK(src, .proc/postspawn) : null)
+		SSspawning.registerspawner(src, spawn_delay, spawn_types, max_amount, spawn_amount, use_postspawn ? CALLBACK(src, PROC_REF(postspawn)) : null)
 
 /obj/effect/ai_node/mob_spawner/deathclaw
 	name = "deathclaw hole"
@@ -96,12 +96,13 @@
 	var/spawner_holder = spawner	//Temporarily hold the atom/spawner so we can set it after creating the datum
 	spawnerdata[spawner] = new /datum/spawnerdata(delaytime/wait, spawntypes, maxmobs, spawnamount, postspawn)
 	spawnerdata[spawner].mob_spawner = spawner_holder	//Assign the atom/spawner to the datum
-	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, .proc/unregisterspawner)
+	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, PROC_REF(unregisterspawner))
 
 //Same as the overriden proc except for some necessary edits, see below
 /datum/controller/subsystem/spawning/fire(resumed)
 	if(totalspawned >= mobcap)
 		return
+
 	for(var/spawner in spawnerdata)
 		if(++spawnerdata[spawner].fire_increment <= spawnerdata[spawner].required_increment)
 			continue
@@ -116,9 +117,9 @@
 			/* Fallout edit: we want to keep track of times each mob is spawned to then cease spawning functions */
 			spawnerdata[spawner].spawned_mobs++
 
-			var/datum/callback/deathcb = CALLBACK(src, .proc/decrement_spawnedmobs, newmob, spawner)
-			callbacks_by_mob[newmob] = deathcb
-			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/remove_mob)
+			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
+			death_callbacks_by_mob[newmob] = deathcb
+			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
 			spawnerdata[spawner].spawnedmobs += newmob
 			squad += newmob
 			totalspawned++

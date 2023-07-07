@@ -60,7 +60,7 @@
 	force = initial(force)
 
 //Properly unwields the weapon if it is dropped, stored, etc.
-/obj/item/weapon/fallout_melee/mob_can_equip(mob/user)
+/obj/item/weapon/fallout_melee/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	unwield(user)
 	return ..()
 
@@ -213,8 +213,8 @@
 	desc = "Common knife found all across the wasteland. Still a reliable cutting tool hundreds of years later."
 	icon_state = "knife_survival"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
 	item_state = "knife"	//Needs a worn sprite
 	flags_item = null
 	w_class = WEIGHT_CLASS_SMALL
@@ -374,9 +374,8 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "fireaxe"
 	item_icons = list(
-		slot_back_str = 'icons/mob/back.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
 
 /obj/item/weapon/fallout_melee/axe/bone
 	name = "bone axe"
@@ -570,8 +569,8 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "powerfist"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi')
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
 	item_state = "powerfist"
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY
@@ -765,7 +764,7 @@
 	throw_speed = 0.5
 	throw_range = 2
 	var/repair_material = /obj/item/stack/sheet/metal
-	materials = list(/datum/material/metal = 1000)
+	//materials = list(/datum/material/metal = 1000)
 	hard_armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "fire" = 5, "acid" = 10)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'

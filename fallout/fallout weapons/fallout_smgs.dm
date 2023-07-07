@@ -9,7 +9,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	w_class = WEIGHT_CLASS_BULKY
-	gun_skill_category = GUN_SKILL_SMGS
+	gun_skill_category = SKILL_SMGS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	//I discovered what open bolt guns mean well after I did the chambered sprites for guns so they will retain their bullet in chamber
 	reciever_flags = AMMO_RECIEVER_MAGAZINES

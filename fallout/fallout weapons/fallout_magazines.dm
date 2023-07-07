@@ -270,7 +270,8 @@
 /obj/item/ammo_magazine/fallout_missile
 	name = "missile"
 	desc = "Pre-war rocket assembly with high explosives and guidance systems."
-	icon_state = "rocket"	//Needs a proper Fallout missile sprite
+	icon_state = "missile"	//Needs a proper Fallout missile sprite
+	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_magazine = null
 	default_ammo = /datum/ammo/rocket/fallout_missile
@@ -322,8 +323,8 @@
 	default_ammo = /datum/ammo/bullet/fallout/assault_rifle
 	caliber = CALIBER_556X45
 	max_rounds = 500
-	time_to_equip = 1 SECONDS
-	time_to_unequip = 1 SECONDS
+	equip_delay_self = 1 SECONDS
+	unequip_delay_self = 1 SECONDS
 	slowdown = 0.3
 
 /obj/item/ammo_magazine/fallout_ammopack/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)

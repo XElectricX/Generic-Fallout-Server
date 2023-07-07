@@ -20,11 +20,11 @@
 //Following stuff allows railing and fences to act like windows and barricades
 /obj/structure/fallout_fence/Initialize()
 	. = ..()
-	var/static/list/connections = list(COMSIG_ATOM_EXIT = .proc/on_try_exit)
+	var/static/list/connections = list(COMSIG_ATOM_EXIT = PROC_REF(on_try_exit))
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/fallout_fence/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+/obj/structure/fallout_fence/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return NONE
 	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
@@ -33,7 +33,7 @@
 
 /obj/structure/fallout_fence/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
+	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
 	if(mover?.throwing && climbable)	//If you can climb over it, surely you can throw items over it!
 		return TRUE

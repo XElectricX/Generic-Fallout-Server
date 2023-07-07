@@ -157,11 +157,11 @@
 	///Which slot this attachment needs to be in to use enable_mod or disable_mod; var/flags_equip_slot would be used but then the user can equip it directly
 	var/equip_slot
 	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
-	var/list/attachments_by_slot = list()
+	//var/list/attachments_by_slot = list()
 	///Typepath list of allowed attachment types.
 	var/list/attachments_allowed = list()
 	///List of attachment types that is attached to the object on initialize.
-	var/list/starting_attachments = list()
+	//var/list/starting_attachments = list()
 
 /obj/item/armor_module/fallout/Initialize()
 	. = ..()

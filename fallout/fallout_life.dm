@@ -57,7 +57,7 @@
 	if(is_wearing_power_armor && pa_cell)
 		if(!pa_cell.drain_power(pa_cell.action_energy_drain) && !HAS_TRAIT(src, TRAIT_IMMOBILE))
 			to_chat(src, span_warning("The internal battery is out of power!"))
-			playsound_local(src, 'sound/mecha/lowpowernano.ogg', 100)
+			playsound_local(src, 'fallout/fallout sounds/fallout machinery sounds/lowpowernano.ogg', 100)
 			playsound_local(src, 'sound/mecha/lowpower.ogg', 50)
 			ADD_TRAIT(src, TRAIT_IMMOBILE, "power_armor_no_energy")
 
@@ -174,31 +174,37 @@
 //Adding FALSE values if damage is 0
 /mob/living/bullet_act(obj/projectile/proj)
 	/* Need to paste in the code from atom/bullet_act because if I use ..() it will just call living/bullet_act twice */
+	SHOULD_CALL_PARENT(FALSE)
 	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
 		proj.damage *= proj.ammo.on_pierce_multiplier
 		proj.penetration *= proj.ammo.on_pierce_multiplier
 		proj.sundering *= proj.ammo.on_pierce_multiplier
 	ADD_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING, BULLET_ACT_TRAIT)
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
+
 	/* The actual living/bullet_act below */
 	if(stat == DEAD)
 		return
+
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
 	if(!damage)
 		return FALSE	//Fallout edit
+
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, FALSE, proj.penetration)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
-		bullet_ping(proj)
 		return FALSE	//Fallout edit
+
 	if(!damage)
 		return FALSE	//Fallout edit
+
 	flash_weak_pain()
+
 	var/feedback_flags = NONE
+
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
 		if(shooter_carbon.stagger)
@@ -210,12 +216,15 @@
 	else if(!damage)
 		feedback_flags |= BULLET_FEEDBACK_SOAK
 		bullet_soak_effect(proj)
+
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		adjust_fire_stacks(proj.ammo.incendiary_strength)
 		if(IgniteMob())
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
+
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		adjust_sunder(proj.sundering * get_sunder())
+		adjust_sunder(proj.sundering)
+
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
 		if(shrapnel_roll)
@@ -229,8 +238,10 @@
 			embed_projectile_shrapnel(proj)
 	else
 		bullet_message(proj, feedback_flags)
+
 	GLOB.round_statistics.total_projectile_hits[faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectile_hits[faction]")
+
 	/* Fallout edit */
 	if(damage)
 		return TRUE

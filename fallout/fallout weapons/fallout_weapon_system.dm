@@ -75,7 +75,7 @@ Changes to what gun sprites are selected
 	if(!user || user.stat != CONSCIOUS || !isturf(user.loc))	/* FALLOUT EDIT: Remove lying_angle check! */
 		return
 	if(rounds - rounds_per_shot < 0 && rounds)
-		to_chat(user, span_warning("Theres not enough rounds left to fire."))
+		to_chat(user, span_warning("There's not enough rounds left to fire."))
 		return FALSE
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
@@ -100,10 +100,10 @@ Changes to what gun sprites are selected
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
-		if(!master_gun && !wielded_stable())
+		if(!master_gun && !(flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
-		if(master_gun && !master_gun.wielded_stable())
+		if(master_gun && !(master_gun.flags_item & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
 			return FALSE
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -181,7 +181,7 @@ Changes to what gun sprites are selected
 		update_ammo_count()
 		update_icon()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
-		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		RegisterSignal(new_mag, COMSIG_ITEM_REMOVED_INVENTORY, TYPE_PROC_REF(/obj/item/weapon/gun, drop_connected_mag))
 		return TRUE
 
 

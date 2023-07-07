@@ -30,7 +30,7 @@
 	///How much energy gets drained while using modules in power armor; sum of all active module energy costs
 	var/passive_energy_drain = 0
 	maxcharge = 30000
-	materials = list(/datum/material/metal = 5000)
+	//materials = list(/datum/material/metal = 5000)
 	/*	Gun-related stuff for when energy guns are implemented
 	var/reload_delay = 0
 	///Magazine flags.
@@ -57,7 +57,7 @@
 	charge_overlay = "fission_battery"
 	w_class = WEIGHT_CLASS_TINY
 	maxcharge = 1000
-	materials = list(/datum/material/metal = 500)
+	//materials = list(/datum/material/metal = 500)
 
 /obj/item/cell/fallout/mfc
 	name = "microfusion cell"
@@ -67,7 +67,7 @@
 	charge_overlay = "mfc"
 	w_class = WEIGHT_CLASS_TINY
 	maxcharge = 10000
-	materials = list(/datum/material/metal = 1000)
+	//materials = list(/datum/material/metal = 1000)
 
 /obj/item/cell/fallout/ecp
 	name = "electron charge pack"
@@ -76,4 +76,4 @@
 	item_state = "ecp"
 	charge_overlay = "ecp"
 	maxcharge = 5000
-	materials = list(/datum/material/metal = 2000)
+	//materials = list(/datum/material/metal = 2000)

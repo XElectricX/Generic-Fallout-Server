@@ -26,7 +26,7 @@
 	desc = "Gonna need a bigger boot."
 	icon_state = "radroach"
 	faction = "radroach"
-	flags_pass = PASSTABLE|PASSMOB
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 	melee_damage = 5
 	maxHealth = 25
@@ -49,7 +49,7 @@
 	desc = "Common subterranean rodent. Big incisors, quick diggers, and fast breeders."
 	icon_state = "molerat"
 	faction = "molerat"
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
 	melee_damage = 10
 	maxHealth = 40
@@ -73,7 +73,7 @@
 	desc = "No longer man's best friend."
 	icon_state = "feraldog"
 	faction = "dog"
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL
 	melee_damage = 15
 	attack_speed = ATTACK_SPEED_FAST

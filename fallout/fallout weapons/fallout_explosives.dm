@@ -17,7 +17,7 @@
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	default_ammo_type = /obj/item/ammo_magazine/fallout_missile
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_missile)
@@ -46,15 +46,14 @@
 	desc = "Pinapple-style throwable explosive of pre-war design. Detonation time is 3 seconds."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_explosives.dmi'
 	icon_state = "frag"
-	arm_sound = 'sound/weapons/armbombpin.ogg'
+	arm_sound = 'sound/weapons/armbombpin_1.ogg'
 	det_time = 3 SECONDS
 	var/heavy_impact_range = 0
 	light_impact_range = 5
 	var/flash_range = 1	//Will create a blinding flash to any mobs in range
-	var/has_explosion_effect = TRUE	//If the grenade does a little mushroom cloud animation
 
 /obj/item/explosive/grenade/fallout/prime()
-	explosion(loc, heavy_impact_range = src.heavy_impact_range, light_impact_range = src.light_impact_range, small_animation = src.has_explosion_effect, flash_range = src.flash_range)
+	explosion(loc, heavy_impact_range = src.heavy_impact_range, light_impact_range = src.light_impact_range, flash_range = src.flash_range)
 	qdel(src)
 
 /obj/item/explosive/grenade/fallout/stick
@@ -106,7 +105,7 @@
 		log_combat(user, src, "primed")
 	icon_state = initial(icon_state) + "_active"
 	playsound(loc, arm_sound, 50, 1, 6)
-	grenade_timer = addtimer(CALLBACK(src, .proc/prime), det_time, TIMER_STOPPABLE)
+	grenade_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
@@ -119,7 +118,6 @@
 	item_state = "grenade_stick"
 	arm_sound = 'fallout/fallout sounds/flame_on.ogg'
 	flash_range = 0
-	has_explosion_effect = FALSE
 
 //Like dynamite, it can be turned off
 /obj/item/explosive/grenade/fallout/molotov/attack_self(mob/user)
@@ -157,7 +155,7 @@
 /obj/item/explosive/grenade/fallout/molotov/prime()
 	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
 	flame_radius(2, get_turf(src), 15, 30, 10, 10)
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 30, TRUE, 4)
+	playsound(loc, 'sound/effects/incendiary_explosion_1.ogg', 30, TRUE, 4)
 	qdel(src)
 
 /obj/item/explosive/grenade/fallout/incendiary
@@ -168,9 +166,8 @@
 	arm_sound = 'sound/weapons/armbomb.ogg'
 	det_time = 3 SECONDS
 	flash_range = 0
-	has_explosion_effect = FALSE
 
 /obj/item/explosive/grenade/fallout/incendiary/prime()
 	flame_radius(3, get_turf(src), 40, 60, 20, 20)
-	playsound(loc, 'sound/effects/incendiary_explode.ogg', 60, FALSE, 6)
+	playsound(loc, 'sound/effects/incendiary_explosion_1.ogg', 60, FALSE, 6)
 	qdel(src)

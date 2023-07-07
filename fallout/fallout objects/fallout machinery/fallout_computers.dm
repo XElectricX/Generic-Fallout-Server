@@ -98,16 +98,16 @@
 			printing = TRUE
 			addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time)
 			usr.visible_message("[usr] has booted up [src].", "You boot up [src].")
-			if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
+			if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				return
-			current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
+			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), generate_time, TIMER_STOPPABLE)
 			return
 		printing = TRUE
 		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time)
 		usr.visible_message("[usr] started a program on [src].", "You started a program on [src].")
-		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
+		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 			return
-		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
+		current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), generate_time, TIMER_STOPPABLE)
 	updateUsrDialog()
 
 /obj/machinery/computer/fallout/objective/proc/complete_segment()

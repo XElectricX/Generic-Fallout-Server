@@ -25,32 +25,68 @@
 	mid_sounds = living_mob.combat_sound
 
 //Rewriting footstep sounds to include power armor feet
-/datum/component/footstep/play_humanstep()
-	var/mob/living/carbon/human/H = parent
-	if(CHECK_MULTIPLE_BITFIELDS(H.flags_pass, HOVERING))//We don't make step sounds when flying
-		return
-	var/turf/open/T = prepare_step()
-	if(!T)
-		return
-	if(locate(/obj/alien/weeds) in T)
-		playsound(T, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
-			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
-			TRUE,
-			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
-		return
-	if(H.is_wearing_power_armor)	//Walk and run sounds for power armor
-		if(!H.m_intent)
-			playsound(T, pick('sound/effects/alien_footstep_medium1.ogg', 'sound/effects/alien_footstep_medium2.ogg', 'sound/effects/alien_footstep_medium3.ogg'), 100 * volume, TRUE, 7, 1)
+/datum/element/footstep/play_humanstep(mob/living/carbon/human/source, force_play = FALSE, volume_multiplier = 1, range_adjustment = 0)
+	var/turf/open/source_loc
+	if(force_play)
+		source_loc = get_turf(source)
+		if(!istype(source_loc))
 			return
-		playsound(T, pick('sound/effects/alien_footstep_large1.ogg', 'sound/effects/alien_footstep_large2.ogg', 'sound/effects/alien_footstep_large3.ogg'), 50 * volume, TRUE, 10, 2)
+	else
+		source_loc = prepare_step(source)
+
+	if(!source_loc)
 		return
-	if(H.shoes) //are we wearing shoes
-		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
-			GLOB.shoefootstep[T.shoefootstep][2] * volume,
-			TRUE,
-			GLOB.shoefootstep[T.shoefootstep][3] + e_range)
+
+	if(HAS_TRAIT(source, TRAIT_HEAVY_STEP))
+		volume_multiplier += 0.3
+		range_adjustment += 3
+
+	if(HAS_TRAIT(source, TRAIT_LIGHT_STEP))
+		volume_multiplier -= 0.5
+		range_adjustment += -3
+
+	if(source.m_intent == MOVE_INTENT_WALK)
+		volume_multiplier -= 0.5
+		range_adjustment += -3
+
+	/* Walk and run sounds for power armor */
+	if(source.is_wearing_power_armor)
+		if(!source.m_intent)
+			playsound(
+				source_loc,
+				pick('sound/effects/alien_footstep_medium1.ogg', 'sound/effects/alien_footstep_medium2.ogg', 'sound/effects/alien_footstep_medium3.ogg'),
+				volume * volume_multiplier,
+				sound_vary,
+				DEFAULT_FOOTSTEP_SOUND_RANGE + e_range + range_adjustment)
+			return
+		playsound(
+			source_loc,
+			pick('sound/effects/alien_footstep_large1.ogg', 'sound/effects/alien_footstep_large2.ogg', 'sound/effects/alien_footstep_large3.ogg'),
+			volume * volume_multiplier,
+			sound_vary,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + e_range + range_adjustment)
 		return
-	playsound(T, pick(GLOB.barefootstep[T.barefootstep][1]),
-		GLOB.barefootstep[T.barefootstep][2] * volume,
-		TRUE,
-		GLOB.barefootstep[T.barefootstep][3] + e_range)
+
+	var/override_sound = source_loc.get_footstep_override()
+	var/footstep_type
+
+	if((source.wear_suit?.flags_armor_protection | source.w_uniform?.flags_armor_protection | source.shoes?.flags_armor_protection) & FEET) //We are not disgusting barefoot bandits
+		var/static/list/footstep_sounds = GLOB.shoefootstep //static is faster
+		footstep_type = override_sound ? override_sound : source_loc.shoefootstep
+		playsound(
+			source_loc,
+			pick(footstep_sounds[footstep_type][1]),
+			footstep_sounds[footstep_type][2] * volume * volume_multiplier,
+			sound_vary,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + footstep_sounds[footstep_type][3] + e_range + range_adjustment,
+		)
+	else
+		var/static/list/bare_footstep_sounds = GLOB.barefootstep
+		footstep_type = override_sound ? override_sound : source_loc.barefootstep
+		playsound(
+			source_loc,
+			pick(GLOB.barefootstep[footstep_type][1]),
+			GLOB.barefootstep[footstep_type][2] * volume * volume_multiplier,
+			sound_vary,
+			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[footstep_type][3] + e_range + range_adjustment,
+		)

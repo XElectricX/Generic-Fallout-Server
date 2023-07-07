@@ -504,7 +504,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/machinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/machinegun, /obj/item/ammo_magazine/fallout_ammopack)
 	max_shells = 500
@@ -535,7 +535,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/extended
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/fallout_rifle,
@@ -559,7 +559,7 @@
 	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/pan
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/pan)
 	max_shells = 90

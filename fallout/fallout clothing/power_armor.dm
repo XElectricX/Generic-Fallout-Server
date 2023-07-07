@@ -1,9 +1,9 @@
 //This is all stuff for allowing deletion of the power armor when someone enters without deleting the armor pieces and putting them back without a fuss
 /datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
-	RegisterSignal(parent, COMSIG_DELETE_ATTACHMENTS, .proc/delete_attachment_list)
-	RegisterSignal(parent, COMSIG_ATTACH_WITHOUT_CHECKS, .proc/attach_without_checks)
-	RegisterSignal(parent, COMSIG_DETACH_WITHOUT_CHECKS, .proc/detach_without_checks)
+	RegisterSignal(parent, COMSIG_DELETE_ATTACHMENTS, PROC_REF(delete_attachment_list))
+	RegisterSignal(parent, COMSIG_ATTACH_WITHOUT_CHECKS, PROC_REF(attach_without_checks))
+	RegisterSignal(parent, COMSIG_DETACH_WITHOUT_CHECKS, PROC_REF(detach_without_checks))
 
 ///Very dirty and inelegant but does not matter since this proc is only used before an item is set to be deleted
 /datum/component/attachment_handler/proc/delete_attachment_list()
@@ -13,7 +13,7 @@
 ///Almost the same as attach_without_user except that attacher is set because if not, attachments are not moved
 /datum/component/attachment_handler/proc/attach_without_checks(datum/source, obj/item/attachment, mob/attacher)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/handle_attachment, attachment, attacher, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(handle_attachment), attachment, attacher, TRUE)
 
 ///Pretty much the same as proc/finish_detach except that it comes with the var/list/attachment_data bit included, which saves headaches
 /datum/component/attachment_handler/proc/detach_without_checks(datum/source, obj/item/attachment, mob/living/user)
@@ -141,8 +141,7 @@
 			SEND_SIGNAL(src, COMSIG_DETACH_WITHOUT_CHECKS, attachment_to_detach, user)
 
 /obj/item/clothing/power_armor/MouseDrop_T(atom/dropping, mob/user)
-	if(!ishuman(user) || user.status_flags & INCORPOREAL)	//Mob check
-		return
+	. = ..()
 	enter_armor(user)
 
 ///Suiting up procedures
@@ -162,14 +161,14 @@
 		if(user.pa_cell.charge <= 0)
 			to_chat(user, span_warning("The internal battery is out of power!"))
 			ADD_TRAIT(user, TRAIT_IMMOBILE, "power_armor_no_energy")
-			user.playsound_local(user, 'sound/mecha/lowpowernano.ogg', 100)
+			user.playsound_local(user, 'fallout/fallout sounds/fallout machinery sounds/lowpowernano.ogg', 100)
 			user.playsound_local(user, 'sound/mecha/lowpower.ogg', 50)
 		else
 			user.playsound_local(user, "sound/mecha/nominal.ogg", 100)
 	else
 		to_chat(user, span_warning("There is no battery installed!"))
 		ADD_TRAIT(user, TRAIT_IMMOBILE, "power_armor_no_energy")
-		user.playsound_local(user, 'sound/mecha/lowpowernano.ogg', 100)
+		user.playsound_local(user, 'fallout/fallout sounds/fallout machinery sounds/lowpowernano.ogg', 100)
 		user.playsound_local(user, 'sound/mecha/lowpower.ogg', 100)
 	for(var/attachments in attachments_by_slot)	//Check what slots we got in this suit
 		switch(attachments)	//If there is an attached armor piece, attach it to the user; remove whatever the user is wearing first

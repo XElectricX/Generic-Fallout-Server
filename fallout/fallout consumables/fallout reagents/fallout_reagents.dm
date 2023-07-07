@@ -329,7 +329,7 @@
 
 /datum/reagent/turbo/on_mob_add(mob/living/L, metabolism)
 	..()
-	RegisterSignal(L, COMSIG_STAMINA_REGEN, .proc/modify_stamina_regen)
+	RegisterSignal(L, COMSIG_STAMINA_REGEN, PROC_REF(modify_stamina_regen))
 	to_chat(L, span_notice("The world around you slows down slightly. You feel like you could run for hours!"))
 	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.2)
 	L.max_stamina_buffer += 25	//1.5x more stamina "health"

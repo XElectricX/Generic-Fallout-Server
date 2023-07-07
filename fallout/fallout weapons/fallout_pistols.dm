@@ -9,7 +9,7 @@
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	reciever_flags = AMMO_RECIEVER_MAGAZINES
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol

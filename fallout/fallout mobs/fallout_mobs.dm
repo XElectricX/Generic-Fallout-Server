@@ -135,7 +135,7 @@
 	var/mob/living/current_target
 
 /datum/ai_behavior/xeno/fallout/start_ai()
-	RegisterSignal(mob_parent, COMSIG_MOB_TAKING_DAMAGE, .proc/on_damage_taken)
+	RegisterSignal(mob_parent, COMSIG_MOB_TAKING_DAMAGE, PROC_REF(on_damage_taken))
 	return ..()
 
 /datum/ai_behavior/xeno/fallout/late_initialize()
@@ -171,7 +171,7 @@
 				return
 			var/atom/next_target = get_nearest_target_in_view(mob_parent, target_distance, ALL, mob_parent.faction)
 			if(!next_target && current_target && !current_timer)
-				current_timer = addtimer(CALLBACK(src, .proc/lose_aggro), aggro_time, TIMER_STOPPABLE)
+				current_timer = addtimer(CALLBACK(src, PROC_REF(lose_aggro)), aggro_time, TIMER_STOPPABLE)
 			if(!next_target)//We didn't find a target
 				if(!is_hostile)
 					cleanup_current_action()
@@ -187,7 +187,7 @@
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
-				RegisterSignal(mob_parent, COMSIG_MOB_TAKING_DAMAGE, .proc/on_damage_taken)
+				RegisterSignal(mob_parent, COMSIG_MOB_TAKING_DAMAGE, PROC_REF(on_damage_taken))
 				return
 			if(next_target == atom_to_walk_to)
 				return

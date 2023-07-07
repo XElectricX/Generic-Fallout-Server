@@ -46,7 +46,7 @@
 /datum/game_mode/ncr_vs_legion
 	name = "NCR vs Legion"
 	config_tag = "NCR vs Legion"
-	flags_round_type = MODE_LZ_SHUTTERS
+	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER
 	shutters_drop_time = 7 MINUTES
 	respawn_time = 3 MINUTES	//Increase to 5 when out of testing
 	round_end_states = list(DRAW, NCR_VICTORY, LEGION_VICTORY)
@@ -86,13 +86,3 @@
 	log_game("[round_finished] won.\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 	announce_medal_awards()
 	announce_round_stats()
-
-//debugging tool
-/obj/item/end_round
-	name = "End Round Button"
-	desc = "Ends the round."
-
-/obj/item/end_round/interact(mob/user)
-	. = ..()
-	to_chat(world, "Interact is successful.")
-	SSticker.force_ending = TRUE

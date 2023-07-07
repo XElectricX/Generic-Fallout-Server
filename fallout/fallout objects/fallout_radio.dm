@@ -57,15 +57,16 @@
 	return 0
 
 //Deleted the code that specifically made it unable to send messages if the radio was in a hand slot... why???
-/obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+/obj/item/radio/fallout/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	//This is from proc/hear
+	SHOULD_CALL_PARENT(FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
-		return
+		return FALSE
 	if(canhear_range && get_dist(src, speaker) >= canhear_range)	//Check if the speaker is on the edge of radio range
 		if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)	//Radio won't hear you whispering that far
-			return
+			return FALSE
 		raw_message = stars(raw_message, 50)	//Scramble the distant message
 	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
 		// radios don't pick up whispers very well

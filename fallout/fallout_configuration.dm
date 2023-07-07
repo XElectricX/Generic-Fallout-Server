@@ -58,7 +58,7 @@
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
 				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 2 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(Reboot)), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 //It was hardcoded to only check under the "_map" folder, that has been removed now
@@ -326,14 +326,14 @@
 	Round time: 0:0					|	Round time: 4:54
 	*/
 	var/discord_url = CONFIG_GET(string/discordurl)
-	var/webmap_host = CONFIG_GET(string/webmap_host)
+	//var/webmap_host = CONFIG_GET(string/webmap_host)
 	var/title = CONFIG_GET(string/title) ? CONFIG_GET(string/title) : "Lost in space..."
 	//var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
 	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
+	//var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 	var/new_status = ""
 	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[title] &#8212; [server_name]</a></b>"
-	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
+	new_status += "<br>Map: <b>[map_name]</a></b>"
 	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
 	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
 	// Finally set the new status

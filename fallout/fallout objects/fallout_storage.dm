@@ -33,7 +33,7 @@
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool(src)
 	new /obj/item/tool/crowbar(src)
-	new /obj/item/analyzer(src)
+	new /obj/item/tool/analyzer(src)
 	new /obj/item/tool/wirecutters(src)
 
 //Doctor's bag, stores anything medical related

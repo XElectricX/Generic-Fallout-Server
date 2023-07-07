@@ -1937,6 +1937,7 @@
 #include "fallout\fallout systems\fallout_ambience.dm"
 #include "fallout\fallout systems\fallout_emotes.dm"
 #include "fallout\fallout systems\fallout_interaction.dm"
+#include "fallout\fallout systems\fallout_preferences.dm"
 #include "fallout\fallout systems\fallout_sound.dm"
 #include "fallout\fallout turfs\fallout_floors.dm"
 #include "fallout\fallout turfs\fallout_turf.dm"
