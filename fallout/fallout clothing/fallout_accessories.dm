@@ -96,7 +96,10 @@
 
 	update_clothing_icon()
 
-	update_action_button_icons()
+	//Set user's name to Unknown if mask is over their face and they have no ID, opposite if they are pulling it down
+	if(isliving(usr))
+		var/mob/living/user = usr
+		user.name = user.get_visible_name()
 
 /obj/item/clothing/mask/fallout/gondola
 	name = "gondola mask"

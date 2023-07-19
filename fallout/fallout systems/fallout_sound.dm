@@ -90,3 +90,31 @@
 			sound_vary,
 			DEFAULT_FOOTSTEP_SOUND_RANGE + GLOB.barefootstep[footstep_type][3] + e_range + range_adjustment,
 		)
+
+/* Lobby and round end music */
+//Find available songs and pick one to play
+/datum/controller/subsystem/ticker/choose_lobby_song()
+	var/list/songs = flist("[global.config.directory]/lobby_music/")
+	if(length(songs))
+		return "[global.config.directory]/lobby_music/[pick(songs)]"
+
+//Stop the lobby music once you spawn in
+/mob/living/carbon/human/on_spawn(mob/new_player/summoner)
+	. = ..()
+	summoner.client.stop_sounds()
+
+//Round end music!
+/datum/game_mode/declare_completion()
+	. = ..()
+	for(var/client/player AS in GLOB.clients)
+		player.play_round_end_song()
+
+/client/proc/play_round_end_song(vol = 85)
+	//Obey client preferences and don't do anything if the player is still in the lobby
+	if(prefs?.toggles_sound & SOUND_NOENDOFROUND || isnewplayer(mob))
+		return
+	var/list/songs = flist("[global.config.directory]/end_music/")
+	if(!length(songs))
+		return
+	var/song_to_play = "[global.config.directory]/end_music/[pick(songs)]"
+	SEND_SOUND(src, sound(song_to_play, channel = CHANNEL_LOBBYMUSIC, volume = vol))

@@ -96,7 +96,7 @@
 	var/spawner_holder = spawner	//Temporarily hold the atom/spawner so we can set it after creating the datum
 	spawnerdata[spawner] = new /datum/spawnerdata(delaytime/wait, spawntypes, maxmobs, spawnamount, postspawn)
 	spawnerdata[spawner].mob_spawner = spawner_holder	//Assign the atom/spawner to the datum
-	RegisterSignal(spawner, COMSIG_PARENT_QDELETING, PROC_REF(unregisterspawner))
+	RegisterSignal(spawner, COMSIG_QDELETING, PROC_REF(unregisterspawner))
 
 //Same as the overriden proc except for some necessary edits, see below
 /datum/controller/subsystem/spawning/fire(resumed)
@@ -119,7 +119,7 @@
 
 			var/datum/callback/deathcb = CALLBACK(src, PROC_REF(decrement_spawnedmobs), newmob, spawner)
 			death_callbacks_by_mob[newmob] = deathcb
-			RegisterSignal(newmob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
+			RegisterSignal(newmob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(remove_mob))
 			spawnerdata[spawner].spawnedmobs += newmob
 			squad += newmob
 			totalspawned++

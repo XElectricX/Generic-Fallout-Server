@@ -75,9 +75,9 @@
 	animate(alpha = 0, time = BALLOON_TEXT_FADE_TIME, easing = LINEAR_EASING)
 
 	//Delete maptext and graphics after use
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), balloon_alert, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), notification_icon, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), notification_border, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_client), balloon_alert, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_client), notification_icon, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_client), notification_border, client), BALLOON_TEXT_TOTAL_LIFETIME(additional_duration))
 
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT
