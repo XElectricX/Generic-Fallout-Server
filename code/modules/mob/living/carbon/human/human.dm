@@ -628,6 +628,9 @@
 		if(istype(I))
 			I.examine(usr)
 
+	if(href_list["view_awards"] && client)
+		client.awards_manager.view_awards(usr)
+
 	return ..()
 
 

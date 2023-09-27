@@ -526,6 +526,9 @@
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += span_highdanger("<B>This player has been slept by staff.</B>\n")
 
+	if(client)
+		msg += "<a href='?src=[REF(src)];view_awards=1'>\[View awards\]</a>\n"
+
 	msg += "</span>"
 
 	return list(msg)
