@@ -99,11 +99,16 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_LYING_ANGLE)
 	if(lying_angle)
 		density = FALSE
-		var/obj/item/item_to_unwield = get_held_item()	//Check for unwielding any wielded guns you lie down with
-		if(item_to_unwield)
-			item_to_unwield.unwield(usr)
 		if(layer == initial(layer)) //to avoid things like hiding larvas.
 			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+		//Check for unwielding any wielded guns you lie down with
+		var/obj/item/item_to_unwield = get_active_held_item()
+		if(item_to_unwield?.flags_item & WIELDED)
+			item_to_unwield.unwield(src)
+		else
+			item_to_unwield = get_inactive_held_item()
+			if(item_to_unwield?.flags_item & WIELDED)
+				item_to_unwield.unwield(src)
 	else
 		density = TRUE
 		if(layer == LYING_MOB_LAYER)

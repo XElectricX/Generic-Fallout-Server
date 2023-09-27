@@ -237,9 +237,10 @@
 	icon_state = "m1_garand"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_fire.wav'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'fallout/fallout sounds/fallout weapon sounds/garand_ping.ogg'
+	unload_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_unload.wav'
 	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_reload.wav'
 	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_cock.wav'
+	empty_sound = 'fallout/fallout sounds/fallout weapon sounds/garand_ping.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE

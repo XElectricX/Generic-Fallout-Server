@@ -309,39 +309,19 @@
 	addiction_threshold = 5
 	custom_metabolism = REAGENTS_METABOLISM/2	//Metabolizes twice as slow to compensate for potency
 
-/mob/living/handle_staminaloss()
-	var/list/regen_modifier = list()
-	var/regen_bonus = 1
-	SEND_SIGNAL(src, COMSIG_STAMINA_REGEN, regen_modifier)
-	for(var/values in regen_modifier)
-		regen_bonus *= values
-	if(world.time < last_staminaloss_dmg + 3 SECONDS)
-		return
-	if(staminaloss > 0)
-		adjustStaminaLoss((-maxHealth * 0.2) * regen_bonus, TRUE, FALSE)	//Default tired regen speed is 20 per tick
-	else if(staminaloss > -max_stamina_buffer)
-		adjustStaminaLoss((-max_stamina_buffer * 0.08) * regen_bonus, TRUE, FALSE)	//Default normal regen speed is 4 per tick
-
-/datum/reagent/turbo/proc/modify_stamina_regen(datum/source, regen_modifier)
-	if(volume > 0)
-		regen_modifier += 2
-		return
-
 /datum/reagent/turbo/on_mob_add(mob/living/L, metabolism)
-	..()
-	RegisterSignal(L, COMSIG_STAMINA_REGEN, PROC_REF(modify_stamina_regen))
 	to_chat(L, span_notice("The world around you slows down slightly. You feel like you could run for hours!"))
+	L.add_stamina_regen_modifier(type, TRUE, 0, NONE, TRUE, 0.2)
 	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.2)
 	L.max_stamina_buffer += 25	//1.5x more stamina "health"
 	L.adjustStaminaLoss(-25)	//Initial stamina boost to pair with the increase in max stamina
 
 /datum/reagent/turbo/on_mob_delete(mob/living/L, metabolism)
-	UnregisterSignal(L, COMSIG_STAMINA_REGEN)
 	to_chat(L, span_notice("You feel out of breath, the world returning to normal..."))
+	L.remove_stamina_regen_modifier(type)
 	L.remove_movespeed_modifier(type)
 	L.max_stamina_buffer -= 25	//Restore max stamina to default
 	L.adjustStaminaLoss(20)	//To simulate the user being "drained" of energy after it wears off
-	..()
 
 /datum/reagent/turbo/on_mob_life(mob/living/L, metabolism)
 	if(prob(5))
@@ -362,7 +342,6 @@
 	L.adjustOxyLoss(2)
 	L.adjust_blurriness(10)
 	L.jitter(10)
-	..()
 
 /datum/reagent/turbo/addiction_act_stage1(mob/living/L, metabolism)
 	L.jitter(5)

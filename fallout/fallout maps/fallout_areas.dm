@@ -16,21 +16,21 @@
 /area/fallout/underground
 	name = "Underground"
 	ambience = "underground"
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND
 	outside = FALSE
 
 /area/fallout/ncr
 	name = "NCR Camp"
 	icon_state = "ncr"
 	ambience = "ncr"
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
 
 /area/fallout/legion
 	name = "Legion Camp"
 	icon_state = "legion"
 	ambience = "legion"
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
 
 //Tunnel map
@@ -38,7 +38,7 @@
 	name = "Tunnel"
 	icon_state = "tunnel"
 	ambience = "underground"
-	ceiling = CEILING_DEEP_UNDERGROUND
+	ceiling = CEILING_UNDERGROUND
 	outside = FALSE
 
 /area/fallout/tunnel/east

@@ -38,5 +38,5 @@
   @include meta.load-css('~tgui/styles/layouts/TitleBar.scss');
 
   // tgchat styles
-  @include meta.load-css('../tgchat/chat-light.scss');
+  @include meta.load-css('../tgchat/chat-dark.scss');
 }
