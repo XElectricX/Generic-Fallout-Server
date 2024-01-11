@@ -77,7 +77,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	adjust_stagger(3)
+	adjust_stagger(3 SECONDS)
 	add_slowdown(3)
 
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
@@ -110,12 +110,12 @@
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		AdjustUnconscious(-60)
-		AdjustStun(-60)
+		AdjustUnconscious(-6 SECONDS)
+		AdjustStun(-6 SECONDS)
 		if(IsParalyzed())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-		AdjustParalyzed(-60)
+		AdjustParalyzed(-6 SECONDS)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -157,16 +157,16 @@
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
-		return
+		return FALSE
 	if(stat || !target)
-		return
+		return FALSE
 	if(target.type == /atom/movable/screen)
-		return
+		return FALSE
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
 
-	if(!I || (I.flags_item & NODROP))
+	if(!I || HAS_TRAIT(I, TRAIT_NODROP))
 		return
 
 	var/spin_throw = TRUE
@@ -198,9 +198,11 @@
 
 	thrown_thing.throw_at(target, thrown_thing.throw_range + throw_modifiers["range_modifier"], max(1, thrown_thing.throw_speed + throw_modifiers["speed_modifier"]), src, spin_throw, !throw_modifiers["targetted_throw"], throw_modifiers["targetted_throw"])
 
+	return TRUE
+
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || (flags_item & NODROP))
+	if((flags_item & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
@@ -234,12 +236,14 @@
 	set name = "Sleep"
 	set category = "IC"
 
+	if(species.species_flags & ROBOTIC_LIMBS)
+		to_chat(src, span_warning("Your artificial body does not require sleep."))
+		return
 	if(IsSleeping())
 		to_chat(src, span_warning("You are already sleeping"))
 		return
 	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
-
 
 /mob/living/carbon/Bump(atom/movable/AM)
 	if(now_pushing)
@@ -264,12 +268,33 @@
 			if(!lying_angle)
 				break
 
-
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	. -= "Update Icon"
-	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_REGENERATE_ICON, "Regenerate Icons")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_REGENERATE_ICON])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+
+/mob/living/carbon/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, nutrition))
+			set_nutrition(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	return ..()
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator

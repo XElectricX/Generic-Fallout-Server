@@ -217,23 +217,23 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		balloon_alert(bodybag_occupant, "jolts out of the bag")
+		balloon_alert(bodybag_occupant, "[proj] jolts you out of the bag")
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "fire forces you out")
-		open()
+		balloon_alert(bodybag_occupant, "The fire forces you out")
 		bodybag_occupant.flamer_fire_act(burnlevel)
+		open()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		balloon_alert(bodybag_occupant, "blows you out")
-		open()
+		balloon_alert(bodybag_occupant, "The explosion blows you out")
 		bodybag_occupant.ex_act(severity)
+		open()
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message(span_danger("\The shockwave blows [name] apart!"))
+			visible_message(span_danger("The shockwave blows [src] apart!"))
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
@@ -300,6 +300,7 @@
 	if(bodybag_occupant)
 		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED))
+		bodybag_occupant.record_time_in_stasis()
 	return ..()
 
 
@@ -314,7 +315,7 @@
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
 		RegisterSignals(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
-
+		bodybag_occupant.time_entered_stasis = world.time
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
@@ -335,7 +336,7 @@
 		if(!(medical_record.fields["last_scan_time"]))
 			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
+			. += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 

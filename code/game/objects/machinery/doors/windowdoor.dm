@@ -136,7 +136,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		to_chat(user, span_notice("You removed the windoor electronics!"))
@@ -252,3 +252,7 @@
 /obj/machinery/door/window/secure/engineering/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
+
+// Med Doors
+/obj/machinery/door/window/secure/medical
+	req_access = list(ACCESS_MARINE_CHEMISTRY)

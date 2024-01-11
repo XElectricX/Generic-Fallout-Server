@@ -11,7 +11,7 @@
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
 	balloon_alert(user, "Inflating...")
-	if(!do_after(user, 3 SECONDS, TRUE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src))
 		balloon_alert(user, "Interrupted!")
 		return
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -65,6 +65,9 @@
 
 		if(EXPLODE_LIGHT)
 			if(prob(50))
+				deflate(TRUE)
+		if(EXPLODE_WEAK)
+			if(prob(20))
 				deflate(TRUE)
 
 

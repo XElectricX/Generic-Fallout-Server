@@ -16,7 +16,7 @@
 	)
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
-	var/source_sheet_type = /obj/item/stack/sheet/glass
+	var/source_sheet_type = /obj/item/stack/sheet/glass/glass
 	var/shardsize
 
 /obj/item/shard/suicide_act(mob/user)
@@ -110,7 +110,7 @@
 	var/datum/limb/affecting = target.get_limb(pick("l_foot", "r_foot"))
 	if(affecting.limb_status & LIMB_ROBOT)
 		return
-	target.Paralyze(60)
+	target.Paralyze(6 SECONDS)
 
 	if(affecting.take_damage_limb(5))
 		UPDATEHEALTH(target)

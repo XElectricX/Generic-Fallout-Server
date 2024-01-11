@@ -16,7 +16,7 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = SKILL_SMGS
 
@@ -34,6 +34,7 @@
 	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
@@ -98,7 +99,7 @@
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
-	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
@@ -125,7 +126,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -365,7 +366,7 @@
 		/obj/item/attachable/foldable/bipod,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS

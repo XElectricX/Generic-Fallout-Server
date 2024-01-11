@@ -39,9 +39,14 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
+#define STATUS_EFFECT_MINDMEND /datum/status_effect/mindmeld
+
+#define STATUS_EFFECT_REKNIT_FORM /datum/status_effect/reknit_form
 /////////////
 // DEBUFFS //
 /////////////
+
+#define STATUS_EFFECT_STAGGER /datum/status_effect/incapacitating/stagger //reduces human gun damage or impairs xeno ability use
 
 #define STATUS_EFFECT_STUN /datum/status_effect/incapacitating/stun //the affected is unable to move or use items
 

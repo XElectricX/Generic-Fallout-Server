@@ -37,7 +37,7 @@
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to</b> TGMC High Command<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead the TGMC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
 	minimap_icon = "captain"
@@ -51,32 +51,6 @@ Your first order of business should be briefing the marines on the mission they 
 You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
-
-
-/datum/outfit/job/command/captain
-	name = CAPTAIN
-	jobtype = /datum/job/terragov/command/captain
-
-	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/marine/officer/command
-	shoes = /obj/item/clothing/shoes/marinechief/captain
-	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
-
-
-/datum/outfit/job/command/captain/robot
-	species = SPECIES_COMBAT_ROBOT
-
-	w_uniform = /obj/item/clothing/under/marine/robotic
-	shoes = null
-	gloves = null
-	head = /obj/item/clothing/head/modular/robot
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -93,6 +67,38 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O7"
 		if(7501 to INFINITY) //125 hrs
 			new_human.wear_id.paygrade = "O8"
+
+/datum/job/terragov/command/captain/campaign
+	outfit = /datum/outfit/job/command/captain/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/captain
+	name = CAPTAIN
+	jobtype = /datum/job/terragov/command/captain
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/command
+	shoes = /obj/item/clothing/shoes/marinechief/captain
+	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
+	head = /obj/item/clothing/head/tgmcberet/tan
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
+/datum/outfit/job/command/captain/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
+/datum/outfit/job/command/captain/campaign
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/fire_support/campaign
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -115,7 +121,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
 	jobworth = list(
-		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
@@ -124,7 +130,7 @@ Godspeed, captain! And remember, you are not above the law."})
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
 	"}
 	minimap_icon = "fieldcommander"
@@ -140,6 +146,7 @@ Make the TGMC proud!"})
 	. = ..()
 	if(!ishuman(new_mob))
 		return
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1 )
@@ -151,7 +158,6 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
-	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 
 
 /datum/outfit/job/command/fieldcommander
@@ -182,6 +188,55 @@ Make the TGMC proud!"})
 	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
+//Campaign version with specific loadout
+/datum/job/terragov/command/fieldcommander/campaign
+	outfit = /datum/outfit/job/command/fieldcommander/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/fieldcommander/campaign
+	name = FIELD_COMMANDER
+	jobtype = /datum/job/terragov/command/fieldcommander/campaign
+
+	id = /obj/item/card/id/dogtag/fc
+	belt = /obj/item/storage/holster/blade/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/officer/exec/webbing
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/valk
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/officer
+	mask = /obj/item/clothing/mask/rebreather
+	head = /obj/item/clothing/head/tgmcberet/fc
+	r_store = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+/datum/outfit/job/command/fieldcommander/campaign/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclot, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+
+
 //Staff Officer
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER
@@ -211,7 +266,7 @@ Make the TGMC proud!"})
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Take charge of one of the four squads, be their eyes and ears providing intel and additional shipside support via Orbital Bombardments.
 	"}
 
@@ -238,6 +293,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
 
+/datum/job/terragov/command/staffofficer/campaign
+	outfit = /datum/outfit/job/command/staffofficer/campaign
+	multiple_outfits = FALSE
+
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
 	jobtype = /datum/job/terragov/command/staffofficer
@@ -262,6 +321,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 
+/datum/outfit/job/command/staffofficer/campaign
+	l_store = /obj/item/binoculars/fire_support/campaign
+
 //Pilot Officer
 /datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
@@ -273,7 +335,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
-	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,
@@ -285,7 +348,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
@@ -356,7 +419,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Act as the spearhead of the operation
 	"}
 	minimap_icon = "mech_pilot"
@@ -428,7 +491,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Supervise the engineers and technicians on duty. Overview the ship’s engine. Teach what’s right and what’s wrong about engineering, cut corners and find places in any FOB that can easily be destroyed.
 	"}
 	minimap_icon = "cse"
@@ -502,7 +565,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Chief Ship Engineer<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Maintain the ship, be in charge of the engines. Be the secondary engineer to a forward operating base, prepare the shipside defenses if needed. Help the Pilot Officer in preparing the dropship.
 	"}
 	minimap_icon = "st"
@@ -580,7 +643,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
 	minimap_icon = "requisition"
@@ -663,7 +726,7 @@ A happy ship is a well-functioning ship."})
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 	minimap_icon = "chief_medical"
@@ -724,7 +787,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	title = MEDICAL_DOCTOR
 	comm_title = "MD"
 	paygrade = "RES"
-	total_positions = 6
+	total_positions = 4
 	supervisors = "the chief medical officer"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
@@ -747,7 +810,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Chief Medical Officer<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
 	minimap_icon = "medical"
@@ -833,7 +896,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Nanotrasen/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
 	minimap_icon = "researcher"
@@ -919,7 +982,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 		<b>Difficulty</b>: Hard (varies)<br /><br />
 		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
 	minimap_icon = "cl"
@@ -993,7 +1056,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		<b>Difficulty</b>: Soul Crushing<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
 	"}
 	minimap_icon = "synth"
@@ -1071,7 +1134,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Assist the crew whenever you’re needed, be the doorknob of the ship. Recon the areas for threats via cameras, report your findings to the crew at various communication channels. Follow your laws.
 	"}
 

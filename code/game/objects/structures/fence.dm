@@ -22,9 +22,11 @@
 		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(100, 125))//Almost broken or half way
+			take_damage(rand(100, 125), BRUTE, BOMB)//Almost broken or half way
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 75))
+			take_damage(rand(50, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(30, BRUTE, BOMB)
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -34,7 +36,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out how to fix [src]'s wiring."),
 			span_notice("You fumble around figuring out how to fix [src]'s wiring."))
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_CONSTRUCTION)
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		var/obj/item/stack/rods/R = I
@@ -50,7 +52,7 @@
 		"<span class='notice'>You start repairing [src] with [R]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_FRIENDLY))
 			return
 
 		if(R.amount < amount_needed)
@@ -58,7 +60,7 @@
 			return
 
 		R.use(amount_needed)
-		repair_damage(max_integrity)
+		repair_damage(max_integrity, user)
 		cut = 0
 		density = TRUE
 		icon = 'icons/obj/smooth_objects/fence.dmi'
@@ -86,7 +88,7 @@
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25)
@@ -101,7 +103,7 @@
 		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
 		"<span class='notice'>You start cutting through [src] with [I]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)

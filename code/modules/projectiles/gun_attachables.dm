@@ -25,6 +25,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = null
 	item_state = null
+
 	///Determines the amount of pixels to move the icon state for the overlay. in the x direction
 	var/pixel_shift_x = 16
 	///Determines the amount of pixels to move the icon state for the overlay. in the y direction
@@ -455,7 +456,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = -2
 	scatter_unwielded_mod = -3
 	recoil_unwielded_mod = -2
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "comp_big", /obj/item/weapon/gun/smg/som = "comp_big", /obj/item/weapon/gun/shotgun/som = "comp_big", /obj/item/weapon/gun/shotgun/pump/t35 = "comp_big")
+	variants_by_parent_type = list(
+		/obj/item/weapon/gun/rifle/som = "comp_big",
+		/obj/item/weapon/gun/smg/som = "comp_big",
+		/obj/item/weapon/gun/shotgun/som = "comp_big",
+		/obj/item/weapon/gun/shotgun/pump/t35 = "comp_big",
+		/obj/item/weapon/gun/revolver/standard_magnum = "t76comp"
+	)
 
 
 /obj/item/attachable/sniperbarrel
@@ -672,7 +679,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope
 	name = "rail scope"
 	icon_state = "sniperscope"
-	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment."
 	slot = ATTACHMENT_SLOT_RAIL
 	aim_speed_mod = 0.5 //Extra slowdown when aiming
 	wield_delay_mod = 0.4 SECONDS
@@ -698,19 +705,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/marine
 	name = "T-47 rail scope"
-	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment."
 	icon_state = "marinescope"
 
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
-	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 
 /obj/item/attachable/scope/optical
 	name = "T-49 Optical imaging scope"
 	icon_state = "imagerscope"
-	desc = "A rail-mounted scope designed for the AR-55 and GL-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail-mounted scope designed for the AR-55 and GL-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 	aim_speed_mod = 0.3
 	wield_delay_mod = 0.2 SECONDS
@@ -721,7 +728,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
 	icon_state = "mosinscope"
-	desc = "A Mosin specific mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A Mosin specific mounted zoom sight scope. Allows zoom by activating the attachment."
+
+/obj/item/attachable/scope/standard_magnum
+	name = "R-76 rail scope"
+	desc = "A custom rail mounted zoom sight scope designed specifically for the R-76 Magnum. Allows zoom by activating the attachment."
+	icon = 'icons/Marine/attachments_64.dmi'
+	icon_state = "t76scope"
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
@@ -741,19 +754,19 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tl127_scope"
 	aim_speed_mod = 0
 	wield_delay_mod = 0
-	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment."
 
 /obj/item/attachable/scope/unremovable/heavymachinegun
 	name = "HMG-08 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
-	zoom_tile_offset = 3
+	zoom_tile_offset = 5
 
 /obj/item/attachable/scope/unremovable/mmg
 	name = "MG-27 rail scope"
 	icon_state = "miniscope"
-	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment."
 	wield_delay_mod = 0.2 SECONDS
 	aim_speed_mod = 0.2
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
@@ -773,7 +786,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
-	zoom_tile_offset = 3
+	zoom_tile_offset = 5
 	deployed_scope_rezoom = TRUE
 
 //all mounted guns with a nest use this
@@ -795,7 +808,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
-	if(!do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
+	if(!do_after(user, scope_delay, NONE, src, BUSY_ICON_BAR))
 		return FALSE
 	zoom(user)
 	update_icon()
@@ -813,7 +826,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, PROC_REF(zoom_item_turnoff))
 	else
 		RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), PROC_REF(zoom_item_turnoff))
-	if(!(master_gun.flags_gun_features & IS_DEPLOYED))
+	if(!CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		RegisterSignal(user, COMSIG_MOB_FACE_DIR, PROC_REF(change_zoom_offset))
 	RegisterSignals(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), PROC_REF(zoom_item_turnoff))
 	master_gun.accuracy_mult += scoped_accuracy_mod
@@ -857,13 +870,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/unremovable/laser_sniper_scope
 	name = "Terra Experimental laser sniper rifle rail scope"
-	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A marine standard mounted zoom sight scope made for the Terra Experimental laser sniper rifle otherwise known as TE-S abbreviated, allows zoom by activating the attachment."
 	icon_state = "tes"
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
 	icon_state = "miniscope"
-	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment."
 	slot = ATTACHMENT_SLOT_RAIL
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_unwielded_mod = -0.05
@@ -883,7 +896,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
-	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration."
 	icon_state = "antimat"
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	has_nightvision = TRUE
@@ -977,6 +990,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/strstock
+	name = "SG-62 stock"
+	desc = "A standard rifle stock."
+	icon_state = "sg62stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/lasgun
 	name = "\improper M43 Sunfury lasgun stock"
 	desc = "The standard stock for the M43 Sunfury lasgun."
@@ -1023,6 +1043,21 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper L-1 stock"
 	desc = "A irremovable L-11 stock."
 	icon_state = "l11stock"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
+/obj/item/attachable/stock/clf_heavyrifle
+	name = "PTR-41/1785 body"
+	desc = "A stock for a PTR-41/1785 A-MR."
+	icon = 'icons/Marine/clf_heavyrifle.dmi'
+	icon_state = "ptrs_stock"
+	pixel_shift_x = 15
+	pixel_shift_y = 0
+
+/obj/item/attachable/stock/dpm
+	name = "\improper DP-27 stock"
+	desc = "A irremovable DP stock."
+	icon_state = "dpstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1184,7 +1219,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/lace/activate(mob/living/user, turn_off)
 	if(lace_deployed)
-		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
+		REMOVE_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
 		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
@@ -1193,10 +1228,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	else
 		if(user.do_actions)
 			return
-		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
+		if(!do_after(user, 0.5 SECONDS, NONE, src, BUSY_ICON_BAR))
 			return
 		to_chat(user, span_notice("You deploy the [src]."))
-		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
+		ADD_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
 		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
@@ -1274,7 +1309,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	update_icon()
 
 /obj/item/attachable/foldable/activate(mob/living/user, turn_off)
-	if(user && deploy_time && !do_after(user, deploy_time, TRUE, src, BUSY_ICON_BAR))
+	if(user && deploy_time && !do_after(user, deploy_time, NONE, src, BUSY_ICON_BAR))
 		return FALSE
 
 	folded = !folded
@@ -1337,6 +1372,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -8
+	aim_speed_mod = 0.05
 
 /obj/item/attachable/foldable/icc_machinepistol
 	name = "\improper PL-38 machinepistol stock"
@@ -1370,7 +1406,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "bipod"
 	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2
-	melee_mod = -10
 	deploy_time = 1 SECONDS
 	accuracy_mod = 0.3
 	recoil_mod = -2

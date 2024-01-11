@@ -105,6 +105,23 @@
 /obj/effect/overlay/blinking_laser/napalm
 	icon_state = "napalm_target"
 
+/obj/effect/overlay/blinking_laser/monarch
+	icon_state = "monarch_target"
+
+/obj/effect/overlay/blinking_laser/swansong
+	icon_state = "swansong_target"
+
+// Bombs, then bomblets
+
+/obj/effect/overlay/blinking_laser/bomb
+	icon_state = "bomb_target"
+
+/obj/effect/overlay/blinking_laser/bomb_fat
+	icon_state = "fat_bomb_target"
+
+/obj/effect/overlay/blinking_laser/bomblet
+	icon_state = "bomblet_target"
+
 //Marine-only visuals. Prediction HUD, etc. Does not show without marine headset
 /obj/effect/overlay/blinking_laser/marine
 	name = "prediction matrix"
@@ -148,6 +165,7 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
+	layer = POINT_LAYER
 	anchored = TRUE
 	effect_duration = 25
 
@@ -304,8 +322,9 @@
 
 /obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
-	pixel_x = source_mob.pixel_x
-	pixel_y = source_mob.pixel_y
+	if(source_mob)
+		pixel_x = source_mob.pixel_x
+		pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
@@ -318,7 +337,7 @@
 
 
 /obj/effect/overlay/temp/gib_animation/xeno
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
@@ -350,7 +369,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
-	blocks_emissive = NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
@@ -363,5 +382,11 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon_state = "eye_open"
+	pixel_x = 16
+	pixel_y = 16
+
+/obj/effect/overlay/dread
+	layer = ABOVE_MOB_LAYER
+	icon_state = "spooky"
 	pixel_x = 16
 	pixel_y = 16

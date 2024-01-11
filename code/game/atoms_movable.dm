@@ -15,6 +15,8 @@
 	var/drag_windup = 1.5 SECONDS
 	var/throwing = FALSE
 	var/thrower = null
+	///Speed of the current throw. 0 When not throwing.
+	var/thrown_speed = 0
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
@@ -50,14 +52,18 @@
 	var/datum/component/orbiter/orbiting
 
 	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
-	var/blocks_emissive = FALSE
+	var/blocks_emissive = EMISSIVE_BLOCK_NONE
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
 	/// The voice that this movable makes when speaking
 	var/voice
+	/// The pitch adjustment that this movable uses when speaking.
+	var/pitch = 0
 	/// The filter to apply to the voice when processing the TTS audio message.
 	var/voice_filter = ""
+	/// Set to anything other than "" to activate the silicon voice effect for TTS messages.
+	var/tts_silicon_voice_effect = ""
 
 	///Lazylist to keep track on the sources of illumination.
 	var/list/affected_movable_lights
@@ -76,17 +82,24 @@
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
-	switch(blocks_emissive)
-		if(EMISSIVE_BLOCK_GENERIC)
-			var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
-			gen_emissive_blocker.color = GLOB.em_block_color
-			gen_emissive_blocker.dir = dir
-			gen_emissive_blocker.appearance_flags |= appearance_flags
-			add_overlay(list(gen_emissive_blocker))
-		if(EMISSIVE_BLOCK_UNIQUE)
+	// This one is incredible.
+	// `if (x) else { /* code */ }` is surprisingly fast, and it's faster than a switch, which is seemingly not a jump table.
+	// From what I can tell, a switch case checks every single branch individually, although sane, is slow in a hot proc like this.
+	// So, we make the most common `blocks_emissive` value, EMISSIVE_BLOCK_GENERIC, 0, getting to the fast else branch quickly.
+	// If it fails, then we can check over every value it can be (here, EMISSIVE_BLOCK_UNIQUE is the only one that matters).
+	// This saves several hundred milliseconds of init time.
+	if(blocks_emissive)
+		if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			add_overlay(list(em_block))
+	else
+		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
+		gen_emissive_blocker.color = GLOB.em_block_color
+		gen_emissive_blocker.dir = dir
+		gen_emissive_blocker.appearance_flags |= appearance_flags
+		add_overlay(list(gen_emissive_blocker))
+
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(light_system == MOVABLE_LIGHT)
@@ -100,6 +113,8 @@
 
 	var/old_loc = loc
 
+	loc?.handle_atom_del(src)
+
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
 
@@ -112,21 +127,23 @@
 	if(thrower)
 		thrower = null
 
-	. = ..()
+	LAZYCLEARLIST(client_mobs_in_contents)
 
-	loc?.handle_atom_del(src)
+	. = ..()
 
 	for(var/movable_content in contents)
 		qdel(movable_content)
 
+	moveToNullspace()
+
 	if(important_recursive_contents && (important_recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] || important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]))
 		SSspatial_grid.force_remove_from_cell(src)
 
-	LAZYCLEARLIST(client_mobs_in_contents)
 
-	LAZYCLEARLIST(important_recursive_contents)//has to be before moveToNullspace() so that we can exit our spatial_grid cell if we're in it
-
-	moveToNullspace()
+	//This absolutely must be after moveToNullspace()
+	//We rely on Entered and Exited to manage this list, and the copy of this list that is on any /atom/movable "Containers"
+	//If we clear this before the nullspace move, a ref to this object will be hung in any of its movable containers
+	LAZYCLEARLIST(important_recursive_contents)
 
 	if(smoothing_flags && isturf(old_loc))
 		QUEUE_SMOOTH_NEIGHBORS(old_loc)
@@ -139,24 +156,32 @@
 		orbiting.end_orbit(src)
 		orbiting = null
 
-	vis_contents.Cut()
-	vis_locs = null
+	vis_locs = null //clears this atom out of all viscontents
+
+	// Checking length(vis_contents) before cutting has significant speed benefits
+	if (length(vis_contents))
+		vis_contents.Cut()
 
 	QDEL_NULL(light)
 	QDEL_NULL(static_light)
 
 ///Updates this movables emissive overlay
 /atom/movable/proc/update_emissive_block()
-	if(!blocks_emissive)
-		return
-	else if (blocks_emissive == EMISSIVE_BLOCK_GENERIC)
+	// This one is incredible.
+	// `if (x) else { /* code */ }` is surprisingly fast, and it's faster than a switch, which is seemingly not a jump table.
+	// From what I can tell, a switch case checks every single branch individually, although sane, is slow in a hot proc like this.
+	// So, we make the most common `blocks_emissive` value, EMISSIVE_BLOCK_GENERIC, 0, getting to the fast else branch quickly.
+	// If it fails, then we can check over every value it can be (here, EMISSIVE_BLOCK_UNIQUE is the only one that matters).
+	// This saves several hundred milliseconds of init time.
+	if(blocks_emissive)
+		if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
+			if(!em_block)
+				render_target = ref(src)
+				em_block = new(src, render_target)
+			return em_block
+	else
 		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, appearance_flags = src.appearance_flags)
 		gen_emissive_blocker.dir = dir
-	if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
-		if(!em_block)
-			render_target = ref(src)
-			em_block = new(src, render_target)
-		return em_block
 
 /atom/movable/update_overlays()
 	. = ..()
@@ -288,7 +313,7 @@
 		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		. = throw_impact(A)
+		. = !throw_impact(A, thrown_speed)
 	if(QDELETED(A))
 		return
 	A.Bumped(src)
@@ -298,7 +323,7 @@
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
-	return CanPass(AM, AM.loc, TRUE)
+	return CanPass(AM, AM.loc)
 
 
 ///default byond proc that is deprecated for us in lieu of signals. do not call
@@ -446,58 +471,54 @@
 			for(var/atom/movable/location AS in nested_locs)
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
-//called when src is thrown into hit_atom
+///called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
-	if(isliving(hit_atom))
-		var/mob/living/M = hit_atom
-		M.hitby(src, speed)
+	var/hit_successful
+	var/old_throw_source = throw_source
+	hit_successful = hit_atom.hitby(src, speed)
+	if(hit_successful)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+		if(bounce && hit_atom.density && !isliving(hit_atom))
+			INVOKE_NEXT_TICK(src, PROC_REF(throw_bounce), hit_atom, old_throw_source)
+	return hit_successful //if the throw missed, it continues
 
-	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
-		var/obj/O = hit_atom
-		if(!O.anchored && !isxeno(src))
-			step(O, dir)
-		O.hitby(src, speed)
-
-	else if(isturf(hit_atom))
-		set_throwing(FALSE)
-		var/turf/T = hit_atom
-		if(T.density)
-			if(bounce)
-				spawn(2)
-					step(src, turn(dir, 180))
-			if(isliving(src))
-				var/mob/living/M = src
-				M.turf_collision(T, speed)
-
-	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
-
-
-/**
- * This proc decides whether a thrown object can pass a turf it is in and checks for throw impacts, aswell as possible parrying things.
- * Normally returns nothing / null, except when parried in which case it returns whatever parried it.
-**/
-/atom/movable/proc/hit_check(speed, flying = FALSE)
-	if(!throwing)
+///Bounces the AM off hit_atom
+/atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	if(QDELETED(src))
 		return
-	for(var/atom/A in get_turf(src))
-		if(A == src)
-			continue
-		if(isliving(A))
-			var/mob/living/L = A
-			if(pass_flags & PASS_MOB || (!L.density || (L.pass_flags & PASS_THROW)) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
-				continue
-			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
-				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
-				return A
-			throw_impact(A, speed)
-		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!(A.allow_pass_flags & PASS_THROW) || iscarbon(src)) && !flying)
-			throw_impact(A, speed)
+	if(!isturf(loc))
+		return
+	var/dir_to_proj = get_dir(hit_atom, old_throw_source)
+	if(ISDIAGONALDIR(dir_to_proj))
+		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
+		for(var/direction in cardinals)
+			var/turf/turf_to_check = get_step(hit_atom, direction)
+			if(turf_to_check.density)
+				cardinals -= direction
+		dir_to_proj = pick(cardinals)
 
+	var/perpendicular_angle = Get_Angle(hit_atom, get_step(hit_atom, dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(old_throw_source, src) - 180) + rand(-10, 10))
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
+	if(new_angle < -360)
+		new_angle += 720 //north is 0 instead of 360
+	else if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+
+	step(src, angle_to_dir(new_angle))
+
+/atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
+
+	var/gravity = get_gravity()
+	if(gravity < 1)
+		range = round(range * (2 - gravity))
+	else if(gravity > 1)
+		range = ROUND_UP(range * (2 - gravity))
 
 	if(!targetted_throw)
 		target = get_turf_in_angle(Get_Angle(src, target), target, range - get_dist(src, target))
@@ -512,6 +533,7 @@
 
 	set_throwing(TRUE)
 	src.thrower = thrower
+	thrown_speed = speed
 
 	var/original_layer = layer
 	if(flying)
@@ -522,7 +544,6 @@
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
 
-	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
@@ -551,10 +572,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error += dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -565,10 +582,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error -= dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -583,10 +596,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error += dist_y
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -597,10 +606,6 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				Move(step)
-				var/hit_check_return = hit_check(speed, flying)
-				if(hit_check_return)
-					parrier = hit_check_return
-					break
 				error -= dist_x
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
@@ -610,9 +615,6 @@
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
-	if(parrier)
-		INVOKE_NEXT_TICK(src, PROC_REF(throw_at), (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
-		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
@@ -626,6 +628,7 @@
 	if(flying)
 		set_flying(FALSE, original_layer)
 	thrower = null
+	thrown_speed = 0
 	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
@@ -725,17 +728,135 @@
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
-
 /atom/movable/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Follow"] = "?_src_=holder;[HrefToken()];observefollow=[REF(src)]"
-	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
-	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
-	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"
-	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
-	.["Edit Particles"] = "?_src_=vars;[HrefToken()];modify_particles=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_FOLLOW, "Follow")
+	VV_DROPDOWN_OPTION(VV_HK_GET, "Get")
+	VV_DROPDOWN_OPTION(VV_HK_SEND, "Send")
+	VV_DROPDOWN_OPTION(VV_HK_DELETE_ALL_INSTANCES, "Delete All Instances")
+	VV_DROPDOWN_OPTION(VV_HK_UPDATE_ICONS, "Update Icon")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
 
+/atom/movable/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_FOLLOW])
+		if(!check_rights(NONE))
+			return
+		var/client/C = usr.client
+		if(isnewplayer(C.mob) || isnewplayer(src))
+			return
+		var/message
+		if(!isobserver(C.mob))
+			usr.client.holder.admin_ghost()
+			message = TRUE
+		var/mob/dead/observer/O = C.mob
+		O.ManualFollow(src)
+		if(message)
+			log_admin("[key_name(O)] jumped to follow [key_name(src)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to follow [ADMIN_TPMONTY(src)].")
+
+	if(href_list[VV_HK_GET])
+		if(!check_rights(R_DEBUG))
+			return
+		if(!istype(src))
+			return
+		var/turf/T = get_turf(usr)
+		if(!istype(T))
+			return
+		forceMove(T)
+		log_admin("[key_name(usr)] has sent atom [src] to themselves.")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent atom [src] to themselves.")
+
+	if(href_list[VV_HK_SEND])
+		if(!check_rights(R_DEBUG))
+			return
+		if(!istype(src))
+			return
+		var/atom/target
+		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
+			if("Area")
+				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
+				if(!AR || !src)
+					return
+				target = pick(get_area_turfs(AR))
+			if("Mob")
+				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortList(GLOB.mob_list)
+				if(!N || !src)
+					return
+				target = get_turf(N)
+			if("Key")
+				var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+				if(!C || !src)
+					return
+				target = get_turf(C.mob)
+			if("Coords")
+				var/X = input("Select coordinate X", "Coordinate X") as null|num
+				var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
+				var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
+				if(isnull(X) || isnull(Y) || isnull(Z) || !src)
+					return
+				target = locate(X, Y, Z)
+		if(!target)
+			return
+		forceMove(target)
+		log_admin("[key_name(usr)] has sent atom [src] to [AREACOORD(target)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent atom [src] to [ADMIN_VERBOSEJMP(target)].")
+
+	if(href_list[VV_HK_DELETE_ALL_INSTANCES])
+		if(!check_rights(R_DEBUG|R_SERVER))
+			return
+		var/obj/O = src
+		if(!isobj(O))
+			return
+		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?", "Type", "Strict type", "Type and subtypes", "Cancel")
+		if(action_type == "Cancel" || !action_type)
+			return
+		if(alert("Are you really sure you want to delete all objects of type [O.type]?", "Warning", "Yes", "No") != "Yes")
+			return
+		if(alert("Second confirmation required. Delete?", "Warning", "Yes", "No") != "Yes")
+			return
+		var/O_type = O.type
+		var/i = 0
+		var/strict
+		switch(action_type)
+			if("Strict type")
+				strict = TRUE
+				for(var/obj/Obj in world)
+					if(Obj.type == O_type)
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+			if("Type and subtypes")
+				for(var/obj/Obj in world)
+					if(istype(Obj,O_type))
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+		log_admin("[key_name(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
+		message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
+
+	if(href_list[VV_HK_UPDATE_ICONS])
+		if(!check_rights(R_DEBUG))
+			return
+		update_icon()
+		log_admin("[key_name(usr)] updated the icon of [src].")
+
+	if(href_list[VV_HK_EDIT_PARTICLES])
+		if(!check_rights(R_VAREDIT))
+			return
+		var/client/C = usr.client
+		C?.open_particle_editor(src)
 
 /atom/movable/proc/get_language_holder(shadow = TRUE)
 	if(language_holder)
@@ -1170,9 +1291,9 @@
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
 
-///propogates new_client's mob through our nested contents, similar to other important_recursive_contents procs
+///propogates ourselves through our nested contents, similar to other important_recursive_contents procs
 ///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye
-/atom/movable/proc/enable_client_mobs_in_contents(client/new_client)
+/mob/proc/enable_client_mobs_in_contents()
 	var/turf/our_turf = get_turf(src)
 	if(our_turf && SSspatial_grid.initialized)
 		SSspatial_grid.enter_cell(src, our_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
@@ -1180,10 +1301,10 @@
 		SSspatial_grid.enter_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
-		LAZYORASSOCLIST(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, new_client.mob)
+		LAZYORASSOCLIST(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, src)
 
-///Clears the clients channel of this movables important_recursive_contents list and all nested locs
-/atom/movable/proc/clear_important_client_contents(client/former_client)
+///Clears the clients channel of this mob
+/mob/proc/clear_important_client_contents()
 
 	var/turf/our_turf = get_turf(src)
 
@@ -1193,4 +1314,21 @@
 		SSspatial_grid.remove_from_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
-		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)
+		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, src)
+
+///Checks the gravity the atom is subjected to
+/atom/movable/proc/get_gravity()
+	if(z)
+		return SSmapping.gravity_by_z_level["[z]"]
+	var/turf/src_turf = get_turf(src)
+	if(src_turf?.z)
+		return SSmapping.gravity_by_z_level["[src_turf.z]"]
+	return 1 //if both fail we're in nullspace, just return a 1 as a fallback
+
+///This is called when the AM is thrown into a dense turf
+/atom/movable/proc/turf_collision(turf/T, speed)
+	return
+
+//Throws AM away from something
+/atom/movable/proc/knockback(source, distance, speed, dir)
+	throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source)

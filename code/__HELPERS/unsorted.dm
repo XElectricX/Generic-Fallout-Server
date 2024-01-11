@@ -21,8 +21,6 @@
 
 #undef DELTA_CALC
 
-#define UNTIL(X) while(!(X)) stoplag()
-
 /**
  * NAMEOF: Compile time checked variable name to string conversion
  * evaluates to a string equal to "X", but compile errors if X isn't a var on datum.
@@ -34,11 +32,7 @@
  * NAMEOF that actually works in static definitions because src::type requires src to be defined
  */
 
-#if DM_VERSION >= 515
 #define NAMEOF_STATIC(datum, X) (nameof(type::##X))
-#else
-#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
-#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -47,16 +41,6 @@
 
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
-
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
 
 //returns a GUID like identifier (using a mostly made up record format)
 //guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
@@ -83,7 +67,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
-// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : text_ref(thing))
 /proc/REF(input)
 	if(istype(input, /datum))
 		var/datum/thing = input
@@ -93,7 +77,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 				thing.datum_flags &= ~DF_USE_TAG
 			else
 				return "\[[url_encode(thing.tag)]\]"
-	return "\ref[input]"
+	return text_ref(input)
 
 
 //Returns the middle-most value
@@ -817,6 +801,18 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		else
 			. = ""
 
+/// Converts a semver string into a list of numbers
+/proc/semver_to_list(semver_string)
+	var/static/regex/semver_regex = regex(@"(\d+)\.(\d+)\.(\d+)", "")
+	if(!semver_regex.Find(semver_string))
+		return null
+
+	return list(
+		text2num(semver_regex.group[1]),
+		text2num(semver_regex.group[2]),
+		text2num(semver_regex.group[3]),
+	)
+
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)
 	var/x = start.x
@@ -1097,11 +1093,11 @@ will handle it, but:
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, fade_out), I), duration - 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_out), I), duration - 0.5 SECONDS)
 
 /proc/fade_out(image/I, list/show_to)
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
-	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, remove_images_from_clients), I, show_to), 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), 0.5 SECONDS)
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input

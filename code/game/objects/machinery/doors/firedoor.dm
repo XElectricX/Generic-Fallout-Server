@@ -135,7 +135,7 @@
 	X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 	span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
 
-	if(do_after(X, 30, FALSE, src, BUSY_ICON_BUILD))
+	if(do_after(X, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		if(blocked)
 			to_chat(X, span_warning("\The [src] is welded shut."))
 			return FALSE
@@ -211,7 +211,13 @@
 		if(!W.remove_fuel(0, user))
 			return
 
+		balloon_alert_to_viewers("Starts [blocked ? "unwelding" : "welding"]")
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			balloon_alert_to_viewers("Stops welding")
+			return
+
 		blocked = !blocked
+		balloon_alert_to_viewers("[blocked ? "welds" : "unwelds"] the firedoor")
 		user.visible_message(span_danger("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
 		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
 		"You hear something being welded.")
@@ -229,7 +235,7 @@
 				"You hear metal strain.")
 		var/old_density = density
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 30, NONE, src, BUSY_ICON_HOSTILE))
 			return
 
 		if(blocked || density != old_density)

@@ -10,8 +10,9 @@
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 150
-	climbable = 1 //Small enough to vault over, but you do need to vault over it
-	climb_delay = 15 //One second and a half, gotta vault fast
+	climbable = TRUE
+	climb_delay = 1.5 SECONDS
+	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 50, BIO = 100, FIRE = 50, ACID = 0)
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
@@ -70,7 +71,7 @@
 		span_notice("You start installing a new window on the frame."))
 		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] installs a new glass window on the frame."), \
@@ -101,10 +102,9 @@
 
 		user.visible_message(span_notice("[user] starts pulling [M] onto [src]."),
 		span_notice("You start pulling [M] onto [src]!"))
-		var/oldloc = loc
-		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
+		if(!do_after(user, 2 SECONDS, NONE, M, BUSY_ICON_GENERIC))
 			return
-		M.Paralyze(40)
+		M.Paralyze(4 SECONDS)
 		user.visible_message(span_warning("[user] pulls [M] onto [src]."),
 		span_notice("You pull [M] onto [src]."))
 		M.forceMove(loc)

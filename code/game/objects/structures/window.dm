@@ -69,6 +69,25 @@
 			take_damage(rand(75, 125), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(25, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(15, 35), BRUTE, BOMB)
+
+/obj/structure/window/hitby(atom/movable/AM, speed = 5)
+	var/throw_damage = speed
+	var/mob/living/thrown_mob
+	if(isobj(AM))
+		var/obj/thrown_obj = AM
+		throw_damage = thrown_obj.throwforce
+	else if(isliving(AM))
+		thrown_mob = AM
+		throw_damage *= thrown_mob.mob_size * 8
+	take_damage(throw_damage)
+	if(obj_integrity > 0) //we only stop if we don't break the window
+		AM.stop_throw()
+		. = TRUE
+	if(thrown_mob)
+		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window
+
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -130,7 +149,7 @@
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25, BRUTE, MELEE)
@@ -176,7 +195,7 @@
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 		else
-			new /obj/item/stack/sheet/glass(loc, 2)
+			new /obj/item/stack/sheet/glass/glass(loc, 2)
 	else
 		new shardtype(loc)
 		if(is_full_window())
@@ -405,8 +424,8 @@
 
 
 
-/obj/structure/window/framed/deconstruct(disassembled = TRUE)
-	if(window_frame)
+/obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
+	if(window_frame && leave_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)

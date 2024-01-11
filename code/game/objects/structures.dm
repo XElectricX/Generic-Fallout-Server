@@ -26,6 +26,8 @@
 				return
 		if(EXPLODE_LIGHT)
 			return
+		if(EXPLODE_WEAK)
+			return
 
 /obj/structure/Initialize(mapload)
 	. = ..()
@@ -108,7 +110,7 @@
 
 	user.visible_message(span_warning("[user] starts [flags_atom & ON_BORDER ? "leaping over" : "climbing onto"] \the [src]!"))
 
-	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, climb_delay, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		return
 
 	var/turf/destination_turf = can_climb(user)
@@ -189,3 +191,13 @@
 
 /obj/structure/get_acid_delay()
 	return 4 SECONDS
+
+///overrides the turf's normal footstep sound
+/obj/structure/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/obj/structure/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE

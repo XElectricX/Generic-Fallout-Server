@@ -13,17 +13,12 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
 	density = TRUE
-	anchored = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	//This var is used to stop more robits from being shoved inside.
-	var/locked = FALSE
 	//This var is used to see if the machine is currently repairing or not.
 	var/repairing = FALSE
-	//This var is the reference used to pick what notification medics get when a patient is released.
-	var/release_notice = TRUE
 	//This var is the reference used for the patient
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/carbon/human/occupant
 
 	//It uses power
 	use_power = ACTIVE_POWER_USE
@@ -78,7 +73,6 @@
 
 //This proc handles the actual repair once the timer is up, ejection of the healed robot and radio message of ejection.
 /obj/machinery/robotic_cradle/proc/repair_op()
-
 	if(QDELETED(occupant) || occupant.stat == DEAD)
 		if(!ishuman(occupant))
 			stack_trace("Non-human occupant made its way into the autodoc: [occupant] | [occupant?.type].")
@@ -106,30 +100,32 @@
 
 //This proc acts as a heads up to the doctors/engineers about the patient exiting the cradle for whatever reason. Does not warn if the patient itself exits the cradle. it also wipes the memory of who the patient was and readies the cradle for a new patient.
 /obj/machinery/robotic_cradle/proc/go_out(notice_code = FALSE)
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		AM.forceMove(loc)
-	if(release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
-		var/reason = "Reason for discharge: Procedural completion."
-		switch(notice_code)
-			if(CRADLE_NOTICE_SUCCESS)
-				playsound(src.loc, 'sound/machines/ping.ogg', 50, FALSE) //All steps finished properly; this is the 'normal' notification.
-			if(CRADLE_NOTICE_NO_RECORD)
-				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-				reason = "Reason for discharge: Medical records not detected. Alerting security advised."
-			if(CRADLE_NOTICE_NO_POWER)
-				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-				reason = "Reason for discharge: Power failure."
-			if(CRADLE_NOTICE_XENO_FUCKERY)
-				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-				reason = "Reason for discharge: Unauthorized manual release. Alerting security advised."
-			if(CRADLE_NOTICE_IDIOT_EJECT)
-				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-				reason = "Reason for discharge: Unauthorized manual release during repair. Alerting security advised."
-			if(CRADLE_NOTICE_FORCE_EJECT)
-				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-				reason = "Reason for discharge: Destruction of linked CRADLE Engineering System. Alerting security advised."
-		radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
+	if(!occupant)
+		return
+	occupant.forceMove(drop_location())
+	var/reason = "Reason for discharge: Procedural completion."
+	switch(notice_code)
+		if(CRADLE_NOTICE_SUCCESS)
+			playsound(src, 'sound/machines/ping.ogg', 50, FALSE) //All steps finished properly; this is the 'normal' notification.
+		if(CRADLE_NOTICE_DEATH)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+			reason = "Reason for discharge: Patient has expired."
+		if(CRADLE_NOTICE_NO_RECORD)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+			reason = "Reason for discharge: Medical records not detected. Alerting security advised."
+		if(CRADLE_NOTICE_NO_POWER)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+			reason = "Reason for discharge: Power failure."
+		if(CRADLE_NOTICE_XENO_FUCKERY)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+			reason = "Reason for discharge: Unauthorized manual release. Alerting security advised."
+		if(CRADLE_NOTICE_IDIOT_EJECT)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+			reason = "Reason for discharge: Unauthorized manual release during repair. Alerting security advised."
+		if(CRADLE_NOTICE_FORCE_EJECT)
+			playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+			reason = "Reason for discharge: Destruction of linked CRADLE Engineering System. Alerting security advised."
+	radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	update_icon()
 	stop_processing()
@@ -151,12 +147,12 @@
 		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(dropped, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(!do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+	if(!do_after(dropped, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		return
 	if(occupant)
 		to_chat(dragger, span_notice("[src] is already occupied!"))
@@ -170,8 +166,6 @@
 	var/doc_dat
 	med_scan(H, doc_dat, implants, TRUE)
 	start_processing()
-	for(var/obj/O in src)
-		qdel(O)
 
 	say("Automatic mode engaged, initialising procedure.")
 	addtimer(CALLBACK(src, PROC_REF(auto_start)), 20 SECONDS)
@@ -253,12 +247,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
 		span_notice("You fumble around figuring out how to put [M] into [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
+		if(!do_after(user, fumbling_time, NONE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
 	visible_message("[user] starts putting [M] into [src].", 3)
 
-	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(user, 10, IGNORE_HELD_ITEM, M, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 
 	if(occupant)
@@ -283,10 +277,6 @@
 	set category = "Object"
 	set src in oview(1)
 	if(usr.incapacitated())
-		return // nooooooooooo
-	if(locked && !allowed(usr)) //Check access if locked.
-		to_chat(usr, span_warning("Access denied."))
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	do_eject()
 
@@ -318,7 +308,7 @@
 		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
+		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
 	if(repairing)
 		repairing = 0

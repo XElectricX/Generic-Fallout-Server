@@ -119,6 +119,9 @@
 	///The acid currently on this atom
 	var/obj/effect/xenomorph/acid/current_acid = null
 
+	///Cooldown for telling someone they're buckled
+	COOLDOWN_DECLARE(buckle_message_cooldown)
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -128,7 +131,7 @@ directive is properly returned.
 //===========================================================================
 /atom/Destroy()
 	if(reagents)
-		qdel(reagents)
+		QDEL_NULL(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
@@ -408,7 +411,10 @@ directive is properly returned.
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
+/atom/proc/relaymove(mob/living/user, direct)
+	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
+		balloon_alert(user, "Can't move while buckled!")
 	return
 
 /**
@@ -435,10 +441,14 @@ directive is properly returned.
 	return
 
 
-/atom/proc/hitby(atom/movable/AM)
+/atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
-		AM.set_throwing(FALSE)
+		AM.stop_throw()
+		return TRUE
 
+///Psionic interaction with this atom
+/atom/proc/psi_act(psi_power, mob/living/user)
+	return
 
 /atom/proc/GenerateTag()
 	return
@@ -460,104 +470,6 @@ directive is properly returned.
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
-
-
-// Generic logging helper
-/atom/proc/log_message(message, message_type, color, log_globally = TRUE)
-	if(!log_globally)
-		return
-
-	var/log_text = "[key_name(src)] [message] [AREACOORD(src)]"
-	switch(message_type)
-		if(LOG_ATTACK)
-			log_attack(log_text)
-		if(LOG_SAY)
-			log_say(log_text)
-		if(LOG_TELECOMMS)
-			log_telecomms(log_text)
-		if(LOG_WHISPER)
-			log_whisper(log_text)
-		if(LOG_HIVEMIND)
-			log_hivemind(log_text)
-		if(LOG_EMOTE)
-			log_emote(log_text)
-		if(LOG_DSAY)
-			log_dsay(log_text)
-		if(LOG_OOC)
-			log_ooc(log_text)
-		if(LOG_XOOC)
-			log_xooc(log_text)
-		if(LOG_MOOC)
-			log_mooc(log_text)
-		if(LOG_ADMIN)
-			log_admin(log_text)
-		if(LOG_LOOC)
-			log_looc(log_text)
-		if(LOG_ADMIN_PRIVATE)
-			log_admin_private(log_text)
-		if(LOG_ASAY)
-			log_admin_private_asay(log_text)
-		if(LOG_GAME)
-			log_game(log_text)
-		if(LOG_MECHA)
-			log_mecha(log_text)
-		if(LOG_SPEECH_INDICATORS)
-			log_speech_indicators(log_text)
-		else
-			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
-			log_game(log_text)
-
-
-// Helper for logging chat messages or other logs wiht arbitrary inputs (e.g. announcements)
-/atom/proc/log_talk(message, message_type, tag, log_globally = TRUE)
-	var/prefix = tag ? "([tag]) " : ""
-	log_message("[prefix]\"[message]\"", message_type, log_globally=log_globally)
-
-
-// Helper for logging of messages with only one sender and receiver
-/proc/log_directed_talk(atom/source, atom/target, message, message_type, tag)
-	if(!tag)
-		stack_trace("Unspecified tag for private message")
-		tag = "UNKNOWN"
-
-	source.log_talk(message, message_type, tag="[tag] to [key_name(target)]")
-	if(source != target)
-		target.log_talk(message, message_type, tag="[tag] from [key_name(source)]", log_globally=FALSE)
-
-/*
-Proc for attack log creation, because really why not
-1 argument is the actor performing the action
-2 argument is the target of the action
-3 is a verb describing the action (e.g. punched, throwed, kicked, etc.)
-4 is a tool with which the action was made (usually an item)
-5 is any additional text, which will be appended to the rest of the log line
-*/
-
-/proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
-	if ((user && SEND_SIGNAL(user, COMSIG_COMBAT_LOG)) | (target && SEND_SIGNAL(target, COMSIG_COMBAT_LOG)) & DONT_LOG)
-		return
-
-	var/ssource = key_name(user)
-	var/starget = key_name(target)
-
-	var/mob/living/living_target = target
-	var/hp = istype(living_target) ? " (NEWHP: [living_target.health]) " : ""
-
-	var/sobject = ""
-	if(object)
-		sobject = " with [key_name(object)]"
-	var/saddition = ""
-	if(addition)
-		saddition = " [addition]"
-
-	var/postfix = "[sobject][saddition][hp]"
-
-	var/message = "has [what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color = "#f46666")
-
-	if(target && user != target)
-		var/reverse_message = "has been [what_done] by [ssource][postfix] in [AREACOORD(user)]"
-		target.log_message(reverse_message, LOG_ATTACK, color = "#eabd7e", log_globally = FALSE)
 
 
 /atom/New(loc, ...)
@@ -782,17 +694,138 @@ Proc for attack log creation, because really why not
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
 
-
 /atom/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	var/turf/curturf = get_turf(src)
-	if(curturf)
-		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
-	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
-	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
-	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
-	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_ATOM_JUMP_TO, "Jump To")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Add reagent")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_FILTERS, "Modify Filters")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE_COLORS, "Modify Greyscale Colors")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_COLOR_MATRIX, "Edit Color as Matrix")
+	VV_DROPDOWN_OPTION(VV_HK_TEST_MATRIXES, "Test Matrices")
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_ATOM_JUMP_TO])
+		if(!check_rights(NONE))
+			return
+		var/x = text2num(href_list["X"])
+		var/y = text2num(href_list["Y"])
+		var/z = text2num(href_list["Z"])
+		var/client/C = usr.client
+
+		if(x == 0 && y == 0 && z == 0)
+			return
+
+		var/message
+		if(!isobserver(usr))
+			usr.client.holder.admin_ghost()
+			message = TRUE
+
+		var/mob/dead/observer/O = C.mob
+		var/turf/T = locate(x, y, z)
+		O.forceMove(T)
+
+		if(message)
+			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(T)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(T)].")
+
+	if(href_list[VV_HK_MODIFY_TRANSFORM])
+		if(!check_rights(R_DEBUG))
+			return
+		if(!istype(src))
+			return
+		var/result = input(usr, "Choose the transformation to apply", "Modify Transform") as null|anything in list("Scale","Translate","Rotate")
+		var/matrix/M = src.transform
+		switch(result)
+			if("Scale")
+				var/x = input(usr, "Choose x mod", "Modify Transform") as null|num
+				var/y = input(usr, "Choose y mod", "Modify Transform") as null|num
+				if(x == 0 || y == 0)
+					if(alert("You've entered 0 as one of the values, are you sure?", "Modify Transform", "Yes", "No") != "Yes")
+						return
+				if(!isnull(x) && !isnull(y))
+					src.transform = M.Scale(x,y)
+			if("Translate")
+				var/x = input(usr, "Choose x mod", "Modify Transform") as null|num
+				var/y = input(usr, "Choose y mod", "Modify Transform") as null|num
+				if(x == 0 && y == 0)
+					return
+				if(!isnull(x) && !isnull(y))
+					src.transform = M.Translate(x,y)
+			if("Rotate")
+				var/angle = input(usr, "Choose angle to rotate", "Modify Transform") as null|num
+				if(angle == 0)
+					if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
+						return
+				if(!isnull(angle))
+					src.transform = M.Turn(angle)
+		log_admin("[key_name(usr)] has used [result] transformation on [src].")
+		message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [src].")
+
+	if(href_list[VV_HK_ADD_REAGENT])
+		if(!check_rights(R_VAREDIT))
+			return
+		if(!reagents)
+			var/amount = input(usr, "Specify the reagent size of [src]", "Set Reagent Size", 50) as num
+			if(amount)
+				create_reagents(amount)
+		if(reagents)
+			var/chosen_id
+			var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
+			switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
+				if("Enter ID")
+					var/valid_id
+					while(!valid_id)
+						chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
+						if(!chosen_id) //Get me out of here!
+							break
+						for(var/ID in reagent_options)
+							if(ID == chosen_id)
+								valid_id = TRUE
+						if(!valid_id)
+							to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
+				if("Choose ID")
+					chosen_id = input(usr, "Choose a reagent to add.", "Add Reagent") as null|anything in reagent_options
+			if(chosen_id)
+				var/amount = input(usr, "Choose the amount to add.", "Add Reagent", reagents.maximum_volume) as num
+				if(amount)
+					reagents.add_reagent(chosen_id, amount)
+					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [src].")
+					message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [src].")
+
+	if(href_list[VV_HK_MODIFY_FILTERS])
+		if(!check_rights(R_VAREDIT))
+			return
+		var/client/C = usr.client
+		C?.open_filter_editor(src)
+
+	if(href_list[VV_HK_MODIFY_GREYSCALE_COLORS])
+		if(!check_rights(R_DEBUG))
+			return
+		var/datum/greyscale_modify_menu/menu = new(usr)
+		menu.ui_interact(usr)
+
+	if(href_list[VV_HK_EDIT_COLOR_MATRIX])
+		if(!check_rights(R_VAREDIT))
+			return
+		usr.client?.open_color_matrix_editor(src)
+
+	if(href_list[VV_HK_TEST_MATRIXES])
+		if(!check_rights(R_VAREDIT))
+			return
+		usr.client?.open_matrix_tester(src)
+
+/atom/vv_get_header()
+	. = ..()
+	var/refid = REF(src)
+	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
+	. += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 
 /atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
@@ -922,6 +955,32 @@ Proc for attack log creation, because really why not
 
 
 /atom/Topic(href, href_list)
+	if(usr?.client)
+		var/client/usr_client = usr.client
+		var/list/paramslist = list()
+
+		if(href_list["statpanel_item_click"])
+			switch(href_list["statpanel_item_click"])
+				if("left")
+					paramslist[LEFT_CLICK] = "1"
+				if("right")
+					paramslist[RIGHT_CLICK] = "1"
+				if("middle")
+					paramslist[MIDDLE_CLICK] = "1"
+				else
+					return
+
+			if(href_list["statpanel_item_shiftclick"])
+				paramslist[SHIFT_CLICK] = "1"
+			if(href_list["statpanel_item_ctrlclick"])
+				paramslist[CTRL_CLICK] = "1"
+			if(href_list["statpanel_item_altclick"])
+				paramslist[ALT_CLICK] = "1"
+
+			var/mouseparams = list2params(paramslist)
+			usr_client.Click(src, loc, null, mouseparams)
+			. = TRUE
+
 	. = ..()
 	if(.)
 		return
@@ -1015,3 +1074,29 @@ Proc for attack log creation, because really why not
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
 	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+
+/**
+	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+	* def_zone: What part of the body we want to check the armor of (optional)
+	* attack_dir: What direction the attack was from (optional)
+
+	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
+	Penetration reduces soft armor by a flat amount.
+	Damage cannot go into the negative, or exceed the original amount.
+*/
+/atom/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
+	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
+
+///Returns the soft armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_soft_armor(armor_type, proj_def_zone)
+	return
+
+///Returns the hard armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_hard_armor(armor_type, proj_def_zone)
+	return

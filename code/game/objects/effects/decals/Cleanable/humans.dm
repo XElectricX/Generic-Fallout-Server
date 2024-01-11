@@ -74,9 +74,6 @@
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
-	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
-		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
-		W.bloodiness = 4
 
 	perp.update_inv_shoes(1)
 	amount--
@@ -227,10 +224,17 @@
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
+	///The dry timer id
+	var/dry_timer
 
 /obj/effect/decal/cleanable/mucus/Initialize(mapload)
 	. = ..()
-	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
+	dry_timer = addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2, TIMER_STOPPABLE)
+
+/obj/effect/decal/cleanable/mucus/Destroy()
+	if(dry_timer)
+		deltimer(dry_timer)
+	return ..()
 
 /obj/effect/decal/cleanable/blood/humanimprint/one
 	icon_state = "u_madman"

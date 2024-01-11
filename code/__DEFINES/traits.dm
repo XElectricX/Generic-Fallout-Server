@@ -77,6 +77,7 @@
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
+#define BANELING_STASIS_TRAIT "baneling_stasis_trait"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define XENO_TRAIT "xeno"
@@ -104,6 +105,7 @@
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
 #define PSYCHIC_BLAST_ABILITY_TRAIT "psychic_blast_ability_trait"
 #define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"
+#define VORTEX_ABILITY_TRAIT "vortex_ability_trait"
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
@@ -111,7 +113,14 @@
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
 #define STRAPPABLE_ITEM_TRAIT "strappable_item"
+#define MOUNTED_TRAIT "mounted"
+#define VALI_TRAIT "vali"
+#define HELDGLOVE_TRAIT "heldglove"
+#define SECTOID_TRAIT "sectoid"
+#define HUGGER_TRAIT "hugger"
+#define PISTOL_LACE_TRAIT "pistol_lace"
 
+#define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
 /// A trait given by a specific status effect (not sure why we need both but whatever!)
@@ -131,6 +140,7 @@
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
 #define TRAIT_BURROWED "burrowed" // Burrows the xeno
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
+#define TRAIT_STAGGERED "staggered" //damage or ability debuffs
 #define TRAIT_INCAPACITATED "incapacitated"
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
@@ -147,6 +157,10 @@
 #define TRAIT_LIGHT_STEP "light_step"
 ///noisier footsteps
 #define TRAIT_HEAVY_STEP "heavy_step"
+///indicates this mob was spawned by a corpse spawner
+#define TRAIT_MAPSPAWNED "mapspawned"
+
+#define TRAIT_MINDMELDED "mindmelded"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -158,6 +172,7 @@
 #define TRAIT_LEGLESS "legless" //Has lost all the appendages needed to stay standing up.
 #define TRAIT_NOPLASMAREGEN "noplasmaregen"//xeno plasma wont recharge
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
+#define TRAIT_HOLLOW "hollowedout" //examine trait for puppeteer
 #define TRAIT_IMMEDIATE_DEFIB "immediate_defib"//immediately revives when defibbed, rather than just healing
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
@@ -171,6 +186,7 @@
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
+#define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
 
 //important_recursive_contents traits
 /*
@@ -200,6 +216,7 @@
 #define TRAIT_GUN_RELOADING "reloading"
 
 // item traits
+#define TRAIT_NODROP "nodrop" // Cannot be dropped/unequipped at all, only deleted.
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_STRAPPABLE "strappable"
 // turf traits
