@@ -705,10 +705,10 @@ function draw_verbs(cat) {
 }
 
 function set_theme(which) {
-	if (which == "light") {
+	if (which == "Mojave") {
 		document.body.className = "";
 		set_style_sheet("browserOutput_white");
-	} else if (which == "dark") {
+	} else if (which == "RobCo") {
 		document.body.className = "dark";
 		set_style_sheet("browserOutput");
 	}

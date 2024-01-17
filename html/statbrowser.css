@@ -1,33 +1,59 @@
+/*
+Theme colors
+
+---Orange (the default one)---
+background = #322701
+background_darker = #170d03
+text = #deb624
+
+---Green (known as "dark")---
+background = #01331a
+background_darker = #000000
+text = #4AEF98
+*/
+
 body {
+	background-color: #170d03;
+	color: #deb624;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-size: 12px !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	/*Set it to auto so the scrollbar disappears when not needed*/
+	overflow-y: auto;
+	/*So because the chat window scrollbars use the same color scheme but change lightness via code, which is not supported in normal CSS
+	I just went into IEChooser and copied the resulting colors to match these, same for the other theme*/
+	scrollbar-base-color: #261d01;
+	scrollbar-face-color: #5f4a02;
+	scrollbar-3dlight-color: #322701;
+	scrollbar-highlight-color: #322701;
+	scrollbar-track-color: #261d01;
+	scrollbar-arrow-color: #fbc91e;
+	scrollbar-shadow-color: #5f4a02;
 }
 
 body.dark {
-	background-color: #131313;
-	color: #b2c4dd;
-	scrollbar-base-color: #1c1c1c;
-	scrollbar-face-color: #3b3b3b;
-	scrollbar-3dlight-color: #252525;
-	scrollbar-highlight-color: #252525;
-	scrollbar-track-color: #1c1c1c;
-	scrollbar-arrow-color: #929292;
-	scrollbar-shadow-color: #3b3b3b;
+	background-color: #000000;
+	color: #4AEF98;
+	scrollbar-base-color: #012614;
+	scrollbar-face-color: #026031;
+	scrollbar-3dlight-color: #01331a;
+	scrollbar-highlight-color: #01331a;
+	scrollbar-track-color: #012614;
+	scrollbar-arrow-color: #1efb8d;
+	scrollbar-shadow-color: #026031;
 }
 
 #menu {
-	background-color: #F0F0F0;
+	background-color: #322701;
 	position: fixed;
 	width: 100%;
 	z-index: 100;
 }
 
 .dark #menu {
-	background-color: #202020;
+	background-color: #01331a;
 }
 
 #statcontent {
@@ -35,12 +61,12 @@ body.dark {
 }
 
 a {
-	color: black;
+	color: #deb624;
 	text-decoration: none
 }
 
 .dark a {
-	color: #b2c4dd;
+	color: #4AEF98;
 }
 
 a:hover,
@@ -82,10 +108,11 @@ li a:hover:not(.active) {
 }
 
 .button {
-	background-color: #dfdfdf;
-	border: 1px solid #cecece;
-	border-bottom-width: 2px;
-	color: rgba(0, 0, 0, 0.7);
+	background-color: #322701;
+	border: 2px solid #deb624;
+	border-bottom-width: 1px;
+	color: #deb624;
+	border-style: outset;
 	padding: 6px 4px 4px;
 	text-align: center;
 	text-decoration: none;
@@ -98,38 +125,35 @@ li a:hover:not(.active) {
 }
 
 .dark button {
-	background-color: #222222;
-	border-color: #343434;
-	color: rgba(255, 255, 255, 0.5);
+	background-color: #01331a;
+	border-color: #4AEF98;
+	color: #4AEF98;
 }
 
 .button:hover {
-	background-color: #ececec;
+	color: #322701;
+	background-color: #deb624;
 	transition-duration: 0;
 }
 
 .dark button:hover {
-	background-color: #2e2e2e;
+	color: #01331a;
+	background-color: #4AEF98;
 }
 
 .button:active,
 .button.active {
-	background-color: #ffffff;
-	color: black;
-	border-top-color: #cecece;
-	border-left-color: #cecece;
-	border-right-color: #cecece;
-	border-bottom-color: #ffffff;
+	background-color: #281f01;	/* Orange background color but 2% darker */
+	color: #deb624;
+	border-color: #322701;
+	border-style: inset;
 }
 
 .dark .button:active,
 .dark .button.active {
-	background-color: #444444;
-	color: white;
-	border-top-color: #343434;
-	border-left-color: #343434;
-	border-right-color: #343434;
-	border-bottom-color: #ffffff;
+	background-color: #012814;	/* Green background color but 2% darker */
+	color: #4aef98;
+	border-color: #01331a;
 }
 
 .grid-container {
@@ -183,7 +207,7 @@ li a:hover:not(.active) {
 .grid-item-text {
 	display: inline-block;
 	width: 100%;
-	background-color: #ffffff;
+	background-color: #170d03;
 	margin: 0 -6px;
 	padding: 0 6px;
 	white-space: nowrap;
@@ -193,7 +217,7 @@ li a:hover:not(.active) {
 }
 
 .dark .grid-item-text {
-	background-color: #131313;
+	background-color: #000000;
 }
 
 .link {
