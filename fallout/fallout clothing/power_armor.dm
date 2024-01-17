@@ -183,21 +183,21 @@
 					user.equip_to_slot(new /obj/item/armor_module/fallout/torso(src), SLOT_WEAR_SUIT)
 				else
 					user.equip_to_slot(attachments_by_slot[attachments], SLOT_WEAR_SUIT)
-				user.wear_suit.flags_item |= NODROP
+				ADD_TRAIT(user.wear_suit, TRAIT_NODROP, POWER_ARMOR_TRAITS)
 			if(ATTACHMENT_SLOT_SHOULDER)
 				user.dropItemToGround(user.gloves)
 				if(!attachments_by_slot[attachments])
 					user.equip_to_slot(new /obj/item/armor_module/fallout/arms(src), SLOT_GLOVES)
 				else
 					user.equip_to_slot(attachments_by_slot[attachments], SLOT_GLOVES)
-				user.gloves.flags_item |= NODROP
+				ADD_TRAIT(user.gloves, TRAIT_NODROP, POWER_ARMOR_TRAITS)
 			if(ATTACHMENT_SLOT_KNEE)
 				user.dropItemToGround(user.shoes)
 				if(!attachments_by_slot[attachments])
 					user.equip_to_slot(new /obj/item/armor_module/fallout/legs(src), SLOT_SHOES)
 				else
 					user.equip_to_slot(attachments_by_slot[attachments], SLOT_SHOES)
-				user.shoes.flags_item |= NODROP
+				ADD_TRAIT(user.shoes, TRAIT_NODROP, POWER_ARMOR_TRAITS)
 	user.mob_size = MOB_SIZE_BIG	//PA makes you a big boi
 	user.is_wearing_power_armor = TRUE
 	var/datum/action/exit_pa/action = new(user)
@@ -239,19 +239,19 @@
 	if(istype(user.head, /obj/item/armor_module/fallout/helmet))
 		SEND_SIGNAL(armor, COMSIG_ATTACH_WITHOUT_CHECKS, user.head, user)
 	if(istype(user.wear_suit, /obj/item/armor_module/fallout/torso))
-		user.wear_suit.flags_item &= ~NODROP
+		REMOVE_TRAIT(user.wear_suit, TRAIT_NODROP, POWER_ARMOR_TRAITS)
 		if(user.wear_suit.type == /obj/item/armor_module/fallout/torso)
 			qdel(user.wear_suit)
 		else
 			SEND_SIGNAL(armor, COMSIG_ATTACH_WITHOUT_CHECKS, user.wear_suit, user)
 	if(istype(user.gloves, /obj/item/armor_module/fallout/arms))
-		user.gloves.flags_item &= ~NODROP
+		REMOVE_TRAIT(user.gloves, TRAIT_NODROP, POWER_ARMOR_TRAITS)
 		if(user.gloves.type == /obj/item/armor_module/fallout/arms)
 			qdel(user.gloves)
 		else
 			SEND_SIGNAL(armor, COMSIG_ATTACH_WITHOUT_CHECKS, user.gloves, user)
 	if(istype(user.shoes, /obj/item/armor_module/fallout/legs))
-		user.shoes.flags_item &= ~NODROP
+		REMOVE_TRAIT(user.shoes, TRAIT_NODROP, POWER_ARMOR_TRAITS)
 		if(user.shoes.type == /obj/item/armor_module/fallout/legs)
 			qdel(user.shoes)
 		else

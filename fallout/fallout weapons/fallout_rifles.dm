@@ -518,7 +518,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 17, "rail_x" = 17, "rail_y" = 19, "under_x" = 28, "under_y" = 13)
 
 //For switching the sprite to the one with a belt
-/obj/item/weapon/gun/fallout/rifle/m60/update_icon()
+/obj/item/weapon/gun/fallout/rifle/m60/update_icon_state()
 	. = ..()
 	for(var/obj/item/ammo_magazine/belt in chamber_items)	//Check if it has a belt mag
 		if(istype(belt, /obj/item/ammo_magazine/fallout_ammopack))

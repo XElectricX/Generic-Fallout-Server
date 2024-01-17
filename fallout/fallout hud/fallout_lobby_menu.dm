@@ -49,14 +49,14 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/fallout/year)
 /atom/movable/screen/text/lobby/fallout/owners_char/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
+		INVOKE_NEXT_TICK(src, PROC_REF(update_text))//stupid fucking initialize bug fuck you
 		return
-	set_text()
+	update_text()
 
-/atom/movable/screen/text/lobby/fallout/owners_char/set_text()
+/atom/movable/screen/text/lobby/fallout/owners_char/update_text()
 	maptext = "<span class=menutext>Current character: [hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
 	if(!registered)
-		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(set_text))
+		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(update_text))
 		registered = TRUE
 
 //The buttons in the lobby you click on
@@ -105,7 +105,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/fallout/year)
 /atom/movable/screen/text/lobby/fallout/clickable/ready
 	maptext = "<span class=menutext>You are: Not Ready</span>"
 
-/atom/movable/screen/text/lobby/fallout/clickable/ready/set_text()
+/atom/movable/screen/text/lobby/fallout/clickable/ready/update_text()
 	var/mob/new_player/player = hud.mymob
 	maptext = "<span class=menutext>You are: [player.ready ? "" : "Not "]Ready</span>"
 
@@ -113,7 +113,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/fallout/year)
 	. = ..()
 	var/mob/new_player/player = usr
 	player.toggle_ready()
-	set_text()
+	update_text()
 
 /atom/movable/screen/text/lobby/fallout/clickable/manifest
 	maptext = "<span class=menutext>View Manifest</span>"

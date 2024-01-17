@@ -10,47 +10,54 @@
 	var/obj/item/cell/fallout/pa_cell
 	var/is_wearing_power_armor = FALSE
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 	if(is_wearing_power_armor)
-		if(statpanel("Power Armor"))
-			if(pa_cell)
-				stat("Internal Power Systems Info:", "[src.pa_cell.name] - [src.pa_cell.charge]/[src.pa_cell.maxcharge] | [src.pa_cell.charge/src.pa_cell.maxcharge*100]% | \
-				Mechanical Power Cost - [src.pa_cell.action_energy_drain] | Current Module Energy Usage Rate - [src.pa_cell.passive_energy_drain]")
-			var/obj/item/module	//Holder for modules
-			var/obj/item/armor_module/fallout/armor_piece	//Holder for armor pieces
-			if(istype(head, /obj/item/armor_module/fallout/helmet))
-				armor_piece = head
-				for(var/attachments in armor_piece.attachments_by_slot)
-					if(!armor_piece.attachments_by_slot[attachments])
-						stat("[armor_piece.name]:", "NO MODULE")
-						continue
-					module = armor_piece.attachments_by_slot[attachments]
-					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
-			if(istype(wear_suit, /obj/item/armor_module/fallout/torso) && wear_suit != /obj/item/armor_module/fallout/torso)
-				armor_piece = wear_suit
-				for(var/attachments in armor_piece.attachments_by_slot)
-					if(!armor_piece.attachments_by_slot[attachments])
-						stat("[armor_piece.name]:", "NO MODULE")
-						continue
-					module = armor_piece.attachments_by_slot[attachments]
-					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
-			if(istype(gloves, /obj/item/armor_module/fallout/arms) && gloves != /obj/item/armor_module/fallout/arms)
-				armor_piece = gloves
-				for(var/attachments in armor_piece.attachments_by_slot)
-					if(!armor_piece.attachments_by_slot[attachments])
-						stat("[armor_piece.name]:", "NO MODULE")
-						continue
-					module = armor_piece.attachments_by_slot[attachments]
-					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
-			if(istype(shoes, /obj/item/armor_module/fallout/legs) && shoes != /obj/item/armor_module/fallout/legs)
-				armor_piece = shoes
-				for(var/attachments in armor_piece.attachments_by_slot)
-					if(!armor_piece.attachments_by_slot[attachments])
-						stat("[armor_piece.name]:", "NO MODULE")
-						continue
-					module = armor_piece.attachments_by_slot[attachments]
-					stat("[armor_piece.name]:", "[module.active ? "ACTIVE - " : ""][module.name]")
+		. += "\n"	//For some reason the new lines are not doing anything if not by themselves
+		. += "======== Power Armor System ========"
+		if(pa_cell)
+			. += "\[Internal Power Systems Info]"
+			. += "[src.pa_cell.name] - [src.pa_cell.charge]/[src.pa_cell.maxcharge] | [src.pa_cell.charge/src.pa_cell.maxcharge*100]%"
+			. += "Mechanical Power Cost - [src.pa_cell.action_energy_drain][src.pa_cell.passive_energy_drain ? " | Current Module Energy Usage Rate - [src.pa_cell.passive_energy_drain]" : ""]"
+		else
+			. += "Warning: No power cell installed!"
+		. += "\n"
+		. += "\[Armor Parts & Modules Info]"
+		var/obj/item/module	//Holder for modules
+		var/obj/item/armor_module/fallout/armor_piece	//Holder for armor pieces
+		if(istype(head, /obj/item/armor_module/fallout/helmet))
+			armor_piece = head
+			for(var/attachments in armor_piece.attachments_by_slot)
+				if(!armor_piece.attachments_by_slot[attachments])
+					. += "[armor_piece.name]: NO MODULE"
+					continue
+				module = armor_piece.attachments_by_slot[attachments]
+				. += "[armor_piece.name]: [module.active ? "ACTIVE - " : ""][module.name]"
+		if(istype(wear_suit, /obj/item/armor_module/fallout/torso) && wear_suit != /obj/item/armor_module/fallout/torso)
+			armor_piece = wear_suit
+			for(var/attachments in armor_piece.attachments_by_slot)
+				if(!armor_piece.attachments_by_slot[attachments])
+					. += "[armor_piece.name]: NO MODULE"
+					continue
+				module = armor_piece.attachments_by_slot[attachments]
+				. += "[armor_piece.name]: [module.active ? "ACTIVE - " : ""][module.name]"
+		if(istype(gloves, /obj/item/armor_module/fallout/arms) && gloves != /obj/item/armor_module/fallout/arms)
+			armor_piece = gloves
+			for(var/attachments in armor_piece.attachments_by_slot)
+				if(!armor_piece.attachments_by_slot[attachments])
+					. += "[armor_piece.name]: NO MODULE"
+					continue
+				module = armor_piece.attachments_by_slot[attachments]
+				. += "[armor_piece.name]: [module.active ? "ACTIVE - " : ""][module.name]"
+		if(istype(shoes, /obj/item/armor_module/fallout/legs) && shoes != /obj/item/armor_module/fallout/legs)
+			armor_piece = shoes
+			for(var/attachments in armor_piece.attachments_by_slot)
+				if(!armor_piece.attachments_by_slot[attachments])
+					. += "[armor_piece.name]: NO MODULE"
+					continue
+				module = armor_piece.attachments_by_slot[attachments]
+				. += "[armor_piece.name]: [module.active ? "ACTIVE - " : ""][module.name]"
+		. += "\n"
 
 /mob/living/carbon/human/Moved(atom/oldloc, direction)
 	. = ..()
@@ -209,10 +216,11 @@
 
 	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(shooter_carbon.stagger)
+		if(shooter_carbon.IsStaggered())
 			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
@@ -230,22 +238,23 @@
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
 
+	if(stat != DEAD && ismob(proj.firer))
+		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
+
 	if(damage)
-		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
-		if(shrapnel_roll)
+		if(do_shrapnel_roll(proj, damage))
 			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
+			embed_projectile_shrapnel(proj)
 		else if(prob(damage * 0.25))
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
 		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
-		if(shrapnel_roll)
-			embed_projectile_shrapnel(proj)
 	else
 		bullet_message(proj, feedback_flags)
 
 	GLOB.round_statistics.total_projectile_hits[faction]++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectile_hits[faction]")
+	SSblackbox.record_feedback("tally round_statistics", 1, "total_projectile_hits[faction]")
 
 	/* Fallout edit */
 	if(damage)

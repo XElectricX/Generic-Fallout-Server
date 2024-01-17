@@ -28,7 +28,7 @@ Changes to what gun sprites are selected
 "_e" for empty (magazine but no ammo/has ammo but not chambered)
 "_u" for unloaded (no ammo and no magazine)
 */
-/obj/item/weapon/gun/fallout/update_icon(mob/user)
+/obj/item/weapon/gun/fallout/update_icon_state(mob/user)
 	. = ..()
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))	//Stationary guns have only one sprite state
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
@@ -113,6 +113,30 @@ Changes to what gun sprites are selected
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
 	return TRUE
+
+//For some reason, the code has a connected mag always be disconnected if the gun is removed from the inventory; this breaks the deployable minigun
+/obj/item/weapon/gun/fallout/removed_from_inventory(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
+	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
+	set_gun_user(null)
+	active_attachable?.removed_from_inventory(user)
+
+	//Fallout edit; just checks if the mag this weapon uses is connected to it before deciding to drop the mag
+	if(length(chamber_items))
+		var/obj/item/ammo_magazine/magazine = chamber_items[current_chamber_position]
+		if(CHECK_BITFIELD(get_flags_magazine_features(magazine), MAGAZINE_WORN) && (get_dist(src, magazine) <= 1))
+			addtimer(CALLBACK(src, PROC_REF(check_if_deployed)), 0.1 SECONDS, TIMER_STOPPABLE)
+			return
+
+	drop_connected_mag(null, user)
+
+//Currently the deployable component removes the weapon from the user's inventory before actually deploying, so this check's if the weapon was deployed after a timer call
+/obj/item/weapon/gun/fallout/proc/check_if_deployed()
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return
+
+	//Remove the connected magazine since it wasn't actually deployed; prevents a minigun having a backpack with teleporting ammo
+	unload()
 
 //Deleting the check that prevents empty mags from being loaded into guns and adding RNG hand reload sounds
 /obj/item/weapon/gun/fallout/reload(obj/item/new_mag, mob/living/user, force = FALSE)

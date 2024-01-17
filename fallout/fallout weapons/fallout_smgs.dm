@@ -97,7 +97,7 @@
 	recoil_unwielded = 2
 
 //For switching the sprite to the one with a drum
-/obj/item/weapon/gun/fallout/smg/thompson/update_icon()
+/obj/item/weapon/gun/fallout/smg/thompson/update_icon_state()
 	. = ..()
 	for(var/obj/item/ammo_magazine/fallout_smg/acp/drum/drum in contents)	//Check if it has a drum mag
 		icon_state = base_gun_icon + "_drum"

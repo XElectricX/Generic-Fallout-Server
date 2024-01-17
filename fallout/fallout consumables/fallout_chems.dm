@@ -186,7 +186,7 @@
 			return TRUE
 		else
 			usr.visible_message(span_warning("[usr] attempts to feed [M] [src]."), span_warning("You attempt to feed [M] [src]!"))
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, M, 30, BUSY_ICON_FRIENDLY))
 				return FALSE
 			usr.visible_message(span_warning("[usr] fed [M] [src]."), span_warning("You fed [M] [src]."))
 			var/rgt_list_text = get_reagent_list_text()
@@ -223,7 +223,7 @@
 			return TRUE
 		else
 			usr.visible_message(span_warning("[usr] attempts to feed [M] [src]."), span_warning("You attempt to feed [M] [src]!"))
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, M, 30, BUSY_ICON_FRIENDLY))
 				return FALSE
 			usr.visible_message(span_warning("[usr] fed [M] [src]."), span_warning("You fed [M] [src]."))
 			var/rgt_list_text = get_reagent_list_text()

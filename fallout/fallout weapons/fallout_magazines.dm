@@ -341,7 +341,7 @@
 		var/mob/living/carbon/human/user = usr //this is us
 		if(!turret_containing_gun.Adjacent(user) || !in_range(src, user))
 			return
-		if(!isgun(turret_containing_gun.internal_item))
+		if(!isgun(turret_containing_gun.get_internal_item()))
 			return
 		if(turret_containing_gun.reload(user, src))
 			to_chat(user, span_notice("[turret_containing_gun] is now being fed directly from [src]."))

@@ -90,7 +90,7 @@
 
 	var/obj/item/owner = master_item
 
-	if(owner.flags_item & NODROP)
+	if(HAS_TRAIT(owner, TRAIT_NODROP))
 		return FALSE
 
 	if(!istype(over_object, /atom/movable/screen))
@@ -172,7 +172,7 @@
 	if(!ishuman(usr))
 		return
 	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-	if ((flags_item & NODROP) || loc != usr)
+	if(HAS_TRAIT(src, TRAIT_NODROP) || loc != usr)
 		return
 	if(usr.incapacitated())	//Removed lying_angle check and if user is buckled, why was that a check?
 		return

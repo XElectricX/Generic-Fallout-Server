@@ -77,6 +77,7 @@
 	det_time = 5 SECONDS
 	heavy_impact_range = 3
 	flash_range = 3
+	///Holder for the timer, which can be stopped
 	var/grenade_timer
 
 //Eventually expand this system to most grenades, like putting the pin back in a frag
@@ -92,6 +93,7 @@
 		return
 	..()
 
+//Dynamite can be unlit, so copying everything from grenade/activate() but making the timer stoppable, and adding code to turn off if active
 /obj/item/explosive/grenade/fallout/dynamite/activate(mob/user)
 	if(active)
 		deltimer(grenade_timer)
@@ -99,17 +101,21 @@
 		icon_state = initial(icon_state)
 		update_icon()
 		return
-	active = TRUE
+
 	if(user)
-		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed")
+		log_bomber(user, "primed", src)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.grenades_primed++
+
 	icon_state = initial(icon_state) + "_active"
-	playsound(loc, arm_sound, 50, 1, 6)
-	grenade_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	active = TRUE
+	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
+
+	grenade_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
 
 /obj/item/explosive/grenade/fallout/molotov
 	name = "molotov cocktail"
@@ -139,10 +145,9 @@
 		return
 	active = TRUE
 	if(user)
-		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed")
+		log_bomber(user, src, "primed")
 	icon_state = initial(icon_state) + "_active"
-	playsound(loc, arm_sound, 50, 1, 6)
+	playsound(loc, arm_sound, 25, 1, 6)
 
 //It explodes on impact if ignited
 /obj/item/explosive/grenade/fallout/molotov/throw_impact(atom/hit_atom, speed)

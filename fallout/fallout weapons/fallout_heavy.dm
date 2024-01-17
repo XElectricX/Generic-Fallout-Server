@@ -62,6 +62,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_WIELDED_STABLE_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/machinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/machinegun, /obj/item/ammo_magazine/fallout_ammopack)
 	caliber = CALIBER_556X45
@@ -83,7 +84,7 @@
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/lasersight)
 
 //For switching the sprite to the one with a belt
-/obj/item/weapon/gun/fallout/heavy/minigun/update_icon()
+/obj/item/weapon/gun/fallout/heavy/minigun/update_icon_state()
 	..()
 	if(!length(chamber_items))
 		icon_state = base_gun_icon + "_u"

@@ -2031,6 +2031,7 @@
 #include "fallout\_defines_fallout\item_defines.dm"
 #include "fallout\_defines_fallout\job_defines.dm"
 #include "fallout\_defines_fallout\mob_defines.dm"
+#include "fallout\_defines_fallout\trait_defines.dm"
 #include "fallout\fallout clothing\faction_accessories.dm"
 #include "fallout\fallout clothing\faction_armors.dm"
 #include "fallout\fallout clothing\faction_coats.dm"
