@@ -412,8 +412,8 @@
 	activation_sound = 'sound/items/flashlight.ogg'
 	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
 	attachments_allowed = list(/obj/item/armor_module/fallout/night_vision)
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 1, BULLET = 1, LASER = 1, ENERGY = 1, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 /obj/item/armor_module/fallout/helmet/Initialize()
 	. = ..()
@@ -482,8 +482,8 @@
 		/obj/item/storage/backpack/fallout/satchel,
 		/obj/item/flashlight/fallout,
 		/obj/item/tank/emergency_oxygen)
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 1, BULLET = 1, LASER = 1, ENERGY = 1, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 /obj/item/armor_module/fallout/arms
 	name = "power armor frame arms"
@@ -501,8 +501,8 @@
 	slowdown = 0.2
 	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
 	attachments_allowed = list(/obj/item/armor_module/fallout/hydraulic_bracers)
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 1, BULLET = 1, LASER = 1, ENERGY = 1, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 /obj/item/armor_module/fallout/legs
 	name = "power armor frame legs"
@@ -520,8 +520,8 @@
 	slowdown = 0.2
 	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
 	attachments_allowed = list()
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
-	hard_armor = list("melee" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 0, "bio" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	hard_armor = list(MELEE = 1, BULLET = 1, LASER = 1, ENERGY = 1, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	var/track_blood = 0
 
 ///Stops runtimes
@@ -532,32 +532,32 @@
 	name = "\improper T-45 helmet"
 	desc = "Helmet from the T-45 series."
 	icon_state = "t45_helmet"
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/torso/t45
 	name = "\improper T-45 torso"
 	desc = "Chest piece of the T-45 series."
 	icon_state = "t45_torso"
 	slowdown = 0.3
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/arms/t45
 	name = "\improper T-45 arms"
 	desc = "Arm pieces of the T-45 series."
 	icon_state = "t45_arms"
 	slowdown = 0.3
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/legs/t45
 	name = "\improper T-45 legs"
 	desc = "Leg pieces of the T-45 series."
 	icon_state = "t45_legs"
 	slowdown = 0.3
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/torso/t45/bos
 	name = "\improper T-45 Brotherhood of Steel torso"
@@ -575,8 +575,8 @@
 	icon_state = "t51_helmet"
 	passive_energy_cost = 5
 	tint_level = 4
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "fire" = 40, "acid" = 40)
-	hard_armor = list("melee" = 15, "bullet" = 15, "laser" = 8, "energy" = 5, "bomb" = 5, "bio" = 0, "fire" = 5, "acid" = 5)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/torso/t51
 	name = "\improper T-51 torso"
@@ -584,8 +584,8 @@
 	icon_state = "t51_torso"
 	passive_energy_cost = 5
 	slowdown = 0.6
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "fire" = 40, "acid" = 40)
-	hard_armor = list("melee" = 15, "bullet" = 15, "laser" = 8, "energy" = 5, "bomb" = 5, "bio" = 0, "fire" = 5, "acid" = 5)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/arms/t51
 	name = "\improper T-51 arms"
@@ -593,8 +593,8 @@
 	icon_state = "t51_arms"
 	passive_energy_cost = 5
 	slowdown = 0.6
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "fire" = 40, "acid" = 40)
-	hard_armor = list("melee" = 15, "bullet" = 15, "laser" = 8, "energy" = 5, "bomb" = 5, "bio" = 0, "fire" = 5, "acid" = 5)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/legs/t51
 	name = "\improper T-51 legs"
@@ -602,8 +602,8 @@
 	icon_state = "t51_legs"
 	passive_energy_cost = 5
 	slowdown = 0.6
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "fire" = 40, "acid" = 40)
-	hard_armor = list("melee" = 15, "bullet" = 15, "laser" = 8, "energy" = 5, "bomb" = 5, "bio" = 0, "fire" = 5, "acid" = 5)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 20, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/torso/t51/bos
 	name = "\improper T-51 Brotherhood of Steel torso"
@@ -622,8 +622,8 @@
 	light_color = LIGHT_COLOR_CYAN
 	passive_energy_cost = 6
 	tint_level = 3
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "fire" = 30, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 100, FIRE = 70, ACID = 70)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 15)
 
 /obj/item/armor_module/fallout/torso/t60
 	name = "\improper T-60 torso"
@@ -631,8 +631,8 @@
 	icon_state = "t60_torso"
 	passive_energy_cost = 6
 	slowdown = 0.5
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "fire" = 30, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 100, FIRE = 70, ACID = 70)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 15)
 
 /obj/item/armor_module/fallout/arms/t60
 	name = "\improper T-60 arms"
@@ -640,8 +640,8 @@
 	icon_state = "t60_arms"
 	passive_energy_cost = 6
 	slowdown = 0.5
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "fire" = 30, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 100, FIRE = 70, ACID = 70)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 15)
 
 /obj/item/armor_module/fallout/legs/t60
 	name = "\improper T-60 legs"
@@ -649,8 +649,8 @@
 	icon_state = "t60_legs"
 	passive_energy_cost = 6
 	slowdown = 0.5
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "fire" = 30, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 100, FIRE = 70, ACID = 70)
+	hard_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 15, ACID = 15)
 
 /obj/item/armor_module/fallout/helmet/scrap
 	name = "scrap power armor helmet"
@@ -658,8 +658,8 @@
 	icon_state = "scrap_helmet"
 	passive_energy_cost = 6
 	tint_level = 2
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 3, ENERGY = 3, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/torso/scrap
 	name = "scrap power armor torso"
@@ -667,8 +667,8 @@
 	icon_state = "scrap_torso"
 	passive_energy_cost = 6
 	slowdown = 0.4
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 3, ENERGY = 3, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/arms/scrap
 	name = "scrap power armor arms"
@@ -676,8 +676,8 @@
 	icon_state = "scrap_arms"
 	passive_energy_cost = 6
 	slowdown = 0.4
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 3, ENERGY = 3, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/legs/scrap
 	name = "scrap power armor legs"
@@ -685,8 +685,8 @@
 	icon_state = "scrap_legs"
 	passive_energy_cost = 6
 	slowdown = 0.4
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 40, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 3, ENERGY = 3, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/helmet/raider
 	name = "raider power armor helmet"
@@ -695,8 +695,8 @@
 	light_color = LIGHT_COLOR_TUNGSTEN
 	passive_energy_cost = 6
 	tint_level = 3
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 8, BULLET = 8, LASER = 5, ENERGY = 5, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/torso/raider
 	name = "raider power armor torso"
@@ -704,8 +704,8 @@
 	icon_state = "raider_torso"
 	passive_energy_cost = 6
 	slowdown = 0.5
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 8, BULLET = 8, LASER = 5, ENERGY = 5, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/arms/raider
 	name = "raider power armor arms"
@@ -713,8 +713,8 @@
 	icon_state = "raider_arms"
 	passive_energy_cost = 6
 	slowdown = 0.5
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 8, BULLET = 8, LASER = 5, ENERGY = 5, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/legs/raider
 	name = "raider power armor legs"
@@ -722,8 +722,8 @@
 	icon_state = "raider_legs"
 	passive_energy_cost = 6
 	slowdown = 0.5
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 100, "fire" = 20, "acid" = 30)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 3, "acid" = 3)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 100, FIRE = 20, ACID = 30)
+	hard_armor = list(MELEE = 8, BULLET = 8, LASER = 5, ENERGY = 5, BOMB = 3, BIO = 0, FIRE = 3, ACID = 3)
 
 /obj/item/armor_module/fallout/helmet/excavator
 	name = "excavator power armor helmet"
@@ -732,8 +732,8 @@
 	light_range = 6
 	passive_energy_cost = 5
 	tint_level = 3
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 100, "fire" = 80, "acid" = 80)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 40, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 80, ACID = 80)
+	hard_armor = list(MELEE = 5, BULLET = 3, LASER = 3, ENERGY = 3, BOMB = 5, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/torso/excavator
 	name = "excavator power armor torso"
@@ -741,8 +741,8 @@
 	icon_state = "excavator_torso"
 	passive_energy_cost = 5
 	slowdown = 0.4
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 100, "fire" = 80, "acid" = 80)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 40, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 80, ACID = 80)
+	hard_armor = list(MELEE = 5, BULLET = 3, LASER = 3, ENERGY = 3, BOMB = 5, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/arms/excavator
 	name = "excavator power armor arms"
@@ -750,8 +750,8 @@
 	icon_state = "excavator_arms"
 	passive_energy_cost = 5
 	slowdown = 0.4
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 100, "fire" = 80, "acid" = 80)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 40, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 80, ACID = 80)
+	hard_armor = list(MELEE = 5, BULLET = 3, LASER = 3, ENERGY = 3, BOMB = 5, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/legs/excavator
 	name = "excavator power armor legs"
@@ -759,8 +759,8 @@
 	icon_state = "excavator_legs"
 	passive_energy_cost = 5
 	slowdown = 0.4
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 100, "fire" = 80, "acid" = 80)
-	hard_armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = 3, "bio" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 40, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 40, BIO = 100, FIRE = 80, ACID = 80)
+	hard_armor = list(MELEE = 5, BULLET = 3, LASER = 3, ENERGY = 3, BOMB = 5, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/armor_module/fallout/helmet/scrap/ncr
 	name = "\improper NCR power armor helmet"

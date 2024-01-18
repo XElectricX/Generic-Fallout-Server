@@ -31,7 +31,7 @@
 	walltype = "concrete"
 	max_integrity = 3000
 	explosion_block = 4
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = 60, "bio" = 100, "fire" = 100, "acid" = 20)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 100, BOMB = 60, BIO = 100, FIRE = 100, ACID = 20)
 
 
 //Metal tunnel wall, as strong as concrete
@@ -42,7 +42,7 @@
 	walltype = "tunnel"
 	max_integrity = 3000
 	explosion_block = 4
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = 60, "bio" = 100, "fire" = 100, "acid" = 20)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 100, BOMB = 60, BIO = 100, FIRE = 100, ACID = 20)
 
 
 //Log wall, very weak
@@ -54,7 +54,7 @@
 	walltype = "log"
 	max_integrity = 500
 	explosion_block = 0
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 50, "bomb" = 0, "bio" = 20, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 50, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)
 
 
 //House wall, slightly weak
@@ -66,7 +66,7 @@
 	walltype = "house"
 	max_integrity = 800
 	explosion_block = 1
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 50, "bomb" = 0, "bio" = 20, "fire" = 10, "acid" = 10)
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 50, BOMB = 0, BIO = 20, FIRE = 10, ACID = 10)
 
 //Broken house wall
 /turf/closed/wall/fallout/house/broken

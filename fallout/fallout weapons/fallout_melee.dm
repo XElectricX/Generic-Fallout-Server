@@ -769,7 +769,7 @@
 	throw_range = 2
 	var/repair_material = /obj/item/stack/sheet/metal
 	//materials = list(/datum/material/metal = 1000)
-	hard_armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 0, "fire" = 5, "acid" = 10)
+	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 0, FIRE = 5, ACID = 10)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	attack_verb = "bashed"
@@ -782,7 +782,7 @@
 	max_integrity = 1500
 	force = 20
 	throwforce = 20
-	hard_armor = list("melee" = 20, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 0, "fire" = 10, "acid" = 10)
+	hard_armor = list(MELEE = 20, BULLET = 10, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 0, FIRE = 10, ACID = 10)
 
 /obj/item/weapon/shield/fallout_shield/reinforced/legion
 	name = "\improper Legionnaire shield"
@@ -800,7 +800,7 @@
 	throw_speed = 3
 	throw_range = 7
 	repair_material = /obj/item/stack/sheet/wood
-	hard_armor = list("melee" = 5, "bullet" = 3, "laser" = 0, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 0, "acid" = 0)
+	hard_armor = list(MELEE = 5, BULLET = 3, LASER = 0, ENERGY = 0, BOMB = 5, BIO = 0, FIRE = 0, ACID = 0)
 	destroy_sound = 'sound/effects/woodhit.ogg'
 
 /obj/item/weapon/shield/fallout_shield/buckler/makeshift
@@ -816,7 +816,7 @@
 	icon_state = "shield_roman"
 
 //Shield associated code below
-/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 0, FIRE = 50, ACID = 80))
+/datum/component/shield/Initialize(shield_flags, shield_soft_armor, shield_hard_armor, shield_cover = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 80, BIO = 0, FIRE = 50, FIRE = 80))
 	. = ..()
 
 /obj/item/weapon/shield/fallout_shield/Initialize(mapload)
