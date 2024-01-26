@@ -15,7 +15,10 @@
 #define WASTELANDER "Wastelander"
 
 //Town
-#define TOWN_CITIZEN "Settler"
+#define TOWN_CITIZEN "Citizen"
+#define TOWN_DOCTOR "Town Doctor"
+#define TOWN_ENGINEER "Technician"
+#define TOWN_BARTENDER "Bartender"
 #define TOWN_GUARD "Peacekeeper"
 #define TOWN_MERCHANT "Merchant"
 #define TOWN_LEADER "Mayor"

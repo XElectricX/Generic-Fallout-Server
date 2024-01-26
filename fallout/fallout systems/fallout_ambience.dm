@@ -11,7 +11,7 @@
 			ambience_listening_clients -= client_iterator
 			to_chat(world, "Ambience list is being fucked with.")
 			continue
-		if(ambience_listening_clients[client_iterator] > world.time)
+		if(ambience_listening_clients[client_iterator] > world.time || current_area?.weather?.override_ambience)	//Don't play ambience if overriden
 			continue //Not ready for the next sound
 		/* The following is our code for how we play background tracks */
 		var/list/tracks_available = flist("[global.config.directory]/[current_area.ambience]/") //Check the folder determined by var/ambience in /area

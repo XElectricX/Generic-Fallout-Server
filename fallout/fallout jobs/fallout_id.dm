@@ -1,3 +1,32 @@
+//Town
+/obj/item/card/id/town
+	name = TOWN + " citizen ID"
+	desc = "A laminated sheet of paper with personal information."
+	icon = 'fallout/fallout icons/fallout clothing/identification.dmi'
+	icon_state = "generic"
+	access = list(TOWN_ACCESS)
+
+/obj/item/card/id/town/doctor
+	name = TOWN + " " + TOWN_DOCTOR + " ID"
+	access = list(TOWN_ACCESS)
+
+/obj/item/card/id/town/bartender
+	name = TOWN + " " + TOWN_BARTENDER + " ID"
+	access = list(TOWN_BARTENDER_ACCESS)
+
+/obj/item/card/id/town/guard
+	name = TOWN + " " + TOWN_GUARD + " ID"
+	icon_state = "generic_gold"
+	access = list(TOWN_GUARD_ACCESS)
+
+/obj/item/card/id/town/technician
+	name = TOWN + " " + TOWN_ENGINEER + " ID"
+	access = list(TOWN_ENGINEER_ACCESS)
+
+/obj/item/card/id/town/merchant
+	name = TOWN + " " + TOWN_MERCHANT + " ID"
+	access = list(TOWN_MERCHANT_ACCESS)
+
 //NCR
 /obj/item/card/id/ncr
 	name = "NCR dog tag"
@@ -6,7 +35,6 @@
 	icon_state = "ncr"
 	item_state = "dogtag"
 	access = list(NCR_ACCESS)
-	//iff_signal =
 
 /obj/item/card/id/ncr/medic
 	access = list(NCR_MEDIC_ACCESS)

@@ -84,3 +84,39 @@
 	walltype = "tent"
 	max_integrity = 400
 	explosion_block = 0
+
+//Rock walls, can be mined
+/turf/closed/fallout
+	name = "rock"
+	desc = "A solid rock wall."
+	icon = 'icons/turf/walls/lvwall.dmi'
+	base_icon_state = "lvwall"
+	icon_state = "lvwall-0"
+	walltype = "lvwall"
+	open_turf_type = /turf/open/ground/fallout/dirt
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_STRUCTURES)
+	//What ore type will drop from mining this turf
+	var/ore_type = TRUE
+
+/turf/closed/fallout/Initialize(mapload)
+	. = ..()
+	//Randomly choose an ore type
+	if(ore_type)
+		if(prob(50))
+			ore_type = FALSE
+		else
+			ore_type = pickweight(GLOB.ore_drops)
+
+/turf/closed/fallout/proc/mine()
+	if(ore_type)
+		new ore_type(src)
+	ChangeTurf(open_turf_type)
+
+/turf/closed/fallout/indestructible
+	name = "unbreakable rock"
+	desc = "Nothing could break through this."
+	icon_state = "wall-invincible"
+	resistance_flags = RESIST_ALL
+	ore_type = FALSE

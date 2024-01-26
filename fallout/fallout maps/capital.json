@@ -1,0 +1,11 @@
+{
+	"map_name": "Capital Wasteland",
+	"map_path": "fallout/fallout maps",
+	"map_file": "capital.dmm",
+	"announce_text": "The ruins of Washington D.C. remain an inhospitable wasteland after the Great War. Concrete and asphalt is all that is left of what used to be a sprawling metropolis.",
+	"traits":[{
+		"weather_radstorm": true,
+		"weather_fallout_sandstorm": true,
+		"weather_fallout_rain": true
+	}]
+}

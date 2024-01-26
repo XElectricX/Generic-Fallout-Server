@@ -146,3 +146,22 @@
 //Flood light used for faction camp lighting, increased range so it is not pathetic
 /obj/machinery/floodlight/landing
 	brightness_on = 12
+
+//Light fixtures
+/obj/machinery/light/fallout
+	name = "light tube fixture"
+	brightness = 8
+
+/obj/machinery/light/fallout/broken(skip_sound_and_sparks)
+	if(skip_sound_and_sparks)	//Fuck you, roundstart light breaks
+		return
+	. = ..()
+
+/obj/machinery/light/fallout/bulb
+	name = "light bulb fixture"
+	desc = "A small lighting fixture."
+	icon_state = "bulb1"
+	base_state = "bulb"
+	fitting = "bulb"
+	brightness = 6
+	light_type = /obj/item/light_bulb/bulb

@@ -20,6 +20,7 @@
 	faction = WASTELAND
 	job_category = WASTELAND
 	exp_type = EXP_TYPE_REGULAR_ALL
+	outfit = /datum/outfit/job/fallout
 	selection_color = "#909090"
 	var/desc = "Explore, scavenge, hunt, build, trade. Maybe you're a native to the Capital Wasteland, or just passing by?"
 	var/faction_desc = "You are your own person in the vast wasteland. Do as you wish."
@@ -36,6 +37,42 @@
 		to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")
 	if(req_admin_notify)
 		to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+
+/datum/job/fallout/town
+	title = TOWN_CITIZEN
+	access = TOWN_ACCESS
+	faction = TOWN
+	job_category = TOWN
+	outfit = /datum/outfit/job/fallout/town
+	selection_color = "#1480e4"
+
+/datum/job/fallout/town/doctor
+	title = TOWN_DOCTOR
+	access = TOWN_DOCTOR_ACCESS
+	outfit = /datum/outfit/job/fallout/town/doctor
+	skills_type = /datum/skills/doctor
+
+/datum/job/fallout/town/bartender
+	title = TOWN_BARTENDER
+	access = TOWN_BARTENDER_ACCESS
+	outfit = /datum/outfit/job/fallout/town/bartender
+
+/datum/job/fallout/town/guard
+	title = TOWN_GUARD
+	access = TOWN_GUARD_ACCESS
+	outfit = /datum/outfit/job/fallout/town/guard
+	skills_type = /datum/skills/soldier
+
+/datum/job/fallout/town/technician
+	title = TOWN_ENGINEER
+	access = TOWN_ENGINEER_ACCESS
+	outfit = /datum/outfit/job/fallout/town/technician
+	skills_type = /datum/skills/engineer
+
+/datum/job/fallout/town/merchant
+	title = TOWN_MERCHANT
+	access = TOWN_MERCHANT_ACCESS
+	outfit = /datum/outfit/job/fallout/town/merchant
 
 //NCR jobs
 /datum/job/fallout/ncr

@@ -1,7 +1,14 @@
 /datum/game_mode/capital_wasteland
 	name = "Capital Wasteland"
 	config_tag = "Fallout"
-	valid_job_types = list(/datum/job/fallout = -1)
+	valid_job_types = list(
+		/datum/job/fallout = -1,
+		/datum/job/fallout/town = -1,
+		/datum/job/fallout/town/doctor = 2,
+		/datum/job/fallout/town/bartender = 1,
+		/datum/job/fallout/town/guard = 3,
+		/datum/job/fallout/town/technician = 4,
+		/datum/job/fallout/town/merchant = 1)
 	/*valid_job_types = list(
 		/datum/job/fallout/town = 20,
 		/datum/job/fallout/town/leader = 1,

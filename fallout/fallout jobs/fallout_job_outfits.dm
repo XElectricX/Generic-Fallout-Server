@@ -5,6 +5,58 @@
 	back = /obj/item/storage/backpack/fallout
 	shoes = /obj/item/clothing/shoes/black
 
+//Town
+/datum/outfit/job/fallout/town
+	name = TOWN_CITIZEN
+	w_uniform = /obj/item/clothing/under/fallout/vest_and_slacks
+	back = /obj/item/storage/backpack/fallout/explorer
+	id = /obj/item/card/id/town
+
+/datum/outfit/job/fallout/town/doctor
+	name = TOWN_DOCTOR
+	w_uniform = /obj/item/clothing/under/fallout/doctor_fatigues
+	back = /obj/item/storage/backpack/fallout/satchel/explorer
+	belt = /obj/item/storage/belt/fallout/medical/full
+	id = /obj/item/card/id/town/doctor
+
+/datum/outfit/job/fallout/town/bartender
+	name = TOWN_BARTENDER
+	w_uniform = /obj/item/clothing/under/fallout/bartenderalt
+	back = /obj/item/storage/backpack/fallout/satchel/wanderer
+	id = /obj/item/card/id/town/bartender
+
+/datum/outfit/job/fallout/town/guard
+	name = TOWN_GUARD
+	w_uniform = /obj/item/clothing/under/fallout/police
+	back = /obj/item/storage/backpack/fallout/satchel/wanderer
+	belt =	/obj/item/storage/belt/fallout/assault
+	head = /obj/item/clothing/head/fallout/helmet/police
+	id = /obj/item/card/id/town/guard
+
+/datum/outfit/job/fallout/town/guard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/fallout_pistol/acp, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/fallout/pistol/m1911, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio/fallout, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/fallout/town/technician
+	name = TOWN_ENGINEER
+	w_uniform = /obj/item/clothing/under/fallout/mechanic
+	back = /obj/item/storage/backpack/fallout/trekker
+	belt = /obj/item/storage/belt/fallout/tools/full
+	id = /obj/item/card/id/town/technician
+	r_store = /obj/item/flashlight/fallout/lantern
+
+/datum/outfit/job/fallout/town/technician/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/tool/fallout/pickaxe, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/fallout/town/merchant
+	name = TOWN_MERCHANT
+	w_uniform = /obj/item/clothing/under/fallout/merchant
+	id = /obj/item/card/id/town/merchant
+
 //NCR
 /datum/outfit/job/fallout/ncr
 	name = NCR_PRIVATE
@@ -14,7 +66,7 @@
 	belt =	/obj/item/storage/belt/fallout/ncr
 	gloves = /obj/item/clothing/gloves/fallout/ncr
 	shoes = /obj/item/clothing/shoes/fallout/ncr
-	head = /obj/item/clothing/head/helmet/fallout/ncr
+	head = /obj/item/clothing/head/fallout/helmet/ncr
 	mask = /obj/item/clothing/mask/fallout/ncr
 	id = /obj/item/card/id/ncr
 	suit_store = /obj/item/weapon/gun/fallout/rifle
@@ -33,7 +85,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/fallout/ncr/patrol
 	back = /obj/item/ammo_magazine/fallout_ammopack
 	gloves = /obj/item/clothing/gloves/fallout/ncr/patrol
-	head = /obj/item/clothing/head/helmet/fallout/ncr/patrol
+	head = /obj/item/clothing/head/fallout/helmet/ncr/patrol
 	suit_store = /obj/item/storage/backpack/fallout/satchel/trekker
 	l_store = /obj/item/storage/pouch/fallout/medical/stimpak
 	l_hand = /obj/item/weapon/gun/fallout/heavy/minigun
@@ -45,7 +97,7 @@
 	name = NCR_MEDIC
 	belt = /obj/item/storage/belt/fallout/medical/full
 	gloves = /obj/item/clothing/gloves/latex
-	head = /obj/item/clothing/head/helmet/fallout/ncr/helmet_medic
+	head = /obj/item/clothing/head/fallout/helmet/ncr/helmet_medic
 	glasses = /obj/item/clothing/glasses/hud/health
 	id = /obj/item/card/id/ncr/medic
 	suit_store = /obj/item/weapon/gun/fallout/smg/ten
@@ -63,7 +115,7 @@
 	name = NCR_ENGINEER
 	belt = /obj/item/storage/belt/fallout/tools/full
 	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/helmet/fallout/ncr/helmet_engineer
+	head = /obj/item/clothing/head/fallout/helmet/ncr/helmet_engineer
 	glasses = /obj/item/clothing/glasses/welding
 	id = /obj/item/card/id/ncr/engineer
 	suit_store = /obj/item/weapon/gun/fallout/rifle/hunting
@@ -113,7 +165,7 @@
 	belt =	/obj/item/storage/belt/fallout/medical/full
 	gloves = null
 	shoes = /obj/item/clothing/shoes/black
-	head = /obj/item/clothing/head/fallout/ncr/beret_staff
+	head = /obj/item/clothing/head/fallout/helmet/ncr/beret_staff
 	mask = null
 	id = /obj/item/card/id/ncr/support
 	l_store = /obj/item/storage/pouch/fallout/medical/doctor/full
@@ -132,7 +184,7 @@
 	belt = /obj/item/weapon/fallout_melee
 	gloves = /obj/item/clothing/gloves/fallout/legion
 	shoes = /obj/item/clothing/shoes/fallout/legion
-	head = /obj/item/clothing/head/helmet/fallout/legion
+	head = /obj/item/clothing/head/fallout/helmet/legion
 	mask = /obj/item/clothing/mask/fallout/legion
 	id = /obj/item/card/id/legion
 	suit_store = /obj/item/weapon/fallout_melee/spear/throwing
@@ -147,7 +199,7 @@
 	name = LEGION_PRIME
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/prime
 	belt = /obj/item/storage/belt/fallout/holster
-	head = /obj/item/clothing/head/helmet/fallout/legion/prime
+	head = /obj/item/clothing/head/fallout/helmet/legion/prime
 	id = /obj/item/card/id/legion/prime
 	suit_store = /obj/item/weapon/gun/fallout/pistol/colt357
 	l_store = /obj/item/weapon/fallout_melee/gladius
@@ -164,7 +216,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/veteran
 	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt = /obj/item/storage/belt/fallout/holster
-	head = /obj/item/clothing/head/helmet/fallout/legion/veteran
+	head = /obj/item/clothing/head/fallout/helmet/legion/veteran
 	id = /obj/item/card/id/legion/veteran
 	suit_store = /obj/item/weapon/gun/fallout/rifle/cowboy_repeater
 	r_hand = null
@@ -184,7 +236,7 @@
 	belt = /obj/item/storage/belt/fallout/legion
 	gloves = /obj/item/clothing/gloves/fallout/metal
 	shoes = /obj/item/clothing/shoes/fallout/legion/metal
-	head = /obj/item/clothing/head/helmet/fallout/legion/decanus
+	head = /obj/item/clothing/head/fallout/helmet/legion/decanus
 	mask = /obj/item/clothing/mask/fallout/legion/decanus
 	id = /obj/item/card/id/legion/decanus
 	suit_store = /obj/item/weapon/gun/fallout/smg/uzi
@@ -200,18 +252,18 @@
 
 /datum/outfit/job/fallout/legion/decanus/prime
 	name = LEGION_DECANUS_PRIME
-	head = /obj/item/clothing/head/helmet/fallout/legion/decanus_prime
+	head = /obj/item/clothing/head/fallout/helmet/legion/decanus_prime
 
 /datum/outfit/job/fallout/legion/decanus/veteran
 	name = LEGION_DECANUS_VETERAN
-	head = /obj/item/clothing/head/helmet/fallout/legion/decanus_veteran
+	head = /obj/item/clothing/head/fallout/helmet/legion/decanus_veteran
 
 /datum/outfit/job/fallout/legion/vexillarius
 	name = LEGION_VEXILLARIUS
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/vexillarius
 	back = /obj/item/storage/backpack/fallout/satchel/explorer
 	belt = /obj/item/storage/belt/fallout/legion
-	head = /obj/item/clothing/head/helmet/fallout/legion/vexillarius
+	head = /obj/item/clothing/head/fallout/helmet/legion/vexillarius
 	id = /obj/item/card/id/legion/decanus
 	suit_store = /obj/item/weapon/gun/fallout/rifle/anti_materiel
 	l_hand = null
@@ -230,7 +282,7 @@
 	belt = /obj/item/storage/belt/fallout/holster
 	gloves = /obj/item/clothing/gloves/fallout/metal
 	shoes = /obj/item/clothing/shoes/fallout/legion/metal
-	head = /obj/item/clothing/head/helmet/fallout/legion/centurion
+	head = /obj/item/clothing/head/fallout/helmet/legion/centurion
 	mask = /obj/item/clothing/mask/fallout/legion/centurion
 	id = /obj/item/card/id/legion/leader
 	suit_store = /obj/item/weapon/fallout_melee/hammer/rocket
@@ -251,7 +303,7 @@
 	belt =	/obj/item/storage/belt/fallout/medical/full
 	gloves = /obj/item/clothing/gloves/fallout/blacksmith
 	shoes = /obj/item/clothing/shoes/fallout/legion/sandals
-	head = /obj/item/clothing/head/fallout/legion
+	head = /obj/item/clothing/head/fallout/helmet/legion
 	glasses = /obj/item/clothing/glasses/welding
 	mask = null
 	id = /obj/item/card/id/legion/support

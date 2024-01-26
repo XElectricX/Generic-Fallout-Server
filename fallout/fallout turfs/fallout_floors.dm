@@ -6,6 +6,7 @@
 	icon_state = ""
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
+	intact_tile = FALSE
 
 //Sand, I don't like it
 /turf/open/ground/fallout/desert

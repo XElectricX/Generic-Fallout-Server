@@ -1,3 +1,64 @@
+//Weighted list which is used by pickweight(), which adds up the values of the list elements; iron will have about 50% chance of being picked, ultracite 1%
+GLOBAL_LIST_INIT(ore_drops, list(
+			/obj/item/fallout_ore = 100,
+			/obj/item/fallout_ore/silver = 19,
+			/obj/item/fallout_ore/gold = 19,
+			/obj/item/fallout_ore/platinum = 19,
+			/obj/item/fallout_ore/uranium = 19,
+			/obj/item/fallout_ore/diamond = 5,
+			/obj/item/fallout_ore/ultracite = 1,
+			/obj/item/fallout_ore/coal = 19))
+
+/obj/item/fallout_ore
+	name = "\a iron ore"
+	desc = "Can be refined."
+	icon = 'fallout/fallout icons/fallout items/fallout_resources.dmi'
+	icon_state = "iron"
+
+/obj/item/fallout_ore/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-8, 8)
+	pixel_y = rand(-4, 4)
+
+/obj/item/fallout_ore/silver
+	name = "\a silver ore"
+	icon_state = "silver"
+
+/obj/item/fallout_ore/gold
+	name = "\a gold ore"
+	icon_state = "gold"
+
+/obj/item/fallout_ore/platinum
+	name = "\a platinum ore"
+	icon_state = "platinum"
+
+/obj/item/fallout_ore/uranium
+	name = "\a uranium ore"
+	icon_state = "uranium"
+
+/obj/item/fallout_ore/diamond
+	name = "\a raw diamonds"
+	icon_state = "diamond"
+
+/obj/item/fallout_ore/ultracite
+	name = "\a ultracite ore"
+	icon_state = "ultracite"
+
+/obj/item/fallout_ore/coal
+	name = "\a coal"
+	desc = "People went to war over this."
+	icon_state = "coal"
+
+/obj/item/fallout_resource
+	name = "resource"
+	desc = "Valuable, ain't it?"
+	icon = 'fallout/fallout icons/fallout items/fallout_resources.dmi'
+
+/obj/item/fallout_resource/sand
+	name = "\a sand"
+	desc = "Coarse and rough and irritating... and it gets everywhere."
+	icon_state = "sand"
+
 //Need to remove the check for only allowing building on floors
 /obj/item/stack/building_checks(mob/user, datum/stack_recipe/R, multiplier)
 	if (get_amount() < R.req_amount*multiplier)

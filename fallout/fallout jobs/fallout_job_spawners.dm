@@ -2,6 +2,27 @@
 /obj/effect/landmark/start/job/fallout
 	icon_state = "x2"
 	delete_after_roundstart = FALSE
+	job = /datum/job/fallout
+
+//Town
+/obj/effect/landmark/start/job/fallout/town
+	icon_state = "x3"
+	job = /datum/job/fallout/town
+
+/obj/effect/landmark/start/job/fallout/town/doctor
+	job = /datum/job/fallout/town/doctor
+
+/obj/effect/landmark/start/job/fallout/town/bartender
+	job = /datum/job/fallout/town/bartender
+
+/obj/effect/landmark/start/job/fallout/town/guard
+	job = /datum/job/fallout/town/guard
+
+/obj/effect/landmark/start/job/fallout/town/technician
+	job = /datum/job/fallout/town/technician
+
+/obj/effect/landmark/start/job/fallout/town/merchant
+	job = /datum/job/fallout/town/merchant
 
 //NCR
 /obj/effect/landmark/start/job/fallout/ncr

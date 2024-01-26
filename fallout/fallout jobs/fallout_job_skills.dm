@@ -1,3 +1,20 @@
+//Generic roles
+/datum/skills/doctor
+	name = "Doctor"
+	medical = SKILL_MEDICAL_MASTER
+	surgery = SKILL_SURGERY_MASTER
+
+/datum/skills/engineer
+	name = "Engineer"
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
+
+/datum/skills/soldier
+	name = "Soldier"
+	firearms = SKILL_FIREARMS_TRAINED
+	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+
 //NCR
 /datum/skills/ncr_private
 	name = NCR_PRIVATE

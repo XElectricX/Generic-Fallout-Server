@@ -14,7 +14,7 @@
 /obj/machinery/cell_charger/fallout
 	name = "cell recharger"
 	desc = "Crude machine designed to recharge spent batteries and cells."
-	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
+	icon = 'fallout/fallout icons/fallout structures/fallout_machinery.dmi'
 
 //Power cells
 /obj/item/cell/fallout

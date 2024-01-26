@@ -26,6 +26,3 @@
 
 /obj/machinery/reagentgrinder/fallout
 	icon = 'fallout/fallout icons/fallout structures/fallout_machinery.dmi'
-
-/obj/machinery/cell_charger/fallout
-	icon = 'fallout/fallout icons/fallout structures/fallout_machinery.dmi'

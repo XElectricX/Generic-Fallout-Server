@@ -764,3 +764,140 @@ GLOBAL_LIST_EMPTY(global_locks)
 	desc = "A glass panel door, but without the glass."
 	icon_state = "brokenglass"
 	door_type = "brokenglass"
+
+/* Large gate - used by settlements */
+//Shutter and poddoor code is utterly bad and all hardcoded, so time to frankenstein it
+/obj/machinery/door/poddoor/fallout
+	icon = 'fallout/fallout icons/fallout structures/fallout_doors.dmi'
+	obj_integrity = 500
+	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 100, FIRE = 20, ACID = 20)
+	///If the door is being opened or closed
+	var/opening = FALSE
+
+/obj/machinery/door/poddoor/fallout/Initialize(mapload)
+	. = ..()
+	if(density && closed_layer)
+		layer = closed_layer
+	else if(!density && open_layer)
+		layer = open_layer
+	else
+		layer = PODDOOR_CLOSED_LAYER
+
+/obj/machinery/door/poddoor/fallout/update_icon()
+	icon_state = initial(icon_state) + "[opening ? "_open" : ""]"
+
+/obj/machinery/door/poddoor/fallout/open()
+	toggle_door()
+
+/obj/machinery/door/poddoor/fallout/close()
+	toggle_door()
+
+/obj/machinery/door/poddoor/fallout/proc/toggle_door()
+	if(operating)
+		return FALSE
+	if(!SSticker)
+		return FALSE
+
+	operating = TRUE
+	opening = !opening
+	flick("[initial(icon_state)]_[opening ? "opening" : "closing"]", src)	//do_animate() is a crime against code
+	update_icon()
+
+	playsound(loc, 'sound/machines/shutter.ogg', 25)
+	addtimer(CALLBACK(src, PROC_REF(toggle_door_state)), 0.1 SECONDS)
+
+	return TRUE
+
+/obj/machinery/door/poddoor/fallout/proc/toggle_door_state()
+	density = !density
+	layer = opening ? open_layer : closed_layer
+	operating = FALSE
+
+	set_opacity(!opening)
+	//Update the opacity of the fillers for multi tile doors
+	if(length(fillers))
+		for(var/obj/effect/opacifier/blocker in fillers)
+			blocker.set_opacity(!opening)
+
+	operating = FALSE
+
+/obj/machinery/door/poddoor/fallout/shutters
+	name = "shutters"
+	desc = "Sturdy metallic shutters that can be opened and closed remotely."
+	icon_state = "shutter"
+
+/obj/machinery/door/poddoor/fallout/blast_doors
+	name = "blast doors"
+	desc = "Near impenetrable blast doors that can be opened and closed remotely."
+	icon_state = "blast_door"
+	obj_integrity = 1000
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 100, BIO = 100, FIRE = 70, ACID = 70)
+
+/obj/machinery/door/poddoor/fallout/gate
+	name = "large gate"
+	desc = "A wide, sturdy gate that is mechanically controlled."
+	icon = 'fallout/fallout icons/fallout structures/large_gate.dmi'
+	icon_state = "gate"
+	width = 3
+	obj_integrity = 1000
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 100, FIRE = 70, ACID = 70)
+
+/obj/machinery/door/poddoor/fallout/gate/handle_weldingtool_overlay(removing = FALSE)
+	if(!removing)
+		if(dir & NORTH|SOUTH)
+			add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
+		else
+			add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
+	else
+		if(dir & NORTH|SOUTH)
+			cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
+		else
+			cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
+
+//The original proc is dumb and accounts for "south" sprites as "east" and "north" as "west", so I'm fixing it
+/obj/machinery/door/poddoor/fallout/gate/handle_multidoor()
+	fillers = list()
+
+	var/direction = (dir in list(NORTH, SOUTH)) ? EAST : NORTH
+	if(direction & EAST)
+		bound_width = width * world.icon_size
+		bound_height = world.icon_size
+	else
+		bound_width = world.icon_size
+		bound_height = width * world.icon_size
+
+	var/turf/T = get_turf(src)
+	for(var/i = 2 to width)
+		T = get_step(T, direction)
+		fillers += new /obj/effect/opacifier(T, opacity)
+
+/* List of map objects with their corresponding button */
+/obj/machinery/door/poddoor/fallout/gate/town
+	name = TOWN + " gate"
+	id = "town_gate"
+
+/obj/machinery/button/door/town_gate
+	name = "gate control button"
+	id = "town_gate"
+
+/obj/machinery/door/poddoor/fallout/shutters/town_shop_counter
+	name = "front counter shutters"
+	id = "shop_counter"
+
+/obj/machinery/button/door/town_shop_counter
+	name = "front counter shutters button"
+	id = "shop_counter"
+
+/obj/machinery/door/poddoor/fallout/blast_doors/town_shop_external
+	name = "drive thru blast doors"
+	id = "shop_drive_thru"
+
+/obj/machinery/button/door/town_shop_external
+	name = "drive thru blast doors button"
+	id = "shop_drive_thru"
+
+/obj/machinery/button/pulsed()
+	if(next_activate > world.time)
+		return FALSE
+	next_activate = world.time + 1 SECONDS
+	return TRUE
