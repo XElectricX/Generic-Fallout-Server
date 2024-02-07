@@ -30,6 +30,11 @@
 		GLOB.dead_mob_list += src
 	set_focus(src)
 	prepare_huds()
+	for(var/v in GLOB.active_alternate_appearances)
+		if(!v)
+			continue
+		var/datum/atom_hud/alternate_appearance/AA = v
+		AA.onNewMob(src)
 	. = ..()
 	if(islist(skills))
 		set_skills(getSkills(arglist(skills)))
@@ -806,6 +811,7 @@
 		//This would go on on_revive() but that is a mob/living proc
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.times_revived++
+		personal_statistics.mission_times_revived++
 	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
 /// Cleanup proc that's called when a mob loses a client, either through client destroy or logout
