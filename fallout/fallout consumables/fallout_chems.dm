@@ -13,7 +13,8 @@
 		return
 	amount_per_transfer_from_this = N
 
-/obj/item/reagent_containers/hypospray/fallout/update_icon()
+/obj/item/reagent_containers/hypospray/fallout/update_icon_state()
+	. = ..()
 	if(!(reagents.total_volume) && is_drawable())
 		name = "expended [name]"
 		icon_state += "_empty"

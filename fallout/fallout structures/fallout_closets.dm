@@ -33,7 +33,7 @@
 /obj/structure/closet/fallout/fridge/white
 	icon_state = "fridge_white"
 
-/obj/structure/closet/fallout/update_icon()
+/obj/structure/closet/fallout/update_icon_state()
 	overlays.Cut()
 	if(!opened)
 		icon_state = initial(icon_state)

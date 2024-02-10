@@ -7,7 +7,7 @@
 /turf/open/ground/fallout/road,
 /area/fallout/tunnel)
 "aK" = (
-/turf/closed/wall/fallout/tunnel,
+/turf/closed/wall/fallout/metal/dark,
 /area/fallout/underground)
 "aO" = (
 /obj/machinery/power/apc/fallout{
@@ -47,9 +47,6 @@
 /turf/open/ground/fallout/sidewalk/two,
 /area/fallout/tunnel/east)
 "cb" = (
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/human/burger,
 /obj/item/reagent_containers/food/snacks/grown/banana,
 /obj/item/reagent_containers/food/snacks/grown/banana,
 /obj/item/reagent_containers/food/snacks/grown/banana,
@@ -96,10 +93,6 @@
 /turf/open/floor/plating/asteroidplating,
 /area/fallout/underground)
 "dx" = (
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
-/obj/item/reagent_containers/food/snacks/lemoncakeslice,
 /obj/item/reagent_containers/food/snacks/grown/apple,
 /obj/structure/table/rusticwoodentable,
 /turf/open/floor/fallout/wood,
@@ -139,7 +132,7 @@
 	},
 /area/fallout/tunnel/east)
 "eG" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/fallout/indestructible,
 /area/fallout/tunnel/east)
 "eH" = (
 /obj/structure/barricade/metal{
@@ -180,7 +173,7 @@
 /turf/open/floor/plating/mainship,
 /area/fallout/ncr)
 "gD" = (
-/obj/structure/simple_door/tent,
+/obj/structure/simple_door/gate/cell,
 /turf/open/floor/plating/asteroidplating,
 /area/fallout/underground)
 "gH" = (
@@ -243,11 +236,6 @@
 /turf/open/ground/fallout/sidewalk,
 /area/fallout/tunnel/west)
 "iU" = (
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/human/burger,
 /obj/structure/table/rusticwoodentable,
 /obj/machinery/light{
 	dir = 4
@@ -269,11 +257,11 @@
 /turf/open/floor/plating/mainship,
 /area/fallout/ncr)
 "jq" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/tunnel/west)
 "js" = (
 /obj/machinery/door/poddoor/timed_late,
-/turf/closed/mineral/smooth,
+/turf/closed/fallout,
 /area/fallout/underground)
 "jv" = (
 /obj/structure/simple_door/metal/airlock/glass,
@@ -354,7 +342,7 @@
 /turf/open/ground/fallout/road/top,
 /area/fallout/tunnel/west)
 "mw" = (
-/turf/closed/mineral/smooth,
+/turf/closed/fallout,
 /area/fallout/tunnel)
 "mE" = (
 /obj/structure/barricade/plasteel{
@@ -412,7 +400,7 @@
 /turf/open/ground/fallout/road/top,
 /area/fallout/tunnel/east)
 "om" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/fallout/indestructible,
 /area/fallout/tunnel/west)
 "oq" = (
 /turf/open/ground/fallout/road,
@@ -448,9 +436,9 @@
 /turf/open/ground/fallout/sidewalk/one,
 /area/fallout/tunnel/east)
 "oU" = (
-/obj/structure/debris/car/random,
-/turf/open/ground/fallout/road/three/bottom,
-/area/fallout/tunnel/east)
+/obj/machinery/door/poddoor/timed_late,
+/turf/closed/wall/fallout/metal/dark,
+/area/fallout/underground)
 "pa" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
@@ -458,7 +446,7 @@
 /turf/open/ground/fallout/road/top,
 /area/fallout/tunnel/west)
 "pe" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/fallout/indestructible,
 /area/fallout/ncr)
 "pr" = (
 /obj/structure/barricade/sandbags{
@@ -618,10 +606,6 @@
 	dir = 1
 	},
 /area/fallout/tunnel/west)
-"sM" = (
-/obj/structure/debris/car/random,
-/turf/open/ground/fallout/road/three/right,
-/area/fallout/tunnel)
 "sY" = (
 /obj/item/reagent_containers/food/snacks/bearmeat,
 /obj/item/reagent_containers/food/snacks/bearmeat,
@@ -632,7 +616,7 @@
 /turf/open/floor/fallout/wood,
 /area/fallout/legion)
 "tf" = (
-/turf/closed/wall/fallout/tent,
+/turf/closed/wall/fallout/concrete,
 /area/fallout/underground)
 "tp" = (
 /obj/structure/barricade/sandbags{
@@ -642,7 +626,6 @@
 /area/fallout/tunnel/east)
 "tK" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/fallout_pistol,
 /turf/open/floor/plating/asteroidplating,
 /area/fallout/underground)
 "tL" = (
@@ -760,7 +743,7 @@
 /area/fallout/tunnel)
 "zk" = (
 /obj/structure/debris/random,
-/turf/closed/wall/fallout/tunnel,
+/turf/closed/wall/fallout/metal/dark,
 /area/fallout/underground)
 "zx" = (
 /obj/structure/barricade/sandbags,
@@ -908,7 +891,7 @@
 /turf/open/floor/fallout/wood,
 /area/fallout/legion)
 "Fm" = (
-/turf/closed/mineral/smooth,
+/turf/closed/fallout,
 /area/fallout/tunnel/west)
 "Gf" = (
 /turf/open/ground/fallout/sidewalk/one/border,
@@ -941,7 +924,7 @@
 /area/fallout/ncr)
 "GX" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/fallout_rifle/hunting,
+/obj/item/weapon/gun/fallout/rifle/hunting,
 /turf/open/floor/plating/asteroidplating,
 /area/fallout/underground)
 "Hu" = (
@@ -958,8 +941,9 @@
 /turf/open/ground/fallout/road/top,
 /area/fallout/tunnel/east)
 "Ie" = (
-/turf/closed/wall/fallout/log,
-/area/fallout/legion)
+/obj/structure/simple_door/metal/iron,
+/turf/open/floor/plating/asteroidplating,
+/area/fallout/underground)
 "If" = (
 /turf/open/ground/fallout/road/two,
 /area/fallout/tunnel/east)
@@ -967,7 +951,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/fallout/underground)
 "Iu" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/underground)
 "Iw" = (
 /obj/effect/landmark/start/job/fallout/legion/support,
@@ -991,20 +975,16 @@
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/fallout/ncr)
-"IW" = (
-/obj/machinery/door/poddoor/timed_late,
-/turf/closed/wall/mainship/gray,
-/area/fallout/underground)
 "Jb" = (
 /obj/effect/landmark/start/job/fallout/legion/decanus_veteran,
 /turf/open/floor/fallout/wood,
 /area/fallout/legion)
 "Jf" = (
 /obj/machinery/door/poddoor/timed_late,
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/tunnel/west)
 "Jl" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/legion)
 "Jo" = (
 /turf/open/ground/fallout/sidewalk/one/border{
@@ -1071,10 +1051,6 @@
 /obj/item/reagent_containers/food/snacks/monkeykabob,
 /obj/item/reagent_containers/food/snacks/monkeykabob,
 /obj/item/reagent_containers/food/snacks/monkeykabob,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/human/burger,
 /obj/item/reagent_containers/food/snacks/donut/normal,
 /obj/item/reagent_containers/food/snacks/carrotfries,
 /obj/structure/table/rusticwoodentable,
@@ -1135,8 +1111,11 @@
 	dir = 1
 	},
 /area/fallout/tunnel/east)
+"Oo" = (
+/turf/closed/wall/wood,
+/area/fallout/legion)
 "OH" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/tunnel)
 "OT" = (
 /obj/structure/largecrate/supply/medicine/blood,
@@ -1175,13 +1154,12 @@
 /obj/item/reagent_containers/food/snacks/loadedbakedpotato,
 /obj/item/reagent_containers/food/snacks/loadedbakedpotato,
 /obj/item/reagent_containers/food/snacks/donut/normal,
-/obj/item/reagent_containers/food/snacks/bananabreadslice,
 /obj/structure/table/rusticwoodentable,
 /turf/open/floor/fallout/wood,
 /area/fallout/legion)
 "PX" = (
 /obj/machinery/door/poddoor/timed_late,
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/tunnel/east)
 "Qh" = (
 /obj/structure/barricade/sandbags{
@@ -1222,7 +1200,7 @@
 /turf/open/floor/plating/mainship,
 /area/fallout/ncr)
 "RC" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/ncr)
 "RE" = (
 /turf/open/ground/fallout/road/three/right,
@@ -1252,7 +1230,7 @@
 /turf/open/ground/fallout/road/three/left,
 /area/fallout/tunnel)
 "Sw" = (
-/turf/closed/mineral/smooth,
+/turf/closed/fallout,
 /area/fallout/tunnel/east)
 "SD" = (
 /obj/machinery/door/poddoor/timed_late,
@@ -1311,7 +1289,7 @@
 /area/fallout/tunnel/east)
 "Ug" = (
 /obj/machinery/door/poddoor/timed_late,
-/turf/closed/wall/fallout/tunnel,
+/turf/closed/wall/fallout/metal,
 /area/fallout/underground)
 "Uo" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -1332,9 +1310,6 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/fallout/underground)
-"UT" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/fallout/underground)
 "UX" = (
 /obj/machinery/door/poddoor/timed_late,
 /turf/open/ground/fallout/road/top,
@@ -1353,7 +1328,7 @@
 /turf/open/floor/plating/mainship,
 /area/fallout/ncr)
 "Wh" = (
-/turf/closed/mineral/smooth,
+/turf/closed/fallout,
 /area/fallout/underground)
 "Wn" = (
 /obj/structure/barricade/sandbags{
@@ -1362,7 +1337,7 @@
 /turf/open/ground/fallout/sidewalk/one/border,
 /area/fallout/tunnel/west)
 "Wz" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/fallout/indestructible,
 /area/fallout/legion)
 "WC" = (
 /obj/item/trash/cigbutt,
@@ -1418,10 +1393,6 @@
 	},
 /turf/open/ground/fallout/road,
 /area/fallout/tunnel/east)
-"XT" = (
-/obj/structure/debris/car/random,
-/turf/open/ground/fallout/sidewalk,
-/area/fallout/tunnel)
 "YD" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1436,19 +1407,8 @@
 /turf/open/floor/plating/mainship,
 /area/fallout/ncr)
 "Zm" = (
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/meatballsoup,
-/obj/item/reagent_containers/food/snacks/human/burger,
-/obj/item/reagent_containers/food/snacks/human/burger,
-/obj/item/reagent_containers/food/snacks/human/burger,
-/obj/item/reagent_containers/food/snacks/human/burger,
-/obj/item/reagent_containers/food/snacks/human/burger,
-/obj/item/reagent_containers/food/snacks/grown/apple,
-/obj/structure/table/rusticwoodentable,
-/turf/open/floor/fallout/wood,
-/area/fallout/legion)
+/turf/closed/fallout/indestructible,
+/area/fallout/underground)
 "Zw" = (
 /turf/open/ground/fallout/road/four/bottom,
 /area/fallout/tunnel/east)
@@ -1458,7 +1418,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/fallout/underground)
 "ZF" = (
-/turf/closed/wall/mainship/gray,
+/turf/closed/wall/fallout/metal,
 /area/fallout/tunnel/east)
 "ZK" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -2091,7 +2051,7 @@ Iu
 Iu
 Iu
 Iu
-UT
+Zm
 "}
 (18,1,1) = {"
 Fm
@@ -2128,7 +2088,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (19,1,1) = {"
 Fm
@@ -2165,7 +2125,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (20,1,1) = {"
 Fm
@@ -2202,7 +2162,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (21,1,1) = {"
 Fm
@@ -2239,7 +2199,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (22,1,1) = {"
 Fm
@@ -2276,14 +2236,14 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (23,1,1) = {"
 Fm
 jq
 UA
 Gf
-KE
+GU
 nK
 nK
 zf
@@ -2313,7 +2273,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (24,1,1) = {"
 Fm
@@ -2350,7 +2310,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (25,1,1) = {"
 Fm
@@ -2387,7 +2347,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (26,1,1) = {"
 Fm
@@ -2424,7 +2384,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (27,1,1) = {"
 Fm
@@ -2461,7 +2421,7 @@ ZK
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (28,1,1) = {"
 Fm
@@ -2498,7 +2458,7 @@ ZK
 ZK
 Wh
 Wh
-UT
+Zm
 "}
 (29,1,1) = {"
 Fm
@@ -2535,7 +2495,7 @@ ZK
 ZK
 Wh
 Wh
-UT
+Zm
 "}
 (30,1,1) = {"
 Fm
@@ -2572,7 +2532,7 @@ ZK
 ZK
 Wh
 Wh
-UT
+Zm
 "}
 (31,1,1) = {"
 Fm
@@ -2609,7 +2569,7 @@ ZK
 ZK
 Wh
 Wh
-UT
+Zm
 "}
 (32,1,1) = {"
 Fm
@@ -2646,7 +2606,7 @@ ZK
 ZK
 Wh
 Wh
-UT
+Zm
 "}
 (33,1,1) = {"
 Fm
@@ -2683,7 +2643,7 @@ ZK
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (34,1,1) = {"
 Fm
@@ -2702,7 +2662,7 @@ PM
 BO
 Jq
 iR
-IW
+Ug
 js
 js
 js
@@ -2720,7 +2680,7 @@ js
 js
 js
 js
-UT
+Zm
 "}
 (35,1,1) = {"
 mw
@@ -2757,7 +2717,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (36,1,1) = {"
 mw
@@ -2794,7 +2754,7 @@ ZK
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (37,1,1) = {"
 mw
@@ -2831,7 +2791,7 @@ ZK
 ZK
 Wh
 Wh
-UT
+Zm
 "}
 (38,1,1) = {"
 mw
@@ -2868,7 +2828,7 @@ ZK
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (39,1,1) = {"
 mw
@@ -2898,14 +2858,14 @@ ZK
 ZK
 tf
 tf
-gD
+Ie
 tf
 tf
 ZK
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (40,1,1) = {"
 mw
@@ -2914,7 +2874,7 @@ cu
 IF
 ay
 Rg
-aD
+Rg
 sq
 Jo
 IF
@@ -2934,15 +2894,15 @@ Uo
 ZK
 tf
 tf
-tK
-In
 GX
+In
+tK
 tf
 tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (41,1,1) = {"
 mw
@@ -2979,7 +2939,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (42,1,1) = {"
 mw
@@ -3016,7 +2976,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (43,1,1) = {"
 mw
@@ -3030,7 +2990,7 @@ sq
 nH
 IF
 ay
-aD
+Rg
 Rg
 sq
 Jo
@@ -3053,7 +3013,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (44,1,1) = {"
 mw
@@ -3090,7 +3050,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (45,1,1) = {"
 mw
@@ -3127,7 +3087,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (46,1,1) = {"
 mw
@@ -3164,7 +3124,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (47,1,1) = {"
 mw
@@ -3182,7 +3142,7 @@ kX
 kX
 Lc
 lp
-XT
+cu
 Iu
 Wh
 Wh
@@ -3201,7 +3161,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (48,1,1) = {"
 mw
@@ -3209,7 +3169,7 @@ OH
 Da
 lw
 bA
-Rh
+kX
 kX
 Lc
 lp
@@ -3238,7 +3198,7 @@ tf
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (49,1,1) = {"
 mw
@@ -3268,14 +3228,14 @@ ZK
 ZK
 tf
 tf
-gD
+Ie
 tf
 tf
 ZK
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (50,1,1) = {"
 mw
@@ -3312,7 +3272,7 @@ ZK
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (51,1,1) = {"
 mw
@@ -3321,7 +3281,7 @@ cu
 fi
 zg
 wq
-sM
+wq
 sq
 Jo
 IF
@@ -3349,7 +3309,7 @@ ZK
 ZK
 ZK
 Wh
-UT
+Zm
 "}
 (52,1,1) = {"
 mw
@@ -3386,7 +3346,7 @@ ZK
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (53,1,1) = {"
 mw
@@ -3423,7 +3383,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (54,1,1) = {"
 mw
@@ -3431,7 +3391,7 @@ OH
 cu
 IF
 ay
-aD
+Rg
 Rg
 sq
 Jo
@@ -3460,7 +3420,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (55,1,1) = {"
 mw
@@ -3497,7 +3457,7 @@ tf
 tf
 tf
 tf
-UT
+Zm
 "}
 (56,1,1) = {"
 mw
@@ -3510,7 +3470,7 @@ Rg
 kp
 Jo
 IF
-uk
+ay
 Rg
 Rg
 sq
@@ -3534,7 +3494,7 @@ ZD
 hX
 ko
 tf
-UT
+Zm
 "}
 (57,1,1) = {"
 mw
@@ -3571,7 +3531,7 @@ In
 In
 In
 tf
-UT
+Zm
 "}
 (58,1,1) = {"
 mw
@@ -3608,7 +3568,7 @@ In
 In
 uh
 tf
-UT
+Zm
 "}
 (59,1,1) = {"
 mw
@@ -3645,7 +3605,7 @@ In
 In
 uh
 tf
-UT
+Zm
 "}
 (60,1,1) = {"
 mw
@@ -3682,7 +3642,7 @@ In
 In
 In
 tf
-UT
+Zm
 "}
 (61,1,1) = {"
 mw
@@ -3719,7 +3679,7 @@ pQ
 Oe
 RS
 tf
-UT
+Zm
 "}
 (62,1,1) = {"
 mw
@@ -3731,7 +3691,7 @@ Rg
 Rg
 sq
 Jo
-lR
+IF
 ay
 Rg
 Rg
@@ -3756,7 +3716,7 @@ tf
 tf
 tf
 tf
-UT
+Zm
 "}
 (63,1,1) = {"
 mw
@@ -3793,7 +3753,7 @@ ZK
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (64,1,1) = {"
 mw
@@ -3830,7 +3790,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (65,1,1) = {"
 mw
@@ -3867,7 +3827,7 @@ Wh
 Wh
 Wh
 Wh
-UT
+Zm
 "}
 (66,1,1) = {"
 mw
@@ -3904,7 +3864,7 @@ Wh
 Wh
 aK
 aK
-UT
+Zm
 "}
 (67,1,1) = {"
 mw
@@ -3941,7 +3901,7 @@ Wh
 aK
 aK
 aK
-UT
+Zm
 "}
 (68,1,1) = {"
 mw
@@ -3978,7 +3938,7 @@ aK
 aK
 dk
 aK
-UT
+Zm
 "}
 (69,1,1) = {"
 mw
@@ -4015,7 +3975,7 @@ dk
 dk
 ZK
 aK
-UT
+Zm
 "}
 (70,1,1) = {"
 mw
@@ -4052,7 +4012,7 @@ ZK
 Gz
 dk
 aK
-UT
+Zm
 "}
 (71,1,1) = {"
 mw
@@ -4089,7 +4049,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (72,1,1) = {"
 Sw
@@ -4108,7 +4068,7 @@ SQ
 PJ
 MO
 TI
-IW
+Ug
 js
 js
 Qw
@@ -4121,12 +4081,12 @@ js
 js
 js
 js
-Ug
+oU
 qq
 qq
 qq
-Ug
-UT
+oU
+Zm
 "}
 (73,1,1) = {"
 Sw
@@ -4163,7 +4123,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (74,1,1) = {"
 Sw
@@ -4200,7 +4160,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (75,1,1) = {"
 Sw
@@ -4237,7 +4197,7 @@ Pr
 dk
 dk
 aK
-UT
+Zm
 "}
 (76,1,1) = {"
 Sw
@@ -4274,7 +4234,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (77,1,1) = {"
 Sw
@@ -4311,7 +4271,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (78,1,1) = {"
 Sw
@@ -4331,7 +4291,7 @@ Xp
 Kp
 wA
 Iu
-UT
+Zm
 aK
 aK
 dk
@@ -4348,7 +4308,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (79,1,1) = {"
 Sw
@@ -4368,8 +4328,8 @@ Xp
 Kp
 wA
 Iu
-UT
-UT
+Zm
+Zm
 aK
 dk
 dk
@@ -4385,7 +4345,7 @@ dk
 wu
 dk
 aK
-UT
+Zm
 "}
 (80,1,1) = {"
 Sw
@@ -4405,8 +4365,8 @@ Xp
 Kp
 ww
 Iu
-UT
-UT
+Zm
+Zm
 aK
 dk
 dk
@@ -4422,7 +4382,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (81,1,1) = {"
 Sw
@@ -4442,8 +4402,8 @@ Xp
 Kp
 wA
 Iu
-UT
-UT
+Zm
+Zm
 aK
 aK
 dk
@@ -4459,7 +4419,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (82,1,1) = {"
 Sw
@@ -4479,9 +4439,9 @@ Xp
 Kp
 wA
 Iu
-UT
-UT
-UT
+Zm
+Zm
+Zm
 aK
 aK
 dk
@@ -4496,7 +4456,7 @@ dk
 dk
 dk
 zk
-UT
+Zm
 "}
 (83,1,1) = {"
 Sw
@@ -4516,10 +4476,10 @@ Kf
 SS
 wA
 Iu
-UT
-UT
-UT
-UT
+Zm
+Zm
+Zm
+Zm
 aK
 aK
 dk
@@ -4533,7 +4493,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (84,1,1) = {"
 Sw
@@ -4553,11 +4513,11 @@ Kf
 SS
 WH
 Iu
-UT
-UT
-UT
-UT
-UT
+Zm
+Zm
+Zm
+Zm
+Zm
 aK
 dk
 Gz
@@ -4570,7 +4530,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (85,1,1) = {"
 Sw
@@ -4589,7 +4549,7 @@ If
 TY
 Ol
 WH
-aK
+Iu
 aK
 aK
 aK
@@ -4607,7 +4567,7 @@ aK
 dk
 dk
 aK
-UT
+Zm
 "}
 (86,1,1) = {"
 Sw
@@ -4644,7 +4604,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (87,1,1) = {"
 Sw
@@ -4681,7 +4641,7 @@ Ng
 dk
 dk
 aK
-UT
+Zm
 "}
 (88,1,1) = {"
 Sw
@@ -4697,7 +4657,7 @@ AS
 GI
 If
 Ed
-oU
+TY
 Ol
 vv
 dk
@@ -4718,7 +4678,7 @@ dk
 dk
 dk
 aK
-UT
+Zm
 "}
 (89,1,1) = {"
 Sw
@@ -4755,7 +4715,7 @@ aK
 aK
 aK
 aK
-UT
+Zm
 "}
 (90,1,1) = {"
 Sw
@@ -4811,24 +4771,24 @@ oq
 Xp
 Kp
 wA
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
 Wz
 "}
 (92,1,1) = {"
@@ -4848,7 +4808,7 @@ Qi
 Qi
 oQ
 wA
-Ie
+Oo
 fz
 fz
 fz
@@ -4861,11 +4821,11 @@ Iw
 sw
 LI
 OT
-Ie
+Oo
 qm
 vx
 mF
-Ie
+Oo
 Wz
 "}
 (93,1,1) = {"
@@ -4885,7 +4845,7 @@ Qi
 Qi
 oQ
 wA
-Ie
+Oo
 hI
 Uq
 Uq
@@ -4898,11 +4858,11 @@ LI
 LE
 LI
 Ut
-Ie
+Oo
 sF
 LI
 mF
-Ie
+Oo
 Wz
 "}
 (94,1,1) = {"
@@ -4939,7 +4899,7 @@ LI
 LI
 LI
 rv
-Ie
+Oo
 Wz
 "}
 (95,1,1) = {"
@@ -4976,7 +4936,7 @@ LI
 LI
 LI
 nB
-Ie
+Oo
 Wz
 "}
 (96,1,1) = {"
@@ -4996,24 +4956,24 @@ oq
 Xp
 Kp
 wA
-Ie
+Oo
 Uq
 Uq
 tQ
 LI
 PI
-Ie
-Ie
+Oo
+Oo
 bq
 LI
-Ie
-Ie
-Ie
-Ie
+Oo
+Oo
+Oo
+Oo
 LI
 LI
 MC
-Ie
+Oo
 Wz
 "}
 (97,1,1) = {"
@@ -5033,7 +4993,7 @@ oq
 Xp
 Kp
 wA
-Ie
+Oo
 fz
 fz
 fz
@@ -5050,7 +5010,7 @@ LI
 LI
 LI
 LI
-Ie
+Oo
 Wz
 "}
 (98,1,1) = {"
@@ -5070,7 +5030,7 @@ oq
 Xp
 Kp
 ww
-Ie
+Oo
 Fb
 fz
 fz
@@ -5087,7 +5047,7 @@ LI
 LI
 LI
 LI
-Ie
+Oo
 Wz
 "}
 (99,1,1) = {"
@@ -5107,7 +5067,7 @@ oq
 Xp
 Kp
 wA
-Ie
+Oo
 Qx
 Qx
 Qx
@@ -5124,7 +5084,7 @@ LI
 LI
 LI
 LI
-Ie
+Oo
 Wz
 "}
 (100,1,1) = {"
@@ -5150,18 +5110,18 @@ LI
 LI
 LI
 PI
-Ie
+Oo
 xC
-Ie
-Ie
-Ie
+Oo
+Oo
+Oo
 LI
 ja
 sY
 BR
 Mi
 PI
-Ie
+Oo
 Wz
 "}
 (101,1,1) = {"
@@ -5191,14 +5151,14 @@ qC
 LI
 LI
 LI
-Ie
+Oo
 bq
 LI
 LI
 LI
 LI
 LI
-Ie
+Oo
 Wz
 "}
 (102,1,1) = {"
@@ -5218,7 +5178,7 @@ oq
 Xp
 Kp
 wA
-Ie
+Oo
 zZ
 AA
 AA
@@ -5228,14 +5188,14 @@ qC
 rt
 nt
 Jb
-Ie
+Oo
 LI
 LI
 LI
 LI
 LI
 LI
-Ie
+Oo
 Wz
 "}
 (103,1,1) = {"
@@ -5255,7 +5215,7 @@ oq
 Xp
 Kp
 wA
-Ie
+Oo
 fz
 fz
 fz
@@ -5265,14 +5225,14 @@ qC
 fz
 tN
 fz
-Ie
+Oo
 dx
-Zm
+dx
 PW
 iU
 cb
 QC
-Ie
+Oo
 Wz
 "}
 (104,1,1) = {"
@@ -5292,24 +5252,24 @@ AY
 AY
 AY
 AY
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
-Ie
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
+Oo
 Wz
 "}
 (105,1,1) = {"

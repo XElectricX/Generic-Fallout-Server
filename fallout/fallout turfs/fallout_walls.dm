@@ -22,17 +22,87 @@
 	icon = 'fallout/fallout icons/fallout turfs/fallout_walls.dmi'
 	icon_state = ""
 	walltype = ""
+	///Variants for this type of wall
+	var/list/icon_path_variants
+
+/turf/closed/wall/fallout/Initialize(mapload, ...)
+	. = ..()
+	if(icon_path_variants)
+		icon = pick(icon_path_variants)
+
+/* TGMC changed smoothing to /tg/ system and now walls don't work because of it; too much work to convert old walls to 3/4th perspective, so just using TGMC wall sprites */
+/turf/closed/wall/fallout/metal
+	name = "metal wall"
+	desc = "Sturdy wall made of metal."
+	icon = 'icons/turf/walls/gwall.dmi'
+	icon_state = "gwall-0"
+	base_icon_state = "gwall"
+	walltype = "gwall"
+	max_integrity = 3000
+	explosion_block = 4
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 100, BOMB = 60, BIO = 100, FIRE = 100, ACID = 10)
+
+/turf/closed/wall/fallout/metal/dark
+	icon = 'icons/turf/walls/testwall.dmi'
+	icon_state = "testwall-0"
+	base_icon_state = "testwall"
+	walltype = "testwall"
 
 //Concrete wall, very strong
 /turf/closed/wall/fallout/concrete
 	name = "concrete wall"
 	desc = "Robust slab of cement."
-	icon_state = "concrete0"
-	walltype = "concrete"
+	//icon_state = "concrete0"
+	//walltype = "concrete"
+	icon = 'icons/turf/walls/siding.dmi'
+	icon_state = "wall-0"
+	base_icon_state = "wall"
+	walltype = "wall"
+	icon_path_variants = list(
+		'icons/turf/walls/siding.dmi',
+		'icons/turf/walls/siding_1.dmi',
+		'icons/turf/walls/siding_2.dmi',
+		'icons/turf/walls/siding_3.dmi')
 	max_integrity = 3000
 	explosion_block = 4
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 100, BOMB = 60, BIO = 100, FIRE = 100, ACID = 20)
 
+/turf/closed/wall/fallout/concrete/red
+	icon = 'icons/turf/walls/siding_red.dmi'
+	icon_path_variants = list(
+		'icons/turf/walls/siding_red.dmi',
+		'icons/turf/walls/siding_red_1.dmi',
+		'icons/turf/walls/siding_red_2.dmi',
+		'icons/turf/walls/siding_red_3.dmi')
+
+//Adobe walls, primitive
+/turf/closed/wall/variable/adobe
+	name = "adobe wall"
+	desc = "A wall made out of adobe brick."
+	icon_state = "wall-0"
+	icon = 'icons/turf/walls/adobe.dmi'
+	base_icon_state = "wall"
+	walltype = "wall"
+	icon_path_variants = list(
+		'icons/turf/walls/adobe.dmi',
+		'icons/turf/walls/adobe_1.dmi',
+		'icons/turf/walls/adobe_2.dmi',
+		'icons/turf/walls/adobe_3.dmi')
+	max_integrity = 2000
+	explosion_block = 2
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 100, BOMB = 30, BIO = 100, FIRE = 100, ACID = 80)
+
+//Brick wall, slightly weaker than concrete
+/turf/closed/wall/fallout/brick
+	name = "brick wall"
+	desc = "A wall made out of weathered brick."
+	icon = 'icons/turf/walls/brick.dmi'
+	icon_state = "wall-0"
+	base_icon_state = "wall"
+	walltype = "wall"
+	max_integrity = 2500
+	explosion_block = 3
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 40, BIO = 100, FIRE = 100, ACID = 40)
 
 //Metal tunnel wall, as strong as concrete
 /turf/closed/wall/fallout/tunnel

@@ -9,7 +9,7 @@
 
 //Change sprite to use "_" instead of "-"
 //Note that the the open panel sprites still need to use "-panel" because the proc it is in needs too much work to change easily
-/obj/machinery/vending/fallout/update_icon()
+/obj/machinery/vending/fallout/update_icon_state()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]_broken"
 	else if(!(machine_stat & NOPOWER) )

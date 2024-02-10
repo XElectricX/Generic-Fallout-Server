@@ -9,7 +9,7 @@
 	max_integrity = 75
 
 //Leave it empty or else the game tries to smooth it, breaking the sprite
-/obj/structure/window/fallout/update_icon()
+/obj/structure/window/fallout/update_icon_state()
 	return
 
 /obj/structure/window/fallout/broken

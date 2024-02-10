@@ -13,9 +13,14 @@ Format:
 endmap
 
 map munitions_factory
-	minplayers 30
+	minplayers 0
 endmap
 
 map tunnel
+	minplayers 0
+endmap
+
+map capital
+	default
 	minplayers 0
 endmap

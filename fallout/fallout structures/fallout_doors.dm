@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	STR.can_hold = typecacheof(list(/obj/item/key))
 	STR.max_combined_w_class = 35
 */
-/obj/item/storage/keys_set/update_icon()
+/obj/item/storage/keys_set/update_icon_state()
 	if(contents.len <= 4)
 		icon_state = "keychain_[contents.len]"
 	else
@@ -236,7 +236,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	open = !open
 	update_icon()
 
-/obj/item/lock/update_icon()
+/obj/item/lock/update_icon_state()
 	icon_state = open ? "opened_lock" : "closed_lock"
 
 /*/obj/structure/mineral_door/fallout
@@ -783,7 +783,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	else
 		layer = PODDOOR_CLOSED_LAYER
 
-/obj/machinery/door/poddoor/fallout/update_icon()
+/obj/machinery/door/poddoor/fallout/update_icon_state()
 	icon_state = initial(icon_state) + "[opening ? "_open" : ""]"
 
 /obj/machinery/door/poddoor/fallout/open()
