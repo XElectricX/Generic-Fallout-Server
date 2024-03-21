@@ -99,6 +99,11 @@
 	announce_text = json["announce_text"]
 
 	map_file = json["map_file"]
+
+	//Fallout edit: to account for the different paths for TGMC maps
+	if(findtext(filename, "_maps"))
+		map_path = "_maps/[map_path]"
+
 	// "map_file": "BoxStation.dmm"
 	if (istext(map_file))
 		if (!fexists("[map_path]/[map_file]"))
@@ -186,14 +191,6 @@
 	return TRUE
 #undef CHECK_EXISTS
 
-//More "_map" removals
-/datum/map_config/GetFullMapPaths()
-	if (istext(map_file))
-		return list("[map_path]/[map_file]")
-	. = list()
-	for (var/file in map_file)
-		. += "[map_path]/[file]"
-
 //Even MORE "_map" removals
 #define INIT_ANNOUNCE(X) to_chat(world, span_notice("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
@@ -274,7 +271,8 @@
 
 		switch(command)
 			if("map")
-				currentmap = load_map_config("fallout/fallout maps/[data].json")
+				//Fallout edit: use different paths depending on the type of map, otherwise the .json won't be found and shipmaps won't load
+				currentmap = load_map_config(maptype == "ship_map" ? "_maps/[data].json" : "fallout/fallout maps/[data].json")
 				if(currentmap.defaulted)
 					log_config("Failed to load map config for [data]!")
 					currentmap = null

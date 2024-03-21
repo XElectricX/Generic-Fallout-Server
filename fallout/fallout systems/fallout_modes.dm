@@ -1,6 +1,6 @@
 /datum/game_mode/capital_wasteland
 	name = "Capital Wasteland"
-	config_tag = "Fallout"
+	config_tag = "Capital Wasteland"
 	valid_job_types = list(
 		/datum/job/fallout = -1,
 		/datum/job/fallout/town = -1,
