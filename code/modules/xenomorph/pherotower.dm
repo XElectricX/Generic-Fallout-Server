@@ -56,12 +56,12 @@
 
 /obj/structure/xeno/pherotower/update_icon_state()
 	switch(current_aura.aura_types[1])
-		if(AURA_XENO_RECOVERY)
+		if(AURA_XENO_RECOVERY, AURA_HUMAN_PESTILENCE)
 			icon_state = "recoverytower"
 			set_light(2, 2, LIGHT_COLOR_BLUE)
-		if(AURA_XENO_WARDING)
+		if(AURA_XENO_WARDING, AURA_XENO_CHEMICAL_CLAWS)
 			icon_state = "wardingtower"
 			set_light(2, 2, LIGHT_COLOR_GREEN)
-		if(AURA_XENO_FRENZY)
+		if(AURA_XENO_FRENZY, AURA_HUMAN_FEAR)
 			icon_state = "frenzytower"
 			set_light(2, 2, LIGHT_COLOR_RED)

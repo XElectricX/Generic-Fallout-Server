@@ -826,10 +826,13 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_XENO_RECOVERY "Recovery"
 #define AURA_XENO_WARDING "Warding"
 #define AURA_XENO_FRENZY "Frenzy"
+#define AURA_XENO_CHEMICAL_CLAWS "Chemical Claws"
 
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+#define AURA_HUMAN_FEAR "fear"
+#define AURA_HUMAN_PESTILENCE "pestilence"
 
 #define AURA_XENO_BLESSWARDING "Blessing Of Warding"
 #define AURA_XENO_BLESSFRENZY "Blessing Of Frenzy"

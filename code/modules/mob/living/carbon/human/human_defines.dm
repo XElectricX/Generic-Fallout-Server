@@ -135,6 +135,8 @@
 	var/protection_aura = 0
 	///Strength of the focus order aura affecting us
 	var/marksman_aura = 0
+	///Boolean if the pestilence aura is active on this mob
+	var/pestilence_aura = FALSE
 
 	///The squad this human is assigned to
 	var/datum/squad/assigned_squad

@@ -444,6 +444,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(burn_dam - (limb_wound_status & LIMB_WOUND_SALVED ? 50 : 0) * 2))
 			germ_level++
 
+	//Will always increment germ level regardless of current damage, unless disinfected
+	if(owner.pestilence_aura)
+		germ_level++
 
 /datum/limb/proc/handle_germ_effects()
 	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)

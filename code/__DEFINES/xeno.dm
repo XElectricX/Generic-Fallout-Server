@@ -80,6 +80,9 @@ GLOBAL_LIST_INIT(pheromone_images_list, list(
 		AURA_XENO_RECOVERY = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_RECOVERY),
 		AURA_XENO_WARDING = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_WARDING),
 		AURA_XENO_FRENZY = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_FRENZY),
+		AURA_XENO_CHEMICAL_CLAWS = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_RECOVERY),
+		AURA_HUMAN_FEAR = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_FRENZY),
+		AURA_HUMAN_PESTILENCE = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_WARDING),
 		))
 
 //List of Defiler toxin types available for selection
