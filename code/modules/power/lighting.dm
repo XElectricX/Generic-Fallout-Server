@@ -34,6 +34,8 @@
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswrench(I))
 		if(stage == 1)
@@ -126,7 +128,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
 	base_icon_state = "tube"
-	icon_state = "tube1"
+	icon_state = "tube_1"
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = FLY_LAYER
@@ -174,7 +176,7 @@
 	GLOB.mainship_lights -= src
 
 /obj/machinery/light/mainship/small
-	icon_state = "bulb1"
+	icon_state = "bulb_1"
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
@@ -183,8 +185,8 @@
 	base_icon_state = "bulb"
 
 /obj/machinery/light/red
-	base_state = "tubered"
-	icon_state = "tubered1"
+	base_state = "tube_red"
+	icon_state = "tube_red"
 	light_color = LIGHT_COLOR_FLARE
 	brightness = 3
 	bulb_power = 0.5
@@ -193,7 +195,7 @@
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
-	icon_state = "bulb1"
+	icon_state = "bulb_1"
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
@@ -203,6 +205,16 @@
 
 /obj/machinery/light/spot
 	name = "spotlight"
+	fitting = "large tube"
+	light_type = /obj/item/light_bulb/tube/large
+	brightness = 12
+
+/obj/machinery/light/floor
+	name = "floor light"
+	desc = "A tube light fixture set into the floor. Rated for foot traffic."
+	base_state = "floortube"
+	icon_state = "floortube1"
+	layer = HOLOPAD_LAYER
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
@@ -272,7 +284,7 @@
 	. = ..()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
-			icon_state = "[base_state][light_on]"
+			icon_state = "[base_state]_[light_on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -338,6 +350,8 @@
 
 /obj/machinery/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/lightreplacer))
 		var/obj/item/lightreplacer/LR = I
@@ -378,7 +392,7 @@
 			return
 
 		visible_message("[user] smashed the light!", "You hit the light, and it smashes!")
-		if(light_on && (I.flags_atom & CONDUCT) && prob(12))
+		if(light_on && (I.atom_flags & CONDUCT) && prob(12))
 			electrocute_mob(user, get_area(src), src, 0.3)
 		broken()
 
@@ -400,7 +414,7 @@
 			newlight.stage = 2
 			qdel(src)
 
-		else if(has_power() && (I.flags_atom & CONDUCT))
+		else if(has_power() && (I.atom_flags & CONDUCT))
 			to_chat(user, "You stick \the [I] into the light socket!")
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
@@ -459,13 +473,13 @@
 		turn_light(null, FALSE)
 
 //Xenos smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] smashes [src]!"), \
 	span_danger("We smash [src]!"), null, 5)
 	broken() //Smashola!
 
@@ -666,13 +680,6 @@
 	light_tile.update_icon()
 	to_chat(user, span_notice("You replace the light bulb."))
 
-/obj/item/light_bulb/bulb/fire
-	name = "fire bulb"
-	desc = "A replacement fire bulb."
-	icon_state = "fbulb"
-	base_state = "fbulb"
-	item_state = "egg4"
-	brightness = 5
 
 // update the icon state and description of the light
 
@@ -703,6 +710,8 @@
 // if a syringe, can inject phoron to make it explode
 /obj/item/light_bulb/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I

@@ -83,11 +83,6 @@
 ///Activates the beacon
 /datum/component/beacon/proc/activate(atom/movable/source, mob/user)
 	var/turf/location = get_turf(source)
-	if(!is_ground_level(location.z))
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
-		active = FALSE
-		return FALSE
-
 	var/area/A = get_area(location)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(user, span_warning("This won't work if you're standing deep underground."))
@@ -125,7 +120,7 @@
 		var/marker_flags = GLOB.faction_to_minimap_flag[user.faction]
 		if(!marker_flags)
 			marker_flags = MINIMAP_FLAG_MARINE
-		SSminimaps.add_marker(source, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply"))
+		SSminimaps.add_marker(source, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply", ABOVE_FLOAT_LAYER))
 
 	message_admins("[ADMIN_TPMONTY(user)] set up a supply beacon.") //do something with this
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
@@ -133,6 +128,7 @@
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
 	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_BEACON_CREATED, src)
 	source.update_appearance()
 
 ///Deactivates the beacon
@@ -194,9 +190,8 @@
 ///What happens when we change Z level
 /datum/component/beacon/proc/on_z_change(atom/source, old_z, new_z)
 	SIGNAL_HANDLER
-	var/turf/source_turf = get_turf(source)
-	if(!is_ground_level(source_turf.z) && active)
-		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
+	if(active)
+		beacon_datum.drop_location = get_turf(source)
 		return
 
 /datum/component/beacon/ai_droid/RegisterWithParent()

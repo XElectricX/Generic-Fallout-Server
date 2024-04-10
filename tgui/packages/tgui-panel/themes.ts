@@ -12,6 +12,9 @@ const COLOR_GREEN_TEXT = '#4AEF98';
 const COLOR_ORANGE_BG = '#322701';
 const COLOR_ORANGE_BG_DARKER = '#170d03';
 const COLOR_ORANGE_TEXT = '#deb624';
+const COLOR_DARK_BG = '#202020';
+const COLOR_DARK_BG_DARKER = '#171717';
+const COLOR_DARK_TEXT = '#a4bad6';
 
 let setClientThemeTimer: NodeJS.Timeout;
 

@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// increases as addiction gets worse
 	var/addiction_stage = 0
 	/// does this show up on health analyzers
-	var/scannable = FALSE
+	var/scannable = TRUE
 	/// if false stops metab in liverless mobs
 	var/self_consuming = FALSE
 	/// List of reagents removed by this chemical
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /// Called when addiction hits stage4, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage4(mob/living/L, metabolism)
 	if(prob(30))
-		to_chat(L, span_boldannounce("You're not feeling good at all! You really need some [name]."))
+		to_chat(L, span_danger("You're not feeling good at all! You really need some [name]."))
 
 
 ///Convert reagent list to a printable string for logging etc

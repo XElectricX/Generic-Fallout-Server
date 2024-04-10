@@ -35,7 +35,7 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 	greyscale_config = /datum/greyscale_config/armor_mk2/infantry
 	colorable_allowed = PRESET_COLORS_ALLOWED
@@ -102,8 +102,8 @@
 	name = "Jaeger Pattern Infantry Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "helmet"
 	item_state = "helmet"
@@ -128,6 +128,7 @@
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/module/night_vision,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/visor/marine,
@@ -141,6 +142,7 @@
 		/obj/item/armor_module/armor/visor/marine/helljumper,
 		/obj/item/armor_module/armor/visor/marine/ranger,
 		/obj/item/armor_module/armor/visor/marine/traditional,
+		/obj/item/armor_module/armor/visor/marine/mjolnir_open,
 		/obj/item/armor_module/armor/visor/marine/trooper,
 		/obj/item/armor_module/armor/visor/marine/fourvisor,
 		/obj/item/armor_module/armor/visor/marine/foureyevisor,
@@ -149,7 +151,7 @@
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
@@ -215,6 +217,12 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Trooper markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/trooper, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk2/trooper
+
+/obj/item/clothing/head/modular/marine/mjolnir_open
+	name = "Jaeger Mk.I Pattern Open Mjolnir Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Mjolnir markings but explosing the lower jaw."
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/mjolnir_open, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk2/mjolnir_open
 
 // Hardsuit Helmets
 
