@@ -4,7 +4,7 @@
 	icon = 'fallout/fallout icons/fallout items/fallout_storage.dmi'
 	icon_state = "pouch"
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_equip_slot = ITEM_SLOT_POCKET|ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_POCKET|ITEM_SLOT_BELT
 	storage_slots = null
 	max_storage_space = 3
 

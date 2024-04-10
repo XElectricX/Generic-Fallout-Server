@@ -19,7 +19,7 @@
 	name = "toolbox"
 	desc = "Stores tools. Very robust."
 	icon_state = "toolbox"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	throwforce = 15

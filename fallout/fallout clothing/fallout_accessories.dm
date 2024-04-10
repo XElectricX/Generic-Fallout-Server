@@ -31,9 +31,9 @@
 	item_icons = list(slot_shoes_str = 'fallout/fallout icons/fallout clothing/fallout_accessories_worn.dmi')
 	icon_state = "shoes_rag"
 	item_state = "shoes_rag"
-	flags_armor_protection = FEET
-	flags_cold_protection = FEET
-	flags_heat_protection = FEET
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
 
 /obj/item/clothing/shoes/fallout/cowboy
 	name = "cowboy boots"
@@ -67,8 +67,8 @@
 	item_icons = list(slot_wear_mask_str = 'fallout/fallout icons/fallout clothing/fallout_accessories_worn.dmi')
 	icon_state = "mask_joy"
 	item_state = "mask_joy"
-	flags_inventory = COVERMOUTH|COVEREYES
-	flags_inv_hide = HIDEFACE|HIDELOWHAIR
+	inventory_flags = COVERMOUTH|COVEREYES
+	inv_hide_flags = HIDEFACE|HIDELOWHAIR
 	w_class = WEIGHT_CLASS_SMALL
 	active = FALSE	//Toggleable masks are not up by default
 
@@ -85,13 +85,13 @@
 	active = !active
 	icon_state = "[initial(icon_state)][active ? "_up" : ""]"
 	if(!active)
-		DISABLE_BITFIELD(flags_inventory, (COVERMOUTH))
-		DISABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
-		DISABLE_BITFIELD(flags_armor_protection, FACE)
+		DISABLE_BITFIELD(inventory_flags, (COVERMOUTH))
+		DISABLE_BITFIELD(inv_hide_flags, (HIDEFACE|HIDELOWHAIR))
+		DISABLE_BITFIELD(armor_protection_flags, FACE)
 	else
-		ENABLE_BITFIELD(flags_inventory, (COVERMOUTH))
-		ENABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
-		ENABLE_BITFIELD(flags_armor_protection, FACE)
+		ENABLE_BITFIELD(inventory_flags, (COVERMOUTH))
+		ENABLE_BITFIELD(inv_hide_flags, (HIDEFACE|HIDELOWHAIR))
+		ENABLE_BITFIELD(armor_protection_flags, FACE)
 	to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
 
 	update_clothing_icon()
@@ -112,15 +112,15 @@
 	desc = "A dingy, straw sack with a sideways smiley face drawn on it, held together with rope."
 	icon_state = "mask_sack"
 	item_state = "mask_sack"
-	flags_inv_hide = HIDEFACE|HIDEALLHAIR
+	inv_hide_flags = HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/fallout/wrap
 	name = "brown face wrap"
 	desc = "Bundled cloth for covering your face."
 	icon_state = "mask_brown"
 	item_state = "mask_brown"
-	flags_inventory = COVERMOUTH
-	flags_inv_hide = HIDEFACE|HIDEALLHAIR
+	inventory_flags = COVERMOUTH
+	inv_hide_flags = HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/fallout/wrap/black
 	name = "black face wrap"
@@ -144,9 +144,9 @@
 	icon = 'fallout/fallout icons/fallout items/armor_modules.dmi'
 	icon_state = ""
 	w_class = WEIGHT_CLASS_HUGE
-	flags_attach_features = ATTACH_NO_HANDS|ATTACH_REMOVABLE
+	attach_features_flags = ATTACH_NO_HANDS|ATTACH_REMOVABLE
 	///To prevent runtimes, but no reason it cannot be used as normal
-	var/flags_armor_features
+	var/armor_features_flags
 	///Primarily used for process() as I cannot pass arguments onto it
 	var/mob/living/carbon/human/human_owner
 	attach_delay = 0 SECONDS
@@ -157,7 +157,7 @@
 	var/passive_energy_cost = 0
 	///How much energy this module needs when activated
 	var/active_energy_cost = 0
-	///Which slot this attachment needs to be in to use enable_mod or disable_mod; var/flags_equip_slot would be used but then the user can equip it directly
+	///Which slot this attachment needs to be in to use enable_mod or disable_mod; var/equip_slot_flags would be used but then the user can equip it directly
 	var/equip_slot
 
 /obj/item/armor_module/fallout/Initialize()
@@ -170,10 +170,10 @@
 
 /obj/item/armor_module/fallout/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(flags_armor_protection && !flags_equip_slot)	//Check flags_equip_slot or else items like helmets apply armor twice
+	if(armor_protection_flags && !equip_slot_flags)	//Check equip_slot_flags or else items like helmets apply armor twice
 		user.add_limb_armor(src)
 	if(slowdown)
-		user.add_movespeed_modifier(type, TRUE, 0, (flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
+		user.add_movespeed_modifier(type, TRUE, 0, (item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE, TRUE, slowdown)
 	if(user.pa_cell)
 		user.pa_cell.action_energy_drain += passive_energy_cost
 	if(!length(attachments_allowed) || !length(attachments_by_slot))	//Check if anything can be attached to this object
@@ -186,7 +186,7 @@
 
 /obj/item/armor_module/fallout/unequipped(mob/living/carbon/human/unequipper, slot)
 	. = ..()
-	if(flags_armor_protection && !flags_equip_slot)	//Check flags_equip_slot or else items like helmets remove armor twice
+	if(armor_protection_flags && !equip_slot_flags)	//Check equip_slot_flags or else items like helmets remove armor twice
 		unequipper.remove_limb_armor(src)
 	if(slowdown)
 		unequipper.remove_movespeed_modifier(type)
@@ -259,6 +259,6 @@
 	icon_state = ""	//Add a basic cape sprite some time in the future
 	attach_icon = 'fallout/fallout icons/fallout clothing/fallout_accessories_worn.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_attach_features = ATTACH_NO_HANDS|ATTACH_APPLY_ON_MOB|ATTACH_REMOVABLE
+	attach_features_flags = ATTACH_NO_HANDS|ATTACH_APPLY_ON_MOB|ATTACH_REMOVABLE
 	attachment_layer = CAPE_LAYER
 	slot = ATTACHMENT_SLOT_CAPE

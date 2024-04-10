@@ -3,7 +3,7 @@
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
 	icon = 'fallout/fallout icons/fallout structures/fallout_fences.dmi'
 	icon_state = "wire_fence"
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	layer = ABOVE_ALL_MOB_LAYER	//So that the railings and wooden fences appear above stuff
 	density = TRUE
 	anchored = TRUE
@@ -26,7 +26,7 @@
 /obj/structure/fallout_fence/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(atom_flags & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
@@ -37,19 +37,19 @@
 		return TRUE
 	if(mover?.throwing && climbable)	//If you can climb over it, surely you can throw items over it!
 		return TRUE
-	if(istype(mover, /obj/vehicle/multitile))
+	if(istype(mover, /obj/vehicle/sealed/armored/multitile))
 		visible_message(span_danger("[mover] drives over and destroys [src]!"))
 		deconstruct(FALSE)
 		return FALSE
 	if(density)
-		if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+		if((mover.atom_flags & ON_BORDER) && get_dir(loc, target) & dir)
 			return FALSE
 		var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-		if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+		if(S?.climbable && !(S.atom_flags & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 			return TRUE
 		if(get_dir(loc, target) & dir)
 			return FALSE
-		if(CHECK_BITFIELD(flags_atom, ON_BORDER))	//If it doesn't have the flag, don't let through
+		if(CHECK_BITFIELD(atom_flags, ON_BORDER))	//If it doesn't have the flag, don't let through
 			return TRUE
 	else
 		return TRUE
@@ -181,7 +181,7 @@
 	building_cost = 3
 
 /obj/structure/fallout_fence/railing/corner
-	flags_atom = NONE	//To prevent annoyances
+	atom_flags = NONE	//To prevent annoyances
 	density = FALSE
 	icon_state = "railing_corner"
 	building_cost = 2

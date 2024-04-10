@@ -12,8 +12,8 @@
 	w_class = WEIGHT_CLASS_HUGE
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_DEPLOYED_FIRE_ONLY
+	item_flags = IS_DEPLOYABLE|TWOHANDED
+	gun_features_flags = GUN_DEPLOYED_FIRE_ONLY
 	default_ammo_type = /obj/item/ammo_magazine/fallout_belt/winchester
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_belt/winchester)
 	caliber = CALIBER_308WIN
@@ -34,7 +34,7 @@
 	desc = "World's first fully automatic machinegun. Simple enough to produce and maintain, but very bulky. Good thing it's on wheels."
 	icon_state = "maxim"
 	fire_sound = 'sound/weapons/guns/fire/t42.ogg'
-	flags_item = DEPLOY_ON_INITIALIZE|IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|TWOHANDED
+	item_flags = DEPLOY_ON_INITIALIZE|IS_DEPLOYABLE|DEPLOYED_NO_PICKUP|TWOHANDED
 	fire_delay = 0.3 SECONDS
 	scatter = 5
 	deployable_item = /obj/machinery/deployable/mounted/moveable
@@ -60,8 +60,8 @@
 	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
-	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_WIELDED_STABLE_FIRING_ONLY
+	item_flags = IS_DEPLOYABLE|TWOHANDED
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_WIELDED_STABLE_FIRING_ONLY
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/machinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/machinegun, /obj/item/ammo_magazine/fallout_ammopack)

@@ -9,7 +9,7 @@
 		return FALSE
 
 	if(intentional)
-		if(flags_emote & EMOTE_FORCED_AUDIO)
+		if(emote_flags & EMOTE_FORCED_AUDIO)
 			return FALSE
 
 		if(sound || get_sound(user))
@@ -47,7 +47,7 @@
 
 			return FALSE
 
-		if(flags_emote & EMOTE_RESTRAINT_CHECK)
+		if(emote_flags & EMOTE_RESTRAINT_CHECK)
 			if(isliving(user))
 				var/mob/living/L = user
 				if(L.incapacitated())
@@ -56,7 +56,7 @@
 					user.balloon_alert(user, "You cannot [key] while stunned")
 					return FALSE
 
-		if(flags_emote & EMOTE_ARMS_CHECK)
+		if(emote_flags & EMOTE_ARMS_CHECK)
 			///okay snapper
 			var/mob/living/carbon/snapper = user
 			var/datum/limb/left_hand = snapper.get_limb("l_hand")
@@ -65,7 +65,7 @@
 				to_chat(user, span_notice("You cannot [key] without a working hand."))
 				return FALSE
 
-		if((flags_emote & EMOTE_RESTRAINT_CHECK) && user.restrained())
+		if((emote_flags & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
 			user.balloon_alert(user, "You cannot [key] while restrained")

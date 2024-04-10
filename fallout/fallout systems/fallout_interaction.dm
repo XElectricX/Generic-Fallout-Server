@@ -78,9 +78,6 @@
 	if(user.incapacitated()) /* FALLOUT EDIT: Removing the lying_angle check here! */
 		return FALSE
 
-	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
-		return FALSE
-
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
 		open(user)
 		return FALSE
@@ -143,9 +140,6 @@
 	if(!ishuman(usr))
 		return
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
-		return
-
 	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 		open(usr)
 		return
@@ -188,7 +182,7 @@
 
 //Add a check to prevent wielding while lying down
 /obj/item/wield(mob/user)
-	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
+	if(!(item_flags & TWOHANDED) || item_flags & WIELDED)
 		return FALSE
 
 	if(user.lying_angle)	//Can't wield if you're lying down

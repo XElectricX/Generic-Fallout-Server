@@ -8,9 +8,9 @@
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_melee_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
-	flags_atom = CONDUCT
-	flags_item = TWOHANDED
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	item_flags = TWOHANDED
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	edge = TRUE
 	sharp = IS_SHARP_ITEM_BIG
@@ -38,7 +38,7 @@
 		to_chat(user, span_warning("[src] is too heavy for you to wield properly!"))
 		return
 	*/
-	if(flags_item & WIELDED)
+	if(item_flags & WIELDED)
 		unwield(user)
 	else
 		wield(user)
@@ -85,7 +85,7 @@
 	if(haswieldedstate)
 		. = ..()
 		//item_state += "[weapon_active ? "_on" : ""]"
-		//item_state = initial(icon_state) + (flags_item & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
+		//item_state = initial(icon_state) + (item_flags & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
 
 
 //Proc for removing energy cells from weapons that have them
@@ -101,7 +101,7 @@
 	name = "electrified Chinese sword"
 	desc = "A blade commonly used by Chinese military personnel. This one is modified with an energy cell housing and wiring, designed for electrocuting enemies."
 	icon_state = "sword_chinese_electrified"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	weapon_can_activate = TRUE
 	force = 25
 	force_wielded = 35
@@ -199,7 +199,7 @@
 	name = "bumper sword"
 	desc = "A long, heavy sword made from scrap metal. Best used with both hands."
 	icon_state = "sword_bumper"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	force_wielded = 35
 	throwforce = 15
@@ -216,7 +216,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
 	item_state = "knife"	//Needs a worn sprite
-	flags_item = null
+	item_flags = null
 	w_class = WEIGHT_CLASS_SMALL
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 10
@@ -307,7 +307,7 @@
 			Seen in basically every pre-gunpowder battle, the backbone of most major armies. Cheap, useful, easy to produce, no non-sense stabbing greatness. \
 			The friend of peasants, with reach and accuracy. Cheers to the spear and all of its cousins; the pike, halberd, and others."
 	icon_state = "spear"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	force_wielded = 40	//More effective wielded than one-handed
 	throwforce = 30	//An effective throwing weapon
@@ -358,7 +358,7 @@
 	name = "metal axe"
 	desc = "Lumberjacking really fell off when most of the trees did."
 	icon_state = "axe_metal"	//Doesn't exist yet, but needs to
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	force = 25
 	force_wielded = 50
@@ -391,7 +391,7 @@
 	desc = "Cement on a stick. A crude and simple tool... or weapon."
 	icon_state = "hammer_sledge"
 	hitsound = 'sound/weapons/genhit3.ogg'
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -434,7 +434,7 @@
 	if(weapon_active)
 		weapon_active = FALSE
 		force_wielded = initial(force_wielded)
-		if(CHECK_BITFIELD(flags_item, WIELDED))
+		if(CHECK_BITFIELD(item_flags, WIELDED))
 			force = force_wielded
 		user.visible_message(span_notice("[user] deactivates [src]'s booster."))
 		playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -443,7 +443,7 @@
 		return
 	weapon_active = TRUE
 	force_wielded = force_wielded * 2
-	if(CHECK_BITFIELD(flags_item, WIELDED))
+	if(CHECK_BITFIELD(item_flags, WIELDED))
 		force = force_wielded
 	user.visible_message(span_warning("[user] ignites [src]'s booster."))
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -452,7 +452,7 @@
 
 /obj/item/weapon/fallout_melee/hammer/rocket/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
 	if(weapon_active)
-		if(!CHECK_BITFIELD(flags_item, WIELDED))
+		if(!CHECK_BITFIELD(item_flags, WIELDED))
 			to_chat(user, span_warning("You need both hands on [src] to use the booster safely!"))
 			attack_verb = list("smashed", "hammered", "bludgeoned")
 			return ..()
@@ -504,8 +504,8 @@
 	desc = "A swatter never runs out of bullets."
 	icon_state = "bat"
 	hitsound = 'sound/weapons/genhit3.ogg'
-	flags_atom = null
-	flags_equip_slot = ITEM_SLOT_BACK
+	atom_flags = null
+	equip_slot_flags = ITEM_SLOT_BACK
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
 	throw_speed = 0.5	//Slightly heavier than a sword, so slower to throw
@@ -523,7 +523,7 @@
 /obj/item/weapon/fallout_melee/bat/metal
 	name = "metal baseball bat"
 	icon_state = "bat_metal"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 
 //Gauntlets
 /obj/item/weapon/fallout_melee/gauntlet
@@ -531,8 +531,8 @@
 	desc = "A leather glove with rows of metallic blades attached."
 	icon_state = "gauntlet_lacerator"
 	hitsound = 'sound/weapons/genhit3.ogg'
-	flags_atom = null
-	flags_item = null
+	atom_flags = null
+	item_flags = null
 	w_class = WEIGHT_CLASS_NORMAL
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -555,7 +555,7 @@
 	name = "mole miner gauntlet"
 	desc = "Digging tool repurposed into a weapon by the Mole Miner population."
 	icon_state = "gauntlet_mole"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY
 	edge = TRUE
 	sharp = IS_SHARP_ITEM_SIMPLE
@@ -572,7 +572,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
 	item_state = "powerfist"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bonked", "punched", "fisted")
 	var/knockback_bonus = 0.5
@@ -674,7 +674,7 @@
 	desc = "Brass metal shaped into the form of a fist with holes for the wearer's fingers."
 	icon_state = "knuckles_brass"
 	hitsound = 'sound/weapons/genhit3.ogg'
-	flags_item = null
+	item_flags = null
 	w_class = WEIGHT_CLASS_SMALL
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -739,8 +739,8 @@
 	desc = "Inspires fear in some, horniness in others."
 	icon_state = "whip"
 	hitsound = 'sound/weapons/genhit3.ogg'
-	flags_atom = null
-	flags_item = null
+	atom_flags = null
+	item_flags = null
 	w_class = WEIGHT_CLASS_NORMAL
 	edge = FALSE
 	sharp = IS_NOT_SHARP_ITEM
@@ -759,7 +759,7 @@
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_melee_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.2
 	max_integrity = 700

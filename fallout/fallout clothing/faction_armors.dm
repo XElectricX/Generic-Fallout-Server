@@ -6,10 +6,10 @@
 	item_icons = list(slot_wear_suit_str = 'fallout/fallout icons/fallout clothing/faction_armors_worn.dmi')
 	icon_state = "ncr_vest"
 	item_state = "ncr_vest"
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	heat_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	soft_armor = list(MELEE = 25, BULLET = 40, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 0, ACID = 10, ACID = 10)
@@ -126,10 +126,10 @@
 	item_icons = list(slot_wear_suit_str = 'fallout/fallout icons/fallout clothing/faction_armors_worn.dmi')
 	icon_state = "legion_recruit"
 	item_state = "legion_recruit"
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	cold_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	heat_protection_flags = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	soft_armor = list(MELEE = 30, BULLET = 25, LASER = 10, ENERGY = 10, BOMB = 15, BIO = 20, ACID = 25, ACID = 0)

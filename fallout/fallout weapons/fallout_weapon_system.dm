@@ -11,8 +11,7 @@
 	damage_falloff_mult = 0
 	cock_delay = 0
 	movement_acc_penalty_mult = 2	//Only doubles the accuracy and scatter penalties, 5 was wayyy too much
-	upper_akimbo_accuracy = 0
-	lower_akimbo_accuracy = 0
+	akimbo_scatter_mod = 0
 	akimbo_additional_delay = 0
 	//For bolt actions, pump actions have their own under fallout_shotgun
 	cocked_message = "You work the bolt."
@@ -30,7 +29,7 @@ Changes to what gun sprites are selected
 */
 /obj/item/weapon/gun/fallout/update_icon_state(mob/user)
 	. = ..()
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))	//Stationary guns have only one sprite state
+	if(!CHECK_BITFIELD(gun_features_flags, GUN_DEPLOYED_FIRE_ONLY))	//Stationary guns have only one sprite state
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
 			icon_state = base_gun_icon + "_e"
 		else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))	//For lever actions and revolvers
@@ -51,17 +50,17 @@ Changes to what gun sprites are selected
 
 /obj/item/weapon/gun/fallout/update_item_state()
 	var/current_state = item_state
-	if(flags_gun_features & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
+	if(gun_features_flags & GUN_SHOWS_AMMO_REMAINING) //shows different ammo levels
 		var/remaining_rounds = (rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-		item_state = "[initial(icon_state)]_[remaining_rounds][flags_item & WIELDED ? "_w" : ""]"
-	else if(flags_gun_features & GUN_SHOWS_LOADED) //shows loaded or unloaded
-		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][flags_item & WIELDED ? "_w" : ""]"
+		item_state = "[initial(icon_state)]_[remaining_rounds][item_flags & WIELDED ? "_w" : ""]"
+	else if(gun_features_flags & GUN_SHOWS_LOADED) //shows loaded or unloaded
+		item_state = "[initial(icon_state)]_[rounds ? 100 : 0][item_flags & WIELDED ? "_w" : ""]"
 	else
 		//For some reason guns just don't use item_states so... I fix that
 		if(!initial(item_state))
-			item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
+			item_state = "[base_gun_icon][item_flags & WIELDED ? "_w" : ""]"
 		else
-			item_state = "[initial(item_state)][flags_item & WIELDED ? "_w" : ""]"
+			item_state = "[initial(item_state)][item_flags & WIELDED ? "_w" : ""]"
 		return
 
 	if(current_state != item_state && ishuman(gun_user))
@@ -83,33 +82,33 @@ Changes to what gun sprites are selected
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
-	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
+	if(!(gun_features_flags & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
-	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
-		if(!master_gun && !CHECK_BITFIELD(flags_item, WIELDED))
+	if(CHECK_BITFIELD(gun_features_flags, GUN_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
+		if(!master_gun && !CHECK_BITFIELD(item_flags, WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
-		if(master_gun && !CHECK_BITFIELD(master_gun.flags_item, WIELDED))
+		if(master_gun && !CHECK_BITFIELD(master_gun.item_flags, WIELDED))
 			to_chat(user, span_warning("You need a more secure grip to fire [src]!"))
 			return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		to_chat(user, "<span class='warning'>You are doing something else currently.")
 		return FALSE
-	if(CHECK_BITFIELD(flags_gun_features, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
-		if(!master_gun && !(flags_item & FULLY_WIELDED))
+	if(CHECK_BITFIELD(gun_features_flags, GUN_WIELDED_STABLE_FIRING_ONLY))//If we must wait to finish wielding before shooting.
+		if(!master_gun && !(item_flags & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return FALSE
-		if(master_gun && !(master_gun.flags_item & FULLY_WIELDED))
+		if(master_gun && !(master_gun.item_flags & FULLY_WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire [src]!")
 			return FALSE
-	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(gun_features_flags, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
 		return FALSE
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
+	if(CHECK_BITFIELD(gun_features_flags, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(gun_features_flags, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return FALSE
 	return TRUE
@@ -124,7 +123,7 @@ Changes to what gun sprites are selected
 	//Fallout edit; just checks if the mag this weapon uses is connected to it before deciding to drop the mag
 	if(length(chamber_items))
 		var/obj/item/ammo_magazine/magazine = chamber_items[current_chamber_position]
-		if(CHECK_BITFIELD(get_flags_magazine_features(magazine), MAGAZINE_WORN) && (get_dist(src, magazine) <= 1))
+		if(CHECK_BITFIELD(get_magazine_features_flags(magazine), MAGAZINE_WORN) && (get_dist(src, magazine) <= 1))
 			addtimer(CALLBACK(src, PROC_REF(check_if_deployed)), 0.1 SECONDS, TIMER_STOPPABLE)
 			return
 
@@ -132,7 +131,7 @@ Changes to what gun sprites are selected
 
 //Currently the deployable component removes the weapon from the user's inventory before actually deploying, so this check's if the weapon was deployed after a timer call
 /obj/item/weapon/gun/fallout/proc/check_if_deployed()
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return
 
 	//Remove the connected magazine since it wasn't actually deployed; prevents a minigun having a backpack with teleporting ammo
@@ -145,7 +144,7 @@ Changes to what gun sprites are selected
 	if(!(new_mag.type in allowed_ammo_types))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
-			if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL)) //If the gun uses handfuls, it accepts all handfuls since it uses caliber to check if its allowed.
+			if(!CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL)) //If the gun uses handfuls, it accepts all handfuls since it uses caliber to check if its allowed.
 				to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
 				return FALSE
 			if(mag.caliber != caliber)
@@ -175,8 +174,8 @@ Changes to what gun sprites are selected
 		return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		var/flags_magazine_features = get_flags_magazine_features(new_mag)
-		if(flags_magazine_features && CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
+		var/magazine_features_flags = get_magazine_features_flags(new_mag)
+		if(magazine_features_flags && CHECK_BITFIELD(magazine_features_flags, MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
 			return FALSE
 		if(get_magazine_reload_delay(new_mag) > 0 && user && !force)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
@@ -194,7 +193,7 @@ Changes to what gun sprites are selected
 		get_ammo()
 		if(user)
 			playsound(src, reload_sound, 25, 1)
-		if(!flags_magazine_features || (flags_magazine_features && !CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN)))
+		if(!magazine_features_flags || (magazine_features_flags && !CHECK_BITFIELD(magazine_features_flags, MAGAZINE_WORN)))
 			new_mag.forceMove(src)
 			user?.temporarilyRemoveItemFromInventory(new_mag)
 		if(istype(new_mag, /obj/item/ammo_magazine))
@@ -213,7 +212,7 @@ Changes to what gun sprites are selected
 	if(max_chamber_items)
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
-			if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
+			if(CHECK_BITFIELD(mag.magazine_flags, MAGAZINE_HANDFUL))
 				if(mag.current_rounds > 1)
 					items_to_insert += mag.create_handful(null, 1)
 				else

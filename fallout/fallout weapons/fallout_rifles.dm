@@ -12,7 +12,7 @@
 	unload_sound = 'fallout/fallout sounds/fallout weapon sounds/assault_rifle_unload.wav'
 	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/assault_rifle_reload.wav'
 	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/assault_rifle_cock.wav'
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle
@@ -187,7 +187,7 @@
 	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_reload.wav'
 	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_cock.wav'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/winchester/short
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/winchester, /obj/item/ammo_magazine/fallout_rifle/winchester/short)
@@ -217,7 +217,7 @@
 	icon_state = "delisle"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/american180.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/acp
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/acp)
@@ -242,7 +242,7 @@
 	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_cock.wav'
 	empty_sound = 'fallout/fallout sounds/fallout weapon sounds/garand_ping.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/winchester/en_bloc
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/winchester/en_bloc)
@@ -274,7 +274,7 @@
 	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_reload.wav'
 	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_cock.wav'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/winchester/clip
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/winchester/clip)
@@ -321,7 +321,7 @@
 	reload_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_reload.wav'
 	cocked_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_rifle_cock.wav'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/winchester/clip
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/winchester/clip)
@@ -347,7 +347,7 @@
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	default_ammo_type = /datum/ammo/bullet/fallout/govt
 	allowed_ammo_types = /datum/ammo/bullet/fallout/govt
@@ -372,7 +372,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/russian/clip
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/russian/clip)
@@ -398,7 +398,7 @@
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/svd_cocked.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/russian
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/russian)
 	caliber = CALIBER_762X54
@@ -504,7 +504,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/machinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/machinegun, /obj/item/ammo_magazine/fallout_ammopack)
@@ -535,7 +535,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/extended
 	allowed_ammo_types = list(
@@ -559,7 +559,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_rifle/pan
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_rifle/pan)

@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	icon = 'fallout/fallout icons/fallout structures/fallout_doors.dmi'
 	icon_state = "empty_key"
 	w_class = WEIGHT_CLASS_TINY
-	flags_equip_slot = SLOT_BELT
+	equip_slot_flags = SLOT_BELT
 	var/id = null
 	var/static/list/used_ids = list()
 
@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	icon = 'fallout/fallout icons/fallout structures/fallout_doors.dmi'
 	icon_state = "keychain_0"
 	w_class = WEIGHT_CLASS_TINY
-	flags_equip_slot = SLOT_BELT
+	equip_slot_flags = SLOT_BELT
 /*
 /obj/item/storage/keys_set/ComponentInitialize()
 	. = ..()
@@ -673,7 +673,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 	desc = "83% chance the door knob is stuck."
 	icon_state = "gate_wire"
 	door_type = "gate_wire"
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	layer = ABOVE_ALL_MOB_LAYER
 	max_integrity = 150
 	coverage = 20
@@ -711,7 +711,7 @@ GLOBAL_LIST_EMPTY(global_locks)
 /obj/structure/simple_door/gate/wire/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
 	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+	if(!density || !(atom_flags & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
 		return NONE
 	knownblockers += src
 	return COMPONENT_ATOM_BLOCK_EXIT
@@ -720,12 +720,12 @@ GLOBAL_LIST_EMPTY(global_locks)
 	. = ..()
 	if(CHECK_BITFIELD(mover.allow_pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return TRUE
-	if(istype(mover, /obj/vehicle/multitile))
+	if(istype(mover, /obj/vehicle/sealed/armored/multitile))
 		visible_message(span_danger("[mover] drives over and destroys [src]!"))
 		deconstruct(FALSE)
 		return FALSE
 	if(density)
-		if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+		if((mover.atom_flags & ON_BORDER) && get_dir(loc, target) & dir)
 			return FALSE
 		if(get_dir(loc, target) & dir)
 			return FALSE

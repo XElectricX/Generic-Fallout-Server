@@ -88,8 +88,8 @@
 	item_icons = list(slot_wear_mask_str = 'fallout/fallout icons/fallout clothing/faction_accessories_worn.dmi')
 	icon_state = "bandana_ncr"
 	item_state = "bandana_ncr"
-	flags_inventory = null
-	flags_inv_hide = null
+	inventory_flags = null
+	inv_hide_flags = null
 	toggleable = TRUE
 
 /obj/item/clothing/mask/fallout/legion
@@ -99,8 +99,8 @@
 	item_icons = list(slot_wear_mask_str = 'fallout/fallout icons/fallout clothing/faction_accessories_worn.dmi')
 	icon_state = "bandana_legion"
 	item_state = "bandana_legion"
-	flags_inventory = null
-	flags_inv_hide = null
+	inventory_flags = null
+	inv_hide_flags = null
 	toggleable = TRUE
 
 /obj/item/clothing/mask/fallout/legion/black

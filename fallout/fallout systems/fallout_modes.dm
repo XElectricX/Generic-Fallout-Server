@@ -49,7 +49,7 @@
 /datum/game_mode/ncr_vs_legion
 	name = "NCR vs Legion"
 	config_tag = "NCR vs Legion"
-	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER
 	shutters_drop_time = 7 MINUTES
 	respawn_time = 3 MINUTES	//Increase to 5 when out of testing
 	factions = list(NCR, LEGION)

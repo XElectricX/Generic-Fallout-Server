@@ -92,7 +92,7 @@
 	desc = "Good for hunting wild animals. Or humans."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
-	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_PASS_THROUGH_MOB
 	damage = 40
 	damage_falloff = 0.8
 	penetration = 60
@@ -107,7 +107,7 @@
 	desc = "Inaccurate but powerful round. Put the fear of American munitions into your enemy."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
-	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_PASS_THROUGH_MOB
 	damage = 40
 	damage_falloff = 2
 	penetration = 40
@@ -122,7 +122,7 @@
 	desc = "An ancient ammo type that is still used by some rifles. Quite powerful but rare."
 	handful_icon_state = "medium_casing"
 	handful_amount = 4
-	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_PASS_THROUGH_MOB
 	damage = 50
 	penetration = 50
 	shrapnel_chance = 25
@@ -136,7 +136,7 @@
 	desc = "You could kill a house with this. Usually used by HMGs and anti-materiel rifles."
 	handful_icon_state = "large_casing"
 	handful_amount = 1
-	flags_ammo_behavior = AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF
+	ammo_behavior_flags = AMMO_PASS_THROUGH_MOB|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_TURF
 	damage = 70
 	damage_falloff = 0.6
 	penetration = 70
@@ -182,7 +182,7 @@
 //Missile
 /datum/ammo/rocket/fallout_missile
 	name = "missile"
-	flags_ammo_behavior = AMMO_EXPLOSIVE
+	ammo_behavior_flags = AMMO_TARGET_TURF
 	max_range = 50
 	damage = 20	//The actual explosion does the damage
 	penetration = 60

@@ -124,7 +124,7 @@
 	name = "missile launcher targeting scope"
 	desc = "Provides magnification and targeting lock."
 	icon_state = "sniperscope_invisible"
-	flags_attach_features = ATTACH_ACTIVATION
+	attach_features_flags = ATTACH_ACTIVATION
 	zoom_tile_offset = 11
 	zoom_viewsize = 6
 
@@ -132,6 +132,6 @@
 	name = "machinegun sights"
 	desc = "Built-in iron sights for providing a clear sight to the gunner down range."
 	icon_state = "sniperscope_invisible"
-	flags_attach_features = ATTACH_ACTIVATION
+	attach_features_flags = ATTACH_ACTIVATION
 	zoom_tile_offset = 5
 	zoom_viewsize = 0

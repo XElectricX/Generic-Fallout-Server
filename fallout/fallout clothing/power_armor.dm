@@ -396,10 +396,10 @@
 	item_icons = list(slot_head_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_atom = CONDUCT
-	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEMASK|HIDEEYES|HIDEEARS
-	flags_armor_protection = HEAD|FACE|EYES
-	flags_equip_slot = ITEM_SLOT_HEAD
+	atom_flags = CONDUCT
+	inv_hide_flags = HIDEFACE|HIDEALLHAIR|HIDEMASK|HIDEEYES|HIDEEARS
+	armor_protection_flags = HEAD|FACE|EYES
+	equip_slot_flags = ITEM_SLOT_HEAD
 	equip_slot = SLOT_HEAD
 	slot = ATTACHMENT_SLOT_HELMET
 	light_power = 5
@@ -460,8 +460,8 @@
 	icon_state = "frame_torso"
 	item_icons = list(slot_wear_suit_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
-	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN
+	atom_flags = CONDUCT
+	armor_protection_flags = CHEST|GROIN
 	equip_slot = SLOT_WEAR_SUIT
 	slot = ATTACHMENT_SLOT_CHESTPLATE
 	worn_layer = BELT_LAYER + 0.2	//Render below most things
@@ -491,8 +491,8 @@
 	icon_state = "frame_arms"
 	item_icons = list(slot_gloves_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
-	flags_atom = CONDUCT
-	flags_armor_protection = ARMS|HANDS
+	atom_flags = CONDUCT
+	armor_protection_flags = ARMS|HANDS
 	equip_slot = SLOT_GLOVES
 	slot = ATTACHMENT_SLOT_SHOULDER
 	worn_layer = HEAD_LAYER - 0.1	//Render above the helmet or else the helmet clips over the arms in side views
@@ -510,8 +510,8 @@
 	icon_state = "frame_legs"
 	item_icons = list(slot_shoes_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
-	flags_atom = CONDUCT
-	flags_armor_protection = LEGS|FEET
+	atom_flags = CONDUCT
+	armor_protection_flags = LEGS|FEET
 	equip_slot = SLOT_SHOES
 	slot = ATTACHMENT_SLOT_KNEE
 	worn_layer = BELT_LAYER + 0.1	//Render above the torso
@@ -810,7 +810,7 @@
 	name = "hydraulic bracers"
 	desc = "Increases the user's arm strength."
 	icon_state = "module_armor"
-	flags_attach_features = ATTACH_NO_OVERLAY|ATTACH_REMOVABLE|ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_NO_OVERLAY|ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_MODULE
 
 /obj/item/armor_module/fallout/hydraulic_bracers/enable_mod(obj/item/armor_module/fallout/attached_to, mob/living/carbon/human/user, which_slot)
@@ -825,7 +825,7 @@
 	name = "integrated stealth boy modkit"
 	desc = "Grants a low-level stealth field when activated."
 	icon_state = "module_armor"
-	flags_attach_features = ATTACH_NO_OVERLAY|ATTACH_REMOVABLE|ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_NO_OVERLAY|ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_MODULE
 	activation_sound = 'sound/effects/seedling_chargeup.ogg'
 	active_energy_cost = 200
@@ -871,7 +871,7 @@
 	name = "night vision modkit"
 	desc = "Helmet attachment for seeing clearer in low light conditions."
 	icon_state = "module_armor"
-	flags_attach_features = ATTACH_NO_OVERLAY|ATTACH_REMOVABLE|ATTACH_NO_HANDS
+	attach_features_flags = ATTACH_NO_OVERLAY|ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_MODULE
 	actions_types = list(/datum/action/item_action/toggle)
 	activation_sound = 'sound/effects/nightvision.ogg'

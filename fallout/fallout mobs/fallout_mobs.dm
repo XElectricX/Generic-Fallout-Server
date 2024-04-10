@@ -32,8 +32,6 @@
 	QDEL_NULL(combat_sound_loop)
 
 /mob/living/carbon/fallout/update_icons()
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
-		return
 	if(stat == DEAD)
 		icon_state = "[initial(icon_state)]_dead"
 

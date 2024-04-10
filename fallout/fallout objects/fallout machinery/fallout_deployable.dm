@@ -4,7 +4,7 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun)
 		for(var/obj/item/ammo_magazine/ammo_magazine in gun.chamber_items)	//Checks if we even have a magazine loaded
-			if(CHECK_BITFIELD(gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))	//Start process() if it was deployed already connected
+			if(CHECK_BITFIELD(gun.get_magazine_features_flags(ammo_magazine), MAGAZINE_WORN))	//Start process() if it was deployed already connected
 				START_PROCESSING(SSobj, src)
 
 /obj/machinery/deployable/mounted/reload(mob/user, ammo_magazine)
@@ -26,7 +26,7 @@
 	gun?.reload(ammo_magazine, user)
 	update_icon_state()
 
-	if(CHECK_BITFIELD(gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))	//Start process() if a backpack magazine has been connected
+	if(CHECK_BITFIELD(gun.get_magazine_features_flags(ammo_magazine), MAGAZINE_WORN))	//Start process() if a backpack magazine has been connected
 		START_PROCESSING(SSobj, src)
 
 	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
@@ -39,7 +39,7 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun)
 		for(var/obj/item/ammo_magazine/ammo_magazine in gun.chamber_items)
-			if(CHECK_BITFIELD(gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))	//Check if an external mag is connected
+			if(CHECK_BITFIELD(gun.get_magazine_features_flags(ammo_magazine), MAGAZINE_WORN))	//Check if an external mag is connected
 				if(!(get_dist(src, ammo_magazine) <= 1))	//Check if the magazine is more than one tile away from itself
 					gun.drop_connected_mag(src)
 					visible_message("[src]'s ammo has been disconnected.")
@@ -53,7 +53,7 @@
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(gun)
 		for(var/obj/item/ammo_magazine/ammo_magazine in gun.chamber_items)
-			if(CHECK_BITFIELD(gun.get_flags_magazine_features(ammo_magazine), MAGAZINE_WORN))
+			if(CHECK_BITFIELD(gun.get_magazine_features_flags(ammo_magazine), MAGAZINE_WORN))
 				if(!(get_dist(src, ammo_magazine) <= 1))
 					gun.drop_connected_mag(src)
 					visible_message("[src]'s ammo has been disconnected.")

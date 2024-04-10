@@ -273,7 +273,7 @@
 	icon_state = "missile"	//Needs a proper Fallout missile sprite
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_magazine = null
+	magazine_flags = null
 	default_ammo = /datum/ammo/rocket/fallout_missile
 	caliber = CALIBER_MISSILE
 	max_rounds = 1
@@ -293,9 +293,9 @@
 	desc = "Long chain links for holding rounds together and uniform."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	icon_state = "ammobelt"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_NORMAL
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	default_ammo = /datum/ammo/bullet/fallout/assault_rifle
 	caliber = CALIBER_556X45
 	max_rounds = 300
@@ -316,10 +316,10 @@
 	item_icons = list(slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi')
 	item_state = "ammopack"
 	item_state_worn = TRUE
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_HUGE
-	flags_equip_slot = ITEM_SLOT_BACK
-	flags_magazine = MAGAZINE_REFILLABLE|MAGAZINE_WORN
+	equip_slot_flags = ITEM_SLOT_BACK
+	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_WORN
 	default_ammo = /datum/ammo/bullet/fallout/assault_rifle
 	caliber = CALIBER_556X45
 	max_rounds = 500
@@ -362,7 +362,7 @@
 /obj/item/ammo_magazine/box/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!istype(I, /obj/item/ammo_magazine))
-		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user)
+		if(!CHECK_BITFIELD(magazine_flags, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user)
 			return ..()
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
@@ -370,7 +370,7 @@
 		gun.reload(src, user)
 		return
 
-	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
+	if(!CHECK_BITFIELD(magazine_flags, MAGAZINE_REFILLABLE)) //and a refillable magazine
 		return
 
 	var/obj/item/ammo_magazine/mag = I

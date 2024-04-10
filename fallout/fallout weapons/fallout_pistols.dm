@@ -151,7 +151,7 @@
 	desc = "God created man, Sam Colt made them equal."
 	icon_state = "357_colt"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/357_colt_fire.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/magnum357
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/magnum357)
@@ -176,7 +176,7 @@
 	desc = "Widespread and very popular among police officers and armies around the pre-war world."
 	icon_state = "357_revolver"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/police_revolver_fire.wav'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/magnum357
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/magnum357)
@@ -195,7 +195,7 @@
 	desc = "Big iron."
 	icon_state = "44_revolver"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/44_revolver_fire.wav'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/magnum44
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/magnum44)
@@ -216,7 +216,7 @@
 	desc = "Sold as the Magnum Research BFR before the Great War, this powerful handgun is the most accurate revolvers available these days."
 	icon_state = "hunting_revolver"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_revolver_fire.wav'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/govt
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/govt)
@@ -237,7 +237,7 @@
 	desc = "This revolver features a dark finish with intricate engravings etched all around the weapon. Engraved along the barrel are the words \"For Honorable Service\" and \"Against All Tyrants\". The handgrip bears the symbol of the NCR Rangers, a bear, and a brass plate attached to the bottom that reads \"20 Years\"."
 	icon_state = "sequoia"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/hunting_revolver_fire.wav'	//Does not have its own sound file, so using this one since they have the same caliber
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/govt
 	allowed_ammo_types = list(/obj/item/ammo_magazine/fallout_pistol/govt)

@@ -110,11 +110,11 @@
 			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
 		//Check for unwielding any wielded guns you lie down with
 		var/obj/item/item_to_unwield = get_active_held_item()
-		if(item_to_unwield?.flags_item & WIELDED)
+		if(item_to_unwield?.item_flags & WIELDED)
 			item_to_unwield.unwield(src)
 		else
 			item_to_unwield = get_inactive_held_item()
-			if(item_to_unwield?.flags_item & WIELDED)
+			if(item_to_unwield?.item_flags & WIELDED)
 				item_to_unwield.unwield(src)
 	else
 		density = TRUE
@@ -207,21 +207,9 @@
 		proj.ammo.on_shield_block(src, proj)
 		return FALSE	//Fallout edit
 
-	if(!damage)
-		return FALSE	//Fallout edit
-
 	flash_weak_pain()
 
 	var/feedback_flags = NONE
-
-	if(proj.shot_from && src == proj.shot_from.sniper_target(src))
-		damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-		add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-
-	if(iscarbon(proj.firer))
-		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(shooter_carbon.IsStaggered())
-			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
 	if(damage == original_damage)
@@ -230,16 +218,16 @@
 		feedback_flags |= BULLET_FEEDBACK_SOAK
 		bullet_soak_effect(proj)
 
-	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
+	if(proj.ammo.ammo_behavior_flags & AMMO_INCENDIARY)
 		adjust_fire_stacks(proj.ammo.incendiary_strength)
 		if(IgniteMob())
 			feedback_flags |= (BULLET_FEEDBACK_FIRE)
 
-	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
+	if(proj.sundering)
 		adjust_sunder(proj.sundering)
 
-	if(stat != DEAD && ismob(proj.firer))
-		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
+	if(stat != DEAD && proj.firer)
+		proj.firer.record_projectile_damage(damage, src)	//Tally up whoever the shooter was
 
 	if(damage)
 		if(do_shrapnel_roll(proj, damage))
@@ -254,7 +242,7 @@
 		bullet_message(proj, feedback_flags)
 
 	GLOB.round_statistics.total_projectile_hits[faction]++
-	SSblackbox.record_feedback("tally round_statistics", 1, "total_projectile_hits[faction]")
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectile_hits[faction]")
 
 	/* Fallout edit */
 	if(damage)
@@ -266,7 +254,7 @@
 	proj.ammo.on_hit_mob(src, proj)
 	if(!bullet_act(proj))	//If damage from a bullet is 0, no blood splatter
 		return
-	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.ammo_behavior_flags & AMMO_BALLISTIC)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
 
 //Override fracture() to use the notification system instead of a self message

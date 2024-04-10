@@ -152,7 +152,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby/fallout/year)
 /atom/movable/screen/text/lobby/fallout/clickable/polls/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
-	player.handle_playeR_DBRANKSing()
+	player.handle_playeR_POLLSing()
 	fetch_polls()
 
 /atom/movable/screen/text/lobby/fallout/clickable/polls/proc/fetch_polls()

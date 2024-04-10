@@ -14,7 +14,7 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	gun_skill_category = SKILL_SHOTGUNS
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -168,7 +168,7 @@
 
 //Tweaks to the underbarrel shotgun
 /obj/item/weapon/gun/shotgun/combat/masterkey
-	flags_gun_features = GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_CAN_POINTBLANK
+	gun_features_flags = GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_CAN_POINTBLANK
 	default_ammo_type = /datum/ammo/bullet/fallout/buckshot
 	damage_mult = 1
 	damage_falloff_mult = 2

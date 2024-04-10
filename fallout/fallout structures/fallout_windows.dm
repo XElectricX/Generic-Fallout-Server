@@ -5,7 +5,7 @@
 	icon = 'fallout/fallout icons/fallout structures/fallout_windows.dmi'
 	icon_state = "house"
 	static_frame = TRUE
-	flags_atom = NONE
+	atom_flags = NONE
 	max_integrity = 75
 
 //Leave it empty or else the game tries to smooth it, breaking the sprite
