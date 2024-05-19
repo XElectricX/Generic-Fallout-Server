@@ -4,7 +4,7 @@
 	desc = "A cloth banner on a metal rod."
 	icon = 'fallout/fallout icons/fallout items/fallout_trinkets.dmi'
 	icon_state = ""
-	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
+	worn_icon_list = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
 	resistance_flags = RESIST_ALL
 
 /obj/item/flag/ncr

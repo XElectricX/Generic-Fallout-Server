@@ -18,7 +18,7 @@
 	response_harm = "kicks"
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'
-	var/datum/reagent/milk_reagent = /datum/reagent/consumable/drink/milk
+	var/datum/reagent/milk_reagent = /datum/reagent/consumable/milk
 	/*butcher_results = list(/obj/item/reagent_containers/food/snacks/meat = 6)
 	var/food_type = /obj/item/reagent_containers/food/snacks/grown/wheat
 	var/is_calf = 0

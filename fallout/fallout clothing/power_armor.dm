@@ -45,7 +45,7 @@
 	desc = "Mechanical skeleton on which armor pieces and modules are attached."
 	icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
 	icon_state = "frame"
-	item_icons = null
+	worn_icon_list = null
 	w_class = WEIGHT_CLASS_GIGANTIC
 	density = TRUE
 	attachments_by_slot = list(
@@ -393,7 +393,7 @@
 	name = "non-existent helmet"
 	desc = "Frames don't come with a helmet."
 	icon_state = ""
-	item_icons = list(slot_head_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
+	worn_icon_list = list(slot_head_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	atom_flags = CONDUCT
@@ -433,7 +433,7 @@
 	update_item_state()
 
 /obj/item/armor_module/fallout/helmet/update_item_state(mob/user)
-	item_state = "[initial(item_state)][light_on ? "_on" : ""]"
+	worn_icon_state = "[initial(worn_icon_state)][light_on ? "_on" : ""]"
 
 /obj/item/armor_module/fallout/helmet/activate(mob/living/carbon/human/user)
 	if(activation_sound)
@@ -458,7 +458,7 @@
 	name = "power armor frame torso"
 	desc = "Bare metal and circuitry waiting to be plated."
 	icon_state = "frame_torso"
-	item_icons = list(slot_wear_suit_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
 	atom_flags = CONDUCT
 	armor_protection_flags = CHEST|GROIN
@@ -489,7 +489,7 @@
 	name = "power armor frame arms"
 	desc = "Mechanical arms for lifting heavy items."
 	icon_state = "frame_arms"
-	item_icons = list(slot_gloves_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
+	worn_icon_list = list(slot_gloves_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
 	atom_flags = CONDUCT
 	armor_protection_flags = ARMS|HANDS
@@ -508,7 +508,7 @@
 	name = "power armor frame legs"
 	desc = "An assembly of servos and light metal for keeping the weight of the frame from crushing you."
 	icon_state = "frame_legs"
-	item_icons = list(slot_shoes_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
+	worn_icon_list = list(slot_shoes_str = 'fallout/fallout icons/fallout clothing/power_armor.dmi')
 	attach_icon = 'fallout/fallout icons/fallout clothing/power_armor.dmi'
 	atom_flags = CONDUCT
 	armor_protection_flags = LEGS|FEET

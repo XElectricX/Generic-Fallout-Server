@@ -3,7 +3,7 @@
 	desc = "Dirty and useless, probably from before the War."
 	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
 	icon_state = ""
-	init_reagent_flags = DRAWABLE
+	reagent_flags = DRAWABLE
 	skilllock = 0
 	possible_transfer_amounts = list(1,3,5,10,15,20)
 
@@ -15,11 +15,11 @@
 
 /obj/item/reagent_containers/hypospray/fallout/update_icon_state()
 	. = ..()
-	if(!(reagents.total_volume) && is_drawable())
+	if(!(reagents?.total_volume) && is_drawable())
 		name = "expended [name]"
 		icon_state += "_empty"
 		DISABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
-	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE))
+	else if(reagents?.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE))
 		icon_state = initial(icon_state)
 		name = initial(name)
 		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
@@ -166,7 +166,7 @@
 	desc = "A clay bottle with decorative markings, usually containing the \"bitter drink\" herbal medicine."
 	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
 	icon_state = "bitter_drink"
-	init_reagent_flags = OPENCONTAINER_NOUNIT
+	reagent_flags = OPENCONTAINER_NOUNIT
 	volume = 10
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,5,10)
@@ -204,7 +204,7 @@
 	desc = "Serving as a natural remedy for broken bones and poisonings, this bottle with vials connected to it serves as the package for the potent hydra medicine."
 	icon = 'fallout/fallout icons/fallout items/fallout_medical.dmi'
 	icon_state = "hydra"
-	init_reagent_flags = OPENCONTAINER_NOUNIT
+	reagent_flags = OPENCONTAINER_NOUNIT
 	volume = 10
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,5,10)

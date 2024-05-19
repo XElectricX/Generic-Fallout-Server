@@ -3,16 +3,20 @@
 	name = "survivalist backpack"
 	desc = "Multiple bags tied together for your post-apocalyptic storage needs."
 	icon = 'fallout/fallout icons/fallout clothing/fallout_backpacks.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_misc_clothing.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_misc_clothing.dmi')
 	icon_state = "survivalist_pack"
-	item_state = "backpack"
+	worn_icon_state = "backpack"
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = 4
-	max_storage_space = 16
 	slowdown = 0.5
+	storage_type = /datum/storage/backpack/fallout
+
+/datum/storage/backpack/fallout
+	max_w_class = WEIGHT_CLASS_BULKY
+	max_storage_space = 16
+	access_delay = 1 SECONDS
 
 /obj/item/storage/backpack/fallout/wanderer
 	name = "wanderer backpack"
@@ -35,10 +39,13 @@
 	desc = "Should be a survivalist satchel, but that doesn't exist yet!"
 	icon_state = "survivalist_satchel"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 3
+	slowdown = 0
+	storage_type = /datum/storage/backpack/fallout/satchel
+
+/datum/storage/backpack/fallout/satchel
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 9
 	access_delay = 0
-	slowdown = 0
 
 /obj/item/storage/backpack/fallout/satchel/wanderer
 	name = "wanderer satchel"
@@ -60,14 +67,22 @@
 	name = "spear quiver"
 	desc = "Store your pointed sticks for throwing later."
 	icon_state = "quiver"
-	max_w_class = 4
-	storage_slots = 10
-	max_storage_space = 40
-	access_delay = 0
 	slowdown = 0
-	can_hold = list(/obj/item/weapon/fallout_melee/spear/throwing)
+	storage_type = /datum/storage/backpack/fallout/quiver
 
-/obj/item/storage/backpack/fallout/quiver/full/Initialize()
+/datum/storage/backpack/fallout/quiver
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_storage_space = 40
+	storage_slots = 10
+	access_delay = 0
+
+/datum/storage/backpack/fallout/quiver/New(atom/parent)
 	. = ..()
-	for(var/i in 1 to 10)
+	set_holdable(list(/obj/item/weapon/fallout_melee/spear/throwing))
+
+/obj/item/storage/backpack/fallout/quiver/full/PopulateContents()
+	if(!storage_datum)	//Sanity check
+		return
+
+	for(var/i in 1 to storage_datum.storage_slots)
 		new /obj/item/weapon/fallout_melee/spear/throwing(src)

@@ -12,9 +12,9 @@
 	name = "pickaxe"
 	desc = "Rock and stone."
 	icon = 'fallout/fallout icons/fallout items/fallout_tools.dmi'
-	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
+	worn_icon_list = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
 	icon_state = "pickaxe"
-	item_state = "pickaxe"
+	worn_icon_state = "pickaxe"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 10
 	throwforce = 10

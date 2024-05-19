@@ -3,16 +3,7 @@
 	name = "generic storage"
 	desc = "Someone did an oopsie."
 	icon = 'fallout/fallout icons/fallout items/fallout_storage.dmi'
-	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
-
-//Instead of drawing an item, alt clicking will open the storage menu
-/obj/item/storage/AltClick(mob/user)
-	if(Adjacent(usr))
-		open(user)
-
-//Pill bottles retain their item dispensing function
-/obj/item/storage/pill_bottle/AltClick(mob/user)
-	attempt_draw_object(user)
+	worn_icon_list = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
 
 //Toolboxes
 /obj/item/storage/fallout/toolbox
@@ -27,8 +18,7 @@
 	throw_speed = 1
 	attack_verb = list("robusted", "made a tool out of")
 
-/obj/item/storage/fallout/toolbox/full/Initialize(mapload, ...)
-	. = ..()
+/obj/item/storage/fallout/toolbox/full/PopulateContents()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
 	new /obj/item/tool/weldingtool(src)
@@ -42,19 +32,23 @@
 	desc = "The ultimate storage solution for medical practitioners. Space for a variety of items ranging from medicines to surgical instruments."
 	icon_state = "bag_medical"
 	w_class = WEIGHT_CLASS_NORMAL
+
+/datum/storage/medical
 	storage_slots = 12
 	max_storage_space = 24
-	can_hold = list(
+
+/datum/storage/medical/New(atom/parent)
+	. = ..()
+	set_holdable(list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/reagent_containers,
 		/obj/item/stack/medical,
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
-		/obj/item/healthanalyzer)
+		/obj/item/healthanalyzer))
 
-/obj/item/storage/fallout/medical/surgery/Initialize(mapload, ...)
-	. = ..()
+/obj/item/storage/fallout/medical/surgery/PopulateContents()
 	new /obj/item/stack/nanopaste(src)
 	new /obj/item/tool/surgery/FixOVein(src)
 	new /obj/item/tool/surgery/bonegel(src)

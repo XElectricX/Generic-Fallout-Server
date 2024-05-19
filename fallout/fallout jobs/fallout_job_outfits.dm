@@ -147,7 +147,7 @@
 	name = NCR_LEADER
 	w_uniform = /obj/item/clothing/under/fallout/ncr/officer
 	wear_suit = /obj/item/clothing/suit/storage/fallout/ncr/officer_reinforced
-	belt = /obj/item/storage/belt/fallout/holster
+	belt = /obj/item/storage/holster/fallout
 	mask = null
 	id = /obj/item/card/id/ncr/leader
 	suit_store = /obj/item/weapon/fallout_melee/chinese
@@ -198,7 +198,7 @@
 /datum/outfit/job/fallout/legion/prime
 	name = LEGION_PRIME
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/prime
-	belt = /obj/item/storage/belt/fallout/holster
+	belt = /obj/item/storage/holster/fallout
 	head = /obj/item/clothing/head/fallout/helmet/legion/prime
 	id = /obj/item/card/id/legion/prime
 	suit_store = /obj/item/weapon/gun/fallout/pistol/colt357
@@ -215,7 +215,7 @@
 	name = LEGION_VETERAN
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/veteran
 	back = /obj/item/storage/backpack/fallout/satchel/explorer
-	belt = /obj/item/storage/belt/fallout/holster
+	belt = /obj/item/storage/holster/fallout
 	head = /obj/item/clothing/head/fallout/helmet/legion/veteran
 	id = /obj/item/card/id/legion/veteran
 	suit_store = /obj/item/weapon/gun/fallout/rifle/cowboy_repeater
@@ -279,7 +279,7 @@
 	name = LEGION_LEADER
 	wear_suit = /obj/item/clothing/suit/storage/fallout/legion/centurion
 	back = /obj/item/storage/backpack/fallout/satchel/explorer
-	belt = /obj/item/storage/belt/fallout/holster
+	belt = /obj/item/storage/holster/fallout
 	gloves = /obj/item/clothing/gloves/fallout/metal
 	shoes = /obj/item/clothing/shoes/fallout/legion/metal
 	head = /obj/item/clothing/head/fallout/helmet/legion/centurion

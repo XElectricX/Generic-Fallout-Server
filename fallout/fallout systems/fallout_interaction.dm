@@ -71,95 +71,33 @@
 		return FALSE
 	return TRUE
 
-/obj/item/storage/internal/handle_mousedrop(mob/user, obj/over_object)
+//Overriding to remove a lying_angle check
+/datum/storage/on_mousedrop_onto(datum/source, obj/over_object as obj, mob/user)
 	if(!ishuman(user))
-		return FALSE
+		return COMPONENT_NO_MOUSEDROP
 
-	if(user.incapacitated()) /* FALLOUT EDIT: Removing the lying_angle check here! */
-		return FALSE
-
-	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+	if(over_object == user && parent.Adjacent(user)) // this must come before the screen objects only block
 		open(user)
-		return FALSE
-
-	if(!isitem(master_item))
-		return FALSE
-
-	var/obj/item/owner = master_item
-
-	if(HAS_TRAIT(owner, TRAIT_NODROP))
-		return FALSE
+		return COMPONENT_NO_MOUSEDROP
 
 	if(!istype(over_object, /atom/movable/screen))
-		return TRUE
+		return //Don't cancel mousedrop
 
-	//Makes sure owner is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
-	//There's got to be a better way of doing this...
-	if(owner.loc != user || (owner.loc?.loc == user))
-		return FALSE
-
-	if(over_object.name == "r_hand" || over_object.name == "l_hand")
-		if(owner.unequip_delay_self)
-			INVOKE_ASYNC(src, PROC_REF(unequip_item), user, over_object.name)
-		else if(over_object.name == "r_hand")
-			user.dropItemToGround(owner)
-			user.put_in_r_hand(owner)
-		else if(over_object.name == "l_hand")
-			user.dropItemToGround(owner)
-			user.put_in_l_hand(owner)
-	return FALSE
-
-//Removed the lying_angle check here
-/obj/item/storage/internal/handle_attack_hand(mob/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.l_store == master_item && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
-			H.put_in_hands(master_item)
-			H.l_store = null
-			return FALSE
-		if(H.r_store == master_item && !H.get_active_held_item())
-			H.put_in_hands(master_item)
-			H.r_store = null
-			return FALSE
-
-	if(master_item.loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
-			I.attack_hand(user)
-		else
-			open(user)
-		return FALSE
-
-	for(var/mob/M in range(1, master_item.loc))
-		if(M.s_active == src)
-			close(M)
-	return TRUE
-
-//Another lying_angle removal here
-/obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(!ishuman(usr))
-		return
-
-	if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-		open(usr)
-		return
-
-	if(!istype(over_object, /atom/movable/screen))
-		return ..()
+	if(HAS_TRAIT(src, TRAIT_NODROP))
+		return COMPONENT_NO_MOUSEDROP
 
 	//Makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
-	//There's got to be a better way of doing this.
-	if(loc != usr || (loc && loc.loc == usr))
-		return
+	if(parent.loc != user && parent.loc.loc != user) //loc.loc handles edge case of storage attached to an item attached to another item (modules/boots)
+		return COMPONENT_NO_MOUSEDROP
 
-	if(!usr.restrained() && !usr.stat)
+	if(!user.restrained() && !user.stat)
 		switch(over_object.name)
 			if("r_hand")
-				usr.dropItemToGround(src)
-				usr.put_in_r_hand(src)
+				INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
+				return COMPONENT_NO_MOUSEDROP
 			if("l_hand")
-				usr.dropItemToGround(src)
-				usr.put_in_l_hand(src)
+				INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
+				return COMPONENT_NO_MOUSEDROP
 
 //Another one
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)

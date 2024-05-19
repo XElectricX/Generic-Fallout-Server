@@ -1,6 +1,6 @@
 //The existing drinks stuff seems fine so just going to use that, at least for now
 /*	TGMC nuka cola is fine minus the druggy part, will adjust when drink stuff is reworked
-/datum/reagent/consumable/drink/cold/nuka_cola/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/L, metabolism)
 	L.jitter(10)
 	//L.radiation += 1
 	return ..()*/
@@ -16,19 +16,19 @@
 /datum/reagent/consumable/drink/sarsaparilla/on_mob_life(mob/living/L, metabolism)
 	return ..()
 
-/datum/reagent/consumable/drink/cold/vim
+/datum/reagent/consumable/vim
 	name = "Vim"
 	description = "You've Got Vim!"
 	color = "#946B4A"
 	taste_description = "something sweet, with a bitter aftertaste"
 
 //Slight toxins and oxyloss healing from that famous Vim! Vigor
-/datum/reagent/consumable/drink/cold/vim/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/consumable/vim/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(-0.5, 0)
 	L.adjustOxyLoss(-0.5, 0)
 	return ..()
 
-/datum/reagent/consumable/drink/cold/bawls
+/datum/reagent/consumable/bawls
 	name = "Balls Guarana"
 	description = "For that Guarana Bounce!"
 	color = "#494A82"
@@ -38,7 +38,7 @@
 	adj_sleepy = -2
 
 //Energy drink, more more extreme than even Nuka Cola, add stuff later
-/datum/reagent/consumable/drink/cold/bawls/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/consumable/bawls/on_mob_life(mob/living/L, metabolism)
 	L.jitter(20)
 	return ..()
 

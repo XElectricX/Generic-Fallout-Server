@@ -8,11 +8,11 @@
 	desc = "Mobile platform for firing guided missiles. The targeting system appears to have degraded."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_heavy.dmi'
 	icon_state = "missile_launcher"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_rifles_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi')
-	item_state = "missile_launcher"
+	worn_icon_state = "missile_launcher"
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -60,7 +60,7 @@
 	name = "stick grenade"
 	desc = "Ancient style of grenade that focuses on explosive power rather than fragmentation. Detonation time is 4 seconds."
 	icon_state = "stick"
-	item_state = "grenade_stick"
+	worn_icon_state = "grenade_stick"
 	throw_speed = 4
 	throw_range = 9	//It's made for throwing after all
 	det_time = 4 SECONDS
@@ -72,7 +72,7 @@
 	name = "dynamite"
 	desc = "Classic and simple design of putting as much explosive powder into one object as one can. Fuse length gives it about 5 seconds to detonate."
 	icon_state = "dynamite"
-	item_state = "grenade_stick"
+	worn_icon_state = "grenade_stick"
 	arm_sound = 'fallout/fallout sounds/fallout weapon sounds/dynamite_ignition.wav'
 	det_time = 5 SECONDS
 	heavy_impact_range = 3
@@ -121,7 +121,7 @@
 	name = "molotov cocktail"
 	desc = "Old bottle filled with alcohol or other flammable substances. Light the cloth on fire and throw the bottle to ignite."
 	icon_state = "molotov"
-	item_state = "grenade_stick"
+	worn_icon_state = "grenade_stick"
 	arm_sound = 'fallout/fallout sounds/flame_on.ogg'
 	flash_range = 0
 
@@ -167,7 +167,7 @@
 	name = "incendiary bomb"
 	desc = "Makeshift assembly loaded with napalm and connected to a timer set to 3 seconds."
 	icon_state = "incendiary"
-	item_state = "grenade_stick"
+	worn_icon_state = "grenade_stick"
 	arm_sound = 'sound/weapons/armbomb.ogg'
 	det_time = 3 SECONDS
 	flash_range = 0

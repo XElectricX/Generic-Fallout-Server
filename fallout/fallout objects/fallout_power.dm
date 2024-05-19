@@ -22,7 +22,7 @@
 	desc = "A specialized high density battery used to power lasguns."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	icon_state = "fusion_core"
-	item_state = "fusion_core"
+	worn_icon_state = "fusion_core"
 	charge_overlay = "fusion_core"
 	w_class = WEIGHT_CLASS_SMALL
 	///How much energy gets drained per action while in power armor; sum of all armor piece energy costs
@@ -53,7 +53,7 @@
 	name = "fission battery"
 	desc = "Pre-War portable power source, often found in machinery and devices."
 	icon_state = "fission_battery"
-	item_state = "fission_battery"
+	worn_icon_state = "fission_battery"
 	charge_overlay = "fission_battery"
 	w_class = WEIGHT_CLASS_TINY
 	maxcharge = 1000
@@ -63,7 +63,7 @@
 	name = "microfusion cell"
 	desc = "Best in portable power storage, second only to fusion cores. Has a high maximum charge and is used in most energy weapons."
 	icon_state = "mfc"
-	item_state = "mfc"
+	worn_icon_state = "mfc"
 	charge_overlay = "mfc"
 	w_class = WEIGHT_CLASS_TINY
 	maxcharge = 10000
@@ -73,7 +73,7 @@
 	name = "electron charge pack"
 	desc = "An array of small energy cells assembled inside a casing. Larger and holds less charge than microfusion cells, but more common."
 	icon_state = "ecp"
-	item_state = "ecp"
+	worn_icon_state = "ecp"
 	charge_overlay = "ecp"
 	maxcharge = 5000
 	//materials = list(/datum/material/metal = 2000)

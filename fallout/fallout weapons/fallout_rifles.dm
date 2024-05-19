@@ -3,7 +3,7 @@
 	desc = "Primary weapon of most NCRA soldiers. Fitted for the reliable 5.56mm cartridge, in addition to being cheap and easy to maintain."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_rifles.dmi'
 	icon_state = "service"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_rifles_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi')
@@ -148,7 +148,7 @@
 	name = "\improper FN FAL battle rifle"
 	desc = "Widely used pre-war, but harder to find these days. This wonderful machine can deliver .308 rounds in automatic and semi-automatic settings."
 	icon_state = "fn_fal"
-	item_state = "l1a1"
+	worn_icon_state = "l1a1"
 	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
@@ -170,7 +170,7 @@
 	name = "\improper Israeli FAL battle rifle"
 	desc = "Israeli-produced paratrooper configuration of the FN FAL."
 	icon_state = "fn_fal_israel"
-	item_state = "l1a1"
+	worn_icon_state = "l1a1"
 
 /obj/item/weapon/gun/fallout/rifle/fn_fal/l1a1
 	name = "\improper L1A1 Self-Loading Rifle"
@@ -299,7 +299,7 @@
 	name = "\improper Pederson rifle"
 	desc = "An SMLE that had it's reciever swapped with a semi automatic one chambered in .22 LR."
 	icon_state = "smle_pederson"
-	item_state = "smle"
+	worn_icon_state = "smle"
 	fire_sound = 'fallout/fallout sounds/fallout weapon sounds/varmint_rifle_fire.ogg'
 	reciever_flags = AMMO_RECIEVER_MAGAZINES
 	default_ammo_type = /obj/item/ammo_magazine/fallout_pistol/subsonic
@@ -341,7 +341,7 @@
 	name = "\improper Springfield Model 1873 \"Trapdoor\""
 	desc = "The first standard-issue breech-loading rifle used by the pre-war US military. Only holds a single .45-70 round. Reload after every shot."
 	icon_state = "springfield_trapdoor"
-	item_state = "no4"
+	worn_icon_state = "no4"
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
 	unload_sound = 'sound/weapons/guns/interact/martini_open.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'

@@ -3,7 +3,7 @@
 	name = "flashlight"
 	desc = "Handheld lighting. Convenient."
 	icon = 'fallout/fallout icons/fallout items/fallout_lights.dmi'
-	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
+	worn_icon_list = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
 	light_power = 5
 	//light_system = HYBRID_LIGHT
 	//light_mask_type = /atom/movable/lighting_mask/conical
@@ -19,13 +19,13 @@
 
 //Updates the mob sprite	//Fix later, update_item_state() refuses to be called no matter what I try
 /obj/item/fashlight/fallout/update_item_state(mob/user)
-	item_state = "[initial(item_state)][light_on ? "_on" : ""]"
+	worn_icon_state = "[initial(worn_icon_state)][light_on ? "_on" : ""]"
 
 /obj/item/flashlight/fallout/junk
 	name = "junk light"
 	desc = "A source of light made out of scrap."
 	icon_state = "flashlight_junk"
-	item_state = "flashlight_junk"
+	worn_icon_state = "flashlight_junk"
 	light_range = 4
 	light_power = 4
 	raillight_compatible = FALSE
@@ -34,7 +34,7 @@
 	name = "lantern"
 	desc = "Small metal casing with glass housing containing a light."
 	icon_state = "lantern"
-	item_state = "lantern"
+	worn_icon_state = "lantern"
 	light_power = 4
 	light_color = LIGHT_COLOR_YELLOW
 	//light_system = MOVABLE_LIGHT
@@ -46,7 +46,7 @@
 	name = "flare"
 	desc = "There are instructions on the side, it reads 'pull cord, make light'."
 	icon_state = "flare"
-	item_state = "flare"
+	worn_icon_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
 	light_range = 6	//More light than a flash light
 	light_power = 6 //As bright as a flashlight, but more disposable. Doesn't burn forever though
@@ -97,7 +97,7 @@
 	name = "torch"
 	desc = "A wooden stick with a flammable subtance on the tip."
 	icon_state = "torch"
-	item_state = "torch"
+	worn_icon_state = "torch"
 	light_range = 5	//Weaker than a flare
 	light_power = 4
 	light_color = LIGHT_COLOR_FIRE
@@ -160,8 +160,8 @@
 /obj/machinery/light/fallout/bulb
 	name = "light bulb fixture"
 	desc = "A small lighting fixture."
-	icon_state = "bulb1"
-	base_state = "bulb"
+	icon_state = "bulb_empty"
+	base_icon_state = "bulb"
 	fitting = "bulb"
 	brightness = 6
 	light_type = /obj/item/light_bulb/bulb

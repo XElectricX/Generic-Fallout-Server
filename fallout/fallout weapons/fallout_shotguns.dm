@@ -4,7 +4,7 @@
 	desc = "Reliable and common shotgun. Operated by racking the pump before each shot."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_shotguns.dmi'
 	icon_state = "pump"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_shotguns_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_guns.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_guns.dmi')
@@ -101,7 +101,7 @@
 	name = "\improper Winchester Model 1887"
 	desc = "Every cowboy's trusty lever-action shotgun."
 	icon_state = "lever_action"
-	item_state = "cowboy_repeater"	//They look close enough and I am tired
+	worn_icon_state = "cowboy_repeater"	//They look close enough and I am tired
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION
 	max_chamber_items = 7
 	max_shells = 7

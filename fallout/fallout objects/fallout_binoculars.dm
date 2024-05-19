@@ -3,8 +3,8 @@
 	desc = "A pair of binoculars. Examine a tile/object while in use to get coordinates."
 	icon = 'fallout/fallout icons/fallout items/fallout_tools.dmi'
 	icon_state = "binoculars"
-	item_icons = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
-	item_state = "binoculars"
+	worn_icon_list = list(slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_items.dmi', slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_items.dmi')
+	worn_icon_state = "binoculars"
 	throw_range = 7
 	throw_speed = 2
 	var/turf/targetturf
@@ -12,7 +12,7 @@
 
 //Updates the mob sprite
 /obj/item/binoculars/fallout/update_item_state(mob/user)
-	item_state = "binoculars[wielded ? "_w" : ""]"	//The check for if the binoculars are wielded or not
+	worn_icon_state = "binoculars[wielded ? "_w" : ""]"	//The check for if the binoculars are wielded or not
 	return
 
 /obj/item/binoculars/fallout/onzoom(mob/living/user)

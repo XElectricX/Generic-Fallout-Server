@@ -4,7 +4,7 @@
 	desc = "A length of metal attached to a stick. Reliable cutting tool."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_melee.dmi'
 	icon_state = "sword_machete"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_melee_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
@@ -84,8 +84,8 @@
 /obj/item/weapon/fallout_melee/update_item_state(mob/user)
 	if(haswieldedstate)
 		. = ..()
-		//item_state += "[weapon_active ? "_on" : ""]"
-		//item_state = initial(icon_state) + (item_flags & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
+		//worn_icon_state += "[weapon_active ? "_on" : ""]"
+		//worn_icon_state = initial(icon_state) + (item_flags & WIELDED ? "_w" : "") + (weapon_active ? "_on" : "")
 
 
 //Proc for removing energy cells from weapons that have them
@@ -212,10 +212,10 @@
 	name = "survival knife"
 	desc = "Common knife found all across the wasteland. Still a reliable cutting tool hundreds of years later."
 	icon_state = "knife_survival"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
-	item_state = "knife"	//Needs a worn sprite
+	worn_icon_state = "knife"	//Needs a worn sprite
 	item_flags = null
 	w_class = WEIGHT_CLASS_SMALL
 	sharp = IS_SHARP_ITEM_ACCURATE
@@ -233,27 +233,27 @@
 /obj/item/weapon/fallout_melee/knife/bowie
 	name = "bowie knife"
 	icon_state = "knife_bowie"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
-	item_state = "knife_bowie"
+	worn_icon_state = "knife_bowie"
 
 /obj/item/weapon/fallout_melee/knife/trench
 	name = "trench knife"
 	icon_state = "knife_trench"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
-	item_state = "knife_trench"
+	worn_icon_state = "knife_trench"
 
 /obj/item/weapon/fallout_melee/knife/switchblade
 	name = "switchblade"
 	desc = "Compact blade that can be flipped open."
 	icon_state = "knife_switch"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
-	item_state = "knife_switch"
+	worn_icon_state = "knife_switch"
 	w_class = WEIGHT_CLASS_TINY
 
 //Uses attack_self instead of unique_action for now because the game won't update worn icons for some reason
@@ -289,16 +289,16 @@
 	update_item_state()
 
 /obj/item/weapon/fallout_melee/knife/switchblade/update_item_state(mob/user)
-	item_state = "[initial(item_state)][weapon_active ? "_on" : ""]"
+	worn_icon_state = "[initial(worn_icon_state)][weapon_active ? "_on" : ""]"
 
 /obj/item/weapon/fallout_melee/knife/bone
 	name = "bone knife"
 	desc = "Makeshift blade crafted from bone with a wooden handle."
 	icon_state = "knife_bone"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')
-	item_state = "knife_bone"
+	worn_icon_state = "knife_bone"
 
 //Spears
 /obj/item/weapon/fallout_melee/spear
@@ -373,7 +373,7 @@
 	desc = "Natural enemy of fire."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "fireaxe"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
 
@@ -568,10 +568,10 @@
 	desc = "Mechanical gauntlet fitted with hydraulics and a battery. You could punch through concrete with it."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "powerfist"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi')
-	item_state = "powerfist"
+	worn_icon_state = "powerfist"
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bonked", "punched", "fisted")
@@ -755,7 +755,7 @@
 	name = "riot shield"
 	icon = 'fallout/fallout icons/fallout weapons/fallout_melee.dmi'
 	icon_state = "shield_riot"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_back_str = 'fallout/fallout icons/fallout weapons/fallout_melee_worn.dmi',
 		slot_l_hand_str = 'fallout/fallout icons/fallout inhands/left_melee.dmi',
 		slot_r_hand_str = 'fallout/fallout icons/fallout inhands/right_melee.dmi')

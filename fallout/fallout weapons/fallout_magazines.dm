@@ -313,8 +313,8 @@
 	desc = "Large container that can be filled with ammo. Can be used to directly feed certain machineguns by click-dragging."
 	icon = 'fallout/fallout icons/fallout weapons/fallout_ammunition.dmi'
 	icon_state = "ammopack"
-	item_icons = list(slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi')
-	item_state = "ammopack"
+	worn_icon_list = list(slot_back_str = 'fallout/fallout icons/fallout clothing/fallout_backpacks_worn.dmi')
+	worn_icon_state = "ammopack"
 	item_state_worn = TRUE
 	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_HUGE

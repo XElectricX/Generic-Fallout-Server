@@ -7,6 +7,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	intact_tile = FALSE
+	allow_construction = TRUE
 
 //Sand, I don't like it
 /turf/open/ground/fallout/desert

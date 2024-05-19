@@ -2,7 +2,7 @@
 	name = "generic hat"
 	desc = "Just a hat."
 	icon = 'fallout/fallout icons/fallout clothing/fallout_headgear.dmi'
-	item_icons = list(slot_head_str = 'fallout/fallout icons/fallout clothing/fallout_headgear_worn.dmi')
+	worn_icon_list = list(slot_head_str = 'fallout/fallout icons/fallout clothing/fallout_headgear_worn.dmi')
 	cold_protection_flags = HEAD
 	heat_protection_flags = HEAD
 
@@ -14,4 +14,4 @@
 	name = "police officer hat"
 	desc = "A hat with a badge on it."
 	icon_state = "police_officer"
-	item_state = "police_officer"
+	worn_icon_state = "police_officer"
