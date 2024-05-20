@@ -155,6 +155,25 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 
+/area/fallout/oasis
+	name = "Oasis"
+	icon_state = "oasis"
+	ambience = "oasis"
+
+/area/fallout/south_highway_tunnel
+	name = "South Highway Tunnel"
+	icon_state = "tunnel"
+	ambience = "underground"
+	ceiling = CEILING_UNDERGROUND
+	outside = FALSE
+
+/area/fallout/north_highway_tunnel
+	name = "North Highway Tunnel"
+	icon_state = "tunnel"
+	ambience = "underground"
+	ceiling = CEILING_UNDERGROUND
+	outside = FALSE
+
 /* -------------------- */
 /* Day/night cycle code */
 
