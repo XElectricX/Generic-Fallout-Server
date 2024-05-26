@@ -174,6 +174,18 @@
 	ceiling = CEILING_UNDERGROUND
 	outside = FALSE
 
+/area/fallout/hospital
+	name = "Hospital"
+	icon_state = "clinic"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+/area/fallout/power_plant
+	name = "Power Plant"
+	icon_state = "power"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
 /* -------------------- */
 /* Day/night cycle code */
 
